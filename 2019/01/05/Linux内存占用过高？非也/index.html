@@ -100,21 +100,28 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="http://yoursite.com/2019/01/03/我的博客/index.html">
+  <meta name="description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top   结合操作系统，计组等课程，以及多年以来windows培养给我的直觉，认为0.96G（1016272K）的总内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux内存占用过高？非也">
+<meta property="og:url" content="http://yoursite.com/2019/01/05/Linux内存占用过高？非也/index.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top   结合操作系统，计组等课程，以及多年以来windows培养给我的直觉，认为0.96G（1016272K）的总内">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-03T11:46:53.101Z">
+<meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b24">
+<meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b23">
+<meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=575cb766ab64411568000b25">
+<meta property="og:updated_time" content="2019-01-05T03:41:28.524Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的博客">
+<meta name="twitter:title" content="Linux内存占用过高？非也">
+<meta name="twitter:description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top   结合操作系统，计组等课程，以及多年以来windows培养给我的直觉，认为0.96G（1016272K）的总内">
+<meta name="twitter:image" content="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b24">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/03/我的博客/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/05/Linux内存占用过高？非也/">
 
 
 
@@ -124,7 +131,7 @@
   };
 </script>
 
-  <title>我的博客 | zhkmxx930 blog</title>
+  <title>Linux内存占用过高？非也 | zhkmxx930 blog</title>
   
 
 
@@ -357,7 +364,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/我的博客/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/Linux内存占用过高？非也/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -374,7 +381,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">我的博客
+          <h1 class="post-title" itemprop="name headline">Linux内存占用过高？非也
 
               
             
@@ -400,9 +407,13 @@
                 
               
 
-              <time title="创建时间：2019-01-03 19:46:53" itemprop="dateCreated datePublished" datetime="2019-01-03T19:46:53+08:00">2019-01-03</time>
+              <time title="创建时间：2019-01-05 11:41:08 / 修改时间：11:41:28" itemprop="dateCreated datePublished" datetime="2019-01-05T11:41:08+08:00">2019-01-05</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -434,7 +445,37 @@
       
 
       
-        
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。</p>
+</blockquote>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><ul>
+<li>先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入<code>top</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#top</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b24" alt="图片标题"></p>
+<ul>
+<li>结合操作系统，计组等课程，以及多年以来windows培养给我的直觉，认为<strong>0.96G（1016272K）</strong>的总内存，使用了<strong>0.84G(880960K)</strong>的内存，使用率高达<strong>88%</strong>。然而我还啥都没干，怎么会这样呢？<br>仔细查看还会发现后面有一个<strong>buffers</strong>，Swap后面还有一个<strong>Cached Mem</strong>。<br>现在我们用<code>free</code>来观察下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#free -m</span><br></pre></td></tr></table></figure>
+<p><img src="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b23" alt="图片标题"></p>
+<ul>
+<li>虽然Mem显示了<strong>0.9G</strong>左右的used，但是<strong>-/+ buffers/cache</strong>(减去buffers和cache的结果)可以看到，当前进程实际占用内存是<strong>0.24G(256348K)</strong>，而可用空闲（free）内存为<strong>0.72G(759924K)</strong>。<br>可以这么理解：在linux的内存分配机制中，优先使用物理内存，当物理内存还有空闲时（还够用），不会释放其占用内存，就算占用内存的程序已经被关闭了，该程序所占用的内存用来做缓存使用，对于开启过的程序、或是读取刚存取过得数据会比较快。<br><br></li>
+<li><p>如上面的例子：共<strong>1G</strong>的内存，<strong>0.9G</strong>被占用，但是<strong>buffer</strong>和<strong>cached mem</strong>部分作为缓存，可以使用命中率的方式提高使用效率，而且这部分缓存是根据指令随时可以释放的，我们可以认为这部分内存没有实际被使用，也可以认为它是空闲的。<br>因此查看目前进程正在实际被使用的内存，是<code>used-(buffers+cache)</code>，也可以认为如果swap没有大量使用，mem还是够用的，只有mem被当前进程实际占用完（没有了buffers和cache），才会使用到swap的。<br><br></p>
+</li>
+<li><p>再举个栗子： 这个是我在RPi一群看到的一个群友发的探针监测截图<br><img src="https://leanote.com/api/file/getImage?fileId=575cb766ab64411568000b25" alt="图片标题"></p>
+</li>
+<li><p>观察内存使用状况一栏，发现物理内存功<strong>925.89M</strong>，已用<strong>911.74M</strong>，Cache化的内存是<strong>676.46M</strong>，Buffers为<strong>61.3M</strong>，现在用上述公式：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">真实的内存使用=used-(buffers+cache)</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p>带入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">真实使用内存 = 911.74-676.46-61.3 = 173.98</span><br><span class="line">与第三行的灰条的173.98相符</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
+<p>很高兴对于linux的内存分配有了新的认识 多谢一群的 粵-打雜小白-503 Service Unavailable 的技术支持 多谢Licess’s Blog的精彩分析</p>
+</blockquote>
+
       
     </div>
 
@@ -464,15 +505,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/01/03/在raspbian-jessie上搭建nat123自启动/" rel="next" title="在raspbian-jessie上搭建nat123自启动">
+                <i class="fa fa-chevron-left"></i> 在raspbian-jessie上搭建nat123自启动
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/03/在raspbian-jessie上搭建nat123自启动/" rel="prev" title="在raspbian-jessie上搭建nat123自启动">
-                在raspbian-jessie上搭建nat123自启动 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -517,8 +558,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -564,6 +614,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

@@ -464,7 +464,7 @@
 <li><p>安装mono</p>
 <p>​    这里可能由于是我的软件源出了问题，无论如何也不能按照官网的方式在我的树莓派上装mono环境，那么我只好采取mono源码编译的方式来安装。</p>
 <p>​    简单说一下每个步骤，首先通过<code>wget</code>获取mono源码，如果没有wget的请手动执行<code>sudo apt-get install wget</code>进行安装，然后使用<code>tar</code>解压，然后<code>cd</code>进入解压文件夹，然后使用<code>./configure --prefix=/usr/local</code>配置编译安装路径，最后<code>make</code>编译，<code>make install</code>安装mono。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> wget http://download.mono-project.com/sources/mono/mono-4.0.1.44.tar.bz2</span><br><span class="line"><span class="meta">$</span> tar -xvf mono-4.0.1.44.tar.bz2</span><br><span class="line"><span class="meta">$</span> cd mono-4.0.1</span><br><span class="line"><span class="meta">$</span> ./configure --prefix=/usr/local</span><br><span class="line"><span class="meta">$</span> make</span><br><span class="line"><span class="meta">$</span> make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wget http://download.mono-project.com/sources/mono/mono-4.0.1.44.tar.bz2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tar -xvf mono-4.0.1.44.tar.bz2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> mono-4.0.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./configure --prefix=/usr/<span class="built_in">local</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> make</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> make install</span></span><br></pre></td></tr></table></figure>
 <p>​    这样执行完成后输入<code>mono -V</code>出现版本信息就OK了，可以按照官网的说明继续执行。那么在这里我继续总结一下nat123的全部安装步骤。<br><br></p>
 </li>
 <li><p>安装nat123客户端(本文安装路径为<code>/mnt</code>)</p>
@@ -670,6 +670,21 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhkmxx9302013" title="GitHub &rarr; https://github.com/zhkmxx9302013" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
           
 
           

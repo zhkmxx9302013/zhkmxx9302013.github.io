@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="笔记参考1：Understanding Model Predictive Control(Youtube 带自动生成字幕)笔记参考2：Understanding Model Predictive Control(B站 生肉) 一、什么是MPC模型预测控制MPC(Model Predict Control)是一种反馈控制(feedback control)算法, 使用模型来预测过程的未来输出。 举例">
+<meta name="keywords" content="MPC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MPC控制笔记(一)">
+<meta property="og:url" content="http://yoursite.com/2019/01/18/MPC控制笔记/index.html">
+<meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="笔记参考1：Understanding Model Predictive Control(Youtube 带自动生成字幕)笔记参考2：Understanding Model Predictive Control(B站 生肉) 一、什么是MPC模型预测控制MPC(Model Predict Control)是一种反馈控制(feedback control)算法, 使用模型来预测过程的未来输出。 举例">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547791941/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118113340.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547792593/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118141701.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547793059/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118143048.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547793561/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118143857.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547794741/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118145715.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547795210/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118150514.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547795524/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118151151.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547795818/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118151646.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547796146/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118152212.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547796758/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118153216.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547799817/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118162326.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547798225/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118155646.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547798140/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118155524.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547799440/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118161704.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547800226/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118163015.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547799922/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118162446.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547800315/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118163146.png">
+<meta property="og:updated_time" content="2019-01-18T08:33:02.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MPC控制笔记(一)">
+<meta name="twitter:description" content="笔记参考1：Understanding Model Predictive Control(Youtube 带自动生成字幕)笔记参考2：Understanding Model Predictive Control(B站 生肉) 一、什么是MPC模型预测控制MPC(Model Predict Control)是一种反馈控制(feedback control)算法, 使用模型来预测过程的未来输出。 举例">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547791941/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118113340.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/18/MPC控制笔记/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MPC控制笔记(一) | zhkmxx930 blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zhkmxx930 blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tag_dir" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/MPC控制笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MPC控制笔记(一)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-18 11:17:11 / 修改时间：16:33:02" itemprop="dateCreated datePublished" datetime="2019-01-18T11:17:11+08:00">2019-01-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>笔记参考1：<a href="https://www.youtube.com/watch?v=8U0xiOkDcmw&amp;list=PLn8PRpmsu08ozoeoXgxPSBKLyd4YEHww8" target="_blank" rel="noopener">Understanding Model Predictive Control(Youtube 带自动生成字幕)</a><br>笔记参考2：<a href="https://www.bilibili.com/video/av36438909?from=search&amp;seid=18128345108889923736" target="_blank" rel="noopener">Understanding Model Predictive Control(B站 生肉)</a></p>
+<h3 id="一、什么是MPC模型预测控制"><a href="#一、什么是MPC模型预测控制" class="headerlink" title="一、什么是MPC模型预测控制"></a>一、什么是MPC模型预测控制</h3><p>MPC(Model Predict Control)是一种反馈控制(feedback control)算法, 使用模型来预测过程的未来输出。</p>
+<p>举例：<br>    <strong>[场景]</strong> 车道保持<br>    <strong>[已知模型]</strong> 车辆模型，比如速度控制， 转向控制对应的偏航量<br>    <strong>[预测]</strong> 根据已知模型和所选的控制策略(action)，进行轨迹预测<br>    <strong>[优化]</strong> 通过优化控制策略，来尽可能的拟合预测的轨迹。</p>
+<p>如下图所示为一个MIMO系统u1,u2输入与y1,y2输出相互影响。如果使用PID控制的话，每一个子系统单独设计一个PID控制器，两个相互影响的子系统没有任何的交联，使得系统难以设计，如果像图二一样设计一个较大的系统，则参数较多难以实现，而使用MPC控制器的话可以较好的解决两种问题，综合相互间的影响来设计参数。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547791941/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118113340.png" alt="MIMO"><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547792593/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118141701.png" alt="MIMO BIG"><br><strong>MPC控制</strong><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547793059/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118143048.png" alt="MIMO MPC"></p>
+<p>此外MPC控制还可以方便的支持各种约束条件，具备一定的预测能力(有点像前馈feedforward控制)。</p>
+<h3 id="二、MPC的特点"><a href="#二、MPC的特点" class="headerlink" title="二、MPC的特点"></a>二、MPC的特点</h3><p>综合上述，总结一下MPC的特点：</p>
+<ul>
+<li>支持MIMO系统，便于构建输入输出间的相互影响参数</li>
+<li>支持方便添加约束条件</li>
+<li>具有预测能力、</li>
+<li>需要较好的处理器和较大的内存，因为需要大量的在线优化，存储大量的变量</li>
+</ul>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547793561/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118143857.png" alt="Onlineopt"></p>
+<h3 id="三、MPC参数选择"><a href="#三、MPC参数选择" class="headerlink" title="三、MPC参数选择"></a>三、MPC参数选择</h3><p>选择一个好的参数不仅影响MPC控制的性能，而且还会影响到MPC每一个timestep内进行在线优化的计算复杂度。这里将会给出关于控制器采样周期、预测及控制范围(prediction and control)、约束及权重。</p>
+<h5 id="采样周期的选择"><a href="#采样周期的选择" class="headerlink" title="采样周期的选择"></a>采样周期的选择</h5><p>采样周期过大，则系统反应过慢导致难以及时进行修正控制，而采样周期过小，则会导致系统产生大量的在线优化计算，给系统带来较大的开销。因而建议采样周期设计采用<strong>开环响应时间(10~90%上升时间)的十分之一或二十分之一</strong>：<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547794741/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118145715.png" alt="timestep"></p>
+<h5 id="预测范围-prediction-horizon-的选择"><a href="#预测范围-prediction-horizon-的选择" class="headerlink" title="预测范围(prediction horizon)的选择"></a>预测范围(prediction horizon)的选择</h5><p>预测范围指的是一次优化后预测未来输出的时间步的个数。建议范围：在开环响应时间内采样20-30个样本的范围<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547795210/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118150514.png" alt="predhorizon"></p>
+<h5 id="控制范围-control-horizon-的选择"><a href="#控制范围-control-horizon-的选择" class="headerlink" title="控制范围(control horizon)的选择"></a>控制范围(control horizon)的选择</h5><p>如下图 [k, k+m]范围为控制范围，之后的红色部分称为 held constant，其中控制范围是要通过优化器来进行优化的参数动作。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547795524/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118151151.png" alt="ctrlhorizon"></p>
+<p>过小的控制范围，可能无法做到较好的控制，而较大的控制范围，比如与预测范围相等，则会导致只有前一部分的控制范围才会有较好的效果，而后一部分的控制范围则收效甚微，而且将带来大量的计算开销。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547795818/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118151646.png" alt="consrtgr"></p>
+<p>建议控制范围应该在预测范围的10~20%之间,最小值为2~3个timestep时间步<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547796146/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118152212.png" alt="sujest"></p>
+<h5 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h5><p>对于约束，一般分为Hard约束和Soft约束，Hard约束是不可违背必须遵守的，在控制系统中，输入输出都可能会有约束限制，但是在设计时不建议将输入输出都给予Hard约束，因为这两部的约束有可能是有重叠的，导致优化器会产生不可行解。<br>建议输出采用较小容忍度的Soft约束，而输入的话建议输入和输入参数变化率二者之间不要同时为Hard约束，可以一个Hard一个Soft。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547796758/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118153216.png" alt="costraint"></p>
+<h3 id="四、Linear-MPC-Adaptive-MPC-与-Gain-Scheduled-MPC"><a href="#四、Linear-MPC-Adaptive-MPC-与-Gain-Scheduled-MPC" class="headerlink" title="四、Linear MPC (Adaptive MPC 与 Gain-Scheduled MPC)"></a>四、Linear MPC (Adaptive MPC 与 Gain-Scheduled MPC)</h3><p>Linear MPC适用于:<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547799817/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118162326.png" alt=""><br>对于非线性系统而言,需要在不同的operating point处进行线性化处理如下图。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547798225/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118155646.png" alt="op"></p>
+<h5 id="Adaptive-MPC"><a href="#Adaptive-MPC" class="headerlink" title="Adaptive MPC"></a>Adaptive MPC</h5><p>在 Adaptive MPC中，当operating condition发生变化的时候，需要进行一次近似线性化计算，在每个时间步中，使用其近似线性模型来更新内部的平台模型(plant model，比如飞控模型，自行车模型等)。<br>在 Adaptive MPC中，在不同的operating point条件下，其优化问题的结构保持不变，即状态数量，约束数量不会随着operating condition而改变。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547798140/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118155524.png" alt="adaptivempc"></p>
+<h5 id="Gain-Scheduled-MPC"><a href="#Gain-Scheduled-MPC" class="headerlink" title="Gain-Scheduled MPC"></a>Gain-Scheduled MPC</h5><p>在 Gain-Scheduled MPC中，在不同的operating point条件下，其优化问题的结构会发生变化，需要为每一个operating point构建一个MPC控制器，且相互之间独立，其状态数量约束数量也可能不同。<br>在 Gain-Scheduled MPC模式下，需要设计调度算法来切换不同的MPC模型。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547799440/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118161704.png" alt="GMPC"></p>
+<h5 id="二者选型"><a href="#二者选型" class="headerlink" title="二者选型"></a>二者选型</h5><p><strong>[Adaptive MPC]</strong> 当能够构建平台(如飞行器，自动车等)的runtime线性模型，且在不同的operating point下优化问题的结构不变。</p>
+<p><strong>[Gain-Scheduled MPC]</strong> 当能够构建平台(如飞行器，自动车等)的runtime线性模型，且在不同的operating point下优化问题的结构发生变化。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547800226/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118163015.png" alt=""></p>
+<h3 id="五、Non-Linear-MPC-Adaptive-MPC-与-Gain-Scheduled-MPC"><a href="#五、Non-Linear-MPC-Adaptive-MPC-与-Gain-Scheduled-MPC" class="headerlink" title="五、Non-Linear MPC (Adaptive MPC 与 Gain-Scheduled MPC)"></a>五、Non-Linear MPC (Adaptive MPC 与 Gain-Scheduled MPC)</h3><p>Non-Linear MPC适用于(相对强大，能够提供更准确的预测能力，与决策支持，但是非线性优化的计算开销较大)<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547799922/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118162446.png" alt=""></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547800315/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118163146.png" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MPC/" rel="tag"># MPC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/05/论文阅读笔记/" rel="next" title="Generative Adversarial Imitation Learning(GAIL) 论文阅读笔记">
+                <i class="fa fa-chevron-left"></i> Generative Adversarial Imitation Learning(GAIL) 论文阅读笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="zhkmxx930">
+            
+              <p class="site-author-name" itemprop="name">zhkmxx930</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhkmxx9302013" title="GitHub &rarr; https://github.com/zhkmxx9302013" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、什么是MPC模型预测控制"><span class="nav-number">1.</span> <span class="nav-text">一、什么是MPC模型预测控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、MPC的特点"><span class="nav-number">2.</span> <span class="nav-text">二、MPC的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、MPC参数选择"><span class="nav-number">3.</span> <span class="nav-text">三、MPC参数选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#采样周期的选择"><span class="nav-number">3.0.1.</span> <span class="nav-text">采样周期的选择</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#预测范围-prediction-horizon-的选择"><span class="nav-number">3.0.2.</span> <span class="nav-text">预测范围(prediction horizon)的选择</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#控制范围-control-horizon-的选择"><span class="nav-number">3.0.3.</span> <span class="nav-text">控制范围(control horizon)的选择</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#约束"><span class="nav-number">3.0.4.</span> <span class="nav-text">约束</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Linear-MPC-Adaptive-MPC-与-Gain-Scheduled-MPC"><span class="nav-number">4.</span> <span class="nav-text">四、Linear MPC (Adaptive MPC 与 Gain-Scheduled MPC)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Adaptive-MPC"><span class="nav-number">4.0.1.</span> <span class="nav-text">Adaptive MPC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Gain-Scheduled-MPC"><span class="nav-number">4.0.2.</span> <span class="nav-text">Gain-Scheduled MPC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二者选型"><span class="nav-number">4.0.3.</span> <span class="nav-text">二者选型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、Non-Linear-MPC-Adaptive-MPC-与-Gain-Scheduled-MPC"><span class="nav-number">5.</span> <span class="nav-text">五、Non-Linear MPC (Adaptive MPC 与 Gain-Scheduled MPC)</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhkmxx930</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+</body>
+</html>

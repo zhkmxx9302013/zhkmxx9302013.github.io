@@ -402,7 +402,7 @@
                 
               
 
-              <time title="创建时间：2019-01-22 14:54:58 / 修改时间：14:55:49" itemprop="dateCreated datePublished" datetime="2019-01-22T14:54:58+08:00">2019-01-22</time>
+              <time title="创建时间：2019-01-22 14:54:58 / 修改时间：15:13:02" itemprop="dateCreated datePublished" datetime="2019-01-22T14:54:58+08:00">2019-01-22</time>
             
 
             
@@ -441,46 +441,25 @@
 
       
         
+          <h2 id="一、长期回报"><a href="#一、长期回报" class="headerlink" title="一、长期回报"></a>一、长期回报</h2><p>对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标<strong>最大化长期回报</strong> 而努力。</p>
+<script type="math/tex; mode=display">
+\max\sum_{t}{r_t}</script><p>但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即<strong>对未来的回报乘以一个折扣率，使得长期回报变得更有意义</strong>：</p>
+<script type="math/tex; mode=display">
+\sum_{t=0}{\gamma^tr_t}    （\gamma < 1）</script><p>由此我们引出<strong>长期回报</strong>的概念，即从当前状态开始对之后的所有回报，运用上式进行累加的折扣率计算：</p>
+<script type="math/tex; mode=display">
+Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未来的行动情况，我们需要对上式进行一个合理的估计，因而我们定义了<strong>策略的价值</strong>。<br>
+          <!--noindex-->
           
-            <h2 id="一、长期回报"><a href="#一、长期回报" class="headerlink" title="一、长期回报"></a>一、长期回报</h2><p>对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标<strong>最大化长期回报</strong> 而努力。<br>$$<br>\max\sum_{t}{r_t}<br>$$<br>但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即<strong>对未来的回报乘以一个折扣率，使得长期回报变得更有意义</strong>：<br>$$<br>\sum_{t=0}{\gamma^tr_t}    （\gamma &lt; 1）<br>$$<br>由此我们引出<strong>长期回报</strong>的概念，即从当前状态开始对之后的所有回报，运用上式进行累加的折扣率计算：</p>
-<p>$$<br>Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}<br>$$<br>但是长期回报需要知道未来的行动情况，我们需要对上式进行一个合理的估计，因而我们定义了<strong>策略的价值</strong>。</p>
-<h2 id="二、值函数"><a href="#二、值函数" class="headerlink" title="二、值函数"></a>二、值函数</h2><p>由于环境的原因，MDP中的状态转移概率有时候并不能够确定，因而需要基于<strong>状态转移</strong>来<strong>估计长期回报</strong>的<strong>期望</strong>。τ是从某个状态s出发，根据策略与状态转移概率采样得到的序列(trajectory)。那么价值函数可以表示为：<br>$$<br>v_{\pi}{(s_t)} = \mathbb{E}<em>{s,a\simτ}[\sum</em>{k=0}\gamma^kr_{t+k+1}]<br>=\sum_{\tau}{p(\tau)}{\sum_{k=0}^{\infin}{\gamma^k}{r_{t+k+1}}}<br>$$<br>根据MDP模型的形式，值函数一般分为两种：</p>
-<ul>
-<li><strong>状态值函数</strong>  $v_{\pi}{(s)}​$:               已知当前状态s，按照某种策略行动产生的长期回报期望；</li>
-<li><strong>状态-动作值函数 </strong> $q_{\pi}{(s,a)}​$:  已知当前状态s及动作a，按照某种策略行动产生的长期回报期望。</li>
-</ul>
-<p>由于符合马尔科夫性，我们可以将值函数的形式<strong>进行马尔科夫展开</strong>,其中${\pi(a_t|s_t)}$表示，在$s_t$状态下选择策略$\pi$的概率，策略$\pi$将产生行动$a_t$，$p(s_{t+1}|s_t,a_t)$表示在策略$\pi$的情况下，从$s_t，a_t$到达$s_{t+1}$的概率。<br>$$<br>v_{\pi}{(s_t)}=\sum_{(s_t,a_t,…)\sim\tau]}{\pi(a_t|s_t)}p(s_{t+1}|s_t,a_t)…{\sum_{k=0}^{\infin}{\gamma^k}{r_{t+k+1}}}<br>$$</p>
-<h2 id="三、贝尔曼方程"><a href="#三、贝尔曼方程" class="headerlink" title="三、贝尔曼方程"></a>三、贝尔曼方程</h2><ol>
-<li><strong>状态值函数的贝尔曼方程</strong></li>
-</ol>
-<p>通过代换消元，可以将上式整理为<strong>状态值函数的贝尔曼方程</strong>：<br>$$<br>v_{\pi}(s_t)=\sum_{a_t}\pi(a_t|s_t)\sum_{s_{t+1}}{p(s_{t+1}|s_t,a_t)[r_{t+1}+\gamma v_{\pi}(s_{t+1})]}<br>$$<br>更直观一点可以将贝尔曼方程描述为一种DP的形式，即当前状态$s$下，选择策略$\pi$的长期回报期望。<br>$$<br>v_{\pi}(s_t)=\sum_{a_t,s_t+1}\pi{(a_t|s_t)}\mathbb{E}[r_{t+1} + \gamma v_{\pi}(s_{t+1})]<br>$$</p>
-<ol start="2">
-<li><strong>状态-动作值函数的贝尔曼方程</strong></li>
-</ol>
-<p>类似地，可以定义<strong>状态-动作值函数的贝尔曼方程</strong>：<br>$$<br>q_{\pi}(s_t,a_t)=\sum_{s_{t+1}}p(s_{t+1}|s_t,a_t)\sum_{a_{t+1}}p(a_{t+1}|s_{t+1})[r_{t+1}+\gamma q_\pi{(s_{t+1},a_{t+1})}]<br>$$</p>
-<ol start="3">
-<li><strong>Bellman optimality equation</strong></li>
-</ol>
-<p>$$<br>v_*(s)=\mathbb{E}[r_{t+1} +\gamma max_\pi{v(s_{t+1})|s_t=s}]<br>$$</p>
-<p>$$<br>q_*(s,a)=\mathbb{E}[r_{t+1} +\gamma max_{a_{t+1}}{q(s_{t+1},a_{t+1})|s_t=s,a_t=a}]<br>$$</p>
-<h2 id="四、Monte-Carlo与Time-Difference"><a href="#四、Monte-Carlo与Time-Difference" class="headerlink" title="四、Monte-Carlo与Time Difference"></a>四、Monte-Carlo与Time Difference</h2><ul>
-<li>MC 方差较大，需要较深的探索获取回报</li>
-<li>TD  方差较小，偏差较大，可设定探索深度(1-step, n-step), Q-Learning, SARSA都属于TD</li>
-</ul>
-<p>【参考】<a href="https://zhuanlan.zhihu.com/p/25239682" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25239682</a></p>
-<p>Monte-Carlo method适用于“情节式任务”（情节任务序列有终点，与“情节式任务”相对应的是“连续型任务”）。$Q(s,a)$就是整个序列的期望回报。MC增量更新中的<strong>Monte-Carlo error</strong> ($R-Q(s_t,a_t)$)：<br>$$<br>Q(s_t,a_t)\Leftarrow Q(s_t,a_t) + \alpha(R-Q(s_t,a_t))<br>$$<br>TD（Time Difference） method，是MC和DP 方法的一个结合。相比MC方法，TD除了能够适用于连续任务外，和MC的差异从下图可以清楚看到。MC需要回退整个序列更新Q值，而TD只需要回退1步或n步更新Q值。因为MC需要等待序列结束才能训练，而TD没有这个限制，因此TD收敛速度明显比MC快，目前的主要算法都是基于TD。下图是TD和MC的回退图，很显然MC回退的更深。</p>
-<p><img src="https://ws1.sinaimg.cn/large/006gCbCHly1fx0o33ydhkj30yi07umym.jpg" alt=""></p>
-<p><img src="https://pic3.zhimg.com/80/v2-951e5ec476e6f4865deee034d4792706_hd.png" alt="img"></p>
-<p><strong>1-step TD error: ($r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_t)​$)：</strong><br>$$<br>Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_t))<br>$$<br><strong>n-steps TD error：</strong></p>
-<p><img src="https://www.zhihu.com/equation?tex=R%5E%7B%28n%29%7D%3Dr_%7Bt%2B1%7D%2B%5Cgamma+r_%7Bt%2B2%7D%2B...%2B%5Cgamma+%5E%7Bn-2%7Dr_%7Bt%2Bn-1%7D%2B%5Cgamma+%5E%7Bn-1%7DQ%28s_%7Bt%2Bn%7D%2C+a_%7Bt%2Bn%7D%29++" alt=""></p>
-<p><strong>TD(λ) error:</strong></p>
-<p><img src="https://www.zhihu.com/equation?tex=R%5E%7B%28%5Clambda+%29%7D%3D%281-%5Clambda+%29%5Csum_%7Bn%7D%5E%7Bi%3D1%7D%7B%5Clambda+%5E%7Bi%7DR%5E%7B%28i%29%7D%7D+" alt=""></p>
-<p>事实上，MC error可以视为一个情节任务的max-step TD error。另外，一般来说，在TD error中，n越大，用到的真实回报信息更多，收敛也会越快。</p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/22/强化学习专题笔记强化学习基础-md/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -577,12 +556,24 @@
                 
               
 
-              <time title="创建时间：2019-01-18 11:17:11 / 修改时间：20:54:48" itemprop="dateCreated datePublished" datetime="2019-01-18T11:17:11+08:00">2019-01-18</time>
+              <time title="创建时间：2019-01-18 11:17:11" itemprop="dateCreated datePublished" datetime="2019-01-18T11:17:11+08:00">2019-01-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-22 15:12:33" itemprop="dateModified" datetime="2019-01-22T15:12:33+08:00">2019-01-22</time>
               
             
           </span>
@@ -616,40 +607,22 @@
 
       
         
-          
-            <p>笔记参考1：<a href="https://www.youtube.com/watch?v=8U0xiOkDcmw&amp;list=PLn8PRpmsu08ozoeoXgxPSBKLyd4YEHww8" target="_blank" rel="noopener">Understanding Model Predictive Control(Youtube 带自动生成字幕)</a><br>笔记参考2：<a href="https://www.bilibili.com/video/av36438909?from=search&amp;seid=18128345108889923736" target="_blank" rel="noopener">Understanding Model Predictive Control(B站 生肉)</a></p>
+          <p>笔记参考1：<a href="https://www.youtube.com/watch?v=8U0xiOkDcmw&amp;list=PLn8PRpmsu08ozoeoXgxPSBKLyd4YEHww8" target="_blank" rel="noopener">Understanding Model Predictive Control(Youtube 带自动生成字幕)</a><br>笔记参考2：<a href="https://www.bilibili.com/video/av36438909?from=search&amp;seid=18128345108889923736" target="_blank" rel="noopener">Understanding Model Predictive Control(B站 生肉)</a></p>
 <h3 id="一、什么是MPC模型预测控制"><a href="#一、什么是MPC模型预测控制" class="headerlink" title="一、什么是MPC模型预测控制"></a>一、什么是MPC模型预测控制</h3><p>MPC(Model Predict Control)是一种反馈控制(feedback control)算法, 使用模型来预测过程的未来输出。</p>
 <p>举例：<br>    <strong>[场景]</strong> 车道保持<br>    <strong>[已知模型]</strong> 车辆模型，比如速度控制， 转向控制对应的偏航量<br>    <strong>[预测]</strong> 根据已知模型和所选的控制策略(action)，进行轨迹预测<br>    <strong>[优化]</strong> 通过优化控制策略，来尽可能的拟合预测的轨迹。</p>
-<p>如下图所示为一个MIMO系统u1,u2输入与y1,y2输出相互影响。如果使用PID控制的话，每一个子系统单独设计一个PID控制器，两个相互影响的子系统没有任何的交联，使得系统难以设计，如果像图二一样设计一个较大的系统，则参数较多难以实现，而使用MPC控制器的话可以较好的解决两种问题，综合相互间的影响来设计参数。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547791941/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118113340.png" alt="MIMO"><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547792593/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118141701.png" alt="MIMO BIG"><br><strong>MPC控制</strong><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547793059/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118143048.png" alt="MIMO MPC"></p>
-<p>此外MPC控制还可以方便的支持各种约束条件，具备一定的预测能力(有点像前馈feedforward控制)。</p>
-<h3 id="二、MPC的特点"><a href="#二、MPC的特点" class="headerlink" title="二、MPC的特点"></a>二、MPC的特点</h3><p>综合上述，总结一下MPC的特点：</p>
-<ul>
-<li>支持MIMO系统，便于构建输入输出间的相互影响参数</li>
-<li>支持方便添加约束条件</li>
-<li>具有预测能力、</li>
-<li>需要较好的处理器和较大的内存，因为需要大量的在线优化，存储大量的变量</li>
-</ul>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547793561/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118143857.png" alt="Onlineopt"></p>
-<h3 id="三、MPC参数选择"><a href="#三、MPC参数选择" class="headerlink" title="三、MPC参数选择"></a>三、MPC参数选择</h3><p>选择一个好的参数不仅影响MPC控制的性能，而且还会影响到MPC每一个timestep内进行在线优化的计算复杂度。这里将会给出关于控制器采样周期、预测及控制范围(prediction and control)、约束及权重。</p>
-<h4 id="采样周期的选择"><a href="#采样周期的选择" class="headerlink" title="采样周期的选择"></a>采样周期的选择</h4><p>采样周期过大，则系统反应过慢导致难以及时进行修正控制，而采样周期过小，则会导致系统产生大量的在线优化计算，给系统带来较大的开销。因而建议采样周期设计采用<strong>开环响应时间(10~90%上升时间)的十分之一或二十分之一</strong>：<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547794741/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118145715.png" alt="timestep"></p>
-<h4 id="预测范围-prediction-horizon-的选择"><a href="#预测范围-prediction-horizon-的选择" class="headerlink" title="预测范围(prediction horizon)的选择"></a>预测范围(prediction horizon)的选择</h4><p>预测范围指的是一次优化后预测未来输出的时间步的个数。建议范围：在开环响应时间内采样20-30个样本的范围<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547795210/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118150514.png" alt="predhorizon"></p>
-<h4 id="控制范围-control-horizon-的选择"><a href="#控制范围-control-horizon-的选择" class="headerlink" title="控制范围(control horizon)的选择"></a>控制范围(control horizon)的选择</h4><p>如下图 [k, k+m]范围为控制范围，之后的红色部分称为 held constant，其中控制范围是要通过优化器来进行优化的参数动作。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547795524/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118151151.png" alt="ctrlhorizon"></p>
-<p>过小的控制范围，可能无法做到较好的控制，而较大的控制范围，比如与预测范围相等，则会导致只有前一部分的控制范围才会有较好的效果，而后一部分的控制范围则收效甚微，而且将带来大量的计算开销。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547795818/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118151646.png" alt="consrtgr"></p>
-<p>建议控制范围应该在预测范围的10~20%之间,最小值为2~3个timestep时间步<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547796146/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118152212.png" alt="sujest"></p>
-<h4 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h4><p>对于约束，一般分为Hard约束和Soft约束，Hard约束是不可违背必须遵守的，在控制系统中，输入输出都可能会有约束限制，但是在设计时不建议将输入输出都给予Hard约束，因为这两部的约束有可能是有重叠的，导致优化器会产生不可行解。<br>建议输出采用较小容忍度的Soft约束，而输入的话建议输入和输入参数变化率二者之间不要同时为Hard约束，可以一个Hard一个Soft。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547796758/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118153216.png" alt="costraint"></p>
-<h3 id="四、Linear-MPC-Adaptive-MPC-与-Gain-Scheduled-MPC"><a href="#四、Linear-MPC-Adaptive-MPC-与-Gain-Scheduled-MPC" class="headerlink" title="四、Linear MPC (Adaptive MPC 与 Gain-Scheduled MPC)"></a>四、Linear MPC (Adaptive MPC 与 Gain-Scheduled MPC)</h3><p>Linear MPC适用于:<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547799817/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118162326.png" alt=""><br>对于非线性系统而言,需要在不同的operating point处进行线性化处理如下图。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547798225/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118155646.png" alt="op"></p>
-<h4 id="Adaptive-MPC"><a href="#Adaptive-MPC" class="headerlink" title="Adaptive MPC"></a>Adaptive MPC</h4><p>在 Adaptive MPC中，当operating condition发生变化的时候，需要进行一次近似线性化计算，在每个时间步中，使用其近似线性模型来更新内部的平台模型(plant model，比如飞控模型，自行车模型等)。<br>在 Adaptive MPC中，在不同的operating point条件下，其优化问题的结构保持不变，即状态数量，约束数量不会随着operating condition而改变。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547798140/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118155524.png" alt="adaptivempc"></p>
-<h4 id="Gain-Scheduled-MPC"><a href="#Gain-Scheduled-MPC" class="headerlink" title="Gain-Scheduled MPC"></a>Gain-Scheduled MPC</h4><p>在 Gain-Scheduled MPC中，在不同的operating point条件下，其优化问题的结构会发生变化，需要为每一个operating point构建一个MPC控制器，且相互之间独立，其状态数量约束数量也可能不同。<br>在 Gain-Scheduled MPC模式下，需要设计调度算法来切换不同的MPC模型。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547799440/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118161704.png" alt="GMPC"></p>
-<h4 id="二者选型"><a href="#二者选型" class="headerlink" title="二者选型"></a>二者选型</h4><p><strong>[Adaptive MPC]</strong> 当能够构建平台(如飞行器，自动车等)的runtime线性模型，且在不同的operating point下优化问题的结构不变。</p>
-<p><strong>[Gain-Scheduled MPC]</strong> 当能够构建平台(如飞行器，自动车等)的runtime线性模型，且在不同的operating point下优化问题的结构发生变化。</p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547800226/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118163015.png" alt=""></p>
-<h3 id="五、Non-Linear-MPC-Adaptive-MPC-与-Gain-Scheduled-MPC"><a href="#五、Non-Linear-MPC-Adaptive-MPC-与-Gain-Scheduled-MPC" class="headerlink" title="五、Non-Linear MPC (Adaptive MPC 与 Gain-Scheduled MPC)"></a>五、Non-Linear MPC (Adaptive MPC 与 Gain-Scheduled MPC)</h3><p>Non-Linear MPC适用于(相对强大，能够提供更准确的预测能力，与决策支持，但是非线性优化的计算开销较大)<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547799922/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118162446.png" alt=""></p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547800315/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118163146.png" alt=""></p>
-
+<p>如下图所示为一个MIMO系统u1,u2输入与y1,y2输出相互影响。如果使用PID控制的话，每一个子系统单独设计一个PID控制器，两个相互影响的子系统没有任何的交联，使得系统难以设计，如果像图二一样设计一个较大的系统，则参数较多难以实现，而使用MPC控制器的话可以较好的解决两种问题，综合相互间的影响来设计参数。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547791941/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118113340.png" alt="MIMO"><br>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/18/MPC控制笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -746,12 +719,24 @@
                 
               
 
-              <time title="创建时间：2019-01-05 16:50:34 / 修改时间：17:25:04" itemprop="dateCreated datePublished" datetime="2019-01-05T16:50:34+08:00">2019-01-05</time>
+              <time title="创建时间：2019-01-05 16:50:34" itemprop="dateCreated datePublished" datetime="2019-01-05T16:50:34+08:00">2019-01-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-22 15:13:21" itemprop="dateModified" datetime="2019-01-22T15:13:21+08:00">2019-01-22</time>
               
             
           </span>
@@ -785,14 +770,19 @@
 
       
         
+          <h2 id="GAIL优点"><a href="#GAIL优点" class="headerlink" title="GAIL优点"></a>GAIL优点</h2><p>相较于IRL，可以省略很多中间步骤，比如通过IRL来学习Reward系统，再通过Reward系统来进行RL学习policy，GAIL可以直接通过expert trajectory 来直接学习policy。<br>
+          <!--noindex-->
           
-            <h2 id="GAIL优点"><a href="#GAIL优点" class="headerlink" title="GAIL优点"></a>GAIL优点</h2><p>相较于IRL，可以省略很多中间步骤，比如通过IRL来学习Reward系统，再通过Reward系统来进行RL学习policy，GAIL可以直接通过expert trajectory 来直接学习policy。</p>
-<h2 id="IRL"><a href="#IRL" class="headerlink" title="IRL"></a>IRL</h2><p>假定cost function的集合为$C $, $\pi_E$为专家策略(一系列采集来的专家策略样本)。IRL的目标是maximum causal entropy IRL<br><img src="https://leanote.com/api/file/getImage?fileId=5c307660ab64414182000bc2" alt="title"><br>其中<img src="https://leanote.com/api/file/getImage?fileId=5c307836ab64414182000c1c" alt="title">是策略π的γ-discounted causal entropy，对于每一个cost function $c \in C$都有对于专家策略的cost最小，而其他策略的cost都相对较大。式(1)中包含了一个RL过程，实现了cost function到可以最小化期望cost误差的高熵策略的映射：<br><img src="https://leanote.com/api/file/getImage?fileId=5c307771ab64414182000bf7" alt="title"></p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/05/论文阅读笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -889,12 +879,24 @@
                 
               
 
-              <time title="创建时间：2019-01-05 15:15:59 / 修改时间：15:18:18" itemprop="dateCreated datePublished" datetime="2019-01-05T15:15:59+08:00">2019-01-05</time>
+              <time title="创建时间：2019-01-05 15:15:59" itemprop="dateCreated datePublished" datetime="2019-01-05T15:15:59+08:00">2019-01-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-22 15:13:09" itemprop="dateModified" datetime="2019-01-22T15:13:09+08:00">2019-01-22</time>
               
             
           </span>
@@ -928,19 +930,17 @@
 
       
         
-          
-            <p>RPM方式安装MySQL5.6<br>a. 检查MySQL及相关RPM包，是否安装，如果有安装，则移除（rpm –e 名称）<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -qa | grep -i mysql</span><br><span class="line">mysql-libs-5.1.66-2.el6_3.x86_64</span><br><span class="line">[root@localhost ~]# yum -y remove mysql-libs*</span><br></pre></td></tr></table></figure></p>
+          <p>RPM方式安装MySQL5.6<br>a. 检查MySQL及相关RPM包，是否安装，如果有安装，则移除（rpm –e 名称）<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -qa | grep -i mysql</span><br><span class="line">mysql-libs-5.1.66-2.el6_3.x86_64</span><br><span class="line">[root@localhost ~]# yum -y remove mysql-libs*</span><br></pre></td></tr></table></figure></p>
 <p>b. 下载Linux对应的RPM包，如：CentOS6.4_64对应的RPM包，如下：这里给出我下载好的包，官网下载巨慢。。有可能还需要一个perl库的依赖，这里一并给出。链接: <a href="http://pan.baidu.com/s/1skFrEK9" target="_blank" rel="noopener">http://pan.baidu.com/s/1skFrEK9</a> 密码: apza<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost rpm]# ll</span><br><span class="line">total 74364</span><br><span class="line">-rw-r--r--. 1 root root 18442536 Dec 11 20:19 MySQL-client-5.6.15-1.el6.x86_64.rpm</span><br><span class="line">-rw-r--r--. 1 root root  3340660 Dec 11 20:06 MySQL-devel-5.6.15-1.el6.x86_64.rpm</span><br><span class="line">-rw-r--r--. 1 root root 54360600 Dec 11 20:03 MySQL-server-5.6.15-1.el6.x86_64.rpm</span><br></pre></td></tr></table></figure></p>
-<p>c. 安装MySQL(如有必要需要安装<code>perl-libs-5.10.1-141.el6_7.1.x86_64</code>)<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost rpm]# rpm -ivh MySQL-server-5.6.15-1.el6.x86_64.rpm</span><br><span class="line">[root@localhost rpm]# rpm -ivh MySQL-devel-5.6.15-1.el6.x86_64.rpm</span><br><span class="line">[root@localhost rpm]# rpm -ivh MySQL-client-5.6.15-1.el6.x86_64.rpm</span><br><span class="line"><span class="meta">#</span><span class="bash">修改配置文件位置</span></span><br><span class="line">[root@localhost rpm]# cp /usr/share/mysql/my-default.cnf /etc/my.cnf</span><br></pre></td></tr></table></figure></p>
-<p>d. 在<code>my.cnf</code>文件中的<code>[mysqld]</code>下设置这一行：<code>datadir = /usr/local/mysql/var</code></p>
-<p>e. 初始化MySQL及设置密码<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost rpm]# /usr/bin/mysql_install_db</span><br><span class="line">[root@localhost rpm]# service mysql start</span><br><span class="line">[root@localhost rpm]# cat /root/.mysql_secret  #查看root账号密码,若无此文件可以直接使用无密码登录，若无密码登录失败，则需要在my.cnf文件中加入skip-grant-tables，并重启mysql服务</span><br><span class="line"><span class="meta">#</span><span class="bash"> The random password <span class="built_in">set</span> <span class="keyword">for</span> the root user at Wed Dec 11 23:32:50 2013 (<span class="built_in">local</span> time): qKTaFZnl</span></span><br><span class="line">[root@localhost ~]# mysql -uroot –pqKTaFZnl</span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> SET PASSWORD = PASSWORD(<span class="string">'123456'</span>);    <span class="comment">#设置密码为123456</span></span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span></span></span><br><span class="line">[root@localhost ~]# mysql -uroot -p123456</span><br></pre></td></tr></table></figure></p>
-<p>f. 允许远程登陆<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> use mysql;</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> select host,user,password from user;</span></span><br><span class="line">+-----------------------+------+-------------------------------------------+</span><br><span class="line">| host                  | user | password                                  |</span><br><span class="line">+-----------------------+------+-------------------------------------------+</span><br><span class="line">| localhost             | root | *6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 |</span><br><span class="line">| localhost.localdomain | root | *1237E2CE819C427B0D8174456DD83C47480D37E8 |</span><br><span class="line">| 127.0.0.1             | root | *1237E2CE819C427B0D8174456DD83C47480D37E8 |</span><br><span class="line">| ::1                   | root | *1237E2CE819C427B0D8174456DD83C47480D37E8 |</span><br><span class="line">+-----------------------+------+-------------------------------------------+</span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> update user <span class="built_in">set</span> password=password(<span class="string">'123456'</span>) <span class="built_in">where</span> user=<span class="string">'root'</span>;</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> update user <span class="built_in">set</span> host=<span class="string">'%'</span> <span class="built_in">where</span> user=<span class="string">'root'</span> and host=<span class="string">'localhost'</span>;</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> flush privileges;</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure></p>
-<p>g. 设置开机自启动<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# chkconfig mysql on</span><br><span class="line">[root@localhost ~]# chkconfig --list | grep mysql</span><br><span class="line">mysql           0:off   1:off   2:on    3:on    4:on    5:on    6:off</span><br></pre></td></tr></table></figure></p>
-<p>h.MySQL的默认安装位置<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/mysql/               #数据库目录</span><br><span class="line">/usr/share/mysql              #配置文件目录</span><br><span class="line">/usr/bin                     #相关命令目录</span><br><span class="line">/etc/init.d/mysql              #启动脚本</span><br></pre></td></tr></table></figure></p>
-<p>i.修改字符集和数据存储路径<br>配置/etc/my.cnf文件,修改数据存放路径、mysql.sock路径以及默认编码utf-8.<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">password        = 123456</span><br><span class="line">port            = 3306</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[mysqld]</span><br><span class="line">port            = 3306</span><br><span class="line">character_set_server=utf8</span><br><span class="line">character_set_client=utf8</span><br><span class="line">collation-server=utf8_general_ci</span><br><span class="line"><span class="meta">#</span><span class="bash">(注意linux下mysql安装完后是默认：表名区分大小写，列名不区分大小写； 0：区分大小写，1：不区分大小写)</span></span><br><span class="line">lower_case_table_names=1</span><br><span class="line"><span class="meta">#</span><span class="bash">(设置最大连接数，默认为 151，MySQL服务器允许的最大连接数16384; )</span></span><br><span class="line">max_connections=1000</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set = utf8</span><br></pre></td></tr></table></figure></p>
-<p>j. 查看字符集<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show variables like '%collation%';</span><br><span class="line">show variables like '%char%';</span><br></pre></td></tr></table></figure></p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/05/无外网情况下RPM方式安装MySQL5-6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1040,12 +1040,24 @@
                 
               
 
-              <time title="创建时间：2019-01-05 15:12:09 / 修改时间：15:13:38" itemprop="dateCreated datePublished" datetime="2019-01-05T15:12:09+08:00">2019-01-05</time>
+              <time title="创建时间：2019-01-05 15:12:09" itemprop="dateCreated datePublished" datetime="2019-01-05T15:12:09+08:00">2019-01-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-22 15:13:12" itemprop="dateModified" datetime="2019-01-22T15:13:12+08:00">2019-01-22</time>
               
             
           </span>
@@ -1079,8 +1091,7 @@
 
       
         
-          
-            <h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><p>​    这篇文章选自<a href="http://udn.yyuap.com/thread-27147-1-1.html" target="_blank" rel="noopener">[教程技巧] DOCKER 给运行中的容器添加映射端口</a></p>
+          <h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><p>​    这篇文章选自<a href="http://udn.yyuap.com/thread-27147-1-1.html" target="_blank" rel="noopener">[教程技巧] DOCKER 给运行中的容器添加映射端口</a></p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p><strong>Docker 给运行中的容器添加映射端口方法1</strong>　　</p>
 <ol>
 <li><p>获得容器IP</p>
@@ -1089,27 +1100,18 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker inspect mysqlserver | grep IPAddress</span></span><br></pre></td></tr></table></figure>
 <p>  执行完之后会发现我的<code>mysqlserver</code>docker容器的ip地址为<code>192.168.0.2</code></p>
 <p>  ​</p>
-</li>
-<li><p>iptables转发端口</p>
-<p> 比如我将容器的3306端口映射到主机的37221端口，那么ip对应就写入我的docker容器IP即可</p>
-</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A DOCKER -p tcp --dport 37221 -j DNAT --to-destination 192.168.0.2:3306</span><br></pre></td></tr></table></figure>
-<p><strong>Docker 给运行中的容器添加映射端口方法2</strong></p>
-<ol>
-<li><p>提交一个运行中的容器为镜像</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker commit containerid foo/live</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>运行镜像并添加端口</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run -d -p 8000:80  foo/live /bin/bash</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ol>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/05/给运行中的容器添加映射端口/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </li></ol></div>
 
     
 
@@ -1206,12 +1208,24 @@
                 
               
 
-              <time title="创建时间：2019-01-05 15:10:01 / 修改时间：15:11:16" itemprop="dateCreated datePublished" datetime="2019-01-05T15:10:01+08:00">2019-01-05</time>
+              <time title="创建时间：2019-01-05 15:10:01" itemprop="dateCreated datePublished" datetime="2019-01-05T15:10:01+08:00">2019-01-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-22 15:12:45" itemprop="dateModified" datetime="2019-01-22T15:12:45+08:00">2019-01-22</time>
               
             
           </span>
@@ -1245,20 +1259,22 @@
 
       
         
-          
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期在做<strong>Oracle</strong>迁移到<strong>Spark</strong>平台的项目上遇到了一些平台公式翻译为<strong>SparkSQL(on Hive)</strong>的需求，而<strong>Spark</strong>采用亲妈语言<strong>Scala</strong>进行开发。分析过大概需求过后，拟使用编译原理中的<strong>EBNF范式</strong>模式，进行基于词法的文法解析。于是拟采用传统的<strong>正则词法解析</strong>到<strong>EBNF文法解析</strong>的套路来实现,直到发现了<code>StandardTokenParsers</code>这个Scala基于词法单元的解析器类。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期在做<strong>Oracle</strong>迁移到<strong>Spark</strong>平台的项目上遇到了一些平台公式翻译为<strong>SparkSQL(on Hive)</strong>的需求，而<strong>Spark</strong>采用亲妈语言<strong>Scala</strong>进行开发。分析过大概需求过后，拟使用编译原理中的<strong>EBNF范式</strong>模式，进行基于词法的文法解析。于是拟采用传统的<strong>正则词法解析</strong>到<strong>EBNF文法解析</strong>的套路来实现,直到发现了<code>StandardTokenParsers</code>这个Scala基于词法单元的解析器类。</p>
 <h1 id="平台公式及翻译后的SparkSQL"><a href="#平台公式及翻译后的SparkSQL" class="headerlink" title="平台公式及翻译后的SparkSQL"></a>平台公式及翻译后的SparkSQL</h1><p>平台公式的样子如下所示：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (XX1_m001[D003]="邢おb7肮α䵵薇" || XX1_m001[H003]&lt;"2") &amp;&amp; XX1_m001[D005]!="wed" then XX1_m001[H022,COUNT]</span><br></pre></td></tr></table></figure></p>
 <p>这里面字段值”邢おb7肮α䵵薇”为这个的目的是为了测试各种字符集是否都能匹配满足。<br>那么对应的<strong>SparkSQL</strong>应该是这个样子的,由于是使用的<strong>Hive on Spark</strong>，因而长得跟<strong>Oracle的SQL语句</strong>差不多：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(H022) <span class="keyword">FROM</span> XX1_m001 <span class="keyword">WHERE</span> (XX1_m001.D003=<span class="string">'邢おb7肮α䵵薇'</span> <span class="keyword">OR</span>  XX1_m001.H003&lt;<span class="string">'2'</span>)  <span class="keyword">AND</span>  XX1_m001.D005&lt;<span class="string">'wed'</span></span><br></pre></td></tr></table></figure></p>
-<p>总体而言比较简单，因为我只是想在这里做一个Demo。</p>
-<h1 id="平台公式的EBNF范式及词法解析设计"><a href="#平台公式的EBNF范式及词法解析设计" class="headerlink" title="平台公式的EBNF范式及词法解析设计"></a>平台公式的EBNF范式及词法解析设计</h1><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">expr-condition ::= tableName <span class="string">"["</span> valueName <span class="string">"]"</span> comparator <span class="type">Condition</span></span><br><span class="line">expr-front ::= expr-condition ((<span class="string">"&amp;&amp;"</span>|<span class="string">"||"</span>)expr-front)*</span><br><span class="line">expr-back ::= tableName <span class="string">"["</span> valueName <span class="string">","</span> operator <span class="string">"]"</span></span><br><span class="line">expr ::= <span class="string">"if"</span> expr-front <span class="string">"then"</span> expr-back</span><br></pre></td></tr></table></figure>
-<p>其中词法定义如下<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">operator =&gt; [<span class="type">SUM</span>,<span class="type">COUNT</span>]</span><br><span class="line">tableName,valueName =&gt;ident  #ident为关键字</span><br><span class="line">comparator =&gt; [<span class="string">"="</span>,<span class="string">"&gt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&gt;"</span>,<span class="string">"&lt;"</span>,<span class="string">"!="</span>]</span><br><span class="line"><span class="type">Condition</span> =&gt; stringLit  #stringLit为字符串常量</span><br></pre></td></tr></table></figure></p>
-<h1 id="使用Scala基于词法单元的解析器解析上述EBNF文法"><a href="#使用Scala基于词法单元的解析器解析上述EBNF文法" class="headerlink" title="使用Scala基于词法单元的解析器解析上述EBNF文法"></a>使用Scala基于词法单元的解析器解析上述EBNF文法</h1><p>Scala基于词法单元的解析器是需要继承<code>StandardTokenParsers</code>这个类的，该类提供了很方便的解析函数，以及词法集合。<br>我们可以通过使用<code>lexical.delimiters</code>列表来存放在文法翻译器执行过程中遇到的分隔符，使用<code>lexical.reserved</code>列表来存放执行过程中的关键字。<br>比如，我们参照平台公式，看到<code>&quot;=&quot;,&quot;&gt;=&quot;,&quot;&lt;=&quot;,&quot;&gt;&quot;,&quot;&lt;&quot;,&quot;!=&quot;,&quot;&amp;&amp;&quot;,&quot;||&quot;,&quot;[&quot;,&quot;]&quot;,&quot;,&quot;,&quot;(&quot;,&quot;)&quot;</code>这些都是分隔符，其实我们也可以把<code>&quot;=&quot;,&quot;&gt;=&quot;,&quot;&lt;=&quot;,&quot;&gt;&quot;,&quot;&lt;&quot;,&quot;!=&quot;,&quot;&amp;&amp;&quot;,&quot;||&quot;</code>当做是关键字，但是我习惯上将带有英文字母的单词作为关键字处理。因而，这里的关键字集合便是<code>&quot;if&quot;,&quot;then&quot;,&quot;SUM&quot;,&quot;COUNT&quot;</code>这些。<br>表现在代码中是酱紫的：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lexical.delimiters += (<span class="string">"="</span>,<span class="string">"&gt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&gt;"</span>,<span class="string">"&lt;"</span>,<span class="string">"!="</span>,<span class="string">"&amp;&amp;"</span>,<span class="string">"||"</span>,<span class="string">"["</span>,<span class="string">"]"</span>,<span class="string">","</span>,<span class="string">"("</span>,<span class="string">")"</span>)</span><br><span class="line">lexical.reserved   += (<span class="string">"if"</span>,<span class="string">"then"</span>,<span class="string">"SUM"</span>,<span class="string">"COUNT"</span>)</span><br></pre></td></tr></table></figure></p>
-<p>是不是so easy~。<br>我们再来看一下如何使用基于词法单元的解析器解析前面我们设计的EBNF文法呢。我在这里先上代码：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExprParsre</span> <span class="keyword">extends</span> <span class="title">StandardTokenParsers</span></span>&#123;</span><br><span class="line">  lexical.delimiters += (<span class="string">"="</span>,<span class="string">"&gt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&gt;"</span>,<span class="string">"&lt;"</span>,<span class="string">"!="</span>,<span class="string">"&amp;&amp;"</span>,<span class="string">"||"</span>,<span class="string">"["</span>,<span class="string">"]"</span>,<span class="string">","</span>,<span class="string">"("</span>,<span class="string">")"</span>)</span><br><span class="line">  lexical.reserved   += (<span class="string">"if"</span>,<span class="string">"then"</span>,<span class="string">"SUM"</span>,<span class="string">"COUNT"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">expr</span></span>: <span class="type">Parser</span>[<span class="type">String</span>] = <span class="string">"if"</span> ~ expr_front ~ <span class="string">"then"</span> ~ expr_back ^^&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"if"</span> ~ exp1 ~ <span class="string">"then"</span> ~ exp2 =&gt; exp2 + <span class="string">" WHERE "</span> +exp1</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">expr_priority</span></span>: <span class="type">Parser</span>[<span class="type">String</span>] = opt(<span class="string">"("</span>) ~ expr_condition ~ opt(<span class="string">")"</span>) ^^&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Some</span>(<span class="string">"("</span>) ~ conditions ~ <span class="type">Some</span>(<span class="string">")"</span>) =&gt; <span class="string">"("</span> + conditions +<span class="string">")"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">Some</span>(<span class="string">"("</span>) ~ conditions ~ <span class="type">None</span> =&gt; <span class="string">"("</span> + conditions</span><br><span class="line">    <span class="keyword">case</span> <span class="type">None</span> ~ conditions ~ <span class="type">Some</span>(<span class="string">")"</span>) =&gt; conditions +<span class="string">")"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">None</span> ~ conditions ~ <span class="type">None</span> =&gt; conditions</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">expr_condition</span></span>: <span class="type">Parser</span>[<span class="type">String</span>] = ident ~ <span class="string">"["</span> ~ ident ~ <span class="string">"]"</span> ~ (<span class="string">"="</span>|<span class="string">"&gt;="</span>|<span class="string">"&lt;="</span>|<span class="string">"&gt;"</span>|<span class="string">"&lt;"</span>|<span class="string">"!="</span>) ~ stringLit ^^&#123;</span><br><span class="line">    <span class="keyword">case</span> ident1~<span class="string">"["</span>~ident2~<span class="string">"]"</span>~<span class="string">"="</span>~stringList =&gt; ident1 + <span class="string">"."</span> + ident2 +<span class="string">"='"</span> + stringList +<span class="string">"'"</span></span><br><span class="line">    <span class="keyword">case</span> ident1~<span class="string">"["</span>~ident2~<span class="string">"]"</span>~<span class="string">"&gt;="</span>~stringList =&gt; ident1 + <span class="string">"."</span> + ident2 +<span class="string">"&gt;='"</span> + stringList +<span class="string">"'"</span></span><br><span class="line">    <span class="keyword">case</span> ident1~<span class="string">"["</span>~ident2~<span class="string">"]"</span>~<span class="string">"&lt;="</span>~stringList =&gt; ident1 + <span class="string">"."</span> + ident2 +<span class="string">"&lt;='"</span> + stringList +<span class="string">"'"</span></span><br><span class="line">    <span class="keyword">case</span> ident1~<span class="string">"["</span>~ident2~<span class="string">"]"</span>~<span class="string">"&gt;"</span>~stringList =&gt; ident1 + <span class="string">"."</span> + ident2 +<span class="string">"&gt;'"</span> + stringList +<span class="string">"'"</span></span><br><span class="line">    <span class="keyword">case</span> ident1~<span class="string">"["</span>~ident2~<span class="string">"]"</span>~<span class="string">"&lt;"</span>~stringList =&gt; ident1 + <span class="string">"."</span> + ident2 +<span class="string">"&lt;'"</span> + stringList +<span class="string">"'"</span></span><br><span class="line">    <span class="keyword">case</span> ident1~<span class="string">"["</span>~ident2~<span class="string">"]"</span>~<span class="string">"!="</span>~stringList =&gt; ident1 + <span class="string">"."</span> + ident2 +<span class="string">"!='"</span> + stringList +<span class="string">"'"</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">comparator</span></span>: <span class="type">Parser</span>[<span class="type">String</span>] = (<span class="string">"&amp;&amp;"</span>|<span class="string">"||"</span>) ^^&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"&amp;&amp;"</span> =&gt; <span class="string">" AND "</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">"||"</span> =&gt; <span class="string">" OR "</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">expr_front</span></span>: <span class="type">Parser</span>[<span class="type">String</span>] = expr_priority ~ rep(comparator ~ expr_priority) ^^&#123;</span><br><span class="line">    <span class="keyword">case</span> exp1 ~ exp2  =&gt; exp1 +  exp2.map(x =&gt;&#123;x._1 + <span class="string">" "</span> + x._2&#125;).mkString(<span class="string">" "</span>)  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">expr_back</span></span>: <span class="type">Parser</span>[<span class="type">String</span>] = ident ~ <span class="string">"["</span> ~ ident ~ <span class="string">","</span> ~ (<span class="string">"SUM"</span>|<span class="string">"COUNT"</span>) ~ <span class="string">"]"</span> ^^ &#123;</span><br><span class="line">    <span class="keyword">case</span> ident1~<span class="string">"["</span>~ident2~<span class="string">","</span>~<span class="string">"COUNT"</span>~<span class="string">"]"</span> =&gt; <span class="string">"SELECT COUNT("</span>+ ident2.toString() +<span class="string">") FROM "</span> + ident1.toString()</span><br><span class="line">    <span class="keyword">case</span> ident1~<span class="string">"["</span>~ident2~<span class="string">","</span>~<span class="string">"SUM"</span>~<span class="string">"]"</span> =&gt; <span class="string">"SELECT SUM("</span>+ ident2.toString() +<span class="string">") FROM "</span> + ident1.toString()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">parserAll</span></span>[<span class="type">T</span>]( p : <span class="type">Parser</span>[<span class="type">T</span>], input :<span class="type">String</span>) = &#123;</span><br><span class="line">    phrase(p)( <span class="keyword">new</span> lexical.<span class="type">Scanner</span>(input))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+<p>总体而言比较简单，因为我只是想在这里做一个Demo。<br>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/05/使用Scala基于词法单元的解析器定制EBNF范式文法解析/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -1372,7 +1388,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-11 09:52:35" itemprop="dateModified" datetime="2019-01-11T09:52:35+08:00">2019-01-11</time>
+                <time title="修改时间：2019-01-22 15:12:18" itemprop="dateModified" datetime="2019-01-22T15:12:18+08:00">2019-01-22</time>
               
             
           </span>
@@ -1406,8 +1422,7 @@
 
       
         
-          
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
 <p>今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。</p>
 </blockquote>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><ul>
@@ -1415,30 +1430,15 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#top</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b24" alt="图片标题"></p>
-<ul>
-<li>结合操作系统，计组等课程，以及多年以来windows培养给我的直觉，认为<strong>0.96G（1016272K）</strong>的总内存，使用了<strong>0.84G(880960K)</strong>的内存，使用率高达<strong>88%</strong>。然而我还啥都没干，怎么会这样呢？<br>仔细查看还会发现后面有一个<strong>buffers</strong>，Swap后面还有一个<strong>Cached Mem</strong>。<br>现在我们用<code>free</code>来观察下</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#free -m</span><br></pre></td></tr></table></figure>
-<p><img src="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b23" alt="图片标题"></p>
-<ul>
-<li>虽然Mem显示了<strong>0.9G</strong>左右的used，但是<strong>-/+ buffers/cache</strong>(减去buffers和cache的结果)可以看到，当前进程实际占用内存是<strong>0.24G(256348K)</strong>，而可用空闲（free）内存为<strong>0.72G(759924K)</strong>。<br>可以这么理解：在linux的内存分配机制中，优先使用物理内存，当物理内存还有空闲时（还够用），不会释放其占用内存，就算占用内存的程序已经被关闭了，该程序所占用的内存用来做缓存使用，对于开启过的程序、或是读取刚存取过得数据会比较快。<br><br></li>
-<li><p>如上面的例子：共<strong>1G</strong>的内存，<strong>0.9G</strong>被占用，但是<strong>buffer</strong>和<strong>cached mem</strong>部分作为缓存，可以使用命中率的方式提高使用效率，而且这部分缓存是根据指令随时可以释放的，我们可以认为这部分内存没有实际被使用，也可以认为它是空闲的。<br>因此查看目前进程正在实际被使用的内存，是<code>used-(buffers+cache)</code>，也可以认为如果swap没有大量使用，mem还是够用的，只有mem被当前进程实际占用完（没有了buffers和cache），才会使用到swap的。<br><br></p>
-</li>
-<li><p>再举个栗子： 这个是我在RPi一群看到的一个群友发的探针监测截图<br><img src="https://leanote.com/api/file/getImage?fileId=575cb766ab64411568000b25" alt="图片标题"></p>
-</li>
-<li><p>观察内存使用状况一栏，发现物理内存功<strong>925.89M</strong>，已用<strong>911.74M</strong>，Cache化的内存是<strong>676.46M</strong>，Buffers为<strong>61.3M</strong>，现在用上述公式：</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">真实的内存使用=used-(buffers+cache)</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<p>带入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">真实使用内存 = 911.74-676.46-61.3 = 173.98</span><br><span class="line">与第三行的灰条的173.98相符</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
-<p>很高兴对于linux的内存分配有了新的认识 多谢一群的 粵-打雜小白-503 Service Unavailable 的技术支持 多谢Licess’s Blog的精彩分析</p>
-</blockquote>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/05/Linux内存占用过高？非也/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1538,12 +1538,24 @@
                 
               
 
-              <time title="创建时间：2019-01-03 19:51:29 / 修改时间：19:57:49" itemprop="dateCreated datePublished" datetime="2019-01-03T19:51:29+08:00">2019-01-03</time>
+              <time title="创建时间：2019-01-03 19:51:29" itemprop="dateCreated datePublished" datetime="2019-01-03T19:51:29+08:00">2019-01-03</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-22 15:12:54" itemprop="dateModified" datetime="2019-01-22T15:12:54+08:00">2019-01-22</time>
               
             
           </span>
@@ -1577,8 +1589,7 @@
 
       
         
-          
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>什么是nat123? </strong><br>    现在我们的树莓派都是在路由器内网里面的，需要使用nat123来实现外网映射(类似花生壳)，但是nat123免费好用，这个原理在计算机网络中叫做隧道或者叫穿透。那么本文主要讲述如何在树莓派上配置nat123。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>什么是nat123? </strong><br>    现在我们的树莓派都是在路由器内网里面的，需要使用nat123来实现外网映射(类似花生壳)，但是nat123免费好用，这个原理在计算机网络中叫做隧道或者叫穿透。那么本文主要讲述如何在树莓派上配置nat123。</p>
 <p><strong>必要环境 </strong></p>
 <p>​    现在本文所用的平台是树莓派2代b+，其实那个版本的RPi都OK，主要是raspbian-jessie的系统，不过貌似是raspbian的系统都适合使用，这里主要是nat123的环境必须配置好。</p>
 <ul>
@@ -1587,76 +1598,19 @@
 <ul>
 <li>安装好nat123客户端</li>
 </ul>
-<p>本文中我的nat123客户端安装在了官网所指示的<code>/mnt</code> 目录下，如图。<br><img src="https://leanote.com/api/file/getImage?fileId=575cb766ab6441146e000a6e" alt="图片标题"></p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>1.安装nat123客户端<br>    首先在这里还是要给出官网所给的安装方法<a href="http://www.nat123.com/pages_17_600.jsp" target="_blank" rel="noopener">linux下安装nat123客户端</a>，但是按照官网所述的方法，我总是卡在mono的安装过程上，如果哪位读者能够用那种方法配置成功请您在底下mark我一下~~。下面我说一下配置过程。</p>
-<ul>
-<li><p>安装mono</p>
-<p>​    这里可能由于是我的软件源出了问题，无论如何也不能按照官网的方式在我的树莓派上装mono环境，那么我只好采取mono源码编译的方式来安装。</p>
-<p>​    简单说一下每个步骤，首先通过<code>wget</code>获取mono源码，如果没有wget的请手动执行<code>sudo apt-get install wget</code>进行安装，然后使用<code>tar</code>解压，然后<code>cd</code>进入解压文件夹，然后使用<code>./configure --prefix=/usr/local</code>配置编译安装路径，最后<code>make</code>编译，<code>make install</code>安装mono。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wget http://download.mono-project.com/sources/mono/mono-4.0.1.44.tar.bz2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tar -xvf mono-4.0.1.44.tar.bz2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> mono-4.0.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./configure --prefix=/usr/<span class="built_in">local</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> make</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> make install</span></span><br></pre></td></tr></table></figure>
-<p>​    这样执行完成后输入<code>mono -V</code>出现版本信息就OK了，可以按照官网的说明继续执行。那么在这里我继续总结一下nat123的全部安装步骤。<br><br></p>
-</li>
-<li><p>安装nat123客户端(本文安装路径为<code>/mnt</code>)</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span>  /mnt  </span><br><span class="line">$ wget  http://www.nat123.com/down/nat123linux.tar.gz </span><br><span class="line">$ tar  -zxvf  nat123linux.tar.gz</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>客户端启动</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install screen </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /mnt  </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> screen -S nat123  </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo mono nat123linux.sh</span></span><br></pre></td></tr></table></figure>
-<p>​       这里需要注意的是，在执行<code>screen  -S  nat123</code> 语句时-S是大写的S，如提示没有screen，则执行<code>sudo apt-get install screen</code>安装screen后再执行screen。然后就是要特别注意mono那句话前面一定要加sudo，除非你是root用户，否则会报奇葩错误。如果一切顺利，你将看到下面的样子。</p>
-<p> <img src="https://leanote.com/api/file/getImage?fileId=575cb75fab64411568000b1f" alt="图片标题"></p>
-<p>​       这里<code>please enter your nat123 username(enter x to exit):</code> 输入你的nat123用户名<code>please enter your nat123 password(enter x to exit):</code>输入你的nat123密码，吐槽坑点，密码竟然是明文。</p>
-<p>​       如果你的用户名密码都正确，你会看到下面的界面(官网盗图)，按住Ctrl键，并依次先按A，再按D，退出当前窗口就OK了。</p>
-</li>
-</ul>
-<p><img src="https://leanote.com/api/file/getImage?fileId=575cb762ab6441146e000a6b" alt="图片标题"><br>     那么此时基础环境就算搭建完了，下面你需要的是一个nat123的端口映射配置。</p>
-<p>2.配置nat123端口</p>
-<ul>
-<li><p>首先你需要登录你的nat123官网账户 <a href="http://www.nat123.com/" target="_blank" rel="noopener">点我带你飞</a></p>
-</li>
-<li><p>然后在用户中心中选择端口映射添加</p>
-</li>
-</ul>
-<p><img src="https://leanote.com/api/file/getImage?fileId=575cb765ab6441146e000a6c" alt="图片标题"></p>
-<ul>
-<li>然后按照下图所示进行填写</li>
-</ul>
-<p><img src="https://leanote.com/api/file/getImage?fileId=575cb761ab6441146e000a6a" alt="图片标题"><br>  ​        这里说明一下，应用类型填写的是<strong>其他(非网站)</strong>，映射路线默认选择nat123，除非你有VIP专线，应用名称就随你咯。值得注意的是，这里的内网端口这样填写，由于我做映射的目的是能够在外网SSH到我的树莓派，所以需要将我的localhost上的22端口映射出去，因而这里我将内网端口设为22，内网地址设为localhost。</p>
-<p>  ​        再举个栗子，现在我的树莓派上有一个运行在localhost的5000端口上的flask服务器(一个python框架)程序，那么我想在外网请求这个服务器，那么我们就将内网端口设为5000，内网地址设为localhost。</p>
-<p>  ​         然后其他的填写默认就行，如果像做域名解析的，请按照官网的自主域名到万网上去解析，这里不再多言~。</p>
-<ul>
-<li>点击确认保存</li>
-</ul>
-<p><img src="https://leanote.com/api/file/getImage?fileId=575cb764ab64411568000b22" alt="图片标题"><br>  ​        那么从上图可以看到现在我有两个端口映射一个是flask的5000端口映射，一个是SSH的22端口映射。那么如果一切顺利的话(已经开了nat123客户端服务并且做好了端口映射)那么现在你就可以通过在SSH应用中输入你的<strong>外网域名</strong>，和<strong>外网端口</strong>连接到你的树莓派中去了，或者通过<strong>外网域名</strong>，<strong>外网端口</strong>访问你的服务器应用。</p>
-<p>3.将树莓派上的nat123服务设为开机自启动或断网重连</p>
-<p>​    其实到上面为止，已经达到了我们想要的外网访问内网服务器的效果了，那么现在我们还不满足，想让他只用一次配置就可以永久稳定的生效，那么我们就把它配置成开机自启动并支持断网重连。之前看了官网上的方法，发现并没卵用，然后在刷官方论坛的时候发现了一个解决方案(<a href="http://www.natbbs.com/thread-6289-2-1.html" target="_blank" rel="noopener">论坛15楼的办法</a>)，虽然可能是因为版本老了的原因，直接用并不成功，但是给了我一个很好的思路。下面介绍一下我的方法。</p>
-<ul>
-<li>首先<code>sudo apt-get install expect</code>安装expect支持</li>
-</ul>
-<ul>
-<li><p>然后进入nat123安装目录(本文是<code>/mnt</code>)，新建一个脚本起名为expect.sh，执行这条命令<code>sudo vim /mnt/expect.sh</code></p>
-</li>
-<li><p>然后将下列代码输入到这个脚本中去:</p>
-<p>​       这里需要注意的是<code>username=&quot;&quot;</code>“”里面输入你的nat123用户名<code>mypwd=&quot;&quot;</code>“”里面输入你的nat123账号密码，值得一提的是，请看<code>\&quot;please enter your nat123 username(enter x to exit):\&quot; {</code>和<code>\&quot;please enter your nat123 password(enter x to exit):\&quot; {</code>这两句话一定要和你执行了<code>sudo mono nat123linux.sh</code>之后的输入提示相一致，具体在哪呢请看代码下面的那张图片。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">username="你的nat123用户名"</span><br><span class="line">mypwd="你的nat123密码"</span><br><span class="line">cmdnat123="sudo mono /mnt/nat123linux.sh"</span><br><span class="line"></span><br><span class="line">expect -c"</span><br><span class="line">spawn $cmdnat123</span><br><span class="line">while &#123; 1 &#125; &#123;</span><br><span class="line">        expect &#123;</span><br><span class="line">               \"please enter your nat123 username(enter x to exit):\" &#123;</span><br><span class="line">                        send \"$username\r\";</span><br><span class="line">                &#125;</span><br><span class="line">                \"please enter your nat123 password(enter x to exit):\" &#123;</span><br><span class="line">                        send \"$mypwd\r\";</span><br><span class="line">                &#125;</span><br><span class="line">                eof &#123;</span><br><span class="line">                        send \"exit\r\";</span><br><span class="line">                &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          sleep 5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://leanote.com/api/file/getImage?fileId=575cb766ab6441146e000a6d" alt="图片标题"></p>
-<ul>
-<li><p>写好之后可以执行<code>bash expect.sh</code>语句来执行以下这个脚本，如果执行之后它带你来到了让你输入ctrl+AD退出的那个界面，就说明这个脚本写的成功了。</p>
-</li>
-<li><p>然后将脚本执行写入开机启动bash</p>
-<p>打开rc.local写入开机执行命令。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/rc.local</span></span><br></pre></td></tr></table></figure>
-<p>这里在<code>exit(0)</code>这句之前一行写上<code>sudo bash /mnt/expect.sh</code>就OK了</p>
-</li>
-<li><p>那么如果顺利的话重启树莓派等待30s左右时间，你就可以直接通过外网访问你的树莓派了~，然后你也可以把网线拔了重插，等个5s左右，发现也可以重连，那么就一切OK了。</p>
-</li>
-</ul>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>此文第二遍写于2016年4月21日10:10:13，倒霉的typora昨晚上写到2点多变成乱码了。</p>
-
+<p>本文中我的nat123客户端安装在了官网所指示的<code>/mnt</code> 目录下，如图。<br><img src="https://leanote.com/api/file/getImage?fileId=575cb766ab6441146e000a6e" alt="图片标题"><br>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/03/在raspbian-jessie上搭建nat123自启动/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -1926,12 +1880,81 @@
                   <a href="https://github.com/zhkmxx9302013" title="GitHub &rarr; https://github.com/zhkmxx9302013" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://zhkmxx930.leanote.com/" title="远方的家 &rarr; http://zhkmxx930.leanote.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-leanote"></i>远方的家</a>
+                </span>
+              
             </div>
           
 
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://crystalmiao.com/" title="http://crystalmiao.com/" rel="noopener" target="_blank">老喵家小喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://eason-yang.com/categories/" title="https://eason-yang.com/categories/" rel="noopener" target="_blank">eason-yang的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.61mon.com/index.php/archives.html" title="https://www.61mon.com/index.php/archives.html" rel="noopener" target="_blank">算法归类</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.tianfeiyu.com/" title="http://www.tianfeiyu.com/" rel="noopener" target="_blank">田飞雨另一个Linuxer</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jacksu.github.io/utils4s/" title="http://jacksu.github.io/utils4s/" rel="noopener" target="_blank">utils4s</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://orchome.com/303" title="http://orchome.com/303" rel="noopener" target="_blank">OrcHome</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://leftnoteasy.cnblogs.com/" title="http://leftnoteasy.cnblogs.com/" rel="noopener" target="_blank">LeftNotEasy - Wangda Tan</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/mario-nb/" title="http://www.cnblogs.com/mario-nb/" rel="noopener" target="_blank">鸽子的迷信</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/easonturing/" title="http://www.cnblogs.com/easonturing/" rel="noopener" target="_blank">Eason Turing</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/musi-shuang/" title="http://www.cnblogs.com/musi-shuang/" rel="noopener" target="_blank">musi-tianshuang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://sumail-lee.com/" title="http://sumail-lee.com/" rel="noopener" target="_blank">老班长LSZ的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" title="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" rel="noopener" target="_blank">Blog of Kami Wan</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -2125,6 +2148,33 @@
   
 
   
+  
+
+  
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+
 
   
 

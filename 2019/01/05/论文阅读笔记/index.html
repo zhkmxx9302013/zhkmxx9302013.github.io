@@ -100,21 +100,21 @@
 
 
 
-  <meta name="description" content="GAIL优点相较于IRL，可以省略很多中间步骤，比如通过IRL来学习Reward系统，再通过Reward系统来进行RL学习policy，GAIL可以直接通过expert trajectory 来直接学习policy。 IRL假定cost function的集合为$C $, $\pi_E$为专家策略(一系列采集来的专家策略样本)。IRL的目标是maximum causal entropy IRL其中">
+  <meta name="description" content="GAIL优点相较于IRL，可以省略很多中间步骤，比如通过IRL来学习Reward系统，再通过Reward系统来进行RL学习policy，GAIL可以直接通过expert trajectory 来直接学习policy。">
 <meta name="keywords" content="强化学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Generative Adversarial Imitation Learning(GAIL) 论文阅读笔记">
 <meta property="og:url" content="http://yoursite.com/2019/01/05/论文阅读笔记/index.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="GAIL优点相较于IRL，可以省略很多中间步骤，比如通过IRL来学习Reward系统，再通过Reward系统来进行RL学习policy，GAIL可以直接通过expert trajectory 来直接学习policy。 IRL假定cost function的集合为$C $, $\pi_E$为专家策略(一系列采集来的专家策略样本)。IRL的目标是maximum causal entropy IRL其中">
+<meta property="og:description" content="GAIL优点相较于IRL，可以省略很多中间步骤，比如通过IRL来学习Reward系统，再通过Reward系统来进行RL学习policy，GAIL可以直接通过expert trajectory 来直接学习policy。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=5c307660ab64414182000bc2">
 <meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=5c307836ab64414182000c1c">
 <meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=5c307771ab64414182000bf7">
-<meta property="og:updated_time" content="2019-01-05T09:25:04.649Z">
+<meta property="og:updated_time" content="2019-01-22T07:13:21.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Generative Adversarial Imitation Learning(GAIL) 论文阅读笔记">
-<meta name="twitter:description" content="GAIL优点相较于IRL，可以省略很多中间步骤，比如通过IRL来学习Reward系统，再通过Reward系统来进行RL学习policy，GAIL可以直接通过expert trajectory 来直接学习policy。 IRL假定cost function的集合为$C $, $\pi_E$为专家策略(一系列采集来的专家策略样本)。IRL的目标是maximum causal entropy IRL其中">
+<meta name="twitter:description" content="GAIL优点相较于IRL，可以省略很多中间步骤，比如通过IRL来学习Reward系统，再通过Reward系统来进行RL学习policy，GAIL可以直接通过expert trajectory 来直接学习policy。">
 <meta name="twitter:image" content="https://leanote.com/api/file/getImage?fileId=5c307660ab64414182000bc2">
 
 
@@ -408,12 +408,24 @@
                 
               
 
-              <time title="创建时间：2019-01-05 16:50:34 / 修改时间：17:25:04" itemprop="dateCreated datePublished" datetime="2019-01-05T16:50:34+08:00">2019-01-05</time>
+              <time title="创建时间：2019-01-05 16:50:34" itemprop="dateCreated datePublished" datetime="2019-01-05T16:50:34+08:00">2019-01-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-22 15:13:21" itemprop="dateModified" datetime="2019-01-22T15:13:21+08:00">2019-01-22</time>
               
             
           </span>
@@ -446,7 +458,7 @@
       
 
       
-        <h2 id="GAIL优点"><a href="#GAIL优点" class="headerlink" title="GAIL优点"></a>GAIL优点</h2><p>相较于IRL，可以省略很多中间步骤，比如通过IRL来学习Reward系统，再通过Reward系统来进行RL学习policy，GAIL可以直接通过expert trajectory 来直接学习policy。</p>
+        <h2 id="GAIL优点"><a href="#GAIL优点" class="headerlink" title="GAIL优点"></a>GAIL优点</h2><p>相较于IRL，可以省略很多中间步骤，比如通过IRL来学习Reward系统，再通过Reward系统来进行RL学习policy，GAIL可以直接通过expert trajectory 来直接学习policy。<br><a id="more"></a></p>
 <h2 id="IRL"><a href="#IRL" class="headerlink" title="IRL"></a>IRL</h2><p>假定cost function的集合为$C $, $\pi_E$为专家策略(一系列采集来的专家策略样本)。IRL的目标是maximum causal entropy IRL<br><img src="https://leanote.com/api/file/getImage?fileId=5c307660ab64414182000bc2" alt="title"><br>其中<img src="https://leanote.com/api/file/getImage?fileId=5c307836ab64414182000c1c" alt="title">是策略π的γ-discounted causal entropy，对于每一个cost function $c \in C$都有对于专家策略的cost最小，而其他策略的cost都相对较大。式(1)中包含了一个RL过程，实现了cost function到可以最小化期望cost误差的高熵策略的映射：<br><img src="https://leanote.com/api/file/getImage?fileId=5c307771ab64414182000bf7" alt="title"></p>
 
       
@@ -619,12 +631,81 @@
                   <a href="https://github.com/zhkmxx9302013" title="GitHub &rarr; https://github.com/zhkmxx9302013" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://zhkmxx930.leanote.com/" title="远方的家 &rarr; http://zhkmxx930.leanote.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-leanote"></i>远方的家</a>
+                </span>
+              
             </div>
           
 
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://crystalmiao.com/" title="http://crystalmiao.com/" rel="noopener" target="_blank">老喵家小喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://eason-yang.com/categories/" title="https://eason-yang.com/categories/" rel="noopener" target="_blank">eason-yang的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.61mon.com/index.php/archives.html" title="https://www.61mon.com/index.php/archives.html" rel="noopener" target="_blank">算法归类</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.tianfeiyu.com/" title="http://www.tianfeiyu.com/" rel="noopener" target="_blank">田飞雨另一个Linuxer</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jacksu.github.io/utils4s/" title="http://jacksu.github.io/utils4s/" rel="noopener" target="_blank">utils4s</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://orchome.com/303" title="http://orchome.com/303" rel="noopener" target="_blank">OrcHome</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://leftnoteasy.cnblogs.com/" title="http://leftnoteasy.cnblogs.com/" rel="noopener" target="_blank">LeftNotEasy - Wangda Tan</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/mario-nb/" title="http://www.cnblogs.com/mario-nb/" rel="noopener" target="_blank">鸽子的迷信</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/easonturing/" title="http://www.cnblogs.com/easonturing/" rel="noopener" target="_blank">Eason Turing</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/musi-shuang/" title="http://www.cnblogs.com/musi-shuang/" rel="noopener" target="_blank">musi-tianshuang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://sumail-lee.com/" title="http://sumail-lee.com/" rel="noopener" target="_blank">老班长LSZ的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" title="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" rel="noopener" target="_blank">Blog of Kami Wan</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -839,6 +920,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

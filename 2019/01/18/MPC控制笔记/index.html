@@ -125,7 +125,7 @@
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547800226/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118163015.png">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547799922/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118162446.png">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1547800315/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118163146.png">
-<meta property="og:updated_time" content="2019-01-18T12:54:48.736Z">
+<meta property="og:updated_time" content="2019-01-22T07:12:33.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MPC控制笔记(一)">
 <meta name="twitter:description" content="笔记参考1：Understanding Model Predictive Control(Youtube 带自动生成字幕)笔记参考2：Understanding Model Predictive Control(B站 生肉) 一、什么是MPC模型预测控制MPC(Model Predict Control)是一种反馈控制(feedback control)算法, 使用模型来预测过程的未来输出。 举例">
@@ -422,12 +422,24 @@
                 
               
 
-              <time title="创建时间：2019-01-18 11:17:11 / 修改时间：20:54:48" itemprop="dateCreated datePublished" datetime="2019-01-18T11:17:11+08:00">2019-01-18</time>
+              <time title="创建时间：2019-01-18 11:17:11" itemprop="dateCreated datePublished" datetime="2019-01-18T11:17:11+08:00">2019-01-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-22 15:12:33" itemprop="dateModified" datetime="2019-01-22T15:12:33+08:00">2019-01-22</time>
               
             
           </span>
@@ -463,7 +475,7 @@
         <p>笔记参考1：<a href="https://www.youtube.com/watch?v=8U0xiOkDcmw&amp;list=PLn8PRpmsu08ozoeoXgxPSBKLyd4YEHww8" target="_blank" rel="noopener">Understanding Model Predictive Control(Youtube 带自动生成字幕)</a><br>笔记参考2：<a href="https://www.bilibili.com/video/av36438909?from=search&amp;seid=18128345108889923736" target="_blank" rel="noopener">Understanding Model Predictive Control(B站 生肉)</a></p>
 <h3 id="一、什么是MPC模型预测控制"><a href="#一、什么是MPC模型预测控制" class="headerlink" title="一、什么是MPC模型预测控制"></a>一、什么是MPC模型预测控制</h3><p>MPC(Model Predict Control)是一种反馈控制(feedback control)算法, 使用模型来预测过程的未来输出。</p>
 <p>举例：<br>    <strong>[场景]</strong> 车道保持<br>    <strong>[已知模型]</strong> 车辆模型，比如速度控制， 转向控制对应的偏航量<br>    <strong>[预测]</strong> 根据已知模型和所选的控制策略(action)，进行轨迹预测<br>    <strong>[优化]</strong> 通过优化控制策略，来尽可能的拟合预测的轨迹。</p>
-<p>如下图所示为一个MIMO系统u1,u2输入与y1,y2输出相互影响。如果使用PID控制的话，每一个子系统单独设计一个PID控制器，两个相互影响的子系统没有任何的交联，使得系统难以设计，如果像图二一样设计一个较大的系统，则参数较多难以实现，而使用MPC控制器的话可以较好的解决两种问题，综合相互间的影响来设计参数。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547791941/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118113340.png" alt="MIMO"><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547792593/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118141701.png" alt="MIMO BIG"><br><strong>MPC控制</strong><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547793059/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118143048.png" alt="MIMO MPC"></p>
+<p>如下图所示为一个MIMO系统u1,u2输入与y1,y2输出相互影响。如果使用PID控制的话，每一个子系统单独设计一个PID控制器，两个相互影响的子系统没有任何的交联，使得系统难以设计，如果像图二一样设计一个较大的系统，则参数较多难以实现，而使用MPC控制器的话可以较好的解决两种问题，综合相互间的影响来设计参数。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547791941/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118113340.png" alt="MIMO"><br><a id="more"></a><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547792593/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118141701.png" alt="MIMO BIG"><br><strong>MPC控制</strong><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1547793059/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190118143048.png" alt="MIMO MPC"></p>
 <p>此外MPC控制还可以方便的支持各种约束条件，具备一定的预测能力(有点像前馈feedforward控制)。</p>
 <h3 id="二、MPC的特点"><a href="#二、MPC的特点" class="headerlink" title="二、MPC的特点"></a>二、MPC的特点</h3><p>综合上述，总结一下MPC的特点：</p>
 <ul>
@@ -659,12 +671,81 @@
                   <a href="https://github.com/zhkmxx9302013" title="GitHub &rarr; https://github.com/zhkmxx9302013" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://zhkmxx930.leanote.com/" title="远方的家 &rarr; http://zhkmxx930.leanote.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-leanote"></i>远方的家</a>
+                </span>
+              
             </div>
           
 
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://crystalmiao.com/" title="http://crystalmiao.com/" rel="noopener" target="_blank">老喵家小喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://eason-yang.com/categories/" title="https://eason-yang.com/categories/" rel="noopener" target="_blank">eason-yang的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.61mon.com/index.php/archives.html" title="https://www.61mon.com/index.php/archives.html" rel="noopener" target="_blank">算法归类</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.tianfeiyu.com/" title="http://www.tianfeiyu.com/" rel="noopener" target="_blank">田飞雨另一个Linuxer</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jacksu.github.io/utils4s/" title="http://jacksu.github.io/utils4s/" rel="noopener" target="_blank">utils4s</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://orchome.com/303" title="http://orchome.com/303" rel="noopener" target="_blank">OrcHome</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://leftnoteasy.cnblogs.com/" title="http://leftnoteasy.cnblogs.com/" rel="noopener" target="_blank">LeftNotEasy - Wangda Tan</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/mario-nb/" title="http://www.cnblogs.com/mario-nb/" rel="noopener" target="_blank">鸽子的迷信</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/easonturing/" title="http://www.cnblogs.com/easonturing/" rel="noopener" target="_blank">Eason Turing</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/musi-shuang/" title="http://www.cnblogs.com/musi-shuang/" rel="noopener" target="_blank">musi-tianshuang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://sumail-lee.com/" title="http://sumail-lee.com/" rel="noopener" target="_blank">老班长LSZ的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" title="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" rel="noopener" target="_blank">Blog of Kami Wan</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -879,6 +960,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

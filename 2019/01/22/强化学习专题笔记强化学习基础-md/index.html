@@ -100,22 +100,22 @@
 
 
 
-  <meta name="description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。$$\max\sum_{t}{r_t}$$但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得">
+  <meta name="description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。  \max\sum_{t}{r_t}但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有">
 <meta name="keywords" content="强化学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="强化学习专题笔记(一) 强化学习基础.md">
 <meta property="og:url" content="http://yoursite.com/2019/01/22/强化学习专题笔记强化学习基础-md/index.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。$$\max\sum_{t}{r_t}$$但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得">
+<meta property="og:description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。  \max\sum_{t}{r_t}但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006gCbCHly1fx0o33ydhkj30yi07umym.jpg">
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-951e5ec476e6f4865deee034d4792706_hd.png">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=R%5E%7B%28n%29%7D%3Dr_%7Bt%2B1%7D%2B%5Cgamma+r_%7Bt%2B2%7D%2B...%2B%5Cgamma+%5E%7Bn-2%7Dr_%7Bt%2Bn-1%7D%2B%5Cgamma+%5E%7Bn-1%7DQ%28s_%7Bt%2Bn%7D%2C+a_%7Bt%2Bn%7D%29++">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=R%5E%7B%28%5Clambda+%29%7D%3D%281-%5Clambda+%29%5Csum_%7Bn%7D%5E%7Bi%3D1%7D%7B%5Clambda+%5E%7Bi%7DR%5E%7B%28i%29%7D%7D+">
-<meta property="og:updated_time" content="2019-01-22T06:55:49.659Z">
+<meta property="og:updated_time" content="2019-01-22T07:13:02.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="强化学习专题笔记(一) 强化学习基础.md">
-<meta name="twitter:description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。$$\max\sum_{t}{r_t}$$但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得">
+<meta name="twitter:description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。  \max\sum_{t}{r_t}但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006gCbCHly1fx0o33ydhkj30yi07umym.jpg">
 
 
@@ -409,7 +409,7 @@
                 
               
 
-              <time title="创建时间：2019-01-22 14:54:58 / 修改时间：14:55:49" itemprop="dateCreated datePublished" datetime="2019-01-22T14:54:58+08:00">2019-01-22</time>
+              <time title="创建时间：2019-01-22 14:54:58 / 修改时间：15:13:02" itemprop="dateCreated datePublished" datetime="2019-01-22T14:54:58+08:00">2019-01-22</time>
             
 
             
@@ -447,36 +447,53 @@
       
 
       
-        <h2 id="一、长期回报"><a href="#一、长期回报" class="headerlink" title="一、长期回报"></a>一、长期回报</h2><p>对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标<strong>最大化长期回报</strong> 而努力。<br>$$<br>\max\sum_{t}{r_t}<br>$$<br>但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即<strong>对未来的回报乘以一个折扣率，使得长期回报变得更有意义</strong>：<br>$$<br>\sum_{t=0}{\gamma^tr_t}    （\gamma &lt; 1）<br>$$<br>由此我们引出<strong>长期回报</strong>的概念，即从当前状态开始对之后的所有回报，运用上式进行累加的折扣率计算：</p>
-<p>$$<br>Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}<br>$$<br>但是长期回报需要知道未来的行动情况，我们需要对上式进行一个合理的估计，因而我们定义了<strong>策略的价值</strong>。</p>
-<h2 id="二、值函数"><a href="#二、值函数" class="headerlink" title="二、值函数"></a>二、值函数</h2><p>由于环境的原因，MDP中的状态转移概率有时候并不能够确定，因而需要基于<strong>状态转移</strong>来<strong>估计长期回报</strong>的<strong>期望</strong>。τ是从某个状态s出发，根据策略与状态转移概率采样得到的序列(trajectory)。那么价值函数可以表示为：<br>$$<br>v_{\pi}{(s_t)} = \mathbb{E}<em>{s,a\simτ}[\sum</em>{k=0}\gamma^kr_{t+k+1}]<br>=\sum_{\tau}{p(\tau)}{\sum_{k=0}^{\infin}{\gamma^k}{r_{t+k+1}}}<br>$$<br>根据MDP模型的形式，值函数一般分为两种：</p>
+        <h2 id="一、长期回报"><a href="#一、长期回报" class="headerlink" title="一、长期回报"></a>一、长期回报</h2><p>对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标<strong>最大化长期回报</strong> 而努力。</p>
+<script type="math/tex; mode=display">
+\max\sum_{t}{r_t}</script><p>但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即<strong>对未来的回报乘以一个折扣率，使得长期回报变得更有意义</strong>：</p>
+<script type="math/tex; mode=display">
+\sum_{t=0}{\gamma^tr_t}    （\gamma < 1）</script><p>由此我们引出<strong>长期回报</strong>的概念，即从当前状态开始对之后的所有回报，运用上式进行累加的折扣率计算：</p>
+<script type="math/tex; mode=display">
+Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未来的行动情况，我们需要对上式进行一个合理的估计，因而我们定义了<strong>策略的价值</strong>。<br><a id="more"></a></p>
+<h2 id="二、值函数"><a href="#二、值函数" class="headerlink" title="二、值函数"></a>二、值函数</h2><p>由于环境的原因，MDP中的状态转移概率有时候并不能够确定，因而需要基于<strong>状态转移</strong>来<strong>估计长期回报</strong>的<strong>期望</strong>。τ是从某个状态s出发，根据策略与状态转移概率采样得到的序列(trajectory)。那么价值函数可以表示为：</p>
+<script type="math/tex; mode=display">
+v_{\pi}{(s_t)} = \mathbb{E}_{s,a\simτ}[\sum_{k=0}\gamma^kr_{t+k+1}]
+=\sum_{\tau}{p(\tau)}{\sum_{k=0}^{\infin}{\gamma^k}{r_{t+k+1}}}</script><p>根据MDP模型的形式，值函数一般分为两种：</p>
 <ul>
 <li><strong>状态值函数</strong>  $v_{\pi}{(s)}​$:               已知当前状态s，按照某种策略行动产生的长期回报期望；</li>
 <li><strong>状态-动作值函数 </strong> $q_{\pi}{(s,a)}​$:  已知当前状态s及动作a，按照某种策略行动产生的长期回报期望。</li>
 </ul>
-<p>由于符合马尔科夫性，我们可以将值函数的形式<strong>进行马尔科夫展开</strong>,其中${\pi(a_t|s_t)}$表示，在$s_t$状态下选择策略$\pi$的概率，策略$\pi$将产生行动$a_t$，$p(s_{t+1}|s_t,a_t)$表示在策略$\pi$的情况下，从$s_t，a_t$到达$s_{t+1}$的概率。<br>$$<br>v_{\pi}{(s_t)}=\sum_{(s_t,a_t,…)\sim\tau]}{\pi(a_t|s_t)}p(s_{t+1}|s_t,a_t)…{\sum_{k=0}^{\infin}{\gamma^k}{r_{t+k+1}}}<br>$$</p>
-<h2 id="三、贝尔曼方程"><a href="#三、贝尔曼方程" class="headerlink" title="三、贝尔曼方程"></a>三、贝尔曼方程</h2><ol>
+<p>由于符合马尔科夫性，我们可以将值函数的形式<strong>进行马尔科夫展开</strong>,其中${\pi(a<em>t|s_t)}$表示，在$s_t$状态下选择策略$\pi$的概率，策略$\pi$将产生行动$a_t$，$p(s</em>{t+1}|s<em>t,a_t)$表示在策略$\pi$的情况下，从$s_t，a_t$到达$s</em>{t+1}$的概率。</p>
+<script type="math/tex; mode=display">
+v_{\pi}{(s_t)}=\sum_{(s_t,a_t,...)\sim\tau]}{\pi(a_t|s_t)}p(s_{t+1}|s_t,a_t)...{\sum_{k=0}^{\infin}{\gamma^k}{r_{t+k+1}}}</script><h2 id="三、贝尔曼方程"><a href="#三、贝尔曼方程" class="headerlink" title="三、贝尔曼方程"></a>三、贝尔曼方程</h2><ol>
 <li><strong>状态值函数的贝尔曼方程</strong></li>
 </ol>
-<p>通过代换消元，可以将上式整理为<strong>状态值函数的贝尔曼方程</strong>：<br>$$<br>v_{\pi}(s_t)=\sum_{a_t}\pi(a_t|s_t)\sum_{s_{t+1}}{p(s_{t+1}|s_t,a_t)[r_{t+1}+\gamma v_{\pi}(s_{t+1})]}<br>$$<br>更直观一点可以将贝尔曼方程描述为一种DP的形式，即当前状态$s$下，选择策略$\pi$的长期回报期望。<br>$$<br>v_{\pi}(s_t)=\sum_{a_t,s_t+1}\pi{(a_t|s_t)}\mathbb{E}[r_{t+1} + \gamma v_{\pi}(s_{t+1})]<br>$$</p>
-<ol start="2">
+<p>通过代换消元，可以将上式整理为<strong>状态值函数的贝尔曼方程</strong>：</p>
+<script type="math/tex; mode=display">
+v_{\pi}(s_t)=\sum_{a_t}\pi(a_t|s_t)\sum_{s_{t+1}}{p(s_{t+1}|s_t,a_t)[r_{t+1}+\gamma v_{\pi}(s_{t+1})]}</script><p>更直观一点可以将贝尔曼方程描述为一种DP的形式，即当前状态$s$下，选择策略$\pi$的长期回报期望。</p>
+<script type="math/tex; mode=display">
+v_{\pi}(s_t)=\sum_{a_t,s_t+1}\pi{(a_t|s_t)}\mathbb{E}[r_{t+1} + \gamma v_{\pi}(s_{t+1})]</script><ol>
 <li><strong>状态-动作值函数的贝尔曼方程</strong></li>
 </ol>
-<p>类似地，可以定义<strong>状态-动作值函数的贝尔曼方程</strong>：<br>$$<br>q_{\pi}(s_t,a_t)=\sum_{s_{t+1}}p(s_{t+1}|s_t,a_t)\sum_{a_{t+1}}p(a_{t+1}|s_{t+1})[r_{t+1}+\gamma q_\pi{(s_{t+1},a_{t+1})}]<br>$$</p>
-<ol start="3">
+<p>类似地，可以定义<strong>状态-动作值函数的贝尔曼方程</strong>：</p>
+<script type="math/tex; mode=display">
+q_{\pi}(s_t,a_t)=\sum_{s_{t+1}}p(s_{t+1}|s_t,a_t)\sum_{a_{t+1}}p(a_{t+1}|s_{t+1})[r_{t+1}+\gamma q_\pi{(s_{t+1},a_{t+1})}]</script><ol>
 <li><strong>Bellman optimality equation</strong></li>
 </ol>
-<p>$$<br>v_*(s)=\mathbb{E}[r_{t+1} +\gamma max_\pi{v(s_{t+1})|s_t=s}]<br>$$</p>
-<p>$$<br>q_*(s,a)=\mathbb{E}[r_{t+1} +\gamma max_{a_{t+1}}{q(s_{t+1},a_{t+1})|s_t=s,a_t=a}]<br>$$</p>
-<h2 id="四、Monte-Carlo与Time-Difference"><a href="#四、Monte-Carlo与Time-Difference" class="headerlink" title="四、Monte-Carlo与Time Difference"></a>四、Monte-Carlo与Time Difference</h2><ul>
+<script type="math/tex; mode=display">
+v_*(s)=\mathbb{E}[r_{t+1} +\gamma max_\pi{v(s_{t+1})|s_t=s}]</script><script type="math/tex; mode=display">
+q_*(s,a)=\mathbb{E}[r_{t+1} +\gamma max_{a_{t+1}}{q(s_{t+1},a_{t+1})|s_t=s,a_t=a}]</script><h2 id="四、Monte-Carlo与Time-Difference"><a href="#四、Monte-Carlo与Time-Difference" class="headerlink" title="四、Monte-Carlo与Time Difference"></a>四、Monte-Carlo与Time Difference</h2><ul>
 <li>MC 方差较大，需要较深的探索获取回报</li>
 <li>TD  方差较小，偏差较大，可设定探索深度(1-step, n-step), Q-Learning, SARSA都属于TD</li>
 </ul>
 <p>【参考】<a href="https://zhuanlan.zhihu.com/p/25239682" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25239682</a></p>
-<p>Monte-Carlo method适用于“情节式任务”（情节任务序列有终点，与“情节式任务”相对应的是“连续型任务”）。$Q(s,a)$就是整个序列的期望回报。MC增量更新中的<strong>Monte-Carlo error</strong> ($R-Q(s_t,a_t)$)：<br>$$<br>Q(s_t,a_t)\Leftarrow Q(s_t,a_t) + \alpha(R-Q(s_t,a_t))<br>$$<br>TD（Time Difference） method，是MC和DP 方法的一个结合。相比MC方法，TD除了能够适用于连续任务外，和MC的差异从下图可以清楚看到。MC需要回退整个序列更新Q值，而TD只需要回退1步或n步更新Q值。因为MC需要等待序列结束才能训练，而TD没有这个限制，因此TD收敛速度明显比MC快，目前的主要算法都是基于TD。下图是TD和MC的回退图，很显然MC回退的更深。</p>
+<p>Monte-Carlo method适用于“情节式任务”（情节任务序列有终点，与“情节式任务”相对应的是“连续型任务”）。$Q(s,a)$就是整个序列的期望回报。MC增量更新中的<strong>Monte-Carlo error</strong> ($R-Q(s_t,a_t)$)：</p>
+<script type="math/tex; mode=display">
+Q(s_t,a_t)\Leftarrow Q(s_t,a_t) + \alpha(R-Q(s_t,a_t))</script><p>TD（Time Difference） method，是MC和DP 方法的一个结合。相比MC方法，TD除了能够适用于连续任务外，和MC的差异从下图可以清楚看到。MC需要回退整个序列更新Q值，而TD只需要回退1步或n步更新Q值。因为MC需要等待序列结束才能训练，而TD没有这个限制，因此TD收敛速度明显比MC快，目前的主要算法都是基于TD。下图是TD和MC的回退图，很显然MC回退的更深。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006gCbCHly1fx0o33ydhkj30yi07umym.jpg" alt=""></p>
 <p><img src="https://pic3.zhimg.com/80/v2-951e5ec476e6f4865deee034d4792706_hd.png" alt="img"></p>
-<p><strong>1-step TD error: ($r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_t)​$)：</strong><br>$$<br>Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_t))<br>$$<br><strong>n-steps TD error：</strong></p>
+<p><strong>1-step TD error: ($r<em>{t+1}+\gamma Q(s</em>{t+1}a_{t+1}-Q(s_t,a_t)​$)：</strong></p>
+<script type="math/tex; mode=display">
+Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_t))</script><p><strong>n-steps TD error：</strong></p>
 <p><img src="https://www.zhihu.com/equation?tex=R%5E%7B%28n%29%7D%3Dr_%7Bt%2B1%7D%2B%5Cgamma+r_%7Bt%2B2%7D%2B...%2B%5Cgamma+%5E%7Bn-2%7Dr_%7Bt%2Bn-1%7D%2B%5Cgamma+%5E%7Bn-1%7DQ%28s_%7Bt%2Bn%7D%2C+a_%7Bt%2Bn%7D%29++" alt=""></p>
 <p><strong>TD(λ) error:</strong></p>
 <p><img src="https://www.zhihu.com/equation?tex=R%5E%7B%28%5Clambda+%29%7D%3D%281-%5Clambda+%29%5Csum_%7Bn%7D%5E%7Bi%3D1%7D%7B%5Clambda+%5E%7Bi%7DR%5E%7B%28i%29%7D%7D+" alt=""></p>
@@ -648,12 +665,81 @@
                   <a href="https://github.com/zhkmxx9302013" title="GitHub &rarr; https://github.com/zhkmxx9302013" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://zhkmxx930.leanote.com/" title="远方的家 &rarr; http://zhkmxx930.leanote.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-leanote"></i>远方的家</a>
+                </span>
+              
             </div>
           
 
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://crystalmiao.com/" title="http://crystalmiao.com/" rel="noopener" target="_blank">老喵家小喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://eason-yang.com/categories/" title="https://eason-yang.com/categories/" rel="noopener" target="_blank">eason-yang的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.61mon.com/index.php/archives.html" title="https://www.61mon.com/index.php/archives.html" rel="noopener" target="_blank">算法归类</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.tianfeiyu.com/" title="http://www.tianfeiyu.com/" rel="noopener" target="_blank">田飞雨另一个Linuxer</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jacksu.github.io/utils4s/" title="http://jacksu.github.io/utils4s/" rel="noopener" target="_blank">utils4s</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://orchome.com/303" title="http://orchome.com/303" rel="noopener" target="_blank">OrcHome</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://leftnoteasy.cnblogs.com/" title="http://leftnoteasy.cnblogs.com/" rel="noopener" target="_blank">LeftNotEasy - Wangda Tan</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/mario-nb/" title="http://www.cnblogs.com/mario-nb/" rel="noopener" target="_blank">鸽子的迷信</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/easonturing/" title="http://www.cnblogs.com/easonturing/" rel="noopener" target="_blank">Eason Turing</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/musi-shuang/" title="http://www.cnblogs.com/musi-shuang/" rel="noopener" target="_blank">musi-tianshuang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://sumail-lee.com/" title="http://sumail-lee.com/" rel="noopener" target="_blank">老班长LSZ的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" title="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" rel="noopener" target="_blank">Blog of Kami Wan</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -868,6 +954,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

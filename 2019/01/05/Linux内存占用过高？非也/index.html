@@ -100,21 +100,21 @@
 
 
 
-  <meta name="description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top   结合操作系统，计组等课程，以及多年以来windows培养给我的直觉，认为0.96G（1016272K）的总内">
+  <meta name="description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux内存占用过高？非也">
 <meta property="og:url" content="http://yoursite.com/2019/01/05/Linux内存占用过高？非也/index.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top   结合操作系统，计组等课程，以及多年以来windows培养给我的直觉，认为0.96G（1016272K）的总内">
+<meta property="og:description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b24">
 <meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b23">
 <meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=575cb766ab64411568000b25">
-<meta property="og:updated_time" content="2019-01-11T01:52:35.823Z">
+<meta property="og:updated_time" content="2019-01-22T07:12:18.786Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux内存占用过高？非也">
-<meta name="twitter:description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top   结合操作系统，计组等课程，以及多年以来windows培养给我的直觉，认为0.96G（1016272K）的总内">
+<meta name="twitter:description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top">
 <meta name="twitter:image" content="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b24">
 
 
@@ -425,7 +425,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-11 09:52:35" itemprop="dateModified" datetime="2019-01-11T09:52:35+08:00">2019-01-11</time>
+                <time title="修改时间：2019-01-22 15:12:18" itemprop="dateModified" datetime="2019-01-22T15:12:18+08:00">2019-01-22</time>
               
             
           </span>
@@ -466,6 +466,7 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#top</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b24" alt="图片标题"></p>
+<a id="more"></a>
 <ul>
 <li>结合操作系统，计组等课程，以及多年以来windows培养给我的直觉，认为<strong>0.96G（1016272K）</strong>的总内存，使用了<strong>0.84G(880960K)</strong>的内存，使用率高达<strong>88%</strong>。然而我还啥都没干，怎么会这样呢？<br>仔细查看还会发现后面有一个<strong>buffers</strong>，Swap后面还有一个<strong>Cached Mem</strong>。<br>现在我们用<code>free</code>来观察下</li>
 </ul>
@@ -659,12 +660,81 @@
                   <a href="https://github.com/zhkmxx9302013" title="GitHub &rarr; https://github.com/zhkmxx9302013" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://zhkmxx930.leanote.com/" title="远方的家 &rarr; http://zhkmxx930.leanote.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-leanote"></i>远方的家</a>
+                </span>
+              
             </div>
           
 
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://crystalmiao.com/" title="http://crystalmiao.com/" rel="noopener" target="_blank">老喵家小喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://eason-yang.com/categories/" title="https://eason-yang.com/categories/" rel="noopener" target="_blank">eason-yang的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.61mon.com/index.php/archives.html" title="https://www.61mon.com/index.php/archives.html" rel="noopener" target="_blank">算法归类</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.tianfeiyu.com/" title="http://www.tianfeiyu.com/" rel="noopener" target="_blank">田飞雨另一个Linuxer</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jacksu.github.io/utils4s/" title="http://jacksu.github.io/utils4s/" rel="noopener" target="_blank">utils4s</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://orchome.com/303" title="http://orchome.com/303" rel="noopener" target="_blank">OrcHome</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://leftnoteasy.cnblogs.com/" title="http://leftnoteasy.cnblogs.com/" rel="noopener" target="_blank">LeftNotEasy - Wangda Tan</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/mario-nb/" title="http://www.cnblogs.com/mario-nb/" rel="noopener" target="_blank">鸽子的迷信</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/easonturing/" title="http://www.cnblogs.com/easonturing/" rel="noopener" target="_blank">Eason Turing</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/musi-shuang/" title="http://www.cnblogs.com/musi-shuang/" rel="noopener" target="_blank">musi-tianshuang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://sumail-lee.com/" title="http://sumail-lee.com/" rel="noopener" target="_blank">老班长LSZ的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" title="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" rel="noopener" target="_blank">Blog of Kami Wan</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -879,6 +949,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

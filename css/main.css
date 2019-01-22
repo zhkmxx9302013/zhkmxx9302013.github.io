@@ -1879,7 +1879,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #85952f;
+  background: #8795e8;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3034,7 +3034,7 @@ ul.breadcrumb li+li:last-child {
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
 body {
-  background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548160234976&di=6f2bf45d7b522b9835d48401578f06a7&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201306%2F14%2F171205q4juyyyc7bzjqd7g.jpg");
+  background: url("https://images.unsplash.com/photo-1545677019-02e90d1f0033?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&h=1080&fit=crop&ixid=eyJhcHBfaWQiOjF9");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;

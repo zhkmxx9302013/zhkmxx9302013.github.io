@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[强化学习论文]]></title>
+    <title><![CDATA[[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation]]></title>
     <url>%2F2019%2F01%2F23%2Frf-paper-serise%2F</url>
     <content type="text"><![CDATA[论文 题目: Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation 作者: Tejas D. Kulkarni, Karthik R. Narasimhan, Ardavan Saeedi, Joshua B. Tenenbaum 论文: https://arxiv.org/abs/1604.06057 年份: 2016 参考: https://github.com/aleju/papers/blob/master/neural-nets/Hierarchical_Deep_Reinforcement_Learning.md 总结1.主要贡献 提出了一种分层强化学习方法 该方法使用了长期目标(long-term goal)指导短期动作(short-term choice)的选择 2.主要方法 两个重要组件 Meta-controller 负责生成长期目标long term goal; 通过训练Meta-controller使其能够根据当前state来选取目标goal，使得extrinsic reward最大; 当且仅当底层执行器Controller完成一个episode或者达成某个Meta-controller产生的goal的时候，Meta-controller再去产生新的目标goal。 Controller 从环境中获取当前state，并从Meta-controller中获取当前目标goal; 基于当前goal和当前的state，来选取最大化intrinsic reward期望的action，这里与传统的rf相同只是增加了目标goal，这里通过估计action-value function ( $Q_1(s_t, a_t;\theta_1,g_t)$ )来做; Reward 是 intrinsic的，在agent内部，这个intrinsic reward由Critic网络产生，当且仅当当前的目标达到时，才会产生intrinsic reward。 在蒙特祖玛的复仇(Montezuma’s Revenge)上实验 目标Goal是一些手动设置的特定游戏object，比如钥匙，在实验中，将设置一个与游戏屏幕大小相等的遮罩层，当且仅当目标object的位置上的二进制位是1，其他像素上的二进制值为0； Meta-controller通过Q function选择要到达的下一个Goal; Controller根据Q function选择能够到达Goal的action, 其不断迭代选择action，直到其完成一个episode或到达Goal； 每当达到目标Goal时，Critic都会向Controller提供内在奖励(intrinsic reward); CNN用于Meta-controller和Controller，在架构上类似于Atari-DQN论文(shallow CNNs); 使用两个Replay buffer，一个用于Meta-controller(大小为40k)，一个用于Controller(大小为1M); Meta-controller和Controller两者都遵循epsilon-greedy。Epsilon从1.0开始，减小至0.1; 折扣因子γ为0.9; 使用SGD优化。]]></content>
       <tags>

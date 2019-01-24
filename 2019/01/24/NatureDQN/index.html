@@ -116,8 +116,10 @@
 <meta property="og:description" content="DQN (Nature) 一、 算法流程： 定义可配置参数 episode 数量 M 最大仿真时间 T，$\epsilon-greedy$参数$\epsilon_{low}$,$\epsilon_{high}$ batch size $N​$ 折扣率 $\gamma$，学习率 $\alpha$等优化器参数 Soft update 频率 $C​$">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548320185/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190124165548.png">
+<meta property="og:image" content="http://intheworld.win/wordpress/wp-content/uploads/2018/07/dqn_loss.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548321074/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190124171054.png">
 <meta property="og:image" content="http://intheworld.win/wordpress/wp-content/uploads/2018/07/dqn.jpg">
-<meta property="og:updated_time" content="2019-01-24T09:00:50.851Z">
+<meta property="og:updated_time" content="2019-01-24T09:12:32.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[强化学习笔记专题(二)]Nature DQN">
 <meta name="twitter:description" content="DQN (Nature) 一、 算法流程： 定义可配置参数 episode 数量 M 最大仿真时间 T，$\epsilon-greedy$参数$\epsilon_{low}$,$\epsilon_{high}$ batch size $N​$ 折扣率 $\gamma$，学习率 $\alpha$等优化器参数 Soft update 频率 $C​$">
@@ -484,7 +486,7 @@
                 
               
 
-              <time title="创建时间：2019-01-24 16:53:42 / 修改时间：17:00:50" itemprop="dateCreated datePublished" datetime="2019-01-24T16:53:42+08:00">2019-01-24</time>
+              <time title="创建时间：2019-01-24 16:53:42 / 修改时间：17:12:32" itemprop="dateCreated datePublished" datetime="2019-01-24T16:53:42+08:00">2019-01-24</time>
             
 
             
@@ -570,6 +572,7 @@
 </li>
 <li><h5 id="不断迭代Episode流程-M-次"><a href="#不断迭代Episode流程-M-次" class="headerlink" title="不断迭代Episode流程$M$次"></a>不断迭代Episode流程$M$次</h5></li>
 </ol>
+<p><img src="http://intheworld.win/wordpress/wp-content/uploads/2018/07/dqn_loss.png" alt="img"></p>
 <h2 id="二、对应代码"><a href="#二、对应代码" class="headerlink" title="二、对应代码"></a>二、对应代码</h2><p>完整代码地址： <a href="https://coding.net/u/zhkmxx930/p/DQN_Nature/git/blob/master/NatureDQN.py" target="_blank" rel="noopener">Nature DQN</a></p>
 <ol>
 <li><h5 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h5><ul>
@@ -599,7 +602,9 @@
  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_target_q_network</span><span class="params">(self, episode)</span>:</span></span><br><span class="line">   <span class="comment"># 更新 target Q netowrk</span></span><br><span class="line">   <span class="keyword">if</span> episode % REPLACE_TARGET_FREQ == <span class="number">0</span>:</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="三、参考论文流程："><a href="#三、参考论文流程：" class="headerlink" title="三、参考论文流程："></a>三、参考论文流程：</h3><p><img src="http://intheworld.win/wordpress/wp-content/uploads/2018/07/dqn.jpg" alt="img"></p>
+<h2 id="三、实验结果"><a href="#三、实验结果" class="headerlink" title="三、实验结果"></a>三、实验结果</h2><p>环境 cart-pole-v0 (期望回报是200)</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548321074/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190124171054.png" alt=""></p>
+<h3 id="四、参考论文流程："><a href="#四、参考论文流程：" class="headerlink" title="四、参考论文流程："></a>四、参考论文流程：</h3><p><img src="http://intheworld.win/wordpress/wp-content/uploads/2018/07/dqn.jpg" alt="img"></p>
 
       
     </div>
@@ -831,7 +836,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DQN-Nature"><span class="nav-number">1.</span> <span class="nav-text">DQN (Nature)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-算法流程："><span class="nav-number">1.1.</span> <span class="nav-text">一、 算法流程：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义可配置参数"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">定义可配置参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DQN-一个Episode的流程"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">DQN 一个Episode的流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不断迭代Episode流程-M-次"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">不断迭代Episode流程$M$次</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#二、对应代码"><span class="nav-number">2.</span> <span class="nav-text">二、对应代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化-1"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、参考论文流程："><span class="nav-number">2.1.</span> <span class="nav-text">三、参考论文流程：</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DQN-Nature"><span class="nav-number">1.</span> <span class="nav-text">DQN (Nature)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-算法流程："><span class="nav-number">1.1.</span> <span class="nav-text">一、 算法流程：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义可配置参数"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">定义可配置参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DQN-一个Episode的流程"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">DQN 一个Episode的流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不断迭代Episode流程-M-次"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">不断迭代Episode流程$M$次</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#二、对应代码"><span class="nav-number">2.</span> <span class="nav-text">二、对应代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化-1"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、实验结果"><span class="nav-number">3.</span> <span class="nav-text">三、实验结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#四、参考论文流程："><span class="nav-number">3.1.</span> <span class="nav-text">四、参考论文流程：</span></a></li></ol></li></div>
             
 
           </div>
@@ -1562,7 +1567,10 @@
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":20,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.7},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1579,8 +1587,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":20,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.7},"log":false,"tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>

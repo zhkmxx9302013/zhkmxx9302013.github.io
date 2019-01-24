@@ -22,6 +22,10 @@
 <meta name="theme-color" content="#222">
 
 
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
 
 
   
@@ -85,7 +89,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     fastclick: false,
     lazyload: false,
@@ -460,11 +464,11 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation
+          <h2 class="post-title" itemprop="name headline">[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation
 
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -644,6 +648,20 @@
 
         
 
+        
+          
+            <span class="post-meta-divider">|</span>
+          
+          <div class="social_share">
+            
+            
+               <div id="needsharebutton-postbottom">
+                 <span class="btn">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                 </span>
+               </div>
+            
+          </div>
         
         </div>
       
@@ -872,6 +890,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -936,11 +961,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
@@ -1059,6 +1079,11 @@
   
 <!-- END LOCAL -->
 
+  
+    <style>
+      a.gitment-editor-footer-tip { display: none; }
+      .gitment-container.gitment-footer-container { display: none; }
+    </style>
   
 
   
@@ -1550,6 +1575,26 @@
 
 
   
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "box";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
 
   
   <script>

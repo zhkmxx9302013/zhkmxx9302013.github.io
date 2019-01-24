@@ -115,14 +115,14 @@
 <meta property="og:site_name" content="zhkmxx930 blog">
 <meta property="og:description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b24">
-<meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b23">
-<meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=575cb766ab64411568000b25">
-<meta property="og:updated_time" content="2019-01-22T07:12:18.786Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332209/1.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332233/2.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332258/3.png">
+<meta property="og:updated_time" content="2019-01-24T12:17:41.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux内存占用过高？非也">
 <meta name="twitter:description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top">
-<meta name="twitter:image" content="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b24">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332209/1.png">
 
 
 
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-22 15:12:18" itemprop="dateModified" datetime="2019-01-22T15:12:18+08:00">2019-01-22</time>
+                <time title="修改时间：2019-01-24 20:17:41" itemprop="dateModified" datetime="2019-01-24T20:17:41+08:00">2019-01-24</time>
               
             
           </span>
@@ -553,18 +553,18 @@
 <li>先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入<code>top</code></li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#top</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b24" alt="图片标题"></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332209/1.png" alt="图片标题"></p>
 <a id="more"></a>
 <ul>
 <li>结合操作系统，计组等课程，以及多年以来windows培养给我的直觉，认为<strong>0.96G（1016272K）</strong>的总内存，使用了<strong>0.84G(880960K)</strong>的内存，使用率高达<strong>88%</strong>。然而我还啥都没干，怎么会这样呢？<br>仔细查看还会发现后面有一个<strong>buffers</strong>，Swap后面还有一个<strong>Cached Mem</strong>。<br>现在我们用<code>free</code>来观察下</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#free -m</span><br></pre></td></tr></table></figure>
-<p><img src="https://leanote.com/api/file/getImage?fileId=575cb765ab64411568000b23" alt="图片标题"></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332233/2.png" alt="图片标题"></p>
 <ul>
 <li>虽然Mem显示了<strong>0.9G</strong>左右的used，但是<strong>-/+ buffers/cache</strong>(减去buffers和cache的结果)可以看到，当前进程实际占用内存是<strong>0.24G(256348K)</strong>，而可用空闲（free）内存为<strong>0.72G(759924K)</strong>。<br>可以这么理解：在linux的内存分配机制中，优先使用物理内存，当物理内存还有空闲时（还够用），不会释放其占用内存，就算占用内存的程序已经被关闭了，该程序所占用的内存用来做缓存使用，对于开启过的程序、或是读取刚存取过得数据会比较快。<br><br></li>
 <li><p>如上面的例子：共<strong>1G</strong>的内存，<strong>0.9G</strong>被占用，但是<strong>buffer</strong>和<strong>cached mem</strong>部分作为缓存，可以使用命中率的方式提高使用效率，而且这部分缓存是根据指令随时可以释放的，我们可以认为这部分内存没有实际被使用，也可以认为它是空闲的。<br>因此查看目前进程正在实际被使用的内存，是<code>used-(buffers+cache)</code>，也可以认为如果swap没有大量使用，mem还是够用的，只有mem被当前进程实际占用完（没有了buffers和cache），才会使用到swap的。<br><br></p>
 </li>
-<li><p>再举个栗子： 这个是我在RPi一群看到的一个群友发的探针监测截图<br><img src="https://leanote.com/api/file/getImage?fileId=575cb766ab64411568000b25" alt="图片标题"></p>
+<li><p>再举个栗子： 这个是我在RPi一群看到的一个群友发的探针监测截图<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332258/3.png" alt="图片标题"></p>
 </li>
 <li><p>观察内存使用状况一栏，发现物理内存功<strong>925.89M</strong>，已用<strong>911.74M</strong>，Cache化的内存是<strong>676.46M</strong>，Buffers为<strong>61.3M</strong>，现在用上述公式：</p>
 </li>

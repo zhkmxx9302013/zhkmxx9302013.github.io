@@ -107,32 +107,30 @@
 
 
 
-  <meta name="description" content="前言什么是nat123?     现在我们的树莓派都是在路由器内网里面的，需要使用nat123来实现外网映射(类似花生壳)，但是nat123免费好用，这个原理在计算机网络中叫做隧道或者叫穿透。那么本文主要讲述如何在树莓派上配置nat123。 必要环境  ​    现在本文所用的平台是树莓派2代b+，其实那个版本的RPi都OK，主要是raspbian-jessie的系统，不过貌似是raspbian的">
+  <meta name="description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。  \max\sum_{t}{r_t}但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有">
+<meta name="keywords" content="强化学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在raspbian-jessie上搭建nat123自启动">
-<meta property="og:url" content="http://yoursite.com/2019/01/03/在raspbian-jessie上搭建nat123自启动/index.html">
+<meta property="og:title" content="强化学习专题笔记(一) 强化学习基础">
+<meta property="og:url" content="http://yoursite.com/post/17172.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="前言什么是nat123?     现在我们的树莓派都是在路由器内网里面的，需要使用nat123来实现外网映射(类似花生壳)，但是nat123免费好用，这个原理在计算机网络中叫做隧道或者叫穿透。那么本文主要讲述如何在树莓派上配置nat123。 必要环境  ​    现在本文所用的平台是树莓派2代b+，其实那个版本的RPi都OK，主要是raspbian-jessie的系统，不过貌似是raspbian的">
+<meta property="og:description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。  \max\sum_{t}{r_t}但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332305/QQ_E6_88_AA_E5_9B_BE20160421001227.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332330/QQ_E6_88_AA_E5_9B_BE20160421003933.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332368/QQ_E6_88_AA_E5_9B_BE20160421004234.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332379/QQ_E6_88_AA_E5_9B_BE20160421004747.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332392/QQ_E6_88_AA_E5_9B_BE20160421004909.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332420/QQ_E6_88_AA_E5_9B_BE20160421005439.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332456/QQ_E6_88_AA_E5_9B_BE20160421011051.png">
-<meta property="og:updated_time" content="2019-01-24T13:28:18.821Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006gCbCHly1fx0o33ydhkj30yi07umym.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-951e5ec476e6f4865deee034d4792706_hd.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=R%5E%7B%28n%29%7D%3Dr_%7Bt%2B1%7D%2B%5Cgamma+r_%7Bt%2B2%7D%2B...%2B%5Cgamma+%5E%7Bn-2%7Dr_%7Bt%2Bn-1%7D%2B%5Cgamma+%5E%7Bn-1%7DQ%28s_%7Bt%2Bn%7D%2C+a_%7Bt%2Bn%7D%29++">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=R%5E%7B%28%5Clambda+%29%7D%3D%281-%5Clambda+%29%5Csum_%7Bn%7D%5E%7Bi%3D1%7D%7B%5Clambda+%5E%7Bi%7DR%5E%7B%28i%29%7D%7D+">
+<meta property="og:updated_time" content="2019-01-24T13:28:18.803Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在raspbian-jessie上搭建nat123自启动">
-<meta name="twitter:description" content="前言什么是nat123?     现在我们的树莓派都是在路由器内网里面的，需要使用nat123来实现外网映射(类似花生壳)，但是nat123免费好用，这个原理在计算机网络中叫做隧道或者叫穿透。那么本文主要讲述如何在树莓派上配置nat123。 必要环境  ​    现在本文所用的平台是树莓派2代b+，其实那个版本的RPi都OK，主要是raspbian-jessie的系统，不过貌似是raspbian的">
-<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332305/QQ_E6_88_AA_E5_9B_BE20160421001227.png">
+<meta name="twitter:title" content="强化学习专题笔记(一) 强化学习基础">
+<meta name="twitter:description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。  \max\sum_{t}{r_t}但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006gCbCHly1fx0o33ydhkj30yi07umym.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/03/在raspbian-jessie上搭建nat123自启动/">
+  <link rel="canonical" href="http://yoursite.com/post/17172.html">
 
 
 
@@ -142,7 +140,7 @@
   };
 </script>
 
-  <title>在raspbian-jessie上搭建nat123自启动 | zhkmxx930 blog</title>
+  <title>强化学习专题笔记(一) 强化学习基础 | zhkmxx930 blog</title>
   
 
 
@@ -445,7 +443,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/在raspbian-jessie上搭建nat123自启动/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/17172.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -462,7 +460,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">在raspbian-jessie上搭建nat123自启动
+          <h1 class="post-title" itemprop="name headline">强化学习专题笔记(一) 强化学习基础
 
               
             
@@ -488,7 +486,7 @@
                 
               
 
-              <time title="创建时间：2019-01-03 19:51:29" itemprop="dateCreated datePublished" datetime="2019-01-03T19:51:29+08:00">2019-01-03</time>
+              <time title="创建时间：2019-01-22 14:54:58" itemprop="dateCreated datePublished" datetime="2019-01-22T14:54:58+08:00">2019-01-22</time>
             
 
             
@@ -514,11 +512,21 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/17172.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/17172.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/2019/01/03/在raspbian-jessie上搭建nat123自启动/" class="leancloud_visitors" data-flag-title="在raspbian-jessie上搭建nat123自启动">
+             <span id="/post/17172.html" class="leancloud_visitors" data-flag-title="强化学习专题笔记(一) 强化学习基础">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -549,80 +557,57 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>什么是nat123? </strong><br>    现在我们的树莓派都是在路由器内网里面的，需要使用nat123来实现外网映射(类似花生壳)，但是nat123免费好用，这个原理在计算机网络中叫做隧道或者叫穿透。那么本文主要讲述如何在树莓派上配置nat123。</p>
-<p><strong>必要环境 </strong></p>
-<p>​    现在本文所用的平台是树莓派2代b+，其实那个版本的RPi都OK，主要是raspbian-jessie的系统，不过貌似是raspbian的系统都适合使用，这里主要是nat123的环境必须配置好。</p>
+        <h2 id="一、长期回报"><a href="#一、长期回报" class="headerlink" title="一、长期回报"></a>一、长期回报</h2><p>对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标<strong>最大化长期回报</strong> 而努力。</p>
+<script type="math/tex; mode=display">
+\max\sum_{t}{r_t}</script><p>但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即<strong>对未来的回报乘以一个折扣率，使得长期回报变得更有意义</strong>：</p>
+<script type="math/tex; mode=display">
+\sum_{t=0}{\gamma^tr_t}    （\gamma < 1）</script><p>由此我们引出<strong>长期回报</strong>的概念，即从当前状态开始对之后的所有回报，运用上式进行累加的折扣率计算：</p>
+<script type="math/tex; mode=display">
+Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未来的行动情况，我们需要对上式进行一个合理的估计，因而我们定义了<strong>策略的价值</strong>。<br><a id="more"></a></p>
+<h2 id="二、值函数"><a href="#二、值函数" class="headerlink" title="二、值函数"></a>二、值函数</h2><p>由于环境的原因，MDP中的状态转移概率有时候并不能够确定，因而需要基于<strong>状态转移</strong>来<strong>估计长期回报</strong>的<strong>期望</strong>。τ是从某个状态s出发，根据策略与状态转移概率采样得到的序列(trajectory)。那么价值函数可以表示为：</p>
+<script type="math/tex; mode=display">
+v_{\pi}{(s_t)} = \mathbb{E}_{s,a\simτ}[\sum_{k=0}\gamma^kr_{t+k+1}]
+=\sum_{\tau}{p(\tau)}{\sum_{k=0}^{\infin}{\gamma^k}{r_{t+k+1}}}</script><p>根据MDP模型的形式，值函数一般分为两种：</p>
 <ul>
-<li>安装好mono环境</li>
+<li><strong>状态值函数</strong>  $v_{\pi}{(s)}​$:               已知当前状态s，按照某种策略行动产生的长期回报期望；</li>
+<li><strong>状态-动作值函数 </strong> $q_{\pi}{(s,a)}​$:  已知当前状态s及动作a，按照某种策略行动产生的长期回报期望。</li>
 </ul>
-<ul>
-<li>安装好nat123客户端</li>
+<p>由于符合马尔科夫性，我们可以将值函数的形式<strong>进行马尔科夫展开</strong>,其中${\pi(a_t|s_t)}$表示，在$s_t$状态下选择策略$\pi$的概率，策略$\pi$将产生行动$a_t$，$p(s_{t+1}|s_t,a_t)$表示在策略$\pi$的情况下，从$s_t，a_t$到达$s_{t+1}$的概率。</p>
+<script type="math/tex; mode=display">
+v_{\pi}{(s_t)}=\sum_{(s_t,a_t,...)\sim\tau]}{\pi(a_t|s_t)}p(s_{t+1}|s_t,a_t)...{\sum_{k=0}^{\infin}{\gamma^k}{r_{t+k+1}}}</script><h2 id="三、贝尔曼方程"><a href="#三、贝尔曼方程" class="headerlink" title="三、贝尔曼方程"></a>三、贝尔曼方程</h2><ol>
+<li><strong>状态值函数的贝尔曼方程</strong></li>
+</ol>
+<p>通过代换消元，可以将上式整理为<strong>状态值函数的贝尔曼方程</strong>：</p>
+<script type="math/tex; mode=display">
+v_{\pi}(s_t)=\sum_{a_t}\pi(a_t|s_t)\sum_{s_{t+1}}{p(s_{t+1}|s_t,a_t)[r_{t+1}+\gamma v_{\pi}(s_{t+1})]}</script><p>更直观一点可以将贝尔曼方程描述为一种DP的形式，即当前状态$s$下，选择策略$\pi$的长期回报期望。</p>
+<script type="math/tex; mode=display">
+v_{\pi}(s_t)=\sum_{a_t,s_t+1}\pi{(a_t|s_t)}\mathbb{E}[r_{t+1} + \gamma v_{\pi}(s_{t+1})]</script><ol>
+<li><strong>状态-动作值函数的贝尔曼方程</strong></li>
+</ol>
+<p>类似地，可以定义<strong>状态-动作值函数的贝尔曼方程</strong>：</p>
+<script type="math/tex; mode=display">
+q_{\pi}(s_t,a_t)=\sum_{s_{t+1}}p(s_{t+1}|s_t,a_t)\sum_{a_{t+1}}p(a_{t+1}|s_{t+1})[r_{t+1}+\gamma q_\pi{(s_{t+1},a_{t+1})}]</script><ol>
+<li><strong>Bellman optimality equation</strong></li>
+</ol>
+<script type="math/tex; mode=display">
+v_*(s)=\mathbb{E}[r_{t+1} +\gamma max_\pi{v(s_{t+1})|s_t=s}]</script><script type="math/tex; mode=display">
+q_*(s,a)=\mathbb{E}[r_{t+1} +\gamma max_{a_{t+1}}{q(s_{t+1},a_{t+1})|s_t=s,a_t=a}]</script><h2 id="四、Monte-Carlo与Time-Difference"><a href="#四、Monte-Carlo与Time-Difference" class="headerlink" title="四、Monte-Carlo与Time Difference"></a>四、Monte-Carlo与Time Difference</h2><ul>
+<li>MC 方差较大，需要较深的探索获取回报</li>
+<li>TD  方差较小，偏差较大，可设定探索深度(1-step, n-step), Q-Learning, SARSA都属于TD</li>
 </ul>
-<p>本文中我的nat123客户端安装在了官网所指示的<code>/mnt</code> 目录下，如图。<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332305/QQ_E6_88_AA_E5_9B_BE20160421001227.png" alt="图片标题"><br><a id="more"></a></p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>1.安装nat123客户端<br>    首先在这里还是要给出官网所给的安装方法<a href="http://www.nat123.com/pages_17_600.jsp" target="_blank" rel="noopener">linux下安装nat123客户端</a>，但是按照官网所述的方法，我总是卡在mono的安装过程上，如果哪位读者能够用那种方法配置成功请您在底下mark我一下~~。下面我说一下配置过程。</p>
-<ul>
-<li><p>安装mono</p>
-<p>​    这里可能由于是我的软件源出了问题，无论如何也不能按照官网的方式在我的树莓派上装mono环境，那么我只好采取mono源码编译的方式来安装。</p>
-<p>​    简单说一下每个步骤，首先通过<code>wget</code>获取mono源码，如果没有wget的请手动执行<code>sudo apt-get install wget</code>进行安装，然后使用<code>tar</code>解压，然后<code>cd</code>进入解压文件夹，然后使用<code>./configure --prefix=/usr/local</code>配置编译安装路径，最后<code>make</code>编译，<code>make install</code>安装mono。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wget http://download.mono-project.com/sources/mono/mono-4.0.1.44.tar.bz2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tar -xvf mono-4.0.1.44.tar.bz2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> mono-4.0.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./configure --prefix=/usr/<span class="built_in">local</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> make</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> make install</span></span><br></pre></td></tr></table></figure>
-<p>​    这样执行完成后输入<code>mono -V</code>出现版本信息就OK了，可以按照官网的说明继续执行。那么在这里我继续总结一下nat123的全部安装步骤。<br>&lt;/br&gt;</p>
-</li>
-<li><p>安装nat123客户端(本文安装路径为<code>/mnt</code>)</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span>  /mnt  </span><br><span class="line">$ wget  http://www.nat123.com/down/nat123linux.tar.gz </span><br><span class="line">$ tar  -zxvf  nat123linux.tar.gz</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>客户端启动</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install screen </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /mnt  </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> screen -S nat123  </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo mono nat123linux.sh</span></span><br></pre></td></tr></table></figure>
-<p>​       这里需要注意的是，在执行<code>screen  -S  nat123</code> 语句时-S是大写的S，如提示没有screen，则执行<code>sudo apt-get install screen</code>安装screen后再执行screen。然后就是要特别注意mono那句话前面一定要加sudo，除非你是root用户，否则会报奇葩错误。如果一切顺利，你将看到下面的样子。</p>
-<p> <img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332330/QQ_E6_88_AA_E5_9B_BE20160421003933.png" alt="图片标题"></p>
-<p>​       这里<code>please enter your nat123 username(enter x to exit):</code> 输入你的nat123用户名<code>please enter your nat123 password(enter x to exit):</code>输入你的nat123密码，吐槽坑点，密码竟然是明文。</p>
-<p>​       如果你的用户名密码都正确，你会看到下面的界面(官网盗图)，按住Ctrl键，并依次先按A，再按D，退出当前窗口就OK了。</p>
-</li>
-</ul>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332368/QQ_E6_88_AA_E5_9B_BE20160421004234.png" alt="图片标题"><br>     那么此时基础环境就算搭建完了，下面你需要的是一个nat123的端口映射配置。</p>
-<p>2.配置nat123端口</p>
-<ul>
-<li><p>首先你需要登录你的nat123官网账户 <a href="http://www.nat123.com/" target="_blank" rel="noopener">点我带你飞</a></p>
-</li>
-<li><p>然后在用户中心中选择端口映射添加</p>
-</li>
-</ul>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332379/QQ_E6_88_AA_E5_9B_BE20160421004747.png" alt="图片标题"></p>
-<ul>
-<li>然后按照下图所示进行填写</li>
-</ul>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332392/QQ_E6_88_AA_E5_9B_BE20160421004909.png" alt="图片标题"><br>  ​        这里说明一下，应用类型填写的是<strong>其他(非网站)</strong>，映射路线默认选择nat123，除非你有VIP专线，应用名称就随你咯。值得注意的是，这里的内网端口这样填写，由于我做映射的目的是能够在外网SSH到我的树莓派，所以需要将我的localhost上的22端口映射出去，因而这里我将内网端口设为22，内网地址设为localhost。</p>
-<p>  ​        再举个栗子，现在我的树莓派上有一个运行在localhost的5000端口上的flask服务器(一个python框架)程序，那么我想在外网请求这个服务器，那么我们就将内网端口设为5000，内网地址设为localhost。</p>
-<p>  ​         然后其他的填写默认就行，如果像做域名解析的，请按照官网的自主域名到万网上去解析，这里不再多言~。</p>
-<ul>
-<li>点击确认保存</li>
-</ul>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332420/QQ_E6_88_AA_E5_9B_BE20160421005439.png" alt="图片标题"><br>  ​        那么从上图可以看到现在我有两个端口映射一个是flask的5000端口映射，一个是SSH的22端口映射。那么如果一切顺利的话(已经开了nat123客户端服务并且做好了端口映射)那么现在你就可以通过在SSH应用中输入你的<strong>外网域名</strong>，和<strong>外网端口</strong>连接到你的树莓派中去了，或者通过<strong>外网域名</strong>，<strong>外网端口</strong>访问你的服务器应用。</p>
-<p>3.将树莓派上的nat123服务设为开机自启动或断网重连</p>
-<p>​    其实到上面为止，已经达到了我们想要的外网访问内网服务器的效果了，那么现在我们还不满足，想让他只用一次配置就可以永久稳定的生效，那么我们就把它配置成开机自启动并支持断网重连。之前看了官网上的方法，发现并没卵用，然后在刷官方论坛的时候发现了一个解决方案(<a href="http://www.natbbs.com/thread-6289-2-1.html" target="_blank" rel="noopener">论坛15楼的办法</a>)，虽然可能是因为版本老了的原因，直接用并不成功，但是给了我一个很好的思路。下面介绍一下我的方法。</p>
-<ul>
-<li>首先<code>sudo apt-get install expect</code>安装expect支持</li>
-</ul>
-<ul>
-<li><p>然后进入nat123安装目录(本文是<code>/mnt</code>)，新建一个脚本起名为expect.sh，执行这条命令<code>sudo vim /mnt/expect.sh</code></p>
-</li>
-<li><p>然后将下列代码输入到这个脚本中去:</p>
-<p>​       这里需要注意的是<code>username=&quot;&quot;</code>“”里面输入你的nat123用户名<code>mypwd=&quot;&quot;</code>“”里面输入你的nat123账号密码，值得一提的是，请看<code>\&quot;please enter your nat123 username(enter x to exit):\&quot; {</code>和<code>\&quot;please enter your nat123 password(enter x to exit):\&quot; {</code>这两句话一定要和你执行了<code>sudo mono nat123linux.sh</code>之后的输入提示相一致，具体在哪呢请看代码下面的那张图片。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">username="你的nat123用户名"</span><br><span class="line">mypwd="你的nat123密码"</span><br><span class="line">cmdnat123="sudo mono /mnt/nat123linux.sh"</span><br><span class="line"></span><br><span class="line">expect -c"</span><br><span class="line">spawn $cmdnat123</span><br><span class="line">while &#123; 1 &#125; &#123;</span><br><span class="line">        expect &#123;</span><br><span class="line">               \"please enter your nat123 username(enter x to exit):\" &#123;</span><br><span class="line">                        send \"$username\r\";</span><br><span class="line">                &#125;</span><br><span class="line">                \"please enter your nat123 password(enter x to exit):\" &#123;</span><br><span class="line">                        send \"$mypwd\r\";</span><br><span class="line">                &#125;</span><br><span class="line">                eof &#123;</span><br><span class="line">                        send \"exit\r\";</span><br><span class="line">                &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          sleep 5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332456/QQ_E6_88_AA_E5_9B_BE20160421011051.png" alt="图片标题"></p>
-<ul>
-<li><p>写好之后可以执行<code>bash expect.sh</code>语句来执行以下这个脚本，如果执行之后它带你来到了让你输入ctrl+AD退出的那个界面，就说明这个脚本写的成功了。</p>
-</li>
-<li><p>然后将脚本执行写入开机启动bash</p>
-<p>打开rc.local写入开机执行命令。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/rc.local</span></span><br></pre></td></tr></table></figure>
-<p>这里在<code>exit(0)</code>这句之前一行写上<code>sudo bash /mnt/expect.sh</code>就OK了</p>
-</li>
-<li><p>那么如果顺利的话重启树莓派等待30s左右时间，你就可以直接通过外网访问你的树莓派了~，然后你也可以把网线拔了重插，等个5s左右，发现也可以重连，那么就一切OK了。</p>
-</li>
-</ul>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>此文第二遍写于2016年4月21日10:10:13，倒霉的typora昨晚上写到2点多变成乱码了。</p>
+<p>【参考】<a href="https://zhuanlan.zhihu.com/p/25239682" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25239682</a></p>
+<p>Monte-Carlo method适用于“情节式任务”（情节任务序列有终点，与“情节式任务”相对应的是“连续型任务”）。$Q(s,a)$就是整个序列的期望回报。MC增量更新中的<strong>Monte-Carlo error</strong> ($R-Q(s_t,a_t)$)：</p>
+<script type="math/tex; mode=display">
+Q(s_t,a_t)\Leftarrow Q(s_t,a_t) + \alpha(R-Q(s_t,a_t))</script><p>TD（Time Difference） method，是MC和DP 方法的一个结合。相比MC方法，TD除了能够适用于连续任务外，和MC的差异从下图可以清楚看到。MC需要回退整个序列更新Q值，而TD只需要回退1步或n步更新Q值。因为MC需要等待序列结束才能训练，而TD没有这个限制，因此TD收敛速度明显比MC快，目前的主要算法都是基于TD。下图是TD和MC的回退图，很显然MC回退的更深。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006gCbCHly1fx0o33ydhkj30yi07umym.jpg" alt=""></p>
+<p><img src="https://pic3.zhimg.com/80/v2-951e5ec476e6f4865deee034d4792706_hd.png" alt="img"></p>
+<p><strong>1-step TD error: ($r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_t)​$)：</strong></p>
+<script type="math/tex; mode=display">
+Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_t))</script><p><strong>n-steps TD error：</strong></p>
+<p><img src="https://www.zhihu.com/equation?tex=R%5E%7B%28n%29%7D%3Dr_%7Bt%2B1%7D%2B%5Cgamma+r_%7Bt%2B2%7D%2B...%2B%5Cgamma+%5E%7Bn-2%7Dr_%7Bt%2Bn-1%7D%2B%5Cgamma+%5E%7Bn-1%7DQ%28s_%7Bt%2Bn%7D%2C+a_%7Bt%2Bn%7D%29++" alt=""></p>
+<p><strong>TD(λ) error:</strong></p>
+<p><img src="https://www.zhihu.com/equation?tex=R%5E%7B%28%5Clambda+%29%7D%3D%281-%5Clambda+%29%5Csum_%7Bn%7D%5E%7Bi%3D1%7D%7B%5Clambda+%5E%7Bi%7DR%5E%7B%28i%29%7D%7D+" alt=""></p>
+<p>事实上，MC error可以视为一个情节任务的max-step TD error。另外，一般来说，在TD error中，n越大，用到的真实回报信息更多，收敛也会越快。</p>
 
       
     </div>
@@ -644,8 +629,26 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/强化学习/" rel="tag"># 强化学习</a>
+          
+        </div>
+      
 
       
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
       
       
 
@@ -653,8 +656,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/03/我的博客/" rel="next" title="我的博客">
-                <i class="fa fa-chevron-left"></i> 我的博客
+              <a href="/post/10696.html" rel="next" title="MPC控制笔记(一)">
+                <i class="fa fa-chevron-left"></i> MPC控制笔记(一)
               </a>
             
           </div>
@@ -663,8 +666,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/05/Linux内存占用过高？非也/" rel="prev" title="Linux内存占用过高？非也">
-                Linux内存占用过高？非也 <i class="fa fa-chevron-right"></i>
+              <a href="/post/10845.html" rel="prev" title="[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation">
+                [强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -688,9 +691,12 @@
           
 
   
-    <div id="gitalk-container">
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
     </div>
-    
+
   
 
 
@@ -860,7 +866,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、长期回报"><span class="nav-number">1.</span> <span class="nav-text">一、长期回报</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、值函数"><span class="nav-number">2.</span> <span class="nav-text">二、值函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、贝尔曼方程"><span class="nav-number">3.</span> <span class="nav-text">三、贝尔曼方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、Monte-Carlo与Time-Difference"><span class="nav-number">4.</span> <span class="nav-text">四、Monte-Carlo与Time Difference</span></a></li></ol></div>
             
 
           </div>
@@ -1048,35 +1054,46 @@
 
 
 
-
-
-
-
+<!-- LOCAL: You can save these files to your site and update links -->
+  
+    
+    <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+    <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+  
+<!-- END LOCAL -->
 
   
-  
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
 
   
-  
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+    <script>
+    function renderGitment(){
+      var gitment = new Gitmint({
+        id: window.location.pathname,
+        owner: 'zhkmxx9302013',
+        repo: 'zhkmxx9302013.github.io',
+        
+        lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+        
+        oauth: {
+        
+        
+          client_secret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
+        
+          client_id: '8ffda7fd0bcee5f2074f'
+        }});
+      gitment.render('gitment-container');
+    }
 
+    
+      renderGitment();
+    
+    </script>
   
-  
-  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
 
-   <script>
-        var gitalk = new Gitalk({
-          clientID: '8ffda7fd0bcee5f2074f',
-          clientSecret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
-          repo: 'zhkmxx9302013.github.io',
-          owner: 'zhkmxx9302013',
-          admin: ['zhkmxx9302013'],
-          id: md5(location.pathname),
-          distractionFreeMode: 'true'
-        })
-        gitalk.render('gitalk-container')
-       </script>
+
+
+
+
 
 
   
@@ -1471,6 +1488,21 @@
   
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
 
   
 
@@ -1481,11 +1513,67 @@
   
 
   
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
 
 
   
 
   
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 16260,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
 
   
 
@@ -1580,7 +1668,10 @@
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":20,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.7},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1597,8 +1688,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":20,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.7},"log":false,"tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>

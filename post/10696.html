@@ -111,7 +111,7 @@
 <meta name="keywords" content="MPC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MPC控制笔记(一)">
-<meta property="og:url" content="http://yoursite.com/2019/01/18/MPC控制笔记/index.html">
+<meta property="og:url" content="http://yoursite.com/post/10696.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
 <meta property="og:description" content="笔记参考1：Understanding Model Predictive Control(Youtube 带自动生成字幕)笔记参考2：Understanding Model Predictive Control(B站 生肉) 一、什么是MPC模型预测控制MPC(Model Predict Control)是一种反馈控制(feedback control)算法, 使用模型来预测过程的未来输出。 举例">
 <meta property="og:locale" content="zh-CN">
@@ -143,7 +143,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/18/MPC控制笔记/">
+  <link rel="canonical" href="http://yoursite.com/post/10696.html">
 
 
 
@@ -456,7 +456,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/MPC控制笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/10696.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -525,11 +525,21 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/10696.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/10696.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/2019/01/18/MPC控制笔记/" class="leancloud_visitors" data-flag-title="MPC控制笔记(一)">
+             <span id="/post/10696.html" class="leancloud_visitors" data-flag-title="MPC控制笔记(一)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -618,13 +628,25 @@
 
       
       
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/05/论文阅读笔记/" rel="next" title="Generative Adversarial Imitation Learning(GAIL) 论文阅读笔记">
+              <a href="/post/21152.html" rel="next" title="Generative Adversarial Imitation Learning(GAIL) 论文阅读笔记">
                 <i class="fa fa-chevron-left"></i> Generative Adversarial Imitation Learning(GAIL) 论文阅读笔记
               </a>
             
@@ -634,7 +656,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/22/强化学习专题笔记强化学习基础-md/" rel="prev" title="强化学习专题笔记(一) 强化学习基础">
+              <a href="/post/17172.html" rel="prev" title="强化学习专题笔记(一) 强化学习基础">
                 强化学习专题笔记(一) 强化学习基础 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -659,9 +681,12 @@
           
 
   
-    <div id="gitalk-container">
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
     </div>
-    
+
   
 
 
@@ -1019,35 +1044,46 @@
 
 
 
-
-
-
-
+<!-- LOCAL: You can save these files to your site and update links -->
+  
+    
+    <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+    <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+  
+<!-- END LOCAL -->
 
   
-  
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
 
   
-  
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+    <script>
+    function renderGitment(){
+      var gitment = new Gitmint({
+        id: window.location.pathname,
+        owner: 'zhkmxx9302013',
+        repo: 'zhkmxx9302013.github.io',
+        
+        lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+        
+        oauth: {
+        
+        
+          client_secret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
+        
+          client_id: '8ffda7fd0bcee5f2074f'
+        }});
+      gitment.render('gitment-container');
+    }
 
+    
+      renderGitment();
+    
+    </script>
   
-  
-  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
 
-   <script>
-        var gitalk = new Gitalk({
-          clientID: '8ffda7fd0bcee5f2074f',
-          clientSecret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
-          repo: 'zhkmxx9302013.github.io',
-          owner: 'zhkmxx9302013',
-          admin: ['zhkmxx9302013'],
-          id: md5(location.pathname),
-          distractionFreeMode: 'true'
-        })
-        gitalk.render('gitalk-container')
-       </script>
+
+
+
+
 
 
   
@@ -1442,6 +1478,21 @@
   
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
 
   
 
@@ -1457,6 +1508,25 @@
   
 
   
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 16260,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
 
   
 
@@ -1551,7 +1621,10 @@
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":20,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.7},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1568,8 +1641,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":20,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.7},"log":false,"tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>

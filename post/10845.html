@@ -107,30 +107,30 @@
 
 
 
-  <meta name="description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。  \max\sum_{t}{r_t}但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有">
+  <meta name="description" content="论文 题目: Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation 作者: Tejas D. Kulkarni, Karthik R. Narasimhan, Ardavan Saeedi, Joshua B. Tenenbaum 论文: https:/">
 <meta name="keywords" content="强化学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="强化学习专题笔记(一) 强化学习基础">
-<meta property="og:url" content="http://yoursite.com/2019/01/22/强化学习专题笔记强化学习基础-md/index.html">
+<meta property="og:title" content="[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation">
+<meta property="og:url" content="http://yoursite.com/post/10845.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。  \max\sum_{t}{r_t}但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有">
+<meta property="og:description" content="论文 题目: Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation 作者: Tejas D. Kulkarni, Karthik R. Narasimhan, Ardavan Saeedi, Joshua B. Tenenbaum 论文: https:/">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006gCbCHly1fx0o33ydhkj30yi07umym.jpg">
-<meta property="og:image" content="https://pic3.zhimg.com/80/v2-951e5ec476e6f4865deee034d4792706_hd.png">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=R%5E%7B%28n%29%7D%3Dr_%7Bt%2B1%7D%2B%5Cgamma+r_%7Bt%2B2%7D%2B...%2B%5Cgamma+%5E%7Bn-2%7Dr_%7Bt%2Bn-1%7D%2B%5Cgamma+%5E%7Bn-1%7DQ%28s_%7Bt%2Bn%7D%2C+a_%7Bt%2Bn%7D%29++">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=R%5E%7B%28%5Clambda+%29%7D%3D%281-%5Clambda+%29%5Csum_%7Bn%7D%5E%7Bi%3D1%7D%7B%5Clambda+%5E%7Bi%7DR%5E%7B%28i%29%7D%7D+">
-<meta property="og:updated_time" content="2019-01-24T13:28:18.803Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548211066/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190123103711.png">
+<meta property="og:image" content="https://pic4.zhimg.com/v2-16726ce2c7aa3e1ee41d79656324501f_r.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548210666/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190123102201.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548210834/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190123103336.png">
+<meta property="og:updated_time" content="2019-01-24T13:28:18.800Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="强化学习专题笔记(一) 强化学习基础">
-<meta name="twitter:description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。  \max\sum_{t}{r_t}但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006gCbCHly1fx0o33ydhkj30yi07umym.jpg">
+<meta name="twitter:title" content="[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation">
+<meta name="twitter:description" content="论文 题目: Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation 作者: Tejas D. Kulkarni, Karthik R. Narasimhan, Ardavan Saeedi, Joshua B. Tenenbaum 论文: https:/">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548211066/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190123103711.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/22/强化学习专题笔记强化学习基础-md/">
+  <link rel="canonical" href="http://yoursite.com/post/10845.html">
 
 
 
@@ -140,7 +140,7 @@
   };
 </script>
 
-  <title>强化学习专题笔记(一) 强化学习基础 | zhkmxx930 blog</title>
+  <title>[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation | zhkmxx930 blog</title>
   
 
 
@@ -443,7 +443,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/22/强化学习专题笔记强化学习基础-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/10845.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -460,7 +460,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">强化学习专题笔记(一) 强化学习基础
+          <h1 class="post-title" itemprop="name headline">[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation
 
               
             
@@ -486,7 +486,7 @@
                 
               
 
-              <time title="创建时间：2019-01-22 14:54:58" itemprop="dateCreated datePublished" datetime="2019-01-22T14:54:58+08:00">2019-01-22</time>
+              <time title="创建时间：2019-01-23 10:34:57" itemprop="dateCreated datePublished" datetime="2019-01-23T10:34:57+08:00">2019-01-23</time>
             
 
             
@@ -512,11 +512,21 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/10845.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/10845.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/2019/01/22/强化学习专题笔记强化学习基础-md/" class="leancloud_visitors" data-flag-title="强化学习专题笔记(一) 强化学习基础">
+             <span id="/post/10845.html" class="leancloud_visitors" data-flag-title="[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -547,57 +557,54 @@
       
 
       
-        <h2 id="一、长期回报"><a href="#一、长期回报" class="headerlink" title="一、长期回报"></a>一、长期回报</h2><p>对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标<strong>最大化长期回报</strong> 而努力。</p>
-<script type="math/tex; mode=display">
-\max\sum_{t}{r_t}</script><p>但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即<strong>对未来的回报乘以一个折扣率，使得长期回报变得更有意义</strong>：</p>
-<script type="math/tex; mode=display">
-\sum_{t=0}{\gamma^tr_t}    （\gamma < 1）</script><p>由此我们引出<strong>长期回报</strong>的概念，即从当前状态开始对之后的所有回报，运用上式进行累加的折扣率计算：</p>
-<script type="math/tex; mode=display">
-Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未来的行动情况，我们需要对上式进行一个合理的估计，因而我们定义了<strong>策略的价值</strong>。<br><a id="more"></a></p>
-<h2 id="二、值函数"><a href="#二、值函数" class="headerlink" title="二、值函数"></a>二、值函数</h2><p>由于环境的原因，MDP中的状态转移概率有时候并不能够确定，因而需要基于<strong>状态转移</strong>来<strong>估计长期回报</strong>的<strong>期望</strong>。τ是从某个状态s出发，根据策略与状态转移概率采样得到的序列(trajectory)。那么价值函数可以表示为：</p>
-<script type="math/tex; mode=display">
-v_{\pi}{(s_t)} = \mathbb{E}_{s,a\simτ}[\sum_{k=0}\gamma^kr_{t+k+1}]
-=\sum_{\tau}{p(\tau)}{\sum_{k=0}^{\infin}{\gamma^k}{r_{t+k+1}}}</script><p>根据MDP模型的形式，值函数一般分为两种：</p>
+        <h2 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h2><ul>
+<li><strong>题目</strong>: Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation</li>
+<li><strong>作者</strong>: Tejas D. Kulkarni, Karthik R. Narasimhan, Ardavan Saeedi, Joshua B. Tenenbaum</li>
+<li><strong>论文</strong>: <a href="https://arxiv.org/abs/1604.06057" target="_blank" rel="noopener">https://arxiv.org/abs/1604.06057</a></li>
+<li><strong>年份</strong>: 2016</li>
+<li><p><strong>参考:</strong> <a href="https://github.com/aleju/papers/blob/master/neural-nets/Hierarchical_Deep_Reinforcement_Learning.md" target="_blank" rel="noopener">https://github.com/aleju/papers/blob/master/neural-nets/Hierarchical_Deep_Reinforcement_Learning.md</a></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548211066/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190123103711.png" alt="ti"></p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="1-主要贡献"><a href="#1-主要贡献" class="headerlink" title="1.主要贡献"></a>1.主要贡献</h3><ul>
+<li>提出了一种分层强化学习方法</li>
+<li>该方法使用了长期目标(long-term goal)指导短期动作(short-term choice)的选择</li>
+</ul>
+<a id="more"></a>
+<h3 id="2-主要方法"><a href="#2-主要方法" class="headerlink" title="2.主要方法"></a>2.主要方法</h3><ul>
+<li>两个重要组件<ul>
+<li><strong>Meta-controller</strong><ul>
+<li>负责生成长期目标long term goal;</li>
+<li>通过训练Meta-controller使其能够根据当前state来选取目标goal，使得extrinsic reward最大;</li>
+<li>当且仅当底层执行器Controller完成一个episode或者达成某个Meta-controller产生的goal的时候，Meta-controller再去产生新的目标goal。</li>
+</ul>
+</li>
+<li><strong>Controller</strong><ul>
+<li>从环境中获取当前state，并从Meta-controller中获取当前目标goal;</li>
+<li>基于当前goal和当前的state，来选取最大化intrinsic reward期望的action，这里与传统的rf相同只是增加了目标goal，这里通过估计action-value function ( $Q_1(s_t, a_t;\theta_1,g_t)$ )来做;</li>
+<li>Reward 是 intrinsic的，在agent内部，这个intrinsic reward由Critic网络产生，当且仅当当前的目标达到时，才会产生intrinsic reward。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://pic4.zhimg.com/v2-16726ce2c7aa3e1ee41d79656324501f_r.jpg" alt="preview"></p>
 <ul>
-<li><strong>状态值函数</strong>  $v_{\pi}{(s)}​$:               已知当前状态s，按照某种策略行动产生的长期回报期望；</li>
-<li><strong>状态-动作值函数 </strong> $q_{\pi}{(s,a)}​$:  已知当前状态s及动作a，按照某种策略行动产生的长期回报期望。</li>
+<li>在蒙特祖玛的复仇(Montezuma’s Revenge)上实验<ul>
+<li>目标Goal是一些手动设置的特定游戏object，比如钥匙，在实验中，将设置一个与游戏屏幕大小相等的遮罩层，当且仅当目标object的位置上的二进制位是1，其他像素上的二进制值为0；</li>
+<li>Meta-controller通过Q function选择要到达的下一个Goal;</li>
+<li>Controller根据Q function选择能够到达Goal的action, 其不断迭代选择action，直到其完成一个episode或到达Goal；</li>
+<li>每当达到目标Goal时，Critic都会向Controller提供内在奖励(intrinsic reward);</li>
+<li>CNN用于Meta-controller和Controller，在架构上类似于Atari-DQN论文(shallow CNNs);</li>
+<li>使用两个Replay buffer，一个用于Meta-controller(大小为40k)，一个用于Controller(大小为1M);</li>
+<li>Meta-controller和Controller两者都遵循epsilon-greedy。Epsilon从1.0开始，减小至0.1;</li>
+<li>折扣因子γ为0.9;</li>
+<li>使用SGD优化。</li>
 </ul>
-<p>由于符合马尔科夫性，我们可以将值函数的形式<strong>进行马尔科夫展开</strong>,其中${\pi(a_t|s_t)}$表示，在$s_t$状态下选择策略$\pi$的概率，策略$\pi$将产生行动$a_t$，$p(s_{t+1}|s_t,a_t)$表示在策略$\pi$的情况下，从$s_t，a_t$到达$s_{t+1}$的概率。</p>
-<script type="math/tex; mode=display">
-v_{\pi}{(s_t)}=\sum_{(s_t,a_t,...)\sim\tau]}{\pi(a_t|s_t)}p(s_{t+1}|s_t,a_t)...{\sum_{k=0}^{\infin}{\gamma^k}{r_{t+k+1}}}</script><h2 id="三、贝尔曼方程"><a href="#三、贝尔曼方程" class="headerlink" title="三、贝尔曼方程"></a>三、贝尔曼方程</h2><ol>
-<li><strong>状态值函数的贝尔曼方程</strong></li>
-</ol>
-<p>通过代换消元，可以将上式整理为<strong>状态值函数的贝尔曼方程</strong>：</p>
-<script type="math/tex; mode=display">
-v_{\pi}(s_t)=\sum_{a_t}\pi(a_t|s_t)\sum_{s_{t+1}}{p(s_{t+1}|s_t,a_t)[r_{t+1}+\gamma v_{\pi}(s_{t+1})]}</script><p>更直观一点可以将贝尔曼方程描述为一种DP的形式，即当前状态$s$下，选择策略$\pi$的长期回报期望。</p>
-<script type="math/tex; mode=display">
-v_{\pi}(s_t)=\sum_{a_t,s_t+1}\pi{(a_t|s_t)}\mathbb{E}[r_{t+1} + \gamma v_{\pi}(s_{t+1})]</script><ol>
-<li><strong>状态-动作值函数的贝尔曼方程</strong></li>
-</ol>
-<p>类似地，可以定义<strong>状态-动作值函数的贝尔曼方程</strong>：</p>
-<script type="math/tex; mode=display">
-q_{\pi}(s_t,a_t)=\sum_{s_{t+1}}p(s_{t+1}|s_t,a_t)\sum_{a_{t+1}}p(a_{t+1}|s_{t+1})[r_{t+1}+\gamma q_\pi{(s_{t+1},a_{t+1})}]</script><ol>
-<li><strong>Bellman optimality equation</strong></li>
-</ol>
-<script type="math/tex; mode=display">
-v_*(s)=\mathbb{E}[r_{t+1} +\gamma max_\pi{v(s_{t+1})|s_t=s}]</script><script type="math/tex; mode=display">
-q_*(s,a)=\mathbb{E}[r_{t+1} +\gamma max_{a_{t+1}}{q(s_{t+1},a_{t+1})|s_t=s,a_t=a}]</script><h2 id="四、Monte-Carlo与Time-Difference"><a href="#四、Monte-Carlo与Time-Difference" class="headerlink" title="四、Monte-Carlo与Time Difference"></a>四、Monte-Carlo与Time Difference</h2><ul>
-<li>MC 方差较大，需要较深的探索获取回报</li>
-<li>TD  方差较小，偏差较大，可设定探索深度(1-step, n-step), Q-Learning, SARSA都属于TD</li>
+</li>
 </ul>
-<p>【参考】<a href="https://zhuanlan.zhihu.com/p/25239682" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25239682</a></p>
-<p>Monte-Carlo method适用于“情节式任务”（情节任务序列有终点，与“情节式任务”相对应的是“连续型任务”）。$Q(s,a)$就是整个序列的期望回报。MC增量更新中的<strong>Monte-Carlo error</strong> ($R-Q(s_t,a_t)$)：</p>
-<script type="math/tex; mode=display">
-Q(s_t,a_t)\Leftarrow Q(s_t,a_t) + \alpha(R-Q(s_t,a_t))</script><p>TD（Time Difference） method，是MC和DP 方法的一个结合。相比MC方法，TD除了能够适用于连续任务外，和MC的差异从下图可以清楚看到。MC需要回退整个序列更新Q值，而TD只需要回退1步或n步更新Q值。因为MC需要等待序列结束才能训练，而TD没有这个限制，因此TD收敛速度明显比MC快，目前的主要算法都是基于TD。下图是TD和MC的回退图，很显然MC回退的更深。</p>
-<p><img src="https://ws1.sinaimg.cn/large/006gCbCHly1fx0o33ydhkj30yi07umym.jpg" alt=""></p>
-<p><img src="https://pic3.zhimg.com/80/v2-951e5ec476e6f4865deee034d4792706_hd.png" alt="img"></p>
-<p><strong>1-step TD error: ($r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_t)​$)：</strong></p>
-<script type="math/tex; mode=display">
-Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_t))</script><p><strong>n-steps TD error：</strong></p>
-<p><img src="https://www.zhihu.com/equation?tex=R%5E%7B%28n%29%7D%3Dr_%7Bt%2B1%7D%2B%5Cgamma+r_%7Bt%2B2%7D%2B...%2B%5Cgamma+%5E%7Bn-2%7Dr_%7Bt%2Bn-1%7D%2B%5Cgamma+%5E%7Bn-1%7DQ%28s_%7Bt%2Bn%7D%2C+a_%7Bt%2Bn%7D%29++" alt=""></p>
-<p><strong>TD(λ) error:</strong></p>
-<p><img src="https://www.zhihu.com/equation?tex=R%5E%7B%28%5Clambda+%29%7D%3D%281-%5Clambda+%29%5Csum_%7Bn%7D%5E%7Bi%3D1%7D%7B%5Clambda+%5E%7Bi%7DR%5E%7B%28i%29%7D%7D+" alt=""></p>
-<p>事实上，MC error可以视为一个情节任务的max-step TD error。另外，一般来说，在TD error中，n越大，用到的真实回报信息更多，收敛也会越快。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548210666/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190123102201.png" alt="1"></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548210834/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190123103336.png" alt="2"></p>
 
       
     </div>
@@ -628,14 +635,26 @@ Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_
 
       
       
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/18/MPC控制笔记/" rel="next" title="MPC控制笔记(一)">
-                <i class="fa fa-chevron-left"></i> MPC控制笔记(一)
+              <a href="/post/17172.html" rel="next" title="强化学习专题笔记(一) 强化学习基础">
+                <i class="fa fa-chevron-left"></i> 强化学习专题笔记(一) 强化学习基础
               </a>
             
           </div>
@@ -644,8 +663,8 @@ Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/23/rf-paper-serise/" rel="prev" title="[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation">
-                [强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation <i class="fa fa-chevron-right"></i>
+              <a href="/post/22518.html" rel="prev" title="[强化学习笔记专题(二)]Nature DQN">
+                [强化学习笔记专题(二)]Nature DQN <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -669,9 +688,12 @@ Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_
           
 
   
-    <div id="gitalk-container">
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
     </div>
-    
+
   
 
 
@@ -841,7 +863,7 @@ Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、长期回报"><span class="nav-number">1.</span> <span class="nav-text">一、长期回报</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、值函数"><span class="nav-number">2.</span> <span class="nav-text">二、值函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、贝尔曼方程"><span class="nav-number">3.</span> <span class="nav-text">三、贝尔曼方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、Monte-Carlo与Time-Difference"><span class="nav-number">4.</span> <span class="nav-text">四、Monte-Carlo与Time Difference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文"><span class="nav-number">1.</span> <span class="nav-text">论文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-主要贡献"><span class="nav-number">2.1.</span> <span class="nav-text">1.主要贡献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-主要方法"><span class="nav-number">2.2.</span> <span class="nav-text">2.主要方法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1029,35 +1051,46 @@ Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_
 
 
 
-
-
-
-
+<!-- LOCAL: You can save these files to your site and update links -->
+  
+    
+    <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+    <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+  
+<!-- END LOCAL -->
 
   
-  
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
 
   
-  
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+    <script>
+    function renderGitment(){
+      var gitment = new Gitmint({
+        id: window.location.pathname,
+        owner: 'zhkmxx9302013',
+        repo: 'zhkmxx9302013.github.io',
+        
+        lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+        
+        oauth: {
+        
+        
+          client_secret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
+        
+          client_id: '8ffda7fd0bcee5f2074f'
+        }});
+      gitment.render('gitment-container');
+    }
 
+    
+      renderGitment();
+    
+    </script>
   
-  
-  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
 
-   <script>
-        var gitalk = new Gitalk({
-          clientID: '8ffda7fd0bcee5f2074f',
-          clientSecret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
-          repo: 'zhkmxx9302013.github.io',
-          owner: 'zhkmxx9302013',
-          admin: ['zhkmxx9302013'],
-          id: md5(location.pathname),
-          distractionFreeMode: 'true'
-        })
-        gitalk.render('gitalk-container')
-       </script>
+
+
+
+
 
 
   
@@ -1452,6 +1485,21 @@ Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_
   
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
 
   
 
@@ -1504,6 +1552,25 @@ Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_
   
 
   
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 16260,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
 
   
 
@@ -1598,7 +1665,10 @@ Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":20,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.7},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1615,8 +1685,5 @@ Q(s_t,a_t) \Leftarrow Q(s_t,a_t)+\alpha(r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":20,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.7},"log":false,"tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>

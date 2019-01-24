@@ -107,25 +107,29 @@
 
 
 
-  <meta name="description" content="声明​    这篇文章选自[教程技巧] DOCKER 给运行中的容器添加映射端口 正文Docker 给运行中的容器添加映射端口方法1　　  获得容器IP 1$ docker inspect `container_name` | grep IPAddress   比如我的容器叫mysqlserver么就输入下列代码来获取该容器的ip地址 1$ docker inspect mysqlserver |">
-<meta name="keywords" content="Docker">
+  <meta name="description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker给运行中的容器添加映射端口">
-<meta property="og:url" content="http://yoursite.com/2019/01/05/给运行中的容器添加映射端口/index.html">
+<meta property="og:title" content="Linux内存占用过高？非也">
+<meta property="og:url" content="http://yoursite.com/post/24621.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="声明​    这篇文章选自[教程技巧] DOCKER 给运行中的容器添加映射端口 正文Docker 给运行中的容器添加映射端口方法1　　  获得容器IP 1$ docker inspect `container_name` | grep IPAddress   比如我的容器叫mysqlserver么就输入下列代码来获取该容器的ip地址 1$ docker inspect mysqlserver |">
+<meta property="og:description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-24T13:28:18.812Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332209/1.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332233/2.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332258/3.png">
+<meta property="og:updated_time" content="2019-01-24T13:28:18.797Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker给运行中的容器添加映射端口">
-<meta name="twitter:description" content="声明​    这篇文章选自[教程技巧] DOCKER 给运行中的容器添加映射端口 正文Docker 给运行中的容器添加映射端口方法1　　  获得容器IP 1$ docker inspect `container_name` | grep IPAddress   比如我的容器叫mysqlserver么就输入下列代码来获取该容器的ip地址 1$ docker inspect mysqlserver |">
+<meta name="twitter:title" content="Linux内存占用过高？非也">
+<meta name="twitter:description" content="前言 今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。  正文 先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入top  1#top">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332209/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/05/给运行中的容器添加映射端口/">
+  <link rel="canonical" href="http://yoursite.com/post/24621.html">
 
 
 
@@ -135,7 +139,7 @@
   };
 </script>
 
-  <title>Docker给运行中的容器添加映射端口 | zhkmxx930 blog</title>
+  <title>Linux内存占用过高？非也 | zhkmxx930 blog</title>
   
 
 
@@ -438,7 +442,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/给运行中的容器添加映射端口/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/24621.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -455,7 +459,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Docker给运行中的容器添加映射端口
+          <h1 class="post-title" itemprop="name headline">Linux内存占用过高？非也
 
               
             
@@ -481,7 +485,7 @@
                 
               
 
-              <time title="创建时间：2019-01-05 15:12:09" itemprop="dateCreated datePublished" datetime="2019-01-05T15:12:09+08:00">2019-01-05</time>
+              <time title="创建时间：2019-01-05 11:41:08" itemprop="dateCreated datePublished" datetime="2019-01-05T11:41:08+08:00">2019-01-05</time>
             
 
             
@@ -507,11 +511,21 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/24621.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/24621.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/2019/01/05/给运行中的容器添加映射端口/" class="leancloud_visitors" data-flag-title="Docker给运行中的容器添加映射端口">
+             <span id="/post/24621.html" class="leancloud_visitors" data-flag-title="Linux内存占用过高？非也">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -542,31 +556,37 @@
       
 
       
-        <h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><p>​    这篇文章选自<a href="http://udn.yyuap.com/thread-27147-1-1.html" target="_blank" rel="noopener">[教程技巧] DOCKER 给运行中的容器添加映射端口</a></p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p><strong>Docker 给运行中的容器添加映射端口方法1</strong>　　</p>
-<ol>
-<li><p>获得容器IP</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker inspect `container_name` | grep IPAddress</span></span><br></pre></td></tr></table></figure>
-<p>  比如我的容器叫<code>mysqlserver</code>么就输入下列代码来获取该容器的ip地址</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker inspect mysqlserver | grep IPAddress</span></span><br></pre></td></tr></table></figure>
-<p>  执行完之后会发现我的<code>mysqlserver</code>docker容器的ip地址为<code>192.168.0.2</code></p>
-<p>  ​</p>
-<a id="more"></a></li>
-<li><p>iptables转发端口</p>
-<p> 比如我将容器的3306端口映射到主机的37221端口，那么ip对应就写入我的docker容器IP即可</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。</p>
+</blockquote>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><ul>
+<li>先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入<code>top</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#top</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332209/1.png" alt="图片标题"></p>
+<a id="more"></a>
+<ul>
+<li>结合操作系统，计组等课程，以及多年以来windows培养给我的直觉，认为<strong>0.96G（1016272K）</strong>的总内存，使用了<strong>0.84G(880960K)</strong>的内存，使用率高达<strong>88%</strong>。然而我还啥都没干，怎么会这样呢？<br>仔细查看还会发现后面有一个<strong>buffers</strong>，Swap后面还有一个<strong>Cached Mem</strong>。<br>现在我们用<code>free</code>来观察下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#free -m</span><br></pre></td></tr></table></figure>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332233/2.png" alt="图片标题"></p>
+<ul>
+<li>虽然Mem显示了<strong>0.9G</strong>左右的used，但是<strong>-/+ buffers/cache</strong>(减去buffers和cache的结果)可以看到，当前进程实际占用内存是<strong>0.24G(256348K)</strong>，而可用空闲（free）内存为<strong>0.72G(759924K)</strong>。<br>可以这么理解：在linux的内存分配机制中，优先使用物理内存，当物理内存还有空闲时（还够用），不会释放其占用内存，就算占用内存的程序已经被关闭了，该程序所占用的内存用来做缓存使用，对于开启过的程序、或是读取刚存取过得数据会比较快。<br><br></li>
+<li><p>如上面的例子：共<strong>1G</strong>的内存，<strong>0.9G</strong>被占用，但是<strong>buffer</strong>和<strong>cached mem</strong>部分作为缓存，可以使用命中率的方式提高使用效率，而且这部分缓存是根据指令随时可以释放的，我们可以认为这部分内存没有实际被使用，也可以认为它是空闲的。<br>因此查看目前进程正在实际被使用的内存，是<code>used-(buffers+cache)</code>，也可以认为如果swap没有大量使用，mem还是够用的，只有mem被当前进程实际占用完（没有了buffers和cache），才会使用到swap的。<br><br></p>
 </li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A DOCKER -p tcp --dport 37221 -j DNAT --to-destination 192.168.0.2:3306</span><br></pre></td></tr></table></figure>
-<p><strong>Docker 给运行中的容器添加映射端口方法2</strong></p>
-<ol>
-<li><p>提交一个运行中的容器为镜像</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker commit containerid foo/live</span></span><br></pre></td></tr></table></figure>
+<li><p>再举个栗子： 这个是我在RPi一群看到的一个群友发的探针监测截图<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332258/3.png" alt="图片标题"></p>
 </li>
-<li><p>运行镜像并添加端口</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run -d -p 8000:80  foo/live /bin/bash</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
+<li><p>观察内存使用状况一栏，发现物理内存功<strong>925.89M</strong>，已用<strong>911.74M</strong>，Cache化的内存是<strong>676.46M</strong>，Buffers为<strong>61.3M</strong>，现在用上述公式：</p>
 </li>
-</ol>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">真实的内存使用=used-(buffers+cache)</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p>带入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">真实使用内存 = 911.74-676.46-61.3 = 173.98</span><br><span class="line">与第三行的灰条的173.98相符</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
+<p>很高兴对于linux的内存分配有了新的认识 多谢一群的 粵-打雜小白-503 Service Unavailable 的技术支持 多谢Licess’s Blog的精彩分析</p>
+</blockquote>
 
       
     </div>
@@ -590,12 +610,24 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Docker/" rel="tag"># Docker</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
         </div>
       
 
       
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
       
       
 
@@ -603,8 +635,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/05/使用Scala基于词法单元的解析器定制EBNF范式文法解析/" rel="next" title="使用Scala基于词法单元的解析器定制EBNF范式文法解析">
-                <i class="fa fa-chevron-left"></i> 使用Scala基于词法单元的解析器定制EBNF范式文法解析
+              <a href="/post/34931.html" rel="next" title="在raspbian-jessie上搭建nat123自启动">
+                <i class="fa fa-chevron-left"></i> 在raspbian-jessie上搭建nat123自启动
               </a>
             
           </div>
@@ -613,8 +645,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/05/无外网情况下RPM方式安装MySQL5-6/" rel="prev" title="无外网情况下RPM方式安装MySQL5.6">
-                无外网情况下RPM方式安装MySQL5.6 <i class="fa fa-chevron-right"></i>
+              <a href="/post/33864.html" rel="prev" title="使用Scala基于词法单元的解析器定制EBNF范式文法解析">
+                使用Scala基于词法单元的解析器定制EBNF范式文法解析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -638,9 +670,12 @@
           
 
   
-    <div id="gitalk-container">
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
     </div>
-    
+
   
 
 
@@ -810,7 +845,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#声明"><span class="nav-number">1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -998,35 +1033,46 @@
 
 
 
-
-
-
-
+<!-- LOCAL: You can save these files to your site and update links -->
+  
+    
+    <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+    <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+  
+<!-- END LOCAL -->
 
   
-  
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
 
   
-  
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+    <script>
+    function renderGitment(){
+      var gitment = new Gitmint({
+        id: window.location.pathname,
+        owner: 'zhkmxx9302013',
+        repo: 'zhkmxx9302013.github.io',
+        
+        lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+        
+        oauth: {
+        
+        
+          client_secret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
+        
+          client_id: '8ffda7fd0bcee5f2074f'
+        }});
+      gitment.render('gitment-container');
+    }
 
+    
+      renderGitment();
+    
+    </script>
   
-  
-  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
 
-   <script>
-        var gitalk = new Gitalk({
-          clientID: '8ffda7fd0bcee5f2074f',
-          clientSecret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
-          repo: 'zhkmxx9302013.github.io',
-          owner: 'zhkmxx9302013',
-          admin: ['zhkmxx9302013'],
-          id: md5(location.pathname),
-          distractionFreeMode: 'true'
-        })
-        gitalk.render('gitalk-container')
-       </script>
+
+
+
+
 
 
   
@@ -1421,6 +1467,21 @@
   
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
 
   
 
@@ -1436,6 +1497,25 @@
   
 
   
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 16260,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
 
   
 
@@ -1530,7 +1610,10 @@
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":20,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.7},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1547,8 +1630,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":20,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.7},"log":false,"tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>

@@ -317,7 +317,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">15</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">16</span></a>
 
   </li>
         
@@ -420,6 +420,180 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/6db30a46.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/post/6db30a46.html" class="post-title-link" itemprop="url">刷题-链表</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-12 21:23:22 / 修改时间：22:39:31" itemprop="dateCreated datePublished" datetime="2019-02-12T21:23:22+08:00">2019-02-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/6db30a46.html" class="leancloud_visitors" data-flag-title="刷题-链表">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Leetcode-141-142-环形链表，环形链表-II-（剑指Offer面试题23）"><a href="#Leetcode-141-142-环形链表，环形链表-II-（剑指Offer面试题23）" class="headerlink" title="[Leetcode 141, 142] 环形链表，环形链表 II （剑指Offer面试题23）"></a>[Leetcode 141, 142] <a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">环形链表</a>，<a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/" target="_blank" rel="noopener">环形链表 II</a> （剑指Offer面试题23）</h3><ul>
+<li><p>解法：(链表遍历，快慢指针)</p>
+<ul>
+<li>判环：快慢指针，快指针+2， 慢指针+1，若快指针在到达链表尾(不带环的才有链表尾)之前与慢指针相遇，则有环。</li>
+<li>找入口：快慢指针第一次相遇节点与头结点之间的节点数与环中节点数相同，两个指针一个从链表头开始，一个从相遇节点开始遍历，两个指针再次相遇节点为入口节点。</li>
+</ul>
+</li>
+<li><p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 找入口</span></span><br><span class="line">    <span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!JudgeCycle(head)) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        </span><br><span class="line">        ListNode *pFirstptr = head;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//第一次相遇节点位置就是环内节点数</span></span><br><span class="line">        <span class="keyword">while</span>(pFirstptr != pMeetNode)&#123;</span><br><span class="line">            pFirstptr = pFirstptr -&gt; next;</span><br><span class="line">            pMeetNode = pMeetNode -&gt; next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> pFirstptr;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 判环</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">JudgeCycle</span><span class="params">(ListNode *head)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        ListNode *pFastptr = head;</span><br><span class="line">        ListNode *pSlowptr = head;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(pFastptr -&gt; next &amp;&amp; pFastptr -&gt; next -&gt; next)&#123;</span><br><span class="line">            pFastptr = pFastptr -&gt; next -&gt; next;</span><br><span class="line">            pSlowptr = pSlowptr -&gt; next;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(pFastptr == pSlowptr)&#123;</span><br><span class="line">                pMeetNode = pFastptr;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ListNode *pMeetNode;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Leetcode-206-反转链表-剑指Offer面试题24"><a href="#Leetcode-206-反转链表-剑指Offer面试题24" class="headerlink" title="[Leetcode 206] 反转链表 (剑指Offer面试题24)"></a>[Leetcode 206] <a href="https://leetcode-cn.com/problems/reverse-linked-list/" target="_blank" rel="noopener">反转链表</a> (剑指Offer面试题24)</h3><ul>
+<li><p>解法： </p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1549982223/%E7%BB%98%E5%9B%BE1.png" alt=""></p>
+</li>
+<li><p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>; <span class="comment">// 注意空节点</span></span><br><span class="line">        <span class="keyword">if</span>(head-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> head; <span class="comment">// 注意只有一个节点</span></span><br><span class="line">        ListNode* pPrePtr = head;</span><br><span class="line">        ListNode* pTransPtr = head -&gt;next; </span><br><span class="line">        </span><br><span class="line">        pPrePtr-&gt; next = <span class="literal">nullptr</span>; <span class="comment">// 注意头结点处理</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(pTransPtr-&gt;next != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            ListNode* pTmpPtr = pTransPtr -&gt; next;</span><br><span class="line">            pTransPtr-&gt;next = pPrePtr;</span><br><span class="line">            pPrePtr = pTransPtr;</span><br><span class="line">            pTransPtr = pTmpPtr;</span><br><span class="line">        &#125;</span><br><span class="line">        pTransPtr -&gt; next = pPrePtr; <span class="comment">// 注意尾节点处理</span></span><br><span class="line">        <span class="keyword">return</span> pTransPtr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -2042,181 +2216,6 @@ Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/20206.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhkmxx930">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhkmxx930 blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/post/20206.html" class="post-title-link" itemprop="url">无外网情况下RPM方式安装MySQL5.6</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-05 15:15:59" itemprop="dateCreated datePublished" datetime="2019-01-05T15:15:59+08:00">2019-01-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-25 09:55:04" itemprop="dateModified" datetime="2019-01-25T09:55:04+08:00">2019-01-25</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/post/20206.html" class="leancloud_visitors" data-flag-title="无外网情况下RPM方式安装MySQL5.6">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>RPM方式安装MySQL5.6<br>a. 检查MySQL及相关RPM包，是否安装，如果有安装，则移除（rpm –e 名称）<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -qa | grep -i mysql</span><br><span class="line">mysql-libs-5.1.66-2.el6_3.x86_64</span><br><span class="line">[root@localhost ~]# yum -y remove mysql-libs*</span><br></pre></td></tr></table></figure></p>
-<p>b. 下载Linux对应的RPM包，如：CentOS6.4_64对应的RPM包，如下：这里给出我下载好的包，官网下载巨慢。。有可能还需要一个perl库的依赖，这里一并给出。链接: <a href="http://pan.baidu.com/s/1skFrEK9" target="_blank" rel="noopener">http://pan.baidu.com/s/1skFrEK9</a> 密码: apza<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost rpm]# ll</span><br><span class="line">total 74364</span><br><span class="line">-rw-r--r--. 1 root root 18442536 Dec 11 20:19 MySQL-client-5.6.15-1.el6.x86_64.rpm</span><br><span class="line">-rw-r--r--. 1 root root  3340660 Dec 11 20:06 MySQL-devel-5.6.15-1.el6.x86_64.rpm</span><br><span class="line">-rw-r--r--. 1 root root 54360600 Dec 11 20:03 MySQL-server-5.6.15-1.el6.x86_64.rpm</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/post/20206.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2266,7 +2265,7 @@ Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3025,9 +3024,9 @@ Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未�
       
     
       
-        
-      
     
+      
+        
       
     
       

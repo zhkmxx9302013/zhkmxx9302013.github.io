@@ -456,7 +456,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/post/19fc17a4.html" class="post-title-link" itemprop="url">Loss推导</a>
+                <a href="/post/19fc17a4.html" class="post-title-link" itemprop="url">深度学习常见Loss推导</a>
               
             
           </h2>
@@ -481,7 +481,7 @@
                 
               
 
-              <time title="创建时间：2019-02-16 20:16:16 / 修改时间：22:00:13" itemprop="dateCreated datePublished" datetime="2019-02-16T20:16:16+08:00">2019-02-16</time>
+              <time title="创建时间：2019-02-16 20:16:16 / 修改时间：22:06:22" itemprop="dateCreated datePublished" datetime="2019-02-16T20:16:16+08:00">2019-02-16</time>
             
 
             
@@ -499,7 +499,7 @@
 
           
           
-             <span id="/post/19fc17a4.html" class="leancloud_visitors" data-flag-title="Loss推导">
+             <span id="/post/19fc17a4.html" class="leancloud_visitors" data-flag-title="深度学习常见Loss推导">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -531,8 +531,7 @@
 
       
         
-          
-            <h3 id="1-Softmax-Loss-推导"><a href="#1-Softmax-Loss-推导" class="headerlink" title="1. Softmax Loss 推导"></a>1. Softmax Loss 推导</h3><blockquote>
+          <h3 id="1-Softmax-Loss-推导"><a href="#1-Softmax-Loss-推导" class="headerlink" title="1. Softmax Loss 推导"></a>1. Softmax Loss 推导</h3><blockquote>
 <p>(1) $N$为类别数</p>
 <p>(2) $a$为输出向量，$a_j$为向量$a$的第$j$个值</p>
 </blockquote>
@@ -540,58 +539,15 @@
 <hr>
 <h4 id="1-1-Softmax"><a href="#1-1-Softmax" class="headerlink" title="1.1 Softmax"></a>1.1 <strong>Softmax</strong></h4><script type="math/tex; mode=display">
 S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.jianshu.io/upload_images/5236230-12cd299a8d571d1e.PNG?imageMogr2/auto-orient/" alt="x"></p>
-<h4 id="1-2-Cross-entropy-Loss"><a href="#1-2-Cross-entropy-Loss" class="headerlink" title="1.2 Cross-entropy Loss"></a>1.2 <strong>Cross-entropy Loss</strong></h4><script type="math/tex; mode=display">
-L=\sum_{j}-y_ilnP_j</script><h4 id="1-3-Softmax-Loss"><a href="#1-3-Softmax-Loss" class="headerlink" title="1.3 Softmax Loss"></a>1.3 <strong>Softmax Loss</strong></h4><ul>
-<li>当Cross-entropy的$P_j=S_i$  ，即Softmax输出的时候。</li>
-</ul>
-<script type="math/tex; mode=display">
-L_{softmax}=\sum_{j}-y_ilnS_i</script><h4 id="1-4-Softmax对Softmax输入的导数"><a href="#1-4-Softmax对Softmax输入的导数" class="headerlink" title="1.4 Softmax对Softmax输入的导数"></a>1.4 <strong>Softmax对Softmax输入的导数</strong></h4><ul>
-<li>$S_i$对$a_j$求导：</li>
-</ul>
-<script type="math/tex; mode=display">
-\frac{\partial{S_i}}{\partial{a_j}}=\frac{\partial{\frac{e^{a_i}}{\sum_ke^{a_k}}}}{\partial a_j}</script><ul>
-<li><p>这里求导有两种情况</p>
-<ul>
-<li><p>1）当$i=j$时：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac{\partial{S_i}}{\partial{a_j}} 
-&=\frac{\partial{S_i}}{\partial{a_i}} \\
-&=\frac{\frac{\partial{e^{a_i}}}{\partial{a_i}}\sum_ke^{a_k}-\frac{\sum_ke^{a_k}}{\partial{a_i}}e^{a_i}}{(\sum_ke^{a_k})^2} \\ 
-&=\frac{e^{a_i}\sum_ke^{a_k}-e^{a_i}e^{a_i}}{\sum_k{e^{2a_k}}} \\ 
-&=\frac{e^{a_i}}{\sum_k{e^{a_k}}}-\frac{e^{a_i}}{\sum_k{e^{a_k}}}\cdot{\frac{e^{a_i}}{\sum_k{e^{a_k}}}} \\ 
-&=S_i-S_i^2\\
-&=S_i(1-S_i)
-\end{aligned}</script></li>
-<li><p>2）当$i≠j$时：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac{\partial{S_i}}{\partial{a_j}} 
-&=\frac{\frac{\partial{e^{a_i}}}{\partial{a_j}}\sum_ke^{a_k}-\frac{\sum_ke^{a_k}}{\partial{a_j}}e^{a_i}}{(\sum_ke^{a_k})^2} \\ 
-&=\frac{-e^{a_j}e^{a_i}}{\sum_k{e^{2a_k}}} \\
-&=-S_jS_i
-\end{aligned}</script></li>
-</ul>
-</li>
-</ul>
-<h4 id="1-5-Softmax-Loss对softmax输入的导数"><a href="#1-5-Softmax-Loss对softmax输入的导数" class="headerlink" title="1.5 Softmax Loss对softmax输入的导数"></a>1.5 Softmax Loss对softmax输入的导数</h4><ul>
-<li>第③个等号就用到了上面$S_i$对$a_j$求导的结论，第三个等号结果的左半部分是$i=k$的时候$S_i$对$a_j$求导的导数，右半部分是$i≠k$的时候S_i$对​$a_j$求导的导数。</li>
-<li>第⑥、⑦个等号是将$y_iS_i​$合并到∑里面。最后一个等号的成立是建立在假设$∑y_k=1​$的前提下，这个对于常见的单标签分类任务而言都是成立的。 </li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac{\partial{L_{softmax}}}{\partial{a_k}}&=-\sum_ky_k\frac{\partial{lnS_k}}{\partial{a_i}} \\
-&=-\sum_ky_k\frac{1}{S_k}\frac{\partial{S_k}}{\partial{a_i}} \\
-&=-y_i(1-S_i)-\sum_{k≠i}y_k\frac{1}{S_k}({-S_kS_i}) \\
-&=-y_i(1-S_i)+\sum_{k≠i}y_kS_i \\
-&=-y_i+y_iS_i+\sum_{k≠i}y_kS_i \\
-&=\sum_ky_kS_i-y_i \\
-&=S_i-y_i
-
-
-\end{aligned}</script><h4 id="1-6-总结"><a href="#1-6-总结" class="headerlink" title="1.6 总结"></a>1.6 <strong>总结</strong></h4><p>因此假设一个5分类任务，经过Softmax层后得到的概率向量$S$是$[0.1,0.2,0.25,0.4,0.05]$，真实标签$y$是$[0,0,1,0,0]$，那么损失回传时该层得到的梯度就是$p-y=[0.1,0.2,-0.75,0.4,0.05]$。这个梯度就指导网络在下一次forward的时候更新该层的权重参数。</p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/19fc17a4.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -3055,9 +3011,9 @@ L_{softmax}=\sum_{j}-y_ilnS_i</script><h4 id="1-4-Softmax对Softmax输入的导�
   
     
       
-    
-      
         
+      
+    
       
     
       
@@ -3215,10 +3171,7 @@ L_{softmax}=\sum_{j}-y_ilnS_i</script><h4 id="1-4-Softmax对Softmax输入的导�
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -3235,5 +3188,8 @@ L_{softmax}=\sum_{j}-y_ilnS_i</script><h4 id="1-4-Softmax对Softmax输入的导�
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
 </html>

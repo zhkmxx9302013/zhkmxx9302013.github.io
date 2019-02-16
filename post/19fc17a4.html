@@ -109,19 +109,19 @@
 
 
 
-  <meta name="description" content="1. Softmax Loss 推导 (1) $N$为类别数 (2) $a$为输出向量，$a_j$为向量$a$的第$j$个值  参考：卷积神经网络系列之softmax loss对输入的求导推导  1.1 Softmax S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}} 1.2 Cross-entropy Loss L=\sum_{j}-y_ilnP_j1.3 Softmax">
+  <meta name="description" content="1. Softmax Loss 推导 (1) $N$为类别数 (2) $a$为输出向量，$a_j$为向量$a$的第$j$个值  参考：卷积神经网络系列之softmax loss对输入的求导推导  1.1 Softmax S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}">
 <meta name="keywords" content="深度学习基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Loss推导">
+<meta property="og:title" content="深度学习常见Loss推导">
 <meta property="og:url" content="http://zhkmxx9302013.github.io/post/19fc17a4.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="1. Softmax Loss 推导 (1) $N$为类别数 (2) $a$为输出向量，$a_j$为向量$a$的第$j$个值  参考：卷积神经网络系列之softmax loss对输入的求导推导  1.1 Softmax S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}} 1.2 Cross-entropy Loss L=\sum_{j}-y_ilnP_j1.3 Softmax">
+<meta property="og:description" content="1. Softmax Loss 推导 (1) $N$为类别数 (2) $a$为输出向量，$a_j$为向量$a$的第$j$个值  参考：卷积神经网络系列之softmax loss对输入的求导推导  1.1 Softmax S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5236230-12cd299a8d571d1e.PNG?imageMogr2/auto-orient/">
-<meta property="og:updated_time" content="2019-02-16T14:00:13.738Z">
+<meta property="og:updated_time" content="2019-02-16T14:06:22.450Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Loss推导">
-<meta name="twitter:description" content="1. Softmax Loss 推导 (1) $N$为类别数 (2) $a$为输出向量，$a_j$为向量$a$的第$j$个值  参考：卷积神经网络系列之softmax loss对输入的求导推导  1.1 Softmax S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}} 1.2 Cross-entropy Loss L=\sum_{j}-y_ilnP_j1.3 Softmax">
+<meta name="twitter:title" content="深度学习常见Loss推导">
+<meta name="twitter:description" content="1. Softmax Loss 推导 (1) $N$为类别数 (2) $a$为输出向量，$a_j$为向量$a$的第$j$个值  参考：卷积神经网络系列之softmax loss对输入的求导推导  1.1 Softmax S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5236230-12cd299a8d571d1e.PNG?imageMogr2/auto-orient/">
 
 
@@ -139,7 +139,7 @@
   };
 </script>
 
-  <title>Loss推导 | zhkmxx930 blog</title>
+  <title>深度学习常见Loss推导 | zhkmxx930 blog</title>
   
 
 
@@ -459,7 +459,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Loss推导
+          <h2 class="post-title" itemprop="name headline">深度学习常见Loss推导
 
               
             
@@ -485,7 +485,7 @@
                 
               
 
-              <time title="创建时间：2019-02-16 20:16:16 / 修改时间：22:00:13" itemprop="dateCreated datePublished" datetime="2019-02-16T20:16:16+08:00">2019-02-16</time>
+              <time title="创建时间：2019-02-16 20:16:16 / 修改时间：22:06:22" itemprop="dateCreated datePublished" datetime="2019-02-16T20:16:16+08:00">2019-02-16</time>
             
 
             
@@ -513,7 +513,7 @@
 
           
           
-             <span id="/post/19fc17a4.html" class="leancloud_visitors" data-flag-title="Loss推导">
+             <span id="/post/19fc17a4.html" class="leancloud_visitors" data-flag-title="深度学习常见Loss推导">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -552,6 +552,7 @@
 <hr>
 <h4 id="1-1-Softmax"><a href="#1-1-Softmax" class="headerlink" title="1.1 Softmax"></a>1.1 <strong>Softmax</strong></h4><script type="math/tex; mode=display">
 S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.jianshu.io/upload_images/5236230-12cd299a8d571d1e.PNG?imageMogr2/auto-orient/" alt="x"></p>
+<a id="more"></a>
 <h4 id="1-2-Cross-entropy-Loss"><a href="#1-2-Cross-entropy-Loss" class="headerlink" title="1.2 Cross-entropy Loss"></a>1.2 <strong>Cross-entropy Loss</strong></h4><script type="math/tex; mode=display">
 L=\sum_{j}-y_ilnP_j</script><h4 id="1-3-Softmax-Loss"><a href="#1-3-Softmax-Loss" class="headerlink" title="1.3 Softmax Loss"></a>1.3 <strong>Softmax Loss</strong></h4><ul>
 <li>当Cross-entropy的$P_j=S_i$  ，即Softmax输出的时候。</li>
@@ -614,6 +615,35 @@ L_{softmax}=\sum_{j}-y_ilnS_i</script><h4 id="1-4-Softmax对Softmax输入的导�
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/post/19fc17a4.html">深度学习常见Loss推导</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
+  <p><span>发布时间:</span>2019年02月16日 - 20:02</p>
+  <p><span>最后更新:</span>2019年02月16日 - 22:02</p>
+  <p><span>原始链接:</span><a href="/post/19fc17a4.html" title="深度学习常见Loss推导">http://zhkmxx9302013.github.io/post/19fc17a4.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/19fc17a4.html" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
       
     </div>
 
@@ -1535,6 +1565,43 @@ L_{softmax}=\sum_{j}-y_ilnS_i</script><h4 id="1-4-Softmax对Softmax输入的导�
   
 
   
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
 
 
   
@@ -1653,10 +1720,7 @@ L_{softmax}=\sum_{j}-y_ilnS_i</script><h4 id="1-4-Softmax对Softmax输入的导�
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1673,5 +1737,8 @@ L_{softmax}=\sum_{j}-y_ilnS_i</script><h4 id="1-4-Softmax对Softmax输入的导�
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
 </html>

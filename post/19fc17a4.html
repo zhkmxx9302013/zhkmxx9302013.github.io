@@ -109,20 +109,27 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhkmxx930 blog">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/archives/2019/index.html">
+  <meta name="description" content="1. Softmax Loss 推导 (1) $N$为类别数 (2) $a$为输出向量，$a_j$为向量$a$的第$j$个值  参考：卷积神经网络系列之softmax loss对输入的求导推导  1.1 Softmax S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}} 1.2 Cross-entropy Loss L=\sum_{j}-y_ilnP_j1.3 Softmax">
+<meta name="keywords" content="深度学习基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Loss推导">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/19fc17a4.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="1. Softmax Loss 推导 (1) $N$为类别数 (2) $a$为输出向量，$a_j$为向量$a$的第$j$个值  参考：卷积神经网络系列之softmax loss对输入的求导推导  1.1 Softmax S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}} 1.2 Cross-entropy Loss L=\sum_{j}-y_ilnP_j1.3 Softmax">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5236230-12cd299a8d571d1e.PNG?imageMogr2/auto-orient/">
+<meta property="og:updated_time" content="2019-02-16T14:00:13.738Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhkmxx930 blog">
+<meta name="twitter:title" content="Loss推导">
+<meta name="twitter:description" content="1. Softmax Loss 推导 (1) $N$为类别数 (2) $a$为输出向量，$a_j$为向量$a$的第$j$个值  参考：卷积神经网络系列之softmax loss对输入的求导推导  1.1 Softmax S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}} 1.2 Cross-entropy Loss L=\sum_{j}-y_ilnP_j1.3 Softmax">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5236230-12cd299a8d571d1e.PNG?imageMogr2/auto-orient/">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/archives/2019/">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/19fc17a4.html">
 
 
 
@@ -132,7 +139,7 @@
   };
 </script>
 
-  <title>归档 | zhkmxx930 blog</title>
+  <title>Loss推导 | zhkmxx930 blog</title>
   
 
 
@@ -190,7 +197,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-archive">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -304,7 +311,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -415,429 +422,279 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/19fc17a4.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h2 class="post-title" itemprop="name headline">Loss推导
+
+              
+            
+          </h2>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-16 20:16:16 / 修改时间：22:00:13" itemprop="dateCreated datePublished" datetime="2019-02-16T20:16:16+08:00">2019-02-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 19 篇日志。 继续努力。
-      </span>
-      
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2019">2019</h2>
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/19fc17a4.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/19fc17a4.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/post/19fc17a4.html" class="leancloud_visitors" data-flag-title="Loss推导">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-Softmax-Loss-推导"><a href="#1-Softmax-Loss-推导" class="headerlink" title="1. Softmax Loss 推导"></a>1. Softmax Loss 推导</h3><blockquote>
+<p>(1) $N$为类别数</p>
+<p>(2) $a$为输出向量，$a_j$为向量$a$的第$j$个值</p>
+</blockquote>
+<p>参考：<a href="https://blog.csdn.net/u014380165/article/details/79632950" target="_blank" rel="noopener">卷积神经网络系列之softmax loss对输入的求导推导</a></p>
+<hr>
+<h4 id="1-1-Softmax"><a href="#1-1-Softmax" class="headerlink" title="1.1 Softmax"></a>1.1 <strong>Softmax</strong></h4><script type="math/tex; mode=display">
+S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.jianshu.io/upload_images/5236230-12cd299a8d571d1e.PNG?imageMogr2/auto-orient/" alt="x"></p>
+<h4 id="1-2-Cross-entropy-Loss"><a href="#1-2-Cross-entropy-Loss" class="headerlink" title="1.2 Cross-entropy Loss"></a>1.2 <strong>Cross-entropy Loss</strong></h4><script type="math/tex; mode=display">
+L=\sum_{j}-y_ilnP_j</script><h4 id="1-3-Softmax-Loss"><a href="#1-3-Softmax-Loss" class="headerlink" title="1.3 Softmax Loss"></a>1.3 <strong>Softmax Loss</strong></h4><ul>
+<li>当Cross-entropy的$P_j=S_i$  ，即Softmax输出的时候。</li>
+</ul>
+<script type="math/tex; mode=display">
+L_{softmax}=\sum_{j}-y_ilnS_i</script><h4 id="1-4-Softmax对Softmax输入的导数"><a href="#1-4-Softmax对Softmax输入的导数" class="headerlink" title="1.4 Softmax对Softmax输入的导数"></a>1.4 <strong>Softmax对Softmax输入的导数</strong></h4><ul>
+<li>$S_i$对$a_j$求导：</li>
+</ul>
+<script type="math/tex; mode=display">
+\frac{\partial{S_i}}{\partial{a_j}}=\frac{\partial{\frac{e^{a_i}}{\sum_ke^{a_k}}}}{\partial a_j}</script><ul>
+<li><p>这里求导有两种情况</p>
+<ul>
+<li><p>1）当$i=j$时：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial{S_i}}{\partial{a_j}} 
+&=\frac{\partial{S_i}}{\partial{a_i}} \\
+&=\frac{\frac{\partial{e^{a_i}}}{\partial{a_i}}\sum_ke^{a_k}-\frac{\sum_ke^{a_k}}{\partial{a_i}}e^{a_i}}{(\sum_ke^{a_k})^2} \\ 
+&=\frac{e^{a_i}\sum_ke^{a_k}-e^{a_i}e^{a_i}}{\sum_k{e^{2a_k}}} \\ 
+&=\frac{e^{a_i}}{\sum_k{e^{a_k}}}-\frac{e^{a_i}}{\sum_k{e^{a_k}}}\cdot{\frac{e^{a_i}}{\sum_k{e^{a_k}}}} \\ 
+&=S_i-S_i^2\\
+&=S_i(1-S_i)
+\end{aligned}</script></li>
+<li><p>2）当$i≠j$时：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial{S_i}}{\partial{a_j}} 
+&=\frac{\frac{\partial{e^{a_i}}}{\partial{a_j}}\sum_ke^{a_k}-\frac{\sum_ke^{a_k}}{\partial{a_j}}e^{a_i}}{(\sum_ke^{a_k})^2} \\ 
+&=\frac{-e^{a_j}e^{a_i}}{\sum_k{e^{2a_k}}} \\
+&=-S_jS_i
+\end{aligned}</script></li>
+</ul>
+</li>
+</ul>
+<h4 id="1-5-Softmax-Loss对softmax输入的导数"><a href="#1-5-Softmax-Loss对softmax输入的导数" class="headerlink" title="1.5 Softmax Loss对softmax输入的导数"></a>1.5 Softmax Loss对softmax输入的导数</h4><ul>
+<li>第③个等号就用到了上面$S_i$对$a_j$求导的结论，第三个等号结果的左半部分是$i=k$的时候$S_i$对$a_j$求导的导数，右半部分是$i≠k$的时候S_i$对​$a_j$求导的导数。</li>
+<li>第⑥、⑦个等号是将$y_iS_i​$合并到∑里面。最后一个等号的成立是建立在假设$∑y_k=1​$的前提下，这个对于常见的单标签分类任务而言都是成立的。 </li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial{L_{softmax}}}{\partial{a_k}}&=-\sum_ky_k\frac{\partial{lnS_k}}{\partial{a_i}} \\
+&=-\sum_ky_k\frac{1}{S_k}\frac{\partial{S_k}}{\partial{a_i}} \\
+&=-y_i(1-S_i)-\sum_{k≠i}y_k\frac{1}{S_k}({-S_kS_i}) \\
+&=-y_i(1-S_i)+\sum_{k≠i}y_kS_i \\
+&=-y_i+y_iS_i+\sum_{k≠i}y_kS_i \\
+&=\sum_ky_kS_i-y_i \\
+&=S_i-y_i
+
+
+\end{aligned}</script><h4 id="1-6-总结"><a href="#1-6-总结" class="headerlink" title="1.6 总结"></a>1.6 <strong>总结</strong></h4><p>因此假设一个5分类任务，经过Softmax层后得到的概率向量$S$是$[0.1,0.2,0.25,0.4,0.05]$，真实标签$y$是$[0,0,1,0,0]$，那么损失回传时该层得到的梯度就是$p-y=[0.1,0.2,-0.75,0.4,0.05]$。这个梯度就指导网络在下一次forward的时候更新该层的权重参数。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+        
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习基础/" rel="tag"># 深度学习基础</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
           </div>
         
-        
 
         
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
         
-          <a class="post-title-link" href="/post/19fc17a4.html" itemprop="url">
-            
-              <span itemprop="name">Loss推导</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-16T20:16:16+08:00" content="2019-02-16">
-          02-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        </div>
+      
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/1eda57ac.html" itemprop="url">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span itemprop="name">深度学习优化器</span>
+              <a href="/post/1eda57ac.html" rel="next" title="深度学习优化器">
+                <i class="fa fa-chevron-left"></i> 深度学习优化器
+              </a>
             
-          </a>
-        
-      </h3>
+          </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-15T22:18:35+08:00" content="2019-02-15">
-          02-15
-        </time>
-      </div>
+          <span class="post-nav-divider"></span>
 
-    </header>
-  </article>
-
-
-
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/d42edc1.html" itemprop="url">
-            
-              <span itemprop="name">刷题-搜索</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-14T15:14:58+08:00" content="2019-02-14">
-          02-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/6db30a46.html" itemprop="url">
-            
-              <span itemprop="name">[刷题]链表专题</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-12T21:23:22+08:00" content="2019-02-12">
-          02-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/8cb158ac.html" itemprop="url">
-            
-              <span itemprop="name">[刷题]递归回溯专题</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-11T16:16:35+08:00" content="2019-02-11">
-          02-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/db3d6a7.html" itemprop="url">
-            
-              <span itemprop="name">刷题-栈和队列</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-09T10:35:05+08:00" content="2019-02-09">
-          02-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/76e180f5.html" itemprop="url">
-            
-              <span itemprop="name">[刷题]二叉树专题</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-07T21:31:21+08:00" content="2019-02-07">
-          02-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/b8a74939.html" itemprop="url">
-            
-              <span itemprop="name">干货收集</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-26T16:10:32+08:00" content="2019-01-26">
-          01-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/22518.html" itemprop="url">
-            
-              <span itemprop="name">[强化学习笔记专题(二)]Nature DQN</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-24T16:53:42+08:00" content="2019-01-24">
-          01-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/10845.html" itemprop="url">
-            
-              <span itemprop="name">[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-23T10:34:57+08:00" content="2019-01-23">
-          01-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-    </div>
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -858,8 +715,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -992,6 +858,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Softmax-Loss-推导"><span class="nav-number">1.</span> <span class="nav-text">1. Softmax Loss 推导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-Softmax"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Softmax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Cross-entropy-Loss"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Cross-entropy Loss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-Softmax-Loss"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Softmax Loss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-Softmax对Softmax输入的导数"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 Softmax对Softmax输入的导数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-Softmax-Loss对softmax输入的导数"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 Softmax Loss对softmax输入的导数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-总结"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1161,6 +1044,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -1196,6 +1083,30 @@
     </style>
   
 
+  
+    <script>
+    function renderGitment(){
+      var gitment = new Gitmint({
+        id: window.location.pathname,
+        owner: 'zhkmxx9302013',
+        repo: 'zhkmxx9302013.github.io',
+        
+        lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+        
+        oauth: {
+        
+        
+          client_secret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
+        
+          client_id: '8ffda7fd0bcee5f2074f'
+        }});
+      gitment.render('gitment-container');
+    }
+
+    
+      renderGitment();
+    
+    </script>
   
 
 
@@ -1535,43 +1446,40 @@
   
   <script>
     
-    function showTime(Counter) {
-      var entries = [];
+    function addCount(Counter) {
       var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
         .done(function ({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
           }
         })
-        .fail(function ({ responseJSON }) {
-          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
-        });
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
     }
     
 
@@ -1591,9 +1499,7 @@
             });
           };
           
-          if ($('.post-title-link').length >= 1) {
-            showTime(Counter);
-          }
+          addCount(Counter);
           
         })
     });
@@ -1634,6 +1540,25 @@
   
 
   
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 16260,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
 
   
 

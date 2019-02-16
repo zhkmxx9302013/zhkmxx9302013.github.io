@@ -317,7 +317,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">19</span></a>
 
   </li>
         
@@ -436,6 +436,219 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/19fc17a4.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/post/19fc17a4.html" class="post-title-link" itemprop="url">Loss推导</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-16 20:16:16 / 修改时间：22:00:13" itemprop="dateCreated datePublished" datetime="2019-02-16T20:16:16+08:00">2019-02-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/19fc17a4.html" class="leancloud_visitors" data-flag-title="Loss推导">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-Softmax-Loss-推导"><a href="#1-Softmax-Loss-推导" class="headerlink" title="1. Softmax Loss 推导"></a>1. Softmax Loss 推导</h3><blockquote>
+<p>(1) $N$为类别数</p>
+<p>(2) $a$为输出向量，$a_j$为向量$a$的第$j$个值</p>
+</blockquote>
+<p>参考：<a href="https://blog.csdn.net/u014380165/article/details/79632950" target="_blank" rel="noopener">卷积神经网络系列之softmax loss对输入的求导推导</a></p>
+<hr>
+<h4 id="1-1-Softmax"><a href="#1-1-Softmax" class="headerlink" title="1.1 Softmax"></a>1.1 <strong>Softmax</strong></h4><script type="math/tex; mode=display">
+S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.jianshu.io/upload_images/5236230-12cd299a8d571d1e.PNG?imageMogr2/auto-orient/" alt="x"></p>
+<h4 id="1-2-Cross-entropy-Loss"><a href="#1-2-Cross-entropy-Loss" class="headerlink" title="1.2 Cross-entropy Loss"></a>1.2 <strong>Cross-entropy Loss</strong></h4><script type="math/tex; mode=display">
+L=\sum_{j}-y_ilnP_j</script><h4 id="1-3-Softmax-Loss"><a href="#1-3-Softmax-Loss" class="headerlink" title="1.3 Softmax Loss"></a>1.3 <strong>Softmax Loss</strong></h4><ul>
+<li>当Cross-entropy的$P_j=S_i$  ，即Softmax输出的时候。</li>
+</ul>
+<script type="math/tex; mode=display">
+L_{softmax}=\sum_{j}-y_ilnS_i</script><h4 id="1-4-Softmax对Softmax输入的导数"><a href="#1-4-Softmax对Softmax输入的导数" class="headerlink" title="1.4 Softmax对Softmax输入的导数"></a>1.4 <strong>Softmax对Softmax输入的导数</strong></h4><ul>
+<li>$S_i$对$a_j$求导：</li>
+</ul>
+<script type="math/tex; mode=display">
+\frac{\partial{S_i}}{\partial{a_j}}=\frac{\partial{\frac{e^{a_i}}{\sum_ke^{a_k}}}}{\partial a_j}</script><ul>
+<li><p>这里求导有两种情况</p>
+<ul>
+<li><p>1）当$i=j$时：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial{S_i}}{\partial{a_j}} 
+&=\frac{\partial{S_i}}{\partial{a_i}} \\
+&=\frac{\frac{\partial{e^{a_i}}}{\partial{a_i}}\sum_ke^{a_k}-\frac{\sum_ke^{a_k}}{\partial{a_i}}e^{a_i}}{(\sum_ke^{a_k})^2} \\ 
+&=\frac{e^{a_i}\sum_ke^{a_k}-e^{a_i}e^{a_i}}{\sum_k{e^{2a_k}}} \\ 
+&=\frac{e^{a_i}}{\sum_k{e^{a_k}}}-\frac{e^{a_i}}{\sum_k{e^{a_k}}}\cdot{\frac{e^{a_i}}{\sum_k{e^{a_k}}}} \\ 
+&=S_i-S_i^2\\
+&=S_i(1-S_i)
+\end{aligned}</script></li>
+<li><p>2）当$i≠j$时：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial{S_i}}{\partial{a_j}} 
+&=\frac{\frac{\partial{e^{a_i}}}{\partial{a_j}}\sum_ke^{a_k}-\frac{\sum_ke^{a_k}}{\partial{a_j}}e^{a_i}}{(\sum_ke^{a_k})^2} \\ 
+&=\frac{-e^{a_j}e^{a_i}}{\sum_k{e^{2a_k}}} \\
+&=-S_jS_i
+\end{aligned}</script></li>
+</ul>
+</li>
+</ul>
+<h4 id="1-5-Softmax-Loss对softmax输入的导数"><a href="#1-5-Softmax-Loss对softmax输入的导数" class="headerlink" title="1.5 Softmax Loss对softmax输入的导数"></a>1.5 Softmax Loss对softmax输入的导数</h4><ul>
+<li>第③个等号就用到了上面$S_i$对$a_j$求导的结论，第三个等号结果的左半部分是$i=k$的时候$S_i$对$a_j$求导的导数，右半部分是$i≠k$的时候S_i$对​$a_j$求导的导数。</li>
+<li>第⑥、⑦个等号是将$y_iS_i​$合并到∑里面。最后一个等号的成立是建立在假设$∑y_k=1​$的前提下，这个对于常见的单标签分类任务而言都是成立的。 </li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial{L_{softmax}}}{\partial{a_k}}&=-\sum_ky_k\frac{\partial{lnS_k}}{\partial{a_i}} \\
+&=-\sum_ky_k\frac{1}{S_k}\frac{\partial{S_k}}{\partial{a_i}} \\
+&=-y_i(1-S_i)-\sum_{k≠i}y_k\frac{1}{S_k}({-S_kS_i}) \\
+&=-y_i(1-S_i)+\sum_{k≠i}y_kS_i \\
+&=-y_i+y_iS_i+\sum_{k≠i}y_kS_i \\
+&=\sum_ky_kS_i-y_i \\
+&=S_i-y_i
+
+
+\end{aligned}</script><h4 id="1-6-总结"><a href="#1-6-总结" class="headerlink" title="1.6 总结"></a>1.6 <strong>总结</strong></h4><p>因此假设一个5分类任务，经过Softmax层后得到的概率向量$S$是$[0.1,0.2,0.25,0.4,0.05]$，真实标签$y$是$[0,0,1,0,0]$，那么损失回传时该层得到的梯度就是$p-y=[0.1,0.2,-0.75,0.4,0.05]$。这个梯度就指导网络在下一次forward的时候更新该层的权重参数。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/1eda57ac.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -481,7 +694,7 @@
                 
               
 
-              <time title="创建时间：2019-02-15 22:18:35 / 修改时间：22:20:15" itemprop="dateCreated datePublished" datetime="2019-02-15T22:18:35+08:00">2019-02-15</time>
+              <time title="创建时间：2019-02-15 22:18:35 / 修改时间：22:20:43" itemprop="dateCreated datePublished" datetime="2019-02-15T22:18:35+08:00">2019-02-15</time>
             
 
             
@@ -2040,186 +2253,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/17172.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhkmxx930">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhkmxx930 blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/post/17172.html" class="post-title-link" itemprop="url">强化学习专题笔记(一) 强化学习基础</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-22 14:54:58" itemprop="dateCreated datePublished" datetime="2019-01-22T14:54:58+08:00">2019-01-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-25 09:55:00" itemprop="dateModified" datetime="2019-01-25T09:55:00+08:00">2019-01-25</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/post/17172.html" class="leancloud_visitors" data-flag-title="强化学习专题笔记(一) 强化学习基础">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="一、长期回报"><a href="#一、长期回报" class="headerlink" title="一、长期回报"></a>一、长期回报</h2><p>对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标<strong>最大化长期回报</strong> 而努力。</p>
-<script type="math/tex; mode=display">
-\max\sum_{t}{r_t}</script><p>但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即<strong>对未来的回报乘以一个折扣率，使得长期回报变得更有意义</strong>：</p>
-<script type="math/tex; mode=display">
-\sum_{t=0}{\gamma^tr_t}    （\gamma < 1）</script><p>由此我们引出<strong>长期回报</strong>的概念，即从当前状态开始对之后的所有回报，运用上式进行累加的折扣率计算：</p>
-<script type="math/tex; mode=display">
-Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未来的行动情况，我们需要对上式进行一个合理的估计，因而我们定义了<strong>策略的价值</strong>。<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/post/17172.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2269,7 +2302,7 @@ Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3022,9 +3055,9 @@ Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未�
   
     
       
-        
-      
     
+      
+        
       
     
       

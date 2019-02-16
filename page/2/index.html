@@ -317,7 +317,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">19</span></a>
 
   </li>
         
@@ -420,6 +420,186 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/17172.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/post/17172.html" class="post-title-link" itemprop="url">强化学习专题笔记(一) 强化学习基础</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-22 14:54:58" itemprop="dateCreated datePublished" datetime="2019-01-22T14:54:58+08:00">2019-01-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-25 09:55:00" itemprop="dateModified" datetime="2019-01-25T09:55:00+08:00">2019-01-25</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/17172.html" class="leancloud_visitors" data-flag-title="强化学习专题笔记(一) 强化学习基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="一、长期回报"><a href="#一、长期回报" class="headerlink" title="一、长期回报"></a>一、长期回报</h2><p>对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标<strong>最大化长期回报</strong> 而努力。</p>
+<script type="math/tex; mode=display">
+\max\sum_{t}{r_t}</script><p>但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即<strong>对未来的回报乘以一个折扣率，使得长期回报变得更有意义</strong>：</p>
+<script type="math/tex; mode=display">
+\sum_{t=0}{\gamma^tr_t}    （\gamma < 1）</script><p>由此我们引出<strong>长期回报</strong>的概念，即从当前状态开始对之后的所有回报，运用上式进行累加的折扣率计算：</p>
+<script type="math/tex; mode=display">
+Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未来的行动情况，我们需要对上式进行一个合理的估计，因而我们定义了<strong>策略的价值</strong>。<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/17172.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1886,7 +2066,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2639,6 +2819,10 @@
   
     
       
+        
+      
+    
+      
     
       
     
@@ -2656,6 +2840,43 @@
     
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
   
 
 

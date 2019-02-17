@@ -481,7 +481,7 @@
                 
               
 
-              <time title="创建时间：2019-02-17 18:41:32 / 修改时间：21:38:36" itemprop="dateCreated datePublished" datetime="2019-02-17T18:41:32+08:00">2019-02-17</time>
+              <time title="创建时间：2019-02-17 18:41:32 / 修改时间：22:57:02" itemprop="dateCreated datePublished" datetime="2019-02-17T18:41:32+08:00">2019-02-17</time>
             
 
             
@@ -531,8 +531,7 @@
 
       
         
-          
-            <p><a href="https://blog.csdn.net/u014313009/article/details/51039334" target="_blank" rel="noopener">参考博客：反向传播算法（过程及公式推导）</a></p>
+          <p><a href="https://blog.csdn.net/u014313009/article/details/51039334" target="_blank" rel="noopener">参考博客：反向传播算法（过程及公式推导）</a></p>
 <h3 id="1-符号定义"><a href="#1-符号定义" class="headerlink" title="1. 符号定义"></a>1. 符号定义</h3><ul>
 <li>$w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。</li>
 <li>$b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。</li>
@@ -540,53 +539,15 @@
 <li>$a_k^{L}=\sigma(z_j^L)$ 表示第$L$层经过sigmoid函数后的输出。</li>
 </ul>
 <p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png" alt=""></p>
-<h3 id="2-损失函数定义"><a href="#2-损失函数定义" class="headerlink" title="2.  损失函数定义"></a>2.  损失函数定义</h3><p><strong>二次代价函数</strong>：($x$代表输入的样本，$y(x)$代表标签值)</p>
-<script type="math/tex; mode=display">
-C=\frac{1}{2n}\sum_x||y(x)-a^L(x)||^2</script><p>当只关注某一个样本$x_i​$的时候，有：</p>
-<script type="math/tex; mode=display">
-C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传播推导" class="headerlink" title="3. 反向传播推导"></a>3. 反向传播推导</h3><ul>
-<li><p><strong>计算最后一层神经网络产生的错误</strong></p>
-<p>对于<strong>每一个$L$层的神经元</strong>有：</p>
-</li>
-</ul>
-<script type="math/tex; mode=display">
-\delta^L_k=\frac{\partial{C}}{\partial{z_k^L}}=\frac{\partial{C}}{\partial{a_{k}^L}}\cdot\frac{\partial{a_k^L}}{\partial{z_{k}^{L}}}</script><p>​    则<strong>整个$L​$层</strong>可以用矩阵的Hadamard积(矩阵行行对应相乘)来进行计算：</p>
-<script type="math/tex; mode=display">
-\delta^L=\nabla_aC\odot\sigma^\prime(z^L)</script><ul>
-<li><p><strong>反向传播</strong></p>
-<p>计算每一层的每个神经元产生的误差，推广到每一层的每个神经元有：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\delta_k^L=\frac{\partial C}{\partial z_k^L}&=\sum_m\frac{\partial C}{\partial z_m^{L+1}}\cdot\frac{\partial{z_m^{L+1}}}{\partial{a_{k}^{L}}}\cdot\frac{\partial a_k^L}{\partial z_k^L}\\
-&=\sum_m{\delta_m^{L+1}}\cdot\frac{w_{km}^{L+1}a_k^{L}+b_m^{L+1}}{\partial{a_k^L}}\cdot\sigma'(z_k^L)\\
-&=\sum_m\delta_m^{L+1}\cdot w_{km}^{L+1}\cdot\sigma'(z_k^L)
-\end{align}</script><p>推广到整个一层有：</p>
-<script type="math/tex; mode=display">
-\delta^L=((W^{L+1})^T\cdot \delta^{L+1})\odot \sigma'(z^L)</script></li>
-<li><p><strong>计算权重的梯度</strong></p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial w_{jk}^L}=\frac{\partial C}{\partial{z_k^L}}\cdot \frac{\partial{z_k^L}}{\part{w_{jk}^L}}=\delta_k^L\cdot\frac{\part{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial w_{jk}^L}=a_j^{L-1}\cdot\delta_k^L</script></li>
-<li><p><strong>计算偏置的梯度</strong></p>
-<script type="math/tex; mode=display">
-\frac{\part C}{\part b_k^L}=\frac{\partial{C}}{\partial z_{k}^L} \cdot \frac{\part z_k^L}{\part b_k^L}=\delta_k^L\cdot\frac{\part{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial b_{k}^L}=\delta_k^L</script></li>
-</ul>
-<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>反向传播四个公式：</p>
-<ol>
-<li><p>输出层误差：</p>
-<script type="math/tex; mode=display">
-\delta^L=\nabla_aC\odot\sigma^\prime(z^L)</script></li>
-<li><p>反向传播每一层误差：</p>
-<script type="math/tex; mode=display">
-\delta^L=((W^{L+1})^T\cdot \delta^{L+1})\odot \sigma'(z^L)</script></li>
-<li><p>权重梯度：</p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial w_{jk}^L}=a_j^{L-1}\cdot\delta_k^L</script></li>
-<li><p>偏置梯度：</p>
-<script type="math/tex; mode=display">
-\frac{\part C}{\part b_k^L}=\delta_k^L</script></li>
-</ol>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/9e924caa.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>

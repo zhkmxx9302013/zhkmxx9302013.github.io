@@ -118,7 +118,7 @@
 <meta property="og:description" content="参考博客：反向传播算法（过程及公式推导） 1. 符号定义 $w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。 $b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。 $z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。 $a_k^{L}=\sigma(z_j^L)$ 表示第$L">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png">
-<meta property="og:updated_time" content="2019-02-17T13:38:36.897Z">
+<meta property="og:updated_time" content="2019-02-17T14:57:02.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="反向传播公式推导">
 <meta name="twitter:description" content="参考博客：反向传播算法（过程及公式推导） 1. 符号定义 $w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。 $b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。 $z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。 $a_k^{L}=\sigma(z_j^L)$ 表示第$L">
@@ -485,7 +485,7 @@
                 
               
 
-              <time title="创建时间：2019-02-17 18:41:32 / 修改时间：21:38:36" itemprop="dateCreated datePublished" datetime="2019-02-17T18:41:32+08:00">2019-02-17</time>
+              <time title="创建时间：2019-02-17 18:41:32 / 修改时间：22:57:02" itemprop="dateCreated datePublished" datetime="2019-02-17T18:41:32+08:00">2019-02-17</time>
             
 
             
@@ -552,6 +552,7 @@
 <li>$a_k^{L}=\sigma(z_j^L)$ 表示第$L$层经过sigmoid函数后的输出。</li>
 </ul>
 <p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png" alt=""></p>
+<a id="more"></a>
 <h3 id="2-损失函数定义"><a href="#2-损失函数定义" class="headerlink" title="2.  损失函数定义"></a>2.  损失函数定义</h3><p><strong>二次代价函数</strong>：($x$代表输入的样本，$y(x)$代表标签值)</p>
 <script type="math/tex; mode=display">
 C=\frac{1}{2n}\sum_x||y(x)-a^L(x)||^2</script><p>当只关注某一个样本$x_i​$的时候，有：</p>
@@ -577,10 +578,10 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
 \delta^L=((W^{L+1})^T\cdot \delta^{L+1})\odot \sigma'(z^L)</script></li>
 <li><p><strong>计算权重的梯度</strong></p>
 <script type="math/tex; mode=display">
-\frac{\partial C}{\partial w_{jk}^L}=\frac{\partial C}{\partial{z_k^L}}\cdot \frac{\partial{z_k^L}}{\part{w_{jk}^L}}=\delta_k^L\cdot\frac{\part{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial w_{jk}^L}=a_j^{L-1}\cdot\delta_k^L</script></li>
+\frac{\partial C}{\partial w_{jk}^L}=\frac{\partial C}{\partial{z_k^L}}\cdot \frac{\partial{z_k^L}}{\partial{w_{jk}^L}}=\delta_k^L\cdot\frac{\partial{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial w_{jk}^L}=a_j^{L-1}\cdot\delta_k^L</script></li>
 <li><p><strong>计算偏置的梯度</strong></p>
 <script type="math/tex; mode=display">
-\frac{\part C}{\part b_k^L}=\frac{\partial{C}}{\partial z_{k}^L} \cdot \frac{\part z_k^L}{\part b_k^L}=\delta_k^L\cdot\frac{\part{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial b_{k}^L}=\delta_k^L</script></li>
+\frac{\partial C}{\part b_k^L}=\frac{\partial{C}}{\partial z_{k}^L} \cdot \frac{\partial z_k^L}{\partial b_k^L}=\delta_k^L\cdot\frac{\partial{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial b_{k}^L}=\delta_k^L</script></li>
 </ul>
 <h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>反向传播四个公式：</p>
 <ol>
@@ -595,7 +596,7 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
 \frac{\partial C}{\partial w_{jk}^L}=a_j^{L-1}\cdot\delta_k^L</script></li>
 <li><p>偏置梯度：</p>
 <script type="math/tex; mode=display">
-\frac{\part C}{\part b_k^L}=\delta_k^L</script></li>
+\frac{\partial C}{\partial b_k^L}=\delta_k^L</script></li>
 </ol>
 
       
@@ -618,7 +619,7 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
   <p><span>本文标题:</span><a href="/post/9e924caa.html">反向传播公式推导</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
   <p><span>发布时间:</span>2019年02月17日 - 18:02</p>
-  <p><span>最后更新:</span>2019年02月17日 - 21:02</p>
+  <p><span>最后更新:</span>2019年02月17日 - 22:02</p>
   <p><span>原始链接:</span><a href="/post/9e924caa.html" title="反向传播公式推导">http://zhkmxx9302013.github.io/post/9e924caa.html</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/9e924caa.html" aria-label="复制成功！"></i></span>
   </p>

@@ -109,21 +109,25 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/categories/index.html">
+  <meta name="description" content="参考文献：神经网络调优 深度学习之参数初始化（一）——Xavier初始化  一、参数初始化参数初始化的作用：  目的是为了让神经网络在训练过程中学习到有用的信息 参数梯度不应该全部为0 各层激活值不会出现饱和现象 各层激活值不为0    1.1 标准初始化方法 特点：  隐层的状态的均值为0，方差为常量$\frac{1}{3}$，和网络的层数无关 标准初始化只适用于满足Glorot假设的激活函数">
+<meta name="keywords" content="深度学习基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="参数初始化与正则化">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/7a6400a0.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="参考文献：神经网络调优 深度学习之参数初始化（一）——Xavier初始化  一、参数初始化参数初始化的作用：  目的是为了让神经网络在训练过程中学习到有用的信息 参数梯度不应该全部为0 各层激活值不会出现饱和现象 各层激活值不为0    1.1 标准初始化方法 特点：  隐层的状态的均值为0，方差为常量$\frac{1}{3}$，和网络的层数无关 标准初始化只适用于满足Glorot假设的激活函数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-22T07:22:25.346Z">
+<meta property="og:updated_time" content="2019-02-21T08:42:14.088Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="参数初始化与正则化">
+<meta name="twitter:description" content="参考文献：神经网络调优 深度学习之参数初始化（一）——Xavier初始化  一、参数初始化参数初始化的作用：  目的是为了让神经网络在训练过程中学习到有用的信息 参数梯度不应该全部为0 各层激活值不会出现饱和现象 各层激活值不为0    1.1 标准初始化方法 特点：  隐层的状态的均值为0，方差为常量$\frac{1}{3}$，和网络的层数无关 标准初始化只适用于满足Glorot假设的激活函数">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/categories/">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/7a6400a0.html">
 
 
 
@@ -133,7 +137,7 @@
   };
 </script>
 
-  <title>分类 | zhkmxx930 blog</title>
+  <title>参数初始化与正则化 | zhkmxx930 blog</title>
   
 
 
@@ -286,7 +290,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -416,93 +420,326 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/7a6400a0.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h2 class="post-title" itemprop="name headline">分类
-
-</h2>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
+          <h2 class="post-title" itemprop="name headline">参数初始化与正则化
+
               
-              
-              暂无分类
-            </div>
-            <div class="category-all">
-              
-            </div>
-          </div>
+            
+          </h2>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-21 11:02:06 / 修改时间：16:42:14" itemprop="dateCreated datePublished" datetime="2019-02-21T11:02:06+08:00">2019-02-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/7a6400a0.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/7a6400a0.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/post/7a6400a0.html" class="leancloud_visitors" data-flag-title="参数初始化与正则化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <blockquote>
+<p>参考文献：<a href="http://www.cnblogs.com/zhangchaoyang/articles/6581518.html#gv" target="_blank" rel="noopener"><a href="https://www.cnblogs.com/zhangchaoyang/articles/6581518.html" target="_blank" rel="noopener">神经网络调优</a></a></p>
+<p><a href="https://blog.csdn.net/VictoriaW/article/details/73000632" target="_blank" rel="noopener">深度学习之参数初始化（一）——Xavier初始化</a></p>
+</blockquote>
+<h3 id="一、参数初始化"><a href="#一、参数初始化" class="headerlink" title="一、参数初始化"></a>一、参数初始化</h3><p><strong>参数初始化的作用：</strong></p>
+<ul>
+<li>目的是为了让神经网络在训练过程中学习到有用的信息</li>
+<li>参数梯度不应该全部为0<ul>
+<li>各层激活值不会出现饱和现象</li>
+<li>各层激活值不为0</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-1-标准初始化方法"><a href="#1-1-标准初始化方法" class="headerlink" title="1.1 标准初始化方法"></a>1.1 <strong>标准初始化方法</strong></h4><ul>
+<li><p>特点：</p>
+<ul>
+<li>隐层的状态的均值为0，<strong>方差为常量$\frac{1}{3}$</strong>，<strong>和网络的层数无关</strong></li>
+<li>标准初始化只适用于满足<strong>Glorot假设</strong>的激活函数，比如tanh。</li>
+</ul>
+</li>
+<li><p>推导：</p>
+<p>符合输入参数的均匀分布，$n$是输入层神经元个数。</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+W_{ij} \sim U[-\frac{1}{\sqrt n}, \frac{1}{\sqrt n}]</script><p>​    权重值的方差为（均匀分布 $D(x)=(b-a)²/12$）:</p>
+<script type="math/tex; mode=display">
+Var(W_{ij})=\frac{1}{3n}</script><p>​    现在把输入$X$的每一维度$x$看做一个随机变量，并且假设$E(x)=0$, $Var(x)=1$。假设$w$和$x$相互独立，则隐层状态的方差为 :</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Var(z_k)= & Var(\sum_{i=0}^{n}W_{ki}x_i) \\
+= &\sum_{i=0}^{n}Var(W_{ki})Var(x_i) \\
+= & \sum_{i=0}^{n}Var(W_{ki}) \\
+= & \sum_{i=0}^{n}\frac{1}{3n} \\
+= &\frac{1}{3}
+\end{align}</script><p>​    可以看出标准初始化方法得到一个非常好的特性：隐层的状态的均值为0，方差为常量$\frac{1}{3}$，和网络的层数无关，这意味着对于sigmoid函数来说，自变量落在有梯度的范围内。</p>
+<h4 id="1-2-Glorot条件"><a href="#1-2-Glorot条件" class="headerlink" title="1.2 Glorot条件"></a>1.2 <strong>Glorot条件</strong></h4><p>上述参数梯度不应该全部为0的条件只能保证网络能学到东西，而Glorot认为，优秀的初始化应该使得<strong>各层的激活值</strong>和<strong>状态梯度</strong>的<strong>方差</strong>在传播过程中的方差保持一致。</p>
+<ul>
+<li><strong>条件：</strong><ul>
+<li><strong>输入假设</strong><ul>
+<li>输入的每个特征方差一样：Var(x)</li>
+</ul>
+</li>
+<li><strong>激活函数假设：</strong><ul>
+<li>激活函数$f(x)$对称：这样就可以假设每层的输入均值都是0</li>
+<li>$f\prime(0)=1$</li>
+<li>初始时，状态值落在激活函数的线性区域：$f\prime(s_k^i)\approx 1$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>符合该条件的特征</strong>：<ul>
+<li><strong>激活值方差</strong>和<strong>层数相关</strong>，<strong>反向传播的梯度方差</strong>和<strong>层数是有关</strong>系的，而<strong>参数梯度的方差</strong>和<strong>层数无关</strong></li>
+<li>相关推导过程: <a href="https://blog.csdn.net/VictoriaW/article/details/73000632" target="_blank" rel="noopener"><strong>Xavier初始化推导</strong></a></li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3-Xavier初始化"><a href="#1-3-Xavier初始化" class="headerlink" title="1.3 Xavier初始化"></a>1.3 Xavier初始化</h4><p>为了保证前向传播和反向传播时每一层的方差一致，可以将Glorot条件转换成($n_i$为第$i$层的神经元个数)：</p>
+<script type="math/tex; mode=display">
+\forall i, n_iVar(W^{i+1})=1</script><script type="math/tex; mode=display">
+\forall i, n_{i+1}Var(W^{i+1})=1</script><p>输入与输出的个数往往不相等，于是为了均衡考量，根据由Glorot条件，得到方差设定符合：</p>
+<script type="math/tex; mode=display">
+\forall i, Var(W^{i+1})=\frac{2}{n_i+n_{i+1}}</script><p>该方差对应的均匀分布即为Xavier初始化分布：</p>
+<script type="math/tex; mode=display">
+W\sim U\left[ -\frac{\sqrt{6}}{\sqrt{n_i + n_{i+1}}},\frac{\sqrt{6}}{\sqrt{n_i + n_{i+1}}} \right]</script><ul>
+<li><strong>特点:</strong><ul>
+<li>激活值的方差和层数无关，反向传播梯度的方差和层数无关</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="二、正则化"><a href="#二、正则化" class="headerlink" title="二、正则化"></a>二、正则化</h3><p>正则化的目的是对网络参数进行惩罚，特别是阶数较高项$x^n$ $ (网络表达式： w_1x^n+w_2x^{n-1}+…+w_n)$的系数参数，因为如果该项系数较大，是的拟合曲线复杂，会导致网络过拟合。引入正则化，则不会因为$x$的较小变动导致输出的较大变化，对噪声的容忍程度比较好。</p>
+<p>没有正则化：($\eta$是学习率)</p>
+<script type="math/tex; mode=display">
+\begin{equation}w\to w'=w-\eta\frac{\partial C_0}{\partial w}\end{equation}</script><h4 id="2-1-L1正则-（带有特征选择能力）"><a href="#2-1-L1正则-（带有特征选择能力）" class="headerlink" title="2.1 L1正则 （带有特征选择能力）"></a>2.1 L1正则 （带有特征选择能力）</h4><p>$C$是正则化后的损失函数，$C_0$是正则化前的损失函数。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&C=C_0+\frac{\lambda}{n}\sum_{i=1}^{n}|w_i| \\
+\end{aligned}</script><script type="math/tex; mode=display">
+\frac{\partial C}{\partial w}=\frac{\partial C_0}{\partial w} + \frac{\lambda}{n}sgn(w)</script><script type="math/tex; mode=display">
+sgn(w)=\begin{equation}
+            \left\{
+            \begin{aligned}
+                1 ,w≥1\\
+                0, w=0\\
+            \end{aligned}
+            \right.
+        \end{equation} \\</script><p>那么权重更新为：</p>
+<script type="math/tex; mode=display">
+w \to w-\frac{\eta\lambda}{n}sgn(w)-\eta\frac{\partial C_0}{\partial w}=w\pm\frac{\eta\lambda}{n}-\eta\frac{\partial C_0}{\partial w}</script><ul>
+<li><p>L1正则的作用是使$w​$在每一次迭代时都变化一个常数：$\frac{\eta\lambda}{n}​$。</p>
+</li>
+<li><p>当$w​$本身比较小时，L1正则比L2正则衰减得更厉害。L1正则的效果是使不重要的$w​$几乎衰减为0。</p>
+</li>
+<li>因而L1具有一定的稀疏性，并有一定的特征选择的功能。</li>
+</ul>
+<h4 id="2-2-L2正则-权重衰减"><a href="#2-2-L2正则-权重衰减" class="headerlink" title="2.2 L2正则 (权重衰减)"></a>2.2 L2正则 (权重衰减)</h4><script type="math/tex; mode=display">
+C=C_0+\frac{\lambda}{n}\sum_{i=1}^n{w_i^2}</script><p>$C_0$是正则化之前的损失函数，$λ$是正则项系数，$n$是参数$w$的个数。最小化损失函数$C$的同时也会使$\sum_{i=1}^n{w_i^2}​$尽可能小。</p>
+<p>加上正则项后梯度变为:</p>
+<script type="math/tex; mode=display">
+\frac{\partial C}{\partial w}=\frac{\partial C_0}{\partial w}+\frac{\lambda}{2n}w</script><script type="math/tex; mode=display">
+\begin{equation}w\to w'=w-\eta\frac{\partial C}{\partial w}=\left(1-\frac{\eta\lambda}{n}\right)w-\eta\frac{\partial C_0}{\partial w}\end{equation}</script><ul>
+<li>L2正则项的作用是使$w$在每次迭代时都变小了$\frac{\eta\lambda}{n}$倍。</li>
+<li>如果要使这个倍率不变，那么当神经元个数增多（即$n$变大）时，正则项系数$λ$也应该相应调大。</li>
+</ul>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+    <div>
+      
+        
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习基础/" rel="tag"># 深度学习基础</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/9e924caa.html" rel="next" title="反向传播公式推导">
+                <i class="fa fa-chevron-left"></i> 反向传播公式推导
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -523,8 +760,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -657,6 +903,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、参数初始化"><span class="nav-number">1.</span> <span class="nav-text">一、参数初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-标准初始化方法"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 标准初始化方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Glorot条件"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Glorot条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-Xavier初始化"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Xavier初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、正则化"><span class="nav-number">2.</span> <span class="nav-text">二、正则化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-L1正则-（带有特征选择能力）"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 L1正则 （带有特征选择能力）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-L2正则-权重衰减"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 L2正则 (权重衰减)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -865,6 +1128,30 @@
     </style>
   
 
+  
+    <script>
+    function renderGitment(){
+      var gitment = new Gitmint({
+        id: window.location.pathname,
+        owner: 'zhkmxx9302013',
+        repo: 'zhkmxx9302013.github.io',
+        
+        lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+        
+        oauth: {
+        
+        
+          client_secret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
+        
+          client_id: '8ffda7fd0bcee5f2074f'
+        }});
+      gitment.render('gitment-container');
+    }
+
+    
+      renderGitment();
+    
+    </script>
   
 
 
@@ -1204,43 +1491,40 @@
   
   <script>
     
-    function showTime(Counter) {
-      var entries = [];
+    function addCount(Counter) {
       var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
         .done(function ({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
           }
         })
-        .fail(function ({ responseJSON }) {
-          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
-        });
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
     }
     
 
@@ -1260,9 +1544,7 @@
             });
           };
           
-          if ($('.post-title-link').length >= 1) {
-            showTime(Counter);
-          }
+          addCount(Counter);
           
         })
     });
@@ -1303,6 +1585,25 @@
   
 
   
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 16260,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
 
   
 

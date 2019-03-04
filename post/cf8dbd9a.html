@@ -109,20 +109,28 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhkmxx930 blog">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/tags/MPC/index.html">
+  <meta name="description" content="参考：  循环神经网络(RNN)模型与前向反向传播算法  RNN面试总结   RNN正向传播推导RNN原理图：   变量说明 $W,U,V​$为权重矩阵，在整个RNN网络中是共享的。 $h^t​$代表在序列$t​$时模型的隐藏状态。$h^t​$由$x^t​$和$h^{t-1}​$共同决定。 $o^{t}$代表在序列$t$时模型的输出。$o^t$只由模型当前的隐藏状态$h^{t}$决定。 $x^t$">
+<meta name="keywords" content="循环神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RNN反向传播推导">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/cf8dbd9a.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="参考：  循环神经网络(RNN)模型与前向反向传播算法  RNN面试总结   RNN正向传播推导RNN原理图：   变量说明 $W,U,V​$为权重矩阵，在整个RNN网络中是共享的。 $h^t​$代表在序列$t​$时模型的隐藏状态。$h^t​$由$x^t​$和$h^{t-1}​$共同决定。 $o^{t}$代表在序列$t$时模型的输出。$o^t$只由模型当前的隐藏状态$h^{t}$决定。 $x^t$">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1550906908/%E7%BB%98%E5%9B%BE2.png">
+<meta property="og:image" content="http://img2018.cnblogs.com/blog/1220309/201812/1220309-20181221151409029-188623430.png">
+<meta property="og:updated_time" content="2019-02-23T09:02:57.810Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhkmxx930 blog">
+<meta name="twitter:title" content="RNN反向传播推导">
+<meta name="twitter:description" content="参考：  循环神经网络(RNN)模型与前向反向传播算法  RNN面试总结   RNN正向传播推导RNN原理图：   变量说明 $W,U,V​$为权重矩阵，在整个RNN网络中是共享的。 $h^t​$代表在序列$t​$时模型的隐藏状态。$h^t​$由$x^t​$和$h^{t-1}​$共同决定。 $o^{t}$代表在序列$t$时模型的输出。$o^t$只由模型当前的隐藏状态$h^{t}$决定。 $x^t$">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1550906908/%E7%BB%98%E5%9B%BE2.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/tags/MPC/">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/cf8dbd9a.html">
 
 
 
@@ -132,7 +140,7 @@
   };
 </script>
 
-  <title>标签: MPC | zhkmxx930 blog</title>
+  <title>RNN反向传播推导 | zhkmxx930 blog</title>
   
 
 
@@ -190,7 +198,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -266,7 +274,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -415,88 +423,288 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>MPC<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/cf8dbd9a.html">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/post/10696.html" itemprop="url">
-            
-              <span itemprop="name">MPC控制笔记(一)</span>
-            
-          </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">RNN反向传播推导
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-18T11:17:11+08:00" content="2019-01-18">
-          01-18
-        </time>
-      </div>
+              
+            
+          </h2>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-23 15:22:11 / 修改时间：17:02:57" itemprop="dateCreated datePublished" datetime="2019-02-23T15:22:11+08:00">2019-02-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/cf8dbd9a.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/cf8dbd9a.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/post/cf8dbd9a.html" class="leancloud_visitors" data-flag-title="RNN反向传播推导">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考：</p>
+<ul>
+<li><p><a href="http://www.cnblogs.com/pinard/p/6509630.html" target="_blank" rel="noopener">循环神经网络(RNN)模型与前向反向传播算法</a></p>
+</li>
+<li><p><a href="https://github.com/imhuay/Algorithm_Interview_Notes-Chinese/blob/master/A-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/B-%E4%B8%93%E9%A2%98-RNN.md" target="_blank" rel="noopener">RNN面试总结</a></p>
+</li>
+</ul>
+<h3 id="RNN正向传播推导"><a href="#RNN正向传播推导" class="headerlink" title="RNN正向传播推导"></a>RNN正向传播推导</h3><p>RNN原理图：</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1550906908/%E7%BB%98%E5%9B%BE2.png" alt="x"></p>
+<ul>
+<li><strong>变量说明</strong><ul>
+<li>$W,U,V​$为权重矩阵，在整个RNN网络中是<strong>共享</strong>的。</li>
+<li>$h^t​$代表在序列$t​$时模型的隐藏状态。$h^t​$由$x^t​$和$h^{t-1}​$<strong>共同</strong>决定。</li>
+<li>$o^{t}$代表在序列$t$时模型的输出。$o^t$<strong>只由</strong>模型当前的隐藏状态$h^{t}$决定。</li>
+<li>$x^t$代表在序列$t$时训练样本的<strong>输入</strong>。</li>
+<li>$L_t​$代表在序列$t​$时模型的<strong>损失函数</strong>。</li>
+<li>$y^t$代表在序列$t​$时训练样本序列的<strong>真实输出</strong>。</li>
+</ul>
+</li>
+<li><strong>前向公式</strong></li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&h^t=\sigma(Wh^{t-1}+Ux^{t}+B) \\
+&o^t=Vh^t+C\\
+&\hat{y}^t=\sigma_{softmax}(o^t)
+\end{aligned}</script><h3 id="RNN反向传播推导"><a href="#RNN反向传播推导" class="headerlink" title="RNN反向传播推导"></a>RNN反向传播推导</h3><script type="math/tex; mode=display">
+L=\sum_TL_t</script><ul>
+<li><p><strong>$L$对$C$的梯度：</strong></p>
+<script type="math/tex; mode=display">
+\frac{\partial{L}}{\partial{C}} =\sum_T\frac{\partial{L_t}}{\partial{o^t}} \cdot \frac{\partial{o^t}}{\partial{C}}=\sum_T(\hat{y}^t-y^t)</script></li>
+<li><p><strong>$L$ 对V的梯度：</strong></p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\frac{\partial{L}}{\partial{V}}=\sum_T\frac{\partial{L_t}}{\partial o^t}\cdot\frac{\partial o^t}{\partial V}=\sum_T(\hat{y}^t-y^t)(h^t)^T</script><ul>
+<li><strong>$L$ 对$h^t$的梯度：</strong></li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\delta^{t}&=\frac{\partial L}{\partial h^{t}} \\
+&=\frac{\partial L}{\partial o^{t}} \frac{\partial o^{t}}{\partial h^{t}} + \frac{\partial L}{\partial h^{t+1}}\frac{\partial h^{t+1}}{\partial h^{t}} \\
+&=V^T(\hat{y}^{(t)} - y^{(t)}) + W^T\delta^{(t+1)}diag(1-(h^{(t+1)})^2)
+\end{aligned}</script><p>​    其中：</p>
+<p>​    (1)</p>
+<script type="math/tex; mode=display">
+\frac{\partial L}{\partial o^{t}} \frac{\partial o^{t}}{\partial h^{t}} = V^T(\hat{y}^{t} - y^{t})</script><p>​    (2)</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial L}{\partial h^{t+1}}\frac{\partial h^{t+1}}{\partial h^{t}}&=\delta^{t+1} \frac{\partial h^{t+1}}{\partial h^{t}}\\
+&=W^T\delta^{t+1}diag(1-(h^{t+1})^2)
+\end{aligned}</script><p>​    详细推导：<br><img src="http://img2018.cnblogs.com/blog/1220309/201812/1220309-20181221151409029-188623430.png" alt="img"></p>
+<ul>
+<li><p><strong>$L​$ 对$W​$的梯度：</strong></p>
+<script type="math/tex; mode=display">
+\frac{\partial L}{\partial W} =  \sum\limits_{t=1}^{\tau}\frac{\partial L}{\partial h^{t}} \frac{\partial h^{t}}{\partial W} = \sum\limits_{t=1}^{\tau}diag(1-(h^{t})^2)\delta^{t}(h^{t-1})^T</script></li>
+<li><p><strong>$L$ 对$B$的梯度：</strong></p>
+<script type="math/tex; mode=display">
+\frac{\partial L}{\partial B}= \sum\limits_{t=1}^{\tau}\frac{\partial L}{\partial h^{t}} \frac{\partial h^{t}}{\partial b} = \sum\limits_{t=1}^{\tau}diag(1-(h^{(t)})^2)\delta^{t}</script></li>
+<li><p><strong>$L$ 对$U$的梯度：</strong></p>
+<script type="math/tex; mode=display">
+\frac{\partial L}{\partial U} = \sum\limits_{t=1}^{\tau}\frac{\partial L}{\partial h^{t}} \frac{\partial h^{t}}{\partial U} = \sum\limits_{t=1}^{\tau}diag(1-(h^{t})^2)\delta^{t}(x^{t})^T</script></li>
+</ul>
 
       
     </div>
 
+    
+
+    
+    
+    
+    <div>
+      
+        
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/循环神经网络/" rel="tag"># 循环神经网络</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/7a6400a0.html" rel="next" title="参数初始化与正则化">
+                <i class="fa fa-chevron-left"></i> 参数初始化与正则化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/c0e17f81.html" rel="prev" title="Hybrid A* 路径规划">
+                Hybrid A* 路径规划 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -517,8 +725,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -653,6 +870,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN正向传播推导"><span class="nav-number">1.</span> <span class="nav-text">RNN正向传播推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN反向传播推导"><span class="nav-number">2.</span> <span class="nav-text">RNN反向传播推导</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -822,6 +1056,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -857,6 +1095,30 @@
     </style>
   
 
+  
+    <script>
+    function renderGitment(){
+      var gitment = new Gitmint({
+        id: window.location.pathname,
+        owner: 'zhkmxx9302013',
+        repo: 'zhkmxx9302013.github.io',
+        
+        lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+        
+        oauth: {
+        
+        
+          client_secret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
+        
+          client_id: '8ffda7fd0bcee5f2074f'
+        }});
+      gitment.render('gitment-container');
+    }
+
+    
+      renderGitment();
+    
+    </script>
   
 
 
@@ -1196,43 +1458,40 @@
   
   <script>
     
-    function showTime(Counter) {
-      var entries = [];
+    function addCount(Counter) {
       var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
         .done(function ({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
           }
         })
-        .fail(function ({ responseJSON }) {
-          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
-        });
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
     }
     
 
@@ -1252,9 +1511,7 @@
             });
           };
           
-          if ($('.post-title-link').length >= 1) {
-            showTime(Counter);
-          }
+          addCount(Counter);
           
         })
     });
@@ -1295,6 +1552,25 @@
   
 
   
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 16260,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
 
   
 

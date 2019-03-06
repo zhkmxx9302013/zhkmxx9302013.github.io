@@ -109,20 +109,20 @@
 
 
 
-  <meta name="description" content="参考：  循环神经网络(RNN)模型与前向反向传播算法  RNN面试总结   RNN正向传播推导RNN原理图：   变量说明 $W,U,V​$为权重矩阵，在整个RNN网络中是共享的。 $h^t​$代表在序列$t​$时模型的隐藏状态。$h^t​$由$x^t​$和$h^{t-1}​$共同决定。 $o^{t}$代表在序列$t$时模型的输出。$o^t$只由模型当前的隐藏状态$h^{t}$决定。 $x^t$">
+  <meta name="description" content="参考：  循环神经网络(RNN)模型与前向反向传播算法  RNN面试总结   RNN正向传播推导RNN原理图：">
 <meta name="keywords" content="循环神经网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RNN反向传播推导">
 <meta property="og:url" content="http://zhkmxx9302013.github.io/post/cf8dbd9a.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="参考：  循环神经网络(RNN)模型与前向反向传播算法  RNN面试总结   RNN正向传播推导RNN原理图：   变量说明 $W,U,V​$为权重矩阵，在整个RNN网络中是共享的。 $h^t​$代表在序列$t​$时模型的隐藏状态。$h^t​$由$x^t​$和$h^{t-1}​$共同决定。 $o^{t}$代表在序列$t$时模型的输出。$o^t$只由模型当前的隐藏状态$h^{t}$决定。 $x^t$">
+<meta property="og:description" content="参考：  循环神经网络(RNN)模型与前向反向传播算法  RNN面试总结   RNN正向传播推导RNN原理图：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1550906908/%E7%BB%98%E5%9B%BE2.png">
 <meta property="og:image" content="http://img2018.cnblogs.com/blog/1220309/201812/1220309-20181221151409029-188623430.png">
-<meta property="og:updated_time" content="2019-02-23T09:02:57.810Z">
+<meta property="og:updated_time" content="2019-03-06T13:27:54.614Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RNN反向传播推导">
-<meta name="twitter:description" content="参考：  循环神经网络(RNN)模型与前向反向传播算法  RNN面试总结   RNN正向传播推导RNN原理图：   变量说明 $W,U,V​$为权重矩阵，在整个RNN网络中是共享的。 $h^t​$代表在序列$t​$时模型的隐藏状态。$h^t​$由$x^t​$和$h^{t-1}​$共同决定。 $o^{t}$代表在序列$t$时模型的输出。$o^t$只由模型当前的隐藏状态$h^{t}$决定。 $x^t$">
+<meta name="twitter:description" content="参考：  循环神经网络(RNN)模型与前向反向传播算法  RNN面试总结   RNN正向传播推导RNN原理图：">
 <meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1550906908/%E7%BB%98%E5%9B%BE2.png">
 
 
@@ -286,7 +286,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">11</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">13</span></a>
 
   </li>
         
@@ -324,7 +324,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">23</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">25</span></a>
 
   </li>
         
@@ -486,12 +486,24 @@
                 
               
 
-              <time title="创建时间：2019-02-23 15:22:11 / 修改时间：17:02:57" itemprop="dateCreated datePublished" datetime="2019-02-23T15:22:11+08:00">2019-02-23</time>
+              <time title="创建时间：2019-02-23 15:22:11" itemprop="dateCreated datePublished" datetime="2019-02-23T15:22:11+08:00">2019-02-23</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-06 21:27:54" itemprop="dateModified" datetime="2019-03-06T21:27:54+08:00">2019-03-06</time>
               
             
           </span>
@@ -553,7 +565,7 @@
 </li>
 </ul>
 <h3 id="RNN正向传播推导"><a href="#RNN正向传播推导" class="headerlink" title="RNN正向传播推导"></a>RNN正向传播推导</h3><p>RNN原理图：</p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1550906908/%E7%BB%98%E5%9B%BE2.png" alt="x"></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1550906908/%E7%BB%98%E5%9B%BE2.png" alt="x"><br><a id="more"></a></p>
 <ul>
 <li><strong>变量说明</strong><ul>
 <li>$W,U,V​$为权重矩阵，在整个RNN网络中是<strong>共享</strong>的。</li>
@@ -620,6 +632,35 @@ L=\sum_TL_t</script><ul>
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/post/cf8dbd9a.html">RNN反向传播推导</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
+  <p><span>发布时间:</span>2019年02月23日 - 15:02</p>
+  <p><span>最后更新:</span>2019年03月06日 - 21:03</p>
+  <p><span>原始链接:</span><a href="/post/cf8dbd9a.html" title="RNN反向传播推导">http://zhkmxx9302013.github.io/post/cf8dbd9a.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/cf8dbd9a.html" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
       
     </div>
 
@@ -752,7 +793,7 @@ L=\sum_TL_t</script><ul>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -789,7 +830,11 @@ L=\sum_TL_t</script><ul>
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1547,6 +1592,43 @@ L=\sum_TL_t</script><ul>
   
 
   
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
 
 
   
@@ -1665,7 +1747,10 @@ L=\sum_TL_t</script><ul>
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1682,8 +1767,5 @@ L=\sum_TL_t</script><ul>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>

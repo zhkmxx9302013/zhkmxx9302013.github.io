@@ -110,6 +110,7 @@
 
 
   <meta name="description" content="参考:  Hybrid A Star 路径规划 Hybrid A* Path Planner for the KTH Research Concept Vehicle 分层有限状态机和无人车行为规划  [PAPER] : Path Planning in Unstructured Environments Hybrid A* 的使用场景​    在斯坦福大学2007年参加的DARPA无人车城市挑战">
+<meta name="keywords" content="路径规划算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hybrid A* 路径规划">
 <meta property="og:url" content="http://zhkmxx9302013.github.io/post/c0e17f81.html">
@@ -120,7 +121,7 @@
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1551431225/%E9%98%BF%E8%90%A8%E5%BE%B7%E5%99%A81.png">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1551437581/1231q23.png">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1551437757/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190301185544.png">
-<meta property="og:updated_time" content="2019-03-01T11:17:27.350Z">
+<meta property="og:updated_time" content="2019-03-05T14:58:40.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hybrid A* 路径规划">
 <meta name="twitter:description" content="参考:  Hybrid A Star 路径规划 Hybrid A* Path Planner for the KTH Research Concept Vehicle 分层有限状态机和无人车行为规划  [PAPER] : Path Planning in Unstructured Environments Hybrid A* 的使用场景​    在斯坦福大学2007年参加的DARPA无人车城市挑战">
@@ -287,7 +288,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">11</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">13</span></a>
 
   </li>
         
@@ -325,7 +326,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">23</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">25</span></a>
 
   </li>
         
@@ -487,12 +488,24 @@
                 
               
 
-              <time title="创建时间：2019-03-01 16:32:38 / 修改时间：19:17:27" itemprop="dateCreated datePublished" datetime="2019-03-01T16:32:38+08:00">2019-03-01</time>
+              <time title="创建时间：2019-03-01 16:32:38" itemprop="dateCreated datePublished" datetime="2019-03-01T16:32:38+08:00">2019-03-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-05 22:58:40" itemprop="dateModified" datetime="2019-03-05T22:58:40+08:00">2019-03-05</time>
               
             
           </span>
@@ -554,6 +567,7 @@
 <h3 id="Hybrid-A-的使用场景"><a href="#Hybrid-A-的使用场景" class="headerlink" title="Hybrid A* 的使用场景"></a>Hybrid A* 的使用场景</h3><p>​    在斯坦福大学2007年参加的DARPA无人车城市挑战赛时使用的Junior，其在行为规划层提出了分层有限状态机的方式，如下图所示。</p>
 <p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1551429769/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190301164059.png" alt=""></p>
 <p>​    其中，<strong>BAD_RNDF</strong>状态表示的是，当前道路与系统的路网图不同的时候，无人车将采用Hybrid A*来进行规划路径。</p>
+<a id="more"></a>
 <h3 id="Hybrid-A-与-A"><a href="#Hybrid-A-与-A" class="headerlink" title="Hybrid A 与 A"></a>Hybrid A<em> 与 A</em></h3><p>Hybrid A* 的主要特点是：</p>
 <ul>
 <li>考虑物体的实际运动方向约束，不像A*假定所有的相邻节点都可以顺利转移</li>
@@ -592,6 +606,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/post/c0e17f81.html">Hybrid A* 路径规划</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
+  <p><span>发布时间:</span>2019年03月01日 - 16:03</p>
+  <p><span>最后更新:</span>2019年03月05日 - 22:03</p>
+  <p><span>原始链接:</span><a href="/post/c0e17f81.html" title="Hybrid A* 路径规划">http://zhkmxx9302013.github.io/post/c0e17f81.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/c0e17f81.html" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
       
     </div>
 
@@ -605,6 +648,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/路径规划算法/" rel="tag"># 路径规划算法</a>
+          
+        </div>
       
 
       
@@ -636,6 +685,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/d42ca19b.html" rel="prev" title="生成对抗网络(笔记)">
+                生成对抗网络(笔记) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -714,7 +767,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -751,7 +804,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1509,6 +1566,43 @@
   
 
   
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
 
 
   
@@ -1627,7 +1721,10 @@
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1644,8 +1741,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>

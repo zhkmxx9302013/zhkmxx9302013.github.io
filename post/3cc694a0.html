@@ -109,20 +109,25 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhkmxx930 blog">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/archives/2019/01/index.html">
+  <meta name="description" content="一、 重要性采样TRPO和PPO主要思想的数学基础是重要性采样  重要性采样：$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。   \begin{aligned} \mathbb{E}_{x\sim p}[f(x)] &amp;=\int f(x)p(x) dx \\ &amp;=\int f(x) \frac{p(x)}{q(x">
+<meta name="keywords" content="强化学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PPO、GAE笔记">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/3cc694a0.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="一、 重要性采样TRPO和PPO主要思想的数学基础是重要性采样  重要性采样：$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。   \begin{aligned} \mathbb{E}_{x\sim p}[f(x)] &amp;=\int f(x)p(x) dx \\ &amp;=\int f(x) \frac{p(x)}{q(x">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-06T13:28:10.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhkmxx930 blog">
+<meta name="twitter:title" content="PPO、GAE笔记">
+<meta name="twitter:description" content="一、 重要性采样TRPO和PPO主要思想的数学基础是重要性采样  重要性采样：$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。   \begin{aligned} \mathbb{E}_{x\sim p}[f(x)] &amp;=\int f(x)p(x) dx \\ &amp;=\int f(x) \frac{p(x)}{q(x">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/archives/2019/01/">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/3cc694a0.html">
 
 
 
@@ -132,7 +137,7 @@
   };
 </script>
 
-  <title>归档 | zhkmxx930 blog</title>
+  <title>PPO、GAE笔记 | zhkmxx930 blog</title>
   
 
 
@@ -190,7 +195,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-archive">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -304,7 +309,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -415,429 +420,391 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/3cc694a0.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h2 class="post-title" itemprop="name headline">PPO、GAE笔记
+
+              
+            
+          </h2>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-06 16:34:27 / 修改时间：21:28:10" itemprop="dateCreated datePublished" datetime="2019-03-06T16:34:27+08:00">2019-03-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 25 篇日志。 继续努力。
-      </span>
-      
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2019">2019</h2>
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/3cc694a0.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/3cc694a0.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/post/3cc694a0.html" class="leancloud_visitors" data-flag-title="PPO、GAE笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、-重要性采样"><a href="#一、-重要性采样" class="headerlink" title="一、 重要性采样"></a>一、 重要性采样</h3><p>TRPO和PPO主要思想的数学基础是重要性采样</p>
+<ul>
+<li><strong>重要性采样：</strong>$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}_{x\sim p}[f(x)] &=\int f(x)p(x) dx \\
+&=\int f(x) \frac{p(x)}{q(x)}q(x)dx \\
+&=\mathbb{E}_{x\sim q}[f(x)\frac{p(x)}{q(x)}]
+\end{aligned}</script><ul>
+<li><p><strong>条件</strong>：</p>
+<ul>
+<li>$p$分布与$q$分布需要相近，才能得到较好的效果。</li>
+</ul>
+</li>
+<li><p><strong>用在强化学习里面</strong>:</p>
+<ul>
+<li>由于策略梯度原始公式中的 新策略分布难以得到，因而使用旧策略进行间接采样，以使得未知项变成可估计的已知项进行计算。</li>
+</ul>
+<a id="more"></a>
+</li>
+</ul>
+<hr>
+<h3 id="二、-梯度与参数更新"><a href="#二、-梯度与参数更新" class="headerlink" title="二、 梯度与参数更新"></a>二、 梯度与参数更新</h3><p><strong>1. 回报的期望：</strong>最大化全部采样轨迹上的策略回报值</p>
+<script type="math/tex; mode=display">
+\bar{R_\theta}=\sum_\tau R(\tau)p_\theta(\tau)</script><p><strong>2. 回报的期望的梯度</strong>：(第三个等号用到的公式：$\nabla f(x) = f(x) \nabla \log f(x)​$)</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\nabla \bar{R_\theta}&=\sum_\tau R(\tau) \nabla p_{\theta}(\tau) \\
+&= \sum_\tau R(\tau)p_\theta(\tau)\frac{\nabla p_\theta(\tau)}{p_\theta(\tau)} \\
+&= \sum_\tau R(\tau)p_\theta(\tau){\nabla \log p_\theta(\tau)}\\
+&= \mathbb{E}_{\tau \sim p_\theta{\tau}}[R(\tau){\nabla \log p_\theta(\tau)}] \\
+&≈ \frac{1}{N} \sum_{n=1}^{N}R(\tau^n)\nabla \log p_{\theta}(\tau^n) \\
+&=\frac{1}{N}\sum_{n=1}^{N} \sum_{t=1}^{T_n} R(\tau^n)\nabla \log p_\theta(a_t^n|s_t^n)
+
+\end{aligned}</script><p>式中</p>
+<ul>
+<li><p>$N​$表示采样了$N​$条trajectory, $T_n​$表示每条trajectory的step数量。</p>
+</li>
+<li><p>关于$p_{\theta}(\tau)$ </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+p_{\theta}(\tau) &= p(s_1)p_\theta(a_1|s_1)p(s_2|s_1,a_1)p_\theta(a_2|s_2)p(s_3|s_2,a_2) \space\space...\space\space \\
+&=p(s_1) \prod_{t=1}^T p_{\theta}(a_t|s_t)p(s_{t+1}|s_t, a_t)
+\end{aligned}</script><p>由两部分组成一部分是来自环境的 $p_\theta(s_{t+1}|s_t, a)$， 一部分是来自agent的 $p_\theta {(a_t|s_t)}$, 其中来自环境的部分不带入计算，策略更新只考虑agent这部分。所以最后一步并没有$t+1$这部分。</p>
+</li>
+</ul>
+<p><strong>3. 参数更新：</strong></p>
+<script type="math/tex; mode=display">
+\theta = \theta+\eta \nabla \bar{R_\theta}</script><hr>
+<h3 id="三、-实际算法中对策略梯度的处理方法"><a href="#三、-实际算法中对策略梯度的处理方法" class="headerlink" title="三、 实际算法中对策略梯度的处理方法"></a>三、 实际算法中对策略梯度的处理方法</h3><ol>
+<li><p><strong>策略梯度方法：</strong></p>
+<p>加入baseline</p>
+<script type="math/tex; mode=display">
+\nabla \bar{R_\theta}=\frac{1}{N} \sum_{n=1}^{N}(R(\tau^n)-b)\nabla \log p_{\theta}(\tau^n) \\
+b≈\mathbb{E}[R(\tau)]</script></li>
+</ol>
+<p>   $b$ 的加入保证reward不是恒大于0的，若reward一直大于0，则会导致未被采样的action无法得到提升，但其实该action并不是不好而是未被采样。</p>
+<ol>
+<li><p><strong>状态值函数估计轨迹回报：</strong></p>
+<p>$R(\tau^n)-b$ 部分使用状态值函数来替代</p>
+<script type="math/tex; mode=display">
+q(s,a)</script></li>
+<li><p><strong>优势函数估计轨迹回报（Actor-Critic）：</strong></p>
+<p>$R(\tau^n)-b​$ 部分用以下Advantage function来替代</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+A(s_t,a_t)= q(s,a)-V(s)</script><ol>
+<li><p><strong>TD-Error估计轨迹回报：</strong></p>
+<p>$R(\tau^n)-b$ 部分用以下TD-Error 代替</p>
+<script type="math/tex; mode=display">
+r(s_t. a_t)+v(s_{t+1})-v(s)​</script></li>
+</ol>
+<hr>
+<h3 id="四、GAE-Generalized-Advantage-Estimation"><a href="#四、GAE-Generalized-Advantage-Estimation" class="headerlink" title="四、GAE(Generalized Advantage Estimation)"></a>四、GAE(Generalized Advantage Estimation)</h3><ol>
+<li><p><strong>GAE的作用</strong></p>
+<ul>
+<li>GAE的意思是泛化优势估计，因而他是用来<strong>优化Advantage Function优势函数</strong>的。</li>
+<li>GAE的存在是用来权衡variance和bias问题的：<ul>
+<li>On-policy直接交互并用每一时刻的回报作为长期回报的估计$\sum_{t’=t}^{T} \gamma^{t’-t}r_{t’}$ 会产生较大的方差，Variance较大。</li>
+<li>而通过基于优势函数的AC方法来进行回报值估计，则会产生方差较小，而Bias较大的问题。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>GAE 推导</strong></p>
+<p>满足$\gamma$-just条件。(未完待续)</p>
+</li>
+<li><p><strong>GAE形式</strong></p>
+<p>GAE的形式为多个价值估计的加权平均数。</p>
+<script type="math/tex; mode=display">
+TD Error=\delta_t=r_t+\gamma v(s_{t+1})-v(s_t)</script><p>运用GAE公式进行优势函数的估计：</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+\sum_{l=0}^\infin(\gamma\lambda)^l \delta_{t+1}^V</script><p>​    为了快速估计序列中所有时刻的估计值，采用倒序计算，从t+1时刻估计t时刻：</p>
+<script type="math/tex; mode=display">
+\hat{A_t}^{GAE(\gamma,\lambda)}=\sum_{l=0}^{\infin}(\gamma\lambda)^l \delta_{t+1}^V=\delta_t^V+\gamma\lambda\hat{A}_{t+1}^{GAE(\gamma,\lambda)}</script><hr>
+<h3 id="五、PPO关于策略梯度的目标函数"><a href="#五、PPO关于策略梯度的目标函数" class="headerlink" title="五、PPO关于策略梯度的目标函数"></a>五、PPO关于策略梯度的目标函数</h3><p>以上所述的策略梯度算法属于on-policy的算法，而<strong>PPO属于off-policy</strong>的算法</p>
+<ul>
+<li><p><strong>on-policy:</strong> 使用当前策略$\pi_\theta$收集数据，当参数$\theta$更新后，必须重新采样。</p>
+<script type="math/tex; mode=display">
+\nabla \bar{R_\theta}=\mathbb{E}_{\tau \sim p_\theta{\tau}}[R(\tau){\nabla \log p_\theta(\tau)}]</script></li>
+<li><p><strong>off-policy:</strong> 可以从可重用的样本数据中获取样本来训练当前的策略$\pi _\theta​$，下式用了重要性采样。</p>
+<script type="math/tex; mode=display">
+\nabla \bar{R_\theta}=\mathbb{E}_{\tau \sim p_{\theta^\prime}{\tau}}[\frac{p_\theta(\tau)}{p_{\theta^\prime}(\tau)} R(\tau){\nabla \log p_\theta(\tau)}]</script></li>
+</ul>
+<p><strong>1. PPO目标函数</strong></p>
+<p>   对于PPO而言，轨迹回报通过采用Advantage function的方式进行估计，因而其梯度更新方式为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\nabla \bar{R_\theta} &=\mathbb{E}_{(s_t,a_t)\sim\pi_\theta}[A^\theta(s_t,a_t)\nabla \log p_\theta({a_t^n|s_t^n})] \\
+&=\mathbb{E}_{(s_t,a_t)\sim\pi_\theta^\prime}[\frac{p_\theta(s_t,a_t)}{p_\theta^\prime(s_t,a_t)}A^{\theta^\prime}(s_t,a_t)\nabla \log p_\theta({a_t^n|s_t^n})] \\
+&=\mathbb{E}_{(s_t,a_t)\sim\pi_\theta^\prime}[\frac{p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)}\frac{p_\theta(s_t)}{p_\theta^\prime(s_t)}A^{\theta^\prime}(s_t,a_t)\nabla \log p_\theta({a_t^n|s_t^n})] \\
+&≈\mathbb{E}_{(s_t,a_t) \sim \pi_\theta^\prime}[\frac{\nabla p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)}A^{\theta^\prime}(s_t,a_t)]
+\end{aligned}</script><p>​    其中，从第二个等式用的是重要性采样，第三到第四个约等式由于$\frac{p_\theta(s_t)}{p_\theta^\prime(s_t)}$这一项来源于重要性采样，前提假设两个分布差别不大，近似为1，且不易计算，故省略，后面的$\nabla \log p_\theta({a_t^n|s_t^n})$ ,根据公式$\nabla f(x) = f(x) \nabla \log f(x)​$转换。     </p>
+<p>​    因而，定义<strong>目标函数</strong>为：</p>
+<script type="math/tex; mode=display">
+J^{\theta^{\prime}} (\theta)=\mathbb{E}_{(s_t,a_t) \sim \pi_\theta^\prime}[\frac{p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)}A^{\theta^\prime}(s_t,a_t)]</script><p><strong>2. PPO对于重要性采样约束的处理</strong></p>
+<p>​    为了保证$p_\theta(s_t,a_t) ​$ 与 $p_\theta^\prime(s_t,a_t)​$ 分布的差别不会太大，采用以下约束：</p>
+<ul>
+<li><strong>TRPO</strong>： 使用约束 $KL(\theta,\theta’)&lt;\delta$，在分布上进行约束。</li>
+<li><strong>PPO1</strong>(Adaptive KL)：使用$J_{PPO}^{\theta’}(\theta)=J^{\theta’}(\theta)-\beta KL(\theta,\theta’)$，在目标函数上加一个正则项进行约束，注意，这里KL散度衡量的是action之间的距离，而不是参数$\theta$与$\theta’$之间的距离。</li>
+<li><strong>PPO2</strong> (Clip，论文中推荐的)：使用$J_{PPO_2}^{\theta’}(\theta)=\sum_{(s_t,a_t)}\min\{([\frac{p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)}A^{\theta^\prime}(s_t,a_t)], [clip(\frac{p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)},1-\epsilon,1+\epsilon)A^{\theta^\prime}(s_t,a_t)])\}​$, 来约束分布距离。</li>
+</ul>
+<ol>
+<li><strong>使用GAE对优势函数进行优化</strong></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_gaes</span><span class="params">(self, rewards, v_preds, v_preds_next)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    GAE</span></span><br><span class="line"><span class="string">    :param rewards: r(t)</span></span><br><span class="line"><span class="string">    :param v_preds: v(st)</span></span><br><span class="line"><span class="string">    :param v_preds_next: v(st+1)</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    deltas = [r_t + self.gamma * v_next - v <span class="keyword">for</span> r_t, v_next, v <span class="keyword">in</span> zip(rewards, v_preds_next, v_preds)]</span><br><span class="line"></span><br><span class="line">    <span class="comment">#计算GAE(lambda = 1), 参见 ppo paper eq(11)</span></span><br><span class="line">    gaes = copy.deepcopy(deltas)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 倒序计算GAE</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> reversed(range(len(gaes) - <span class="number">1</span>)):</span><br><span class="line">        gaes[t] = gaes[t] + self.gamma * gaes[t + <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> gaes</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="六、-PPO的目标函数"><a href="#六、-PPO的目标函数" class="headerlink" title="六、 PPO的目标函数"></a>六、 PPO的目标函数</h3><p>PPO的最终目标函数由三部分组成，可使用梯度下降求解，而不是像TRPO一样使用共轭梯度法：</p>
+<ul>
+<li>策略梯度目标函数： $L_t^{CLIP}(\theta)​$</li>
+<li>值函数目标函数：$L_t^{VF}(\theta)=(V_\theta(s_t)-V_t^{target})^2​$</li>
+<li>策略模型的熵: $S_<a href="s_t">\pi_\theta</a>​$</li>
+</ul>
+<p>完整的形式如下：</p>
+<script type="math/tex; mode=display">
+L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_2S_[\pi_\theta](s_t)]</script><p>这部分相应的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'assign_op'</span>):</span><br><span class="line">    self.assign_ops = []</span><br><span class="line">    <span class="keyword">for</span> v_old, v <span class="keyword">in</span> zip(old_pi_trainable, pi_trainable):</span><br><span class="line">        self.assign_ops.append(tf.assign(v_old, v))</span><br><span class="line"></span><br><span class="line"><span class="comment"># inputs for train_op</span></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'train_inp'</span>):</span><br><span class="line">    self.actions = tf.placeholder(dtype=tf.int32, shape=[<span class="keyword">None</span>], name=<span class="string">'actions'</span>)</span><br><span class="line">    self.rewards = tf.placeholder(dtype=tf.float32, shape=[<span class="keyword">None</span>], name=<span class="string">'rewards'</span>)</span><br><span class="line">    self.v_preds_next = tf.placeholder(dtype=tf.float32, shape=[<span class="keyword">None</span>], name=<span class="string">'v_preds_next'</span>)</span><br><span class="line">    self.gaes = tf.placeholder(dtype=tf.float32, shape=[<span class="keyword">None</span>], name=<span class="string">'gaes'</span>)</span><br><span class="line"></span><br><span class="line">act_probs = self.Policy.act_probs</span><br><span class="line">act_probs_old = self.Old_Policy.act_probs</span><br><span class="line"></span><br><span class="line"><span class="comment"># agent通过新策略选择action的概率 probabilities of actions which agent took with policy</span></span><br><span class="line">act_probs = act_probs * tf.one_hot(indices=self.actions, depth=act_probs.shape[<span class="number">1</span>])</span><br><span class="line">act_probs = tf.reduce_sum(act_probs, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># agent通过旧策略选择action的概率 probabilities of actions which agent took with old policy</span></span><br><span class="line">act_probs_old = act_probs_old * tf.one_hot(indices=self.actions, depth=act_probs_old.shape[<span class="number">1</span>])</span><br><span class="line">act_probs_old = tf.reduce_sum(act_probs_old, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'PPO_loss'</span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        策略目标函数</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># ratios = tf.divide(act_probs, act_probs_old)</span></span><br><span class="line">    <span class="comment"># r_t(θ) = π/πold 为了防止除数为0，这里截取一下值，然后使用e(log减法)来代替直接除法</span></span><br><span class="line">    ratios = tf.exp(</span><br><span class="line">        tf.log(tf.clip_by_value(act_probs, <span class="number">1e-10</span>, <span class="number">1.0</span>)) - tf.log(tf.clip_by_value(act_probs_old, <span class="number">1e-10</span>, <span class="number">1.0</span>)))</span><br><span class="line">    <span class="comment"># L_CLIP 裁剪优势函数值</span></span><br><span class="line">    clipped_ratios = tf.clip_by_value(ratios, clip_value_min=<span class="number">1</span> - clip_value, clip_value_max=<span class="number">1</span> + clip_value)</span><br><span class="line">    self.loss_clip = tf.minimum(tf.multiply(self.gaes, ratios), tf.multiply(self.gaes, clipped_ratios))</span><br><span class="line">    self.loss_clip = tf.reduce_mean(self.loss_clip)</span><br><span class="line"></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        策略模型的熵</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 计算新策略πθ的熵 S = -p log(p) 这里裁剪防止p=0</span></span><br><span class="line">    self.entropy = -tf.reduce_sum(</span><br><span class="line">        self.Policy.act_probs * tf.log(tf.clip_by_value(self.Policy.act_probs, <span class="number">1e-10</span>, <span class="number">1.0</span>)), axis=<span class="number">1</span>)</span><br><span class="line">    self.entropy = tf.reduce_mean(self.entropy, axis=<span class="number">0</span>)  <span class="comment"># mean of entropy of pi(obs)</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        值目标函数</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># L_vf = [(r+γV(π(st+1))) - (V(π(st)))]^2</span></span><br><span class="line">    v_preds = self.Policy.v_preds</span><br><span class="line">    self.loss_vf = tf.squared_difference(self.rewards + self.gamma * self.v_preds_next, v_preds)</span><br><span class="line">    self.loss_vf = tf.reduce_mean(self.loss_vf)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># construct computation graph for loss</span></span><br><span class="line">    <span class="comment"># L(θ) = E_hat[L_CLIP(θ) - c1 L_VF(θ) + c2 S[πθ](s)]</span></span><br><span class="line">    <span class="comment"># L = 策略目标函数 + 值目标函数 + 策略模型的熵</span></span><br><span class="line">    self.loss = self.loss_clip - c_1 * self.loss_vf + c_2 * self.entropy</span><br><span class="line">    <span class="comment"># minimize -loss == maximize loss</span></span><br><span class="line">    self.loss = -self.loss</span><br><span class="line"></span><br><span class="line">optimizer = tf.train.RMSPropOptimizer(learning_rate=args.ppo_lr, epsilon=<span class="number">1e-5</span>)</span><br><span class="line">self.gradients = optimizer.compute_gradients(self.loss, var_list=pi_trainable)</span><br><span class="line">self.train_op = optimizer.minimize(self.loss, var_list=pi_trainable)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/post/3cc694a0.html">PPO、GAE笔记</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
+  <p><span>发布时间:</span>2019年03月06日 - 16:03</p>
+  <p><span>最后更新:</span>2019年03月06日 - 21:03</p>
+  <p><span>原始链接:</span><a href="/post/3cc694a0.html" title="PPO、GAE笔记">http://zhkmxx9302013.github.io/post/3cc694a0.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/3cc694a0.html" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/强化学习/" rel="tag"># 强化学习</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
           </div>
         
-        
 
         
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
         
-          <a class="post-title-link" href="/post/b8a74939.html" itemprop="url">
-            
-              <span itemprop="name">干货收集</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-26T16:10:32+08:00" content="2019-01-26">
-          01-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        </div>
+      
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/22518.html" itemprop="url">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span itemprop="name">[强化学习笔记专题(二)]Nature DQN</span>
+              <a href="/post/d42ca19b.html" rel="next" title="生成对抗网络(笔记)">
+                <i class="fa fa-chevron-left"></i> 生成对抗网络(笔记)
+              </a>
             
-          </a>
-        
-      </h3>
+          </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-24T16:53:42+08:00" content="2019-01-24">
-          01-24
-        </time>
-      </div>
+          <span class="post-nav-divider"></span>
 
-    </header>
-  </article>
-
-
-
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/10845.html" itemprop="url">
-            
-              <span itemprop="name">[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-23T10:34:57+08:00" content="2019-01-23">
-          01-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/17172.html" itemprop="url">
-            
-              <span itemprop="name">强化学习专题笔记(一) 强化学习基础</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-22T14:54:58+08:00" content="2019-01-22">
-          01-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/10696.html" itemprop="url">
-            
-              <span itemprop="name">MPC控制笔记(一)</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-18T11:17:11+08:00" content="2019-01-18">
-          01-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/21152.html" itemprop="url">
-            
-              <span itemprop="name">Generative Adversarial Imitation Learning(GAIL) 论文阅读笔记</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-05T16:50:34+08:00" content="2019-01-05">
-          01-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/20206.html" itemprop="url">
-            
-              <span itemprop="name">无外网情况下RPM方式安装MySQL5.6</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-05T15:15:59+08:00" content="2019-01-05">
-          01-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/46919.html" itemprop="url">
-            
-              <span itemprop="name">Docker给运行中的容器添加映射端口</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-05T15:12:09+08:00" content="2019-01-05">
-          01-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/33864.html" itemprop="url">
-            
-              <span itemprop="name">使用Scala基于词法单元的解析器定制EBNF范式文法解析</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-05T15:10:01+08:00" content="2019-01-05">
-          01-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/24621.html" itemprop="url">
-            
-              <span itemprop="name">Linux内存占用过高？非也</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-05T11:41:08+08:00" content="2019-01-05">
-          01-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-    </div>
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2019/01/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/01/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -858,8 +825,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -998,6 +974,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-重要性采样"><span class="nav-number">1.</span> <span class="nav-text">一、 重要性采样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、-梯度与参数更新"><span class="nav-number">2.</span> <span class="nav-text">二、 梯度与参数更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、-实际算法中对策略梯度的处理方法"><span class="nav-number">3.</span> <span class="nav-text">三、 实际算法中对策略梯度的处理方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、GAE-Generalized-Advantage-Estimation"><span class="nav-number">4.</span> <span class="nav-text">四、GAE(Generalized Advantage Estimation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、PPO关于策略梯度的目标函数"><span class="nav-number">5.</span> <span class="nav-text">五、PPO关于策略梯度的目标函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、-PPO的目标函数"><span class="nav-number">6.</span> <span class="nav-text">六、 PPO的目标函数</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1167,6 +1160,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -1202,6 +1199,30 @@
     </style>
   
 
+  
+    <script>
+    function renderGitment(){
+      var gitment = new Gitmint({
+        id: window.location.pathname,
+        owner: 'zhkmxx9302013',
+        repo: 'zhkmxx9302013.github.io',
+        
+        lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+        
+        oauth: {
+        
+        
+          client_secret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
+        
+          client_id: '8ffda7fd0bcee5f2074f'
+        }});
+      gitment.render('gitment-container');
+    }
+
+    
+      renderGitment();
+    
+    </script>
   
 
 
@@ -1541,43 +1562,40 @@
   
   <script>
     
-    function showTime(Counter) {
-      var entries = [];
+    function addCount(Counter) {
       var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
         .done(function ({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
           }
         })
-        .fail(function ({ responseJSON }) {
-          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
-        });
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
     }
     
 
@@ -1597,9 +1615,7 @@
             });
           };
           
-          if ($('.post-title-link').length >= 1) {
-            showTime(Counter);
-          }
+          addCount(Counter);
           
         })
     });
@@ -1635,11 +1651,67 @@
   
 
   
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
 
 
   
 
   
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 16260,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
 
   
 

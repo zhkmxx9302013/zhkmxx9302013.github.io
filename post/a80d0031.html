@@ -109,33 +109,27 @@
 
 
 
-  <meta name="description" content="2017~2019年度我在Github上面收藏的一些优质干货Repo其中有一些很荣幸作为Repo的贡献者，在issue中也结识了不少好友，共同学习  计算机软件工程类 免费的计算机编程类中文书籍   (44638 star) 设计模式-包教不包会 IntelliJ IDEA 简体中文专题教程">
-<meta name="keywords" content="干货分享">
+  <meta name="description" content="[Leetcode 139] 单词拆分 解法(4种)  解法一:  DFS  解法二:  记忆化DFS  解法三:  bottom up DP  [子问题定义] : DP子问题是从0开始到当前位置的子串是否可分(dp[i] == true?)，当前位置总共有n个可能，所以子问题的个数是n个。 使用hashset转储dict 构建dp数组，默认初始空串是可分的即dp[0]=1, 遍历初始串，验证从前">
+<meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="干货收集">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/post/b8a74939.html">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/a80d0031.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="2017~2019年度我在Github上面收藏的一些优质干货Repo其中有一些很荣幸作为Repo的贡献者，在issue中也结识了不少好友，共同学习  计算机软件工程类 免费的计算机编程类中文书籍   (44638 star) 设计模式-包教不包会 IntelliJ IDEA 简体中文专题教程">
+<meta property="og:description" content="[Leetcode 139] 单词拆分 解法(4种)  解法一:  DFS  解法二:  记忆化DFS  解法三:  bottom up DP  [子问题定义] : DP子问题是从0开始到当前位置的子串是否可分(dp[i] == true?)，当前位置总共有n个可能，所以子问题的个数是n个。 使用hashset转储dict 构建dp数组，默认初始空串是可分的即dp[0]=1, 遍历初始串，验证从前">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548490937/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126162112.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548490887/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126162111.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548491108/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126162454.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548491208/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126162631.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548491429/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126163016.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548491743/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126163528.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548491627/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126163333.png">
-<meta property="og:updated_time" content="2019-02-11T08:39:42.066Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1552362068/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190312114003.png">
+<meta property="og:updated_time" content="2019-03-17T06:09:48.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="干货收集">
-<meta name="twitter:description" content="2017~2019年度我在Github上面收藏的一些优质干货Repo其中有一些很荣幸作为Repo的贡献者，在issue中也结识了不少好友，共同学习  计算机软件工程类 免费的计算机编程类中文书籍   (44638 star) 设计模式-包教不包会 IntelliJ IDEA 简体中文专题教程">
-<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548490937/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126162112.png">
+<meta name="twitter:title" content="动态规划">
+<meta name="twitter:description" content="[Leetcode 139] 单词拆分 解法(4种)  解法一:  DFS  解法二:  记忆化DFS  解法三:  bottom up DP  [子问题定义] : DP子问题是从0开始到当前位置的子串是否可分(dp[i] == true?)，当前位置总共有n个可能，所以子问题的个数是n个。 使用hashset转储dict 构建dp数组，默认初始空串是可分的即dp[0]=1, 遍历初始串，验证从前">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1552362068/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190312114003.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/b8a74939.html">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/a80d0031.html">
 
 
 
@@ -145,7 +139,7 @@
   };
 </script>
 
-  <title>干货收集 | zhkmxx930 blog</title>
+  <title>动态规划 | zhkmxx930 blog</title>
   
 
 
@@ -448,7 +442,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/b8a74939.html">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/a80d0031.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -465,7 +459,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">干货收集
+          <h2 class="post-title" itemprop="name headline">动态规划
 
               
             
@@ -491,7 +485,7 @@
                 
               
 
-              <time title="创建时间：2019-01-26 16:10:32" itemprop="dateCreated datePublished" datetime="2019-01-26T16:10:32+08:00">2019-01-26</time>
+              <time title="创建时间：2019-03-12 11:33:33" itemprop="dateCreated datePublished" datetime="2019-03-12T11:33:33+08:00">2019-03-12</time>
             
 
             
@@ -508,7 +502,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-11 16:39:42" itemprop="dateModified" datetime="2019-02-11T16:39:42+08:00">2019-02-11</time>
+                <time title="修改时间：2019-03-17 14:09:48" itemprop="dateModified" datetime="2019-03-17T14:09:48+08:00">2019-03-17</time>
               
             
           </span>
@@ -522,8 +516,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/b8a74939.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/b8a74939.html" itemprop="commentsCount"></span>
+                <a href="/post/a80d0031.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/a80d0031.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -531,7 +525,7 @@
 
           
           
-             <span id="/post/b8a74939.html" class="leancloud_visitors" data-flag-title="干货收集">
+             <span id="/post/a80d0031.html" class="leancloud_visitors" data-flag-title="动态规划">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -562,28 +556,47 @@
       
 
       
-        <blockquote>
-<p>2017~2019年度我在Github上面收藏的一些优质干货Repo<br>其中有一些很荣幸作为Repo的贡献者，在issue中也结识了不少好友，共同学习</p>
-</blockquote>
-<h3 id="计算机软件工程类"><a href="#计算机软件工程类" class="headerlink" title="计算机软件工程类"></a>计算机软件工程类</h3><ul>
-<li><a href="https://github.com/justjavac/free-programming-books-zh_CN" target="_blank" rel="noopener">免费的计算机编程类中文书籍</a>   (44638 star)</li>
-<li><a href="https://github.com/AlfredTheBest/Design-Pattern" target="_blank" rel="noopener">设计模式-包教不包会</a><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548490937/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126162112.png" alt="x"></li>
-<li><a href="https://github.com/judasn/IntelliJ-IDEA-Tutorial" target="_blank" rel="noopener">IntelliJ IDEA 简体中文专题教程</a><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548490887/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126162111.png" alt="x"><a id="more"></a></li>
-<li><a href="https://github.com/stanzhai/be-a-professional-programmer" target="_blank" rel="noopener">成为专业程序员路上用到的各种优秀资料、神器及框架</a><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548491108/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126162454.png" alt="x"></li>
-<li><a href="https://github.com/jacksu/utils4s" target="_blank" rel="noopener">scala、spark使用过程中，各种测试用例以及相关资料整理</a><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548491208/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126162631.png" alt="x"></li>
+        <h3 id="Leetcode-139-单词拆分"><a href="#Leetcode-139-单词拆分" class="headerlink" title="[Leetcode 139] 单词拆分"></a>[Leetcode 139] <a href="https://leetcode-cn.com/problems/word-break/" target="_blank" rel="noopener">单词拆分</a></h3><ul>
+<li><p>解法(4种)</p>
+<ul>
+<li><p>解法一:  DFS</p>
+</li>
+<li><p>解法二:  记忆化DFS</p>
+</li>
+<li><p>解法三:  bottom up DP </p>
+<p><strong>[子问题定义] :</strong> DP子问题是从0开始到当前位置的子串是否可分(dp[i] == true?)，当前位置总共有n个可能，所以子问题的个数是n个。</p>
+<p>使用hashset转储dict</p>
+<p>构建dp数组，默认初始空串是可分的即dp[0]=1,</p>
+<p>遍历初始串，验证从前面可分的子串尾部到当前位置的字符串([j为dp[j]==1, i])是否在字典中，如果在字典中则记录当前位置可分</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1552362068/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190312114003.png" alt=""></p>
+</li>
+<li><p>解法四:  Bottom up DP + max trick</p>
+</li>
 </ul>
-<h3 id="刷题类"><a href="#刷题类" class="headerlink" title="刷题类"></a>刷题类</h3><ul>
-<li><a href="https://github.com/zhkmxx9302013/leetcode" target="_blank" rel="noopener">Leetcode刷题(正在完善，可贡献)</a><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548491429/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126163016.png" alt="x"></li>
-<li><a href="https://github.com/zhkmxx9302013/algorithm" target="_blank" rel="noopener">algorithm</a></li>
-<li><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548491743/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126163528.png" alt="x"></li>
-<li></li>
+<a id="more"></a>
+</li>
+<li><p>代码:</p>
+</li>
 </ul>
-<h3 id="深度学习类"><a href="#深度学习类" class="headerlink" title="深度学习类"></a>深度学习类</h3><ul>
-<li><a href="https://github.com/exacity/deeplearningbook-chinese" target="_blank" rel="noopener">deeplearningbook-chinese</a><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548491627/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126163333.png" alt="x"></li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">wordBreak</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; wordDict)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt; wordSet(wordDict.cbegin(), wordDict.cend());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span> &gt; dp(s.size()+<span class="number">1</span>, <span class="number">0</span>); <span class="comment">//加1是给空串留位置</span></span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">// 空串可分</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//解n个子问题</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.size()+<span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j  = <span class="number">0</span>; j &lt; i; j++)&#123;</span><br><span class="line">                <span class="comment">// j之前可分，判断j~i这段是不是可分的，可分的话，i的位置记为1</span></span><br><span class="line">                <span class="keyword">if</span>(dp[j])&#123;</span><br><span class="line">                    <span class="built_in">string</span> tmp = s.substr(j, i-j);</span><br><span class="line">                    <span class="keyword">if</span>(wordSet.find(tmp) != wordSet.end())&#123;</span><br><span class="line">                        dp[i] = <span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp[s.size()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Leetcode-124-二叉树中的最大路径和"><a href="#Leetcode-124-二叉树中的最大路径和" class="headerlink" title="[Leetcode 124] 二叉树中的最大路径和"></a>[Leetcode 124] <a href="https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener">二叉树中的最大路径和</a></h3><ul>
+<li><p>解法:</p>
+<p>找二叉树中的最大路径和，首先要考虑清楚是从上往下找，还是从下往上找，通过观察树的结构， 我们发现从下到上最好找。</p>
+<p>1、最优子结构</p>
+<pre><code>因为树是由一个个更小的结点树组成，所以我们可以把问题分解成一个个更小的树。
+
+当树的结点只有一个时，最大的路径就是他自身，让树的高度为2时，根节点的最大路径为左右结点中的最大值加上根节点本身的值：max(l, r) + root.val， 如果左右结点都为负数，还没有自身的值大呢，所以我们取其中的最大值。maxSubSubTree = max(max(l, r) + root.val, root.val)
+
+知道了二叉树的最优左右路径，我们需要比较整体路径，maxSubTree = max(maxSubSubTree, l+r+root.val)。
+
+再将以该结点为根节点的二叉树的最大路径和，和全局的路径和比较，取两者最大值，res = max(res, maxSubTree)
+</code></pre><p>2、重叠子问题</p>
+<pre><code>从下往上走，当底层的最优路径找出来了， 上一层结点就能直接用下一层的结果,依次向上递推，求解过程都简化成了对若干个个高度为2 的二叉树的操作。当递归完成时，根节点的值就是整颗二叉树的最大路径和。
+</code></pre></li>
+<li><p>代码:</p>
+</li>
 </ul>
-<blockquote>
-<p>随着整理，持续更新</p>
-</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=INT_MIN;</span><br><span class="line">        getMaxPath(root, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMaxPath</span><span class="params">(TreeNode* root, <span class="keyword">int</span> &amp;res)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left = getMaxPath(root-&gt;left, res);</span><br><span class="line">        <span class="keyword">int</span> right = getMaxPath(root-&gt;right, res);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//下一级到上一级的最优解</span></span><br><span class="line">        <span class="comment">//下一级的最优解和自身相比，如果下一级没有，或者都为负数，则为自身</span></span><br><span class="line">        <span class="keyword">int</span> maxSubSubTree = max(max(left, right) + root-&gt;val, root-&gt;val);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//表示所考虑是以该结点为根的路径和 </span></span><br><span class="line">        <span class="keyword">int</span> maxSubTree = max(maxSubSubTree, root-&gt;val + left+ right);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//更新整个树中的最大路径和</span></span><br><span class="line">        res = max(maxSubTree, res);</span><br><span class="line">        <span class="keyword">return</span> maxSubSubTree; <span class="comment">//返回单个子子树最优解</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -602,12 +615,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/post/b8a74939.html">干货收集</a></p>
+  <p><span>本文标题:</span><a href="/post/a80d0031.html">动态规划</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
-  <p><span>发布时间:</span>2019年01月26日 - 16:01</p>
-  <p><span>最后更新:</span>2019年02月11日 - 16:02</p>
-  <p><span>原始链接:</span><a href="/post/b8a74939.html" title="干货收集">http://zhkmxx9302013.github.io/post/b8a74939.html</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/b8a74939.html" aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年03月12日 - 11:03</p>
+  <p><span>最后更新:</span>2019年03月17日 - 14:03</p>
+  <p><span>原始链接:</span><a href="/post/a80d0031.html" title="动态规划">http://zhkmxx9302013.github.io/post/a80d0031.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/a80d0031.html" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -641,7 +654,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/干货分享/" rel="tag"># 干货分享</a>
+            <a href="/tags/数据结构与算法/" rel="tag"># 数据结构与算法</a>
           
         </div>
       
@@ -666,8 +679,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/22518.html" rel="next" title="[强化学习笔记专题(二)]Nature DQN">
-                <i class="fa fa-chevron-left"></i> [强化学习笔记专题(二)]Nature DQN
+              <a href="/post/3cc694a0.html" rel="next" title="PPO、GAE笔记">
+                <i class="fa fa-chevron-left"></i> PPO、GAE笔记
               </a>
             
           </div>
@@ -675,10 +688,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/76e180f5.html" rel="prev" title="[刷题]二叉树专题">
-                [刷题]二叉树专题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -890,7 +899,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机软件工程类"><span class="nav-number">1.</span> <span class="nav-text">计算机软件工程类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#刷题类"><span class="nav-number">2.</span> <span class="nav-text">刷题类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度学习类"><span class="nav-number">3.</span> <span class="nav-text">深度学习类</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-139-单词拆分"><span class="nav-number">1.</span> <span class="nav-text">[Leetcode 139] 单词拆分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-124-二叉树中的最大路径和"><span class="nav-number">2.</span> <span class="nav-text">[Leetcode 124] 二叉树中的最大路径和</span></a></li></ol></div>
             
 
           </div>
@@ -1555,6 +1564,43 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
   
 
 

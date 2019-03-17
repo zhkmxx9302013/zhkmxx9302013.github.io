@@ -118,7 +118,8 @@
 <meta property="og:description" content="[Leetcode 139] 单词拆分 解法(4种)  解法一:  DFS  解法二:  记忆化DFS  解法三:  bottom up DP  [子问题定义] : DP子问题是从0开始到当前位置的子串是否可分(dp[i] == true?)，当前位置总共有n个可能，所以子问题的个数是n个。 使用hashset转储dict 构建dp数组，默认初始空串是可分的即dp[0]=1, 遍历初始串，验证从前">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1552362068/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190312114003.png">
-<meta property="og:updated_time" content="2019-03-17T06:09:48.339Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1552818789/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190317182814.png">
+<meta property="og:updated_time" content="2019-03-17T10:40:32.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划">
 <meta name="twitter:description" content="[Leetcode 139] 单词拆分 解法(4种)  解法一:  DFS  解法二:  记忆化DFS  解法三:  bottom up DP  [子问题定义] : DP子问题是从0开始到当前位置的子串是否可分(dp[i] == true?)，当前位置总共有n个可能，所以子问题的个数是n个。 使用hashset转储dict 构建dp数组，默认初始空串是可分的即dp[0]=1, 遍历初始串，验证从前">
@@ -502,7 +503,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-17 14:09:48" itemprop="dateModified" datetime="2019-03-17T14:09:48+08:00">2019-03-17</time>
+                <time title="修改时间：2019-03-17 18:40:32" itemprop="dateModified" datetime="2019-03-17T18:40:32+08:00">2019-03-17</time>
               
             
           </span>
@@ -582,21 +583,28 @@
 <h3 id="Leetcode-124-二叉树中的最大路径和"><a href="#Leetcode-124-二叉树中的最大路径和" class="headerlink" title="[Leetcode 124] 二叉树中的最大路径和"></a>[Leetcode 124] <a href="https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener">二叉树中的最大路径和</a></h3><ul>
 <li><p>解法:</p>
 <p>找二叉树中的最大路径和，首先要考虑清楚是从上往下找，还是从下往上找，通过观察树的结构， 我们发现从下到上最好找。</p>
-<p>1、最优子结构</p>
-<pre><code>因为树是由一个个更小的结点树组成，所以我们可以把问题分解成一个个更小的树。
-
-当树的结点只有一个时，最大的路径就是他自身，让树的高度为2时，根节点的最大路径为左右结点中的最大值加上根节点本身的值：max(l, r) + root.val， 如果左右结点都为负数，还没有自身的值大呢，所以我们取其中的最大值。maxSubSubTree = max(max(l, r) + root.val, root.val)
-
-知道了二叉树的最优左右路径，我们需要比较整体路径，maxSubTree = max(maxSubSubTree, l+r+root.val)。
-
-再将以该结点为根节点的二叉树的最大路径和，和全局的路径和比较，取两者最大值，res = max(res, maxSubTree)
-</code></pre><p>2、重叠子问题</p>
-<pre><code>从下往上走，当底层的最优路径找出来了， 上一层结点就能直接用下一层的结果,依次向上递推，求解过程都简化成了对若干个个高度为2 的二叉树的操作。当递归完成时，根节点的值就是整颗二叉树的最大路径和。
-</code></pre></li>
-<li><p>代码:</p>
 </li>
 </ul>
+<p><strong>1、最优子结构</strong><br>    因为树是由一个个更小的结点树组成，所以我们可以把问题分解成一个个更小的树。<br>    当树的结点只有一个时，最大的路径就是他自身，让树的高度为2时，根节点的最大路径为左右结点中的最大值加上根节点本身的值：max(l, r) + root.val， 如果左右结点都为负数，还没有自身的值大呢，所以我们取其中的最大值。maxSubSubTree = max(max(l, r) + root.val, root.val)<br>    知道了二叉树的最优左右路径，我们需要比较整体路径，maxSubTree = max(maxSubSubTree, l+r+root.val)。<br>    再将以该结点为根节点的二叉树的最大路径和，和全局的路径和比较，取两者最大值，res = max(res, maxSubTree)<br><strong>2、重叠子问题</strong><br>    从下往上走，当底层的最优路径找出来了， 上一层结点就能直接用下一层的结果,依次向上递推，求解过程都简化成了对若干个个高度为2 的二叉树的操作。当递归完成时，根节点的值就是整颗二叉树的最大路径和。    </p>
+<ul>
+<li>代码:</li>
+</ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=INT_MIN;</span><br><span class="line">        getMaxPath(root, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMaxPath</span><span class="params">(TreeNode* root, <span class="keyword">int</span> &amp;res)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left = getMaxPath(root-&gt;left, res);</span><br><span class="line">        <span class="keyword">int</span> right = getMaxPath(root-&gt;right, res);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//下一级到上一级的最优解</span></span><br><span class="line">        <span class="comment">//下一级的最优解和自身相比，如果下一级没有，或者都为负数，则为自身</span></span><br><span class="line">        <span class="keyword">int</span> maxSubSubTree = max(max(left, right) + root-&gt;val, root-&gt;val);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//表示所考虑是以该结点为根的路径和 </span></span><br><span class="line">        <span class="keyword">int</span> maxSubTree = max(maxSubSubTree, root-&gt;val + left+ right);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//更新整个树中的最大路径和</span></span><br><span class="line">        res = max(maxSubTree, res);</span><br><span class="line">        <span class="keyword">return</span> maxSubSubTree; <span class="comment">//返回单个子子树最优解</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Leetcode-128-最长连续序列"><a href="#Leetcode-128-最长连续序列" class="headerlink" title="[Leetcode 128] 最长连续序列"></a>[Leetcode 128] <a href="https://leetcode-cn.com/problems/longest-consecutive-sequence/" target="_blank" rel="noopener">最长连续序列</a></h3><ul>
+<li><p>解法：(参考<a href="https://www.bilibili.com/video/av38647879" target="_blank" rel="noopener">花花酱</a>)</p>
+<p>使用hashmap来构建，将数组中的值作为键，连续元素数目作为边界值，并存储在hashmap的连续区域边界节点中。</p>
+<p>节点更新有三种情况:</p>
+<ol>
+<li>当前元素在hashmap中没有左右邻居，那么该节点的hashmap值为1 <currnodeval, 1="">;</currnodeval,></li>
+<li>当前元素在hashmap中有左或右邻居(只存在一边)，那么该节点的hashmap值为其对应左右边界的连续值加1</li>
+<li>当前元素能够桥接两个连续区域，那么该节点的hashmap值可以不关心，但是其左侧的左边界值与右侧部分的右边界值对应加一。</li>
+</ol>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1552818789/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190317182814.png" alt=""></p>
+</li>
+<li><p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestConsecutive</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; hashMap;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> item: nums)&#123;</span><br><span class="line">            <span class="keyword">if</span>(hashMap.count(item)) <span class="keyword">continue</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">auto</span> it_left = hashMap.find(item<span class="number">-1</span>);</span><br><span class="line">            <span class="keyword">auto</span> it_right = hashMap.find(item+<span class="number">1</span>);</span><br><span class="line">            <span class="comment">//获取当前元素左右的边界值，左右无邻居则对应的l,r 为0</span></span><br><span class="line">            <span class="keyword">int</span> l = it_left!=hashMap.end() ? it_left-&gt;second : <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> r = it_right!=hashMap.end() ? it_right-&gt;second : <span class="number">0</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//[case3]当前元素能够桥接两个连续区域，那么该节点的hashmap值可以不关心(程序中得填充表示，默认就是跟左右边界相等就行)，但是其左侧的左边界值与右侧部分的右边界值对应加一。</span></span><br><span class="line">            <span class="keyword">if</span>(l!=<span class="number">0</span> &amp;&amp; r!=<span class="number">0</span>)&#123;</span><br><span class="line">                hashMap[item] = hashMap[item-l] = hashMap[item+r] = r + l + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(l!=<span class="number">0</span> &amp;&amp; r == <span class="number">0</span>)&#123; <span class="comment">//[case2] 当前元素在hashmap中有左或右邻居(只存在一边)，那么该节点的hashmap值为其对应左右边界的连续值加1</span></span><br><span class="line">                hashMap[item] = hashMap[item-l] = l + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(l==<span class="number">0</span> &amp;&amp; r!=<span class="number">0</span>)&#123; <span class="comment">//[case2] 当前元素在hashmap中有左或右邻居(只存在一边)，那么该节点的hashmap值为其对应左右边界的连续值加1</span></span><br><span class="line">                 hashMap[item] = hashMap[item+r] = r + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123; <span class="comment">//[case1] 当前元素在hashmap中没有左右邻居，那么该节点的hashmap值为1 &lt;currNodeVal, 1&gt;;</span></span><br><span class="line">                hashMap[item] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 遍历选择边界值最大的</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; item: hashMap)&#123;</span><br><span class="line">            res = max(res, item.second);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -618,7 +626,7 @@
   <p><span>本文标题:</span><a href="/post/a80d0031.html">动态规划</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
   <p><span>发布时间:</span>2019年03月12日 - 11:03</p>
-  <p><span>最后更新:</span>2019年03月17日 - 14:03</p>
+  <p><span>最后更新:</span>2019年03月17日 - 18:03</p>
   <p><span>原始链接:</span><a href="/post/a80d0031.html" title="动态规划">http://zhkmxx9302013.github.io/post/a80d0031.html</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/a80d0031.html" aria-label="复制成功！"></i></span>
   </p>
@@ -899,7 +907,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-139-单词拆分"><span class="nav-number">1.</span> <span class="nav-text">[Leetcode 139] 单词拆分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-124-二叉树中的最大路径和"><span class="nav-number">2.</span> <span class="nav-text">[Leetcode 124] 二叉树中的最大路径和</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-139-单词拆分"><span class="nav-number">1.</span> <span class="nav-text">[Leetcode 139] 单词拆分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-124-二叉树中的最大路径和"><span class="nav-number">2.</span> <span class="nav-text">[Leetcode 124] 二叉树中的最大路径和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-128-最长连续序列"><span class="nav-number">3.</span> <span class="nav-text">[Leetcode 128] 最长连续序列</span></a></li></ol></div>
             
 
           </div>

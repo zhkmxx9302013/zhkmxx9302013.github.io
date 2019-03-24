@@ -498,7 +498,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-11 11:33:25" itemprop="dateModified" datetime="2019-03-11T11:33:25+08:00">2019-03-11</time>
+                <time title="修改时间：2019-03-23 12:00:24" itemprop="dateModified" datetime="2019-03-23T12:00:24+08:00">2019-03-23</time>
               
             
           </span>
@@ -588,6 +588,13 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; partition(<span class="built_in">string</span> s) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span> &gt;&gt; res;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; tmp;</span><br><span class="line">        </span><br><span class="line">        dfs(res, tmp, <span class="number">0</span>, s.length()<span class="number">-1</span>, s);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span> &lt;<span class="built_in">string</span>&gt; &gt;&amp; res, <span class="built_in">vector</span>&lt;<span class="built_in">string</span> &gt;&amp; tmp, <span class="keyword">int</span> startPos, <span class="keyword">int</span> endPos, <span class="built_in">string</span> &amp;s)</span></span>&#123;</span><br><span class="line">        <span class="comment">//当原字符串都遍历完成后，结束一次搜索。</span></span><br><span class="line">        <span class="keyword">if</span>(startPos &gt; endPos)&#123;</span><br><span class="line">            res.emplace_back(tmp);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遍历子串，从0~1，0~2 ... 到0~n, 递归的起始位置为截断后的第一位</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span>; i &lt;= endPos-startPos+<span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(isPalindrome(s.substr(startPos, i)))&#123;</span><br><span class="line">                tmp.emplace_back(s.substr(startPos, i));</span><br><span class="line">                <span class="comment">//递归的起始位置为截断后的第一位</span></span><br><span class="line">                dfs(res, tmp, startPos+i, endPos, s);</span><br><span class="line">                tmp.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 判断回文串，这里用的是可解决大小写字母，数字的，过滤其他符号。</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pStart = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> pEnd = s.length()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(pStart &lt; pEnd)&#123;</span><br><span class="line">            <span class="keyword">while</span> (!checkChar(s[pStart]) &amp;&amp; pStart &lt; pEnd)</span><br><span class="line">				pStart++;</span><br><span class="line">			<span class="keyword">while</span> (!checkChar(s[pEnd]) &amp;&amp; pStart &lt; pEnd)</span><br><span class="line">				pEnd--;</span><br><span class="line"></span><br><span class="line">			toLower(s[pStart]);</span><br><span class="line">			toLower(s[pEnd]);</span><br><span class="line">           </span><br><span class="line">            <span class="keyword">if</span>(s[pStart] == s[pEnd])&#123;</span><br><span class="line">                pStart ++;</span><br><span class="line">                pEnd--;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">               </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">toLower</span><span class="params">(<span class="keyword">char</span>&amp; s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s &gt;= <span class="string">'A'</span> &amp;&amp; s &lt;= <span class="string">'Z'</span>)</span><br><span class="line">            s = s+<span class="number">32</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">checkChar</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>&amp; s)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> ((s &gt;= <span class="string">'a'</span> &amp;&amp; s &lt;= <span class="string">'z'</span>) || (s &gt;= <span class="string">'0'</span> &amp;&amp; s &lt;= <span class="string">'9'</span>) || (s &gt;= <span class="string">'A'</span> &amp;&amp; s &lt;= <span class="string">'Z'</span>))</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="7-机器人运动范围"><a href="#7-机器人运动范围" class="headerlink" title="7.机器人运动范围"></a>7.<a href="https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&amp;tqId=11219&amp;tPage=4&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking" target="_blank" rel="noopener">机器人运动范围</a></h3><ul>
+<li><p>规规矩矩没啥说的, 主要注意边界条件</p>
+</li>
+<li><p>代码:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">movingCount</span><span class="params">(<span class="keyword">int</span> threshold, <span class="keyword">int</span> rows, <span class="keyword">int</span> cols)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; visited (rows, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(cols, <span class="number">0</span>));</span><br><span class="line">        Dfs(threshold, rows, cols, <span class="number">0</span>, <span class="number">0</span>, res, visited);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Dfs</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; threshold, <span class="keyword">const</span> <span class="keyword">int</span>&amp; rows, <span class="keyword">const</span> <span class="keyword">int</span>&amp; cols, <span class="keyword">int</span> rowIdx, <span class="keyword">int</span> colIdx, <span class="keyword">int</span>&amp; res, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; visited)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (JudgeOverThreshold(threshold, rowIdx, colIdx) || JudgeOutside(rows, cols, rowIdx, colIdx) || visited[rowIdx][colIdx] )</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        visited[rowIdx][colIdx] = <span class="number">1</span>;</span><br><span class="line">        res ++;</span><br><span class="line">        Dfs(threshold, rows, cols, rowIdx+<span class="number">1</span>, colIdx, res, visited);</span><br><span class="line">        Dfs(threshold, rows, cols, rowIdx, colIdx+<span class="number">1</span>, res, visited);</span><br><span class="line">        Dfs(threshold, rows, cols, rowIdx<span class="number">-1</span>, colIdx, res, visited);</span><br><span class="line">        Dfs(threshold, rows, cols, rowIdx, colIdx<span class="number">-1</span>, res, visited);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">JudgeOverThreshold</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; threshold, <span class="keyword">int</span> rowIdx, <span class="keyword">int</span> colIdx)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(rowIdx)&#123;</span><br><span class="line">            sum += rowIdx%<span class="number">10</span>;</span><br><span class="line">            rowIdx /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(colIdx)&#123;</span><br><span class="line">            sum += colIdx%<span class="number">10</span>;</span><br><span class="line">            colIdx /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(sum &gt; threshold) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">JudgeOutside</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; rows, <span class="keyword">const</span> <span class="keyword">int</span>&amp; cols, <span class="keyword">const</span> <span class="keyword">int</span>&amp; rowIdx, <span class="keyword">const</span> <span class="keyword">int</span>&amp; colIdx)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(rowIdx &lt; <span class="number">0</span> || rowIdx &gt; rows<span class="number">-1</span> || colIdx &lt; <span class="number">0</span>  || colIdx &gt; cols<span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
           
         
@@ -647,7 +654,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/6db30a46.html">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/0.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -667,7 +674,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/post/6db30a46.html" class="post-title-link" itemprop="url">[刷题]链表专题</a>
+                <a href="/post/0.html" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h2>
@@ -709,7 +716,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-13 23:13:46" itemprop="dateModified" datetime="2019-02-13T23:13:46+08:00">2019-02-13</time>
+                <time title="修改时间：2019-03-23 10:33:09" itemprop="dateModified" datetime="2019-03-23T10:33:09+08:00">2019-03-23</time>
               
             
           </span>
@@ -722,7 +729,7 @@
 
           
           
-             <span id="/post/6db30a46.html" class="leancloud_visitors" data-flag-title="[刷题]链表专题">
+             <span id="/post/0.html" class="leancloud_visitors" data-flag-title="">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -754,7 +761,8 @@
 
       
         
-          <h3 id="Leetcode-141-142-环形链表，环形链表-II-（剑指Offer面试题23）"><a href="#Leetcode-141-142-环形链表，环形链表-II-（剑指Offer面试题23）" class="headerlink" title="[Leetcode 141, 142] 环形链表，环形链表 II （剑指Offer面试题23）"></a>[Leetcode 141, 142] <a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">环形链表</a>，<a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/" target="_blank" rel="noopener">环形链表 II</a> （剑指Offer面试题23）</h3><ul>
+          <p>title: “[刷题]链表专题”<br>tags: 数据结构与算法<br>abbrlink: 6db30a46<br>date: 2019-02-12 21:23:22</p>
+<h3 id="Leetcode-141-142-环形链表，环形链表-II-（剑指Offer面试题23）"><a href="#Leetcode-141-142-环形链表，环形链表-II-（剑指Offer面试题23）" class="headerlink" title="[Leetcode 141, 142] 环形链表，环形链表 II （剑指Offer面试题23）"></a>[Leetcode 141, 142] <a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">环形链表</a>，<a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/" target="_blank" rel="noopener">环形链表 II</a> （剑指Offer面试题23）</h3><ul>
 <li><p>解法：(链表遍历，快慢指针)</p>
 <ul>
 <li>判环：快慢指针，快指针+2， 慢指针+1，若快指针在到达链表尾(不带环的才有链表尾)之前与慢指针相遇，则有环。</li>
@@ -763,7 +771,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/post/6db30a46.html#more" rel="contents">
+              <a class="btn" href="/post/0.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1253,7 +1261,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-04 22:29:58" itemprop="dateModified" datetime="2019-03-04T22:29:58+08:00">2019-03-04</time>
+                <time title="修改时间：2019-03-19 11:35:03" itemprop="dateModified" datetime="2019-03-19T11:35:03+08:00">2019-03-19</time>
               
             
           </span>
@@ -1298,7 +1306,10 @@
 
       
         
-          <h3 id="1-Leetcode-105-从前序与中序遍历序列构造二叉树-剑指OFFER面试题-7"><a href="#1-Leetcode-105-从前序与中序遍历序列构造二叉树-剑指OFFER面试题-7" class="headerlink" title="1. [Leetcode 105] 从前序与中序遍历序列构造二叉树 (剑指OFFER面试题 7)"></a>1. [Leetcode 105] <a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">从前序与中序遍历序列构造二叉树</a> (剑指OFFER面试题 7)</h3><ul>
+          <blockquote>
+<p>参考 <a href="https://www.toutiao.com/a6669724491066638859/?tt_from=weixin&amp;utm_campaign=client_share&amp;wxshare_count=1&amp;timestamp=1552926051&amp;app=news_article&amp;utm_source=weixin&amp;utm_medium=toutiao_android&amp;group_id=6669724491066638859" target="_blank" rel="noopener">几道和「二叉树」有关的算法面试题</a></p>
+</blockquote>
+<h3 id="1-Leetcode-105-从前序与中序遍历序列构造二叉树-剑指OFFER面试题-7"><a href="#1-Leetcode-105-从前序与中序遍历序列构造二叉树-剑指OFFER面试题-7" class="headerlink" title="1. [Leetcode 105] 从前序与中序遍历序列构造二叉树 (剑指OFFER面试题 7)"></a>1. [Leetcode 105] <a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">从前序与中序遍历序列构造二叉树</a> (剑指OFFER面试题 7)</h3><ul>
 <li><strong>解法：</strong>递归，由先序序列确定子树根节点，由中序序列确定当前节点下的子树范围。</li>
 <li><strong>主要参数(递归函数)：</strong>先序序列的起点idx与终点idx， 中序序列的起点idx与终点idx。</li>
 <li><strong>递归停止条件：</strong> 先序序列或中序序列的起点idx &gt; 终点idx。</li>
@@ -1990,7 +2001,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-25 09:55:00" itemprop="dateModified" datetime="2019-01-25T09:55:00+08:00">2019-01-25</time>
+                <time title="修改时间：2019-03-24 21:40:11" itemprop="dateModified" datetime="2019-03-24T21:40:11+08:00">2019-03-24</time>
               
             
           </span>
@@ -3244,10 +3255,7 @@ Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未�
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -3264,5 +3272,8 @@ Ret_t=\sum_{k=0}\gamma^kr_{t+k+1}</script><p>但是长期回报需要知道未�
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
 </html>

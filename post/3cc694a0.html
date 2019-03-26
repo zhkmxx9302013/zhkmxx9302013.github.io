@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="zhkmxx930 blog">
 <meta property="og:description" content="一、 重要性采样TRPO和PPO主要思想的数学基础是重要性采样  重要性采样：$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。   \begin{aligned} \mathbb{E}_{x\sim p}[f(x)] &amp;=\int f(x)p(x) dx \\ &amp;=\int f(x) \frac{p(x)}{q(x">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-06T13:28:32.629Z">
+<meta property="og:updated_time" content="2019-03-26T13:12:41.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PPO、GAE笔记">
 <meta name="twitter:description" content="一、 重要性采样TRPO和PPO主要思想的数学基础是重要性采样  重要性采样：$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。   \begin{aligned} \mathbb{E}_{x\sim p}[f(x)] &amp;=\int f(x)p(x) dx \\ &amp;=\int f(x) \frac{p(x)}{q(x">
@@ -483,12 +483,24 @@
                 
               
 
-              <time title="创建时间：2019-03-06 16:34:27 / 修改时间：21:28:32" itemprop="dateCreated datePublished" datetime="2019-03-06T16:34:27+08:00">2019-03-06</time>
+              <time title="创建时间：2019-03-06 16:34:27" itemprop="dateCreated datePublished" datetime="2019-03-06T16:34:27+08:00">2019-03-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-26 21:12:41" itemprop="dateModified" datetime="2019-03-26T21:12:41+08:00">2019-03-26</time>
               
             
           </span>
@@ -565,15 +577,15 @@
 </li>
 </ul>
 <hr>
-<h3 id="二、-梯度与参数更新"><a href="#二、-梯度与参数更新" class="headerlink" title="二、 梯度与参数更新"></a>二、 梯度与参数更新</h3><p><strong>1. 回报的期望：</strong>最大化全部采样轨迹上的策略回报值</p>
+<h3 id="二、-梯度与参数更新"><a href="#二、-梯度与参数更新" class="headerlink" title="二、 梯度与参数更新"></a>二、 梯度与参数更新</h3><p><strong>1. 回报的期望：</strong>最大化全部采样轨迹上的策略回报值，$R(\tau)$ 表示某一个轨迹$\tau$的回报值</p>
 <script type="math/tex; mode=display">
-\bar{R_\theta}=\sum_\tau R(\tau)p_\theta(\tau)</script><p><strong>2. 回报的期望的梯度</strong>：(第三个等号用到的公式：$\nabla f(x) = f(x) \nabla \log f(x)​$)</p>
+argmax_\theta \space \mathbb{E}[{R_\theta}]=\sum_\tau R(\tau)p_\theta(\tau)</script><p><strong>2. 回报的期望的梯度</strong>：(第三个等号用到的公式：$\nabla f(x) = f(x) \nabla \log f(x)​$)</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\nabla \bar{R_\theta}&=\sum_\tau R(\tau) \nabla p_{\theta}(\tau) \\
+\nabla \mathbb{E}[{R_\theta}]&=\sum_\tau R(\tau) \nabla p_{\theta}(\tau) \\
 &= \sum_\tau R(\tau)p_\theta(\tau)\frac{\nabla p_\theta(\tau)}{p_\theta(\tau)} \\
 &= \sum_\tau R(\tau)p_\theta(\tau){\nabla \log p_\theta(\tau)}\\
-&= \mathbb{E}_{\tau \sim p_\theta{\tau}}[R(\tau){\nabla \log p_\theta(\tau)}] \\
+&= \mathbb{E}_{\tau \sim p_\theta{(\tau)}}[R(\tau){\nabla \log p_\theta(\tau)}] \\
 &≈ \frac{1}{N} \sum_{n=1}^{N}R(\tau^n)\nabla \log p_{\theta}(\tau^n) \\
 &=\frac{1}{N}\sum_{n=1}^{N} \sum_{t=1}^{T_n} R(\tau^n)\nabla \log p_\theta(a_t^n|s_t^n)
 
@@ -658,7 +670,7 @@ TD Error=\delta_t=r_t+\gamma v(s_{t+1})-v(s_t)</script><p>运用GAE公式进行�
 &=\mathbb{E}_{(s_t,a_t)\sim\pi_\theta^\prime}[\frac{p_\theta(s_t,a_t)}{p_\theta^\prime(s_t,a_t)}A^{\theta^\prime}(s_t,a_t)\nabla \log p_\theta({a_t^n|s_t^n})] \\
 &=\mathbb{E}_{(s_t,a_t)\sim\pi_\theta^\prime}[\frac{p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)}\frac{p_\theta(s_t)}{p_\theta^\prime(s_t)}A^{\theta^\prime}(s_t,a_t)\nabla \log p_\theta({a_t^n|s_t^n})] \\
 &≈\mathbb{E}_{(s_t,a_t) \sim \pi_\theta^\prime}[\frac{\nabla p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)}A^{\theta^\prime}(s_t,a_t)]
-\end{aligned}</script><p>​    其中，从第二个等式用的是重要性采样，第三到第四个约等式由于$\frac{p_\theta(s_t)}{p_\theta^\prime(s_t)}$这一项来源于重要性采样，前提假设两个分布差别不大，近似为1，且不易计算，故省略，后面的$\nabla \log p_\theta({a_t^n|s_t^n})$ ,根据公式$\nabla f(x) = f(x) \nabla \log f(x)​$转换。     </p>
+\end{aligned}</script><p>​    其中，从第二个等式用的是重要性采样，第三到第四个约等式由于$\frac{p_\theta(s_t)}{p_\theta^\prime(s_t)}​$这一项来源于重要性采样，前提假设两个分布差别不大，近似为1，且不易计算，故省略，后面的$\nabla \log p_\theta({a_t^n|s_t^n})​$ ,根据公式$\nabla f(x) = f(x) \nabla \log f(x)​$转换。     </p>
 <p>​    因而，定义<strong>目标函数</strong>为：</p>
 <script type="math/tex; mode=display">
 J^{\theta^{\prime}} (\theta)=\mathbb{E}_{(s_t,a_t) \sim \pi_\theta^\prime}[\frac{p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)}A^{\theta^\prime}(s_t,a_t)]</script><p><strong>2. PPO对于重要性采样约束的处理</strong></p>
@@ -676,12 +688,12 @@ J^{\theta^{\prime}} (\theta)=\mathbb{E}_{(s_t,a_t) \sim \pi_\theta^\prime}[\frac
 <h3 id="六、-PPO的目标函数"><a href="#六、-PPO的目标函数" class="headerlink" title="六、 PPO的目标函数"></a>六、 PPO的目标函数</h3><p>PPO的最终目标函数由三部分组成，可使用梯度下降求解，而不是像TRPO一样使用共轭梯度法：</p>
 <ul>
 <li>策略梯度目标函数： $L_t^{CLIP}(\theta)​$</li>
-<li>值函数目标函数：$L_t^{VF}(\theta)=(V_\theta(s_t)-V_t^{target})^2​$</li>
-<li>策略模型的熵: $S_<a href="s_t">\pi_\theta</a>​$</li>
+<li>值函数目标函数：$L_t^{VF}(\theta)=(V_\theta(s_t)-V_t^{target})^2=((r+\gamma v(s_{t+1}))-v(s_t))^2$</li>
+<li>策略模型的熵: $S_{[\pi_\theta]}(s_t)=-\pi_\theta(a|s)\log\pi_\theta(a|s)​$</li>
 </ul>
 <p>完整的形式如下：</p>
 <script type="math/tex; mode=display">
-L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_2S_[\pi_\theta](s_t)]</script><p>这部分相应的代码如下：</p>
+L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_2S_{[\pi_\theta]}(s_t)]</script><p>这部分相应的代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'assign_op'</span>):</span><br><span class="line">    self.assign_ops = []</span><br><span class="line">    <span class="keyword">for</span> v_old, v <span class="keyword">in</span> zip(old_pi_trainable, pi_trainable):</span><br><span class="line">        self.assign_ops.append(tf.assign(v_old, v))</span><br><span class="line"></span><br><span class="line"><span class="comment"># inputs for train_op</span></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'train_inp'</span>):</span><br><span class="line">    self.actions = tf.placeholder(dtype=tf.int32, shape=[<span class="keyword">None</span>], name=<span class="string">'actions'</span>)</span><br><span class="line">    self.rewards = tf.placeholder(dtype=tf.float32, shape=[<span class="keyword">None</span>], name=<span class="string">'rewards'</span>)</span><br><span class="line">    self.v_preds_next = tf.placeholder(dtype=tf.float32, shape=[<span class="keyword">None</span>], name=<span class="string">'v_preds_next'</span>)</span><br><span class="line">    self.gaes = tf.placeholder(dtype=tf.float32, shape=[<span class="keyword">None</span>], name=<span class="string">'gaes'</span>)</span><br><span class="line"></span><br><span class="line">act_probs = self.Policy.act_probs</span><br><span class="line">act_probs_old = self.Old_Policy.act_probs</span><br><span class="line"></span><br><span class="line"><span class="comment"># agent通过新策略选择action的概率 probabilities of actions which agent took with policy</span></span><br><span class="line">act_probs = act_probs * tf.one_hot(indices=self.actions, depth=act_probs.shape[<span class="number">1</span>])</span><br><span class="line">act_probs = tf.reduce_sum(act_probs, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># agent通过旧策略选择action的概率 probabilities of actions which agent took with old policy</span></span><br><span class="line">act_probs_old = act_probs_old * tf.one_hot(indices=self.actions, depth=act_probs_old.shape[<span class="number">1</span>])</span><br><span class="line">act_probs_old = tf.reduce_sum(act_probs_old, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'PPO_loss'</span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        策略目标函数</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># ratios = tf.divide(act_probs, act_probs_old)</span></span><br><span class="line">    <span class="comment"># r_t(θ) = π/πold 为了防止除数为0，这里截取一下值，然后使用e(log减法)来代替直接除法</span></span><br><span class="line">    ratios = tf.exp(</span><br><span class="line">        tf.log(tf.clip_by_value(act_probs, <span class="number">1e-10</span>, <span class="number">1.0</span>)) - tf.log(tf.clip_by_value(act_probs_old, <span class="number">1e-10</span>, <span class="number">1.0</span>)))</span><br><span class="line">    <span class="comment"># L_CLIP 裁剪优势函数值</span></span><br><span class="line">    clipped_ratios = tf.clip_by_value(ratios, clip_value_min=<span class="number">1</span> - clip_value, clip_value_max=<span class="number">1</span> + clip_value)</span><br><span class="line">    self.loss_clip = tf.minimum(tf.multiply(self.gaes, ratios), tf.multiply(self.gaes, clipped_ratios))</span><br><span class="line">    self.loss_clip = tf.reduce_mean(self.loss_clip)</span><br><span class="line"></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        策略模型的熵</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 计算新策略πθ的熵 S = -p log(p) 这里裁剪防止p=0</span></span><br><span class="line">    self.entropy = -tf.reduce_sum(</span><br><span class="line">        self.Policy.act_probs * tf.log(tf.clip_by_value(self.Policy.act_probs, <span class="number">1e-10</span>, <span class="number">1.0</span>)), axis=<span class="number">1</span>)</span><br><span class="line">    self.entropy = tf.reduce_mean(self.entropy, axis=<span class="number">0</span>)  <span class="comment"># mean of entropy of pi(obs)</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        值目标函数</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># L_vf = [(r+γV(π(st+1))) - (V(π(st)))]^2</span></span><br><span class="line">    v_preds = self.Policy.v_preds</span><br><span class="line">    self.loss_vf = tf.squared_difference(self.rewards + self.gamma * self.v_preds_next, v_preds)</span><br><span class="line">    self.loss_vf = tf.reduce_mean(self.loss_vf)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># construct computation graph for loss</span></span><br><span class="line">    <span class="comment"># L(θ) = E_hat[L_CLIP(θ) - c1 L_VF(θ) + c2 S[πθ](s)]</span></span><br><span class="line">    <span class="comment"># L = 策略目标函数 + 值目标函数 + 策略模型的熵</span></span><br><span class="line">    self.loss = self.loss_clip - c_1 * self.loss_vf + c_2 * self.entropy</span><br><span class="line">    <span class="comment"># minimize -loss == maximize loss</span></span><br><span class="line">    self.loss = -self.loss</span><br><span class="line"></span><br><span class="line">optimizer = tf.train.RMSPropOptimizer(learning_rate=args.ppo_lr, epsilon=<span class="number">1e-5</span>)</span><br><span class="line">self.gradients = optimizer.compute_gradients(self.loss, var_list=pi_trainable)</span><br><span class="line">self.train_op = optimizer.minimize(self.loss, var_list=pi_trainable)</span><br></pre></td></tr></table></figure>
 
       
@@ -704,7 +716,7 @@ L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_
   <p><span>本文标题:</span><a href="/post/3cc694a0.html">PPO、GAE笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
   <p><span>发布时间:</span>2019年03月06日 - 16:03</p>
-  <p><span>最后更新:</span>2019年03月06日 - 21:03</p>
+  <p><span>最后更新:</span>2019年03月26日 - 21:03</p>
   <p><span>原始链接:</span><a href="/post/3cc694a0.html" title="PPO、GAE笔记">http://zhkmxx9302013.github.io/post/3cc694a0.html</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/3cc694a0.html" aria-label="复制成功！"></i></span>
   </p>
@@ -1816,7 +1828,10 @@ L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1833,8 +1848,5 @@ L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>

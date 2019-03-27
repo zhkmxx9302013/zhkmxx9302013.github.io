@@ -317,7 +317,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">27</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">28</span></a>
 
   </li>
         
@@ -420,6 +420,205 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/dad17569.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/post/dad17569.html" class="post-title-link" itemprop="url">DPG</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-27 16:42:32 / 修改时间：21:02:13" itemprop="dateCreated datePublished" datetime="2019-03-27T16:42:32+08:00">2019-03-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/dad17569.html" class="leancloud_visitors" data-flag-title="DPG">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>参考 <a href="https://blog.csdn.net/weixin_37895339/article/details/84881872" target="_blank" rel="noopener">【强化学习】确定性策略强化学习-DPG&amp;DDPG算法推导及分析</a></p>
+</blockquote>
+<h3 id="一、DPG"><a href="#一、DPG" class="headerlink" title="一、DPG"></a>一、DPG</h3><p>DPG算法本身采用的是PG方法,且是Off-Policy方法(也可以是On-Policy)，因而直接对轨迹的价值回报进行求导。如下式求导，其中$\mu_\theta (s)$为生成确定性行动的策略函数。</p>
+<script type="math/tex; mode=display">
+\nabla_\theta v_\mu(s)=\nabla_\theta[q_\mu(s,\mu_\theta(s))]</script><p>根据链式法则，由于$\mu_\theta(s)$与确定性策略价值函数$q_\mu$有关,因而：</p>
+<script type="math/tex; mode=display">
+\nabla_\theta v_\mu(s) = \nabla_{\mu_\theta(s)}[q_\mu(s, \mu_\theta(s))]\nabla_\theta\mu_\theta(s)</script><p>由于是确定性策略，在价值函数$q(s,μ_\theta(s))$中有策略参数$\theta$，因此需要将价值函数对策略求导。</p>
+<p>相较于随机策略梯度算法而言,如下是随机性策略梯度的目标函数梯度:</p>
+<script type="math/tex; mode=display">
+∇_θJ(θ)=\mathbb{E}_{τ∼π_θ}[(\sum_{t=0}^T∇_θ\logπ_θ(a_{i,t}∣s_{i,t}))(\sum_{t=0}^Tr(s_{i,t},a_{i,t}))]</script><p>在DPG这个梯度公式中，没有了与动作有关的期望项，因此相对于随机性策略，确定性策略需要的学习数据少，算法效率高，尤其对于动作空间维数很大的情况。</p>
+<hr>
+<h3 id="二、策略模型参数的一致性"><a href="#二、策略模型参数的一致性" class="headerlink" title="二、策略模型参数的一致性"></a>二、策略模型参数的一致性</h3><p>​    在DPG中为了更好地使用Off-policy,并使用TD降低方差，定义函数 $Q^\omega (s,a):S×A→R$ 用来拟合真实的状态动作值函数$\hat{Q}^\pi(s,a)$，如果$Q^\omega$收敛，那么L2范数梯度将满足如下公式:    </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\nabla_\omega Loss &∝ \nabla_\omega\mathbb{E}_{s,a}[\hat{Q}^\pi(s,a)-Q^\omega(s,a)]^2\\&= \mathbb{E}_{s,a\sim\tau}[(\hat{Q}^\pi(s,a)-Q^\omega(s,a))-\nabla _\omega Q^\omega(s,a)]\\&=0
+\end{aligned}</script><script type="math/tex; mode=display">
+\nabla_\omega Q^\omega(s,a)=\nabla_\theta\log\pi_\theta(s,a)=\nabla_\theta\pi_\theta(s,a)\frac{1}{\pi_\theta(s,a)}</script><p>​    在计算梯度时可以使用$Q^ω:S×A→R $代替真实的动作状态值函数$Q(s,a) $。并且神经网络满足这个性质，因此可以使用神经网络拟合动作状态值函数。这样价值模型不需要遵循某个具体的策略，因此可以使用off-policy的方式进行学习更新。</p>
+<hr>
+<h3 id="三、DPG目标函数"><a href="#三、DPG目标函数" class="headerlink" title="三、DPG目标函数"></a>三、DPG目标函数</h3><ul>
+<li><p>on-policy的确定性策略梯度算法</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679079/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173019.png" alt=""></p>
+</li>
+<li><p>off-policy的确定性策略梯度算法                   </p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679073/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173100.png" alt=""></p>
+</li>
+</ul>
+<p>​        上两式的区别就是使用了不同的数据采样分布。可以看到off-policy缺少了重要性采样，这是由于确定性策略的动作是固定值，不是一个分布；其次是因为确定性策略值函数的评估采用的是Q-learning的方法，即使用TD(0)估计动作值函数并忽略重要性权重，值函数不依赖于任何策略，并贪心获取下一个动作。</p>
+<p>最终DPG的目标函数为:</p>
+<p>​                            <img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679178/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173249.png" alt=""></p>
+<p>参数更新为：</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680271/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327175049.png" alt=""></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680273/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327175059.png" alt=""></p>
+<hr>
+<h3 id="四、DDPG"><a href="#四、DDPG" class="headerlink" title="四、DDPG"></a>四、DDPG</h3><p>DDPG借用了target net还有滑动平均方法更新behavior网络参数</p>
+<p>其更新方法如下：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\delta_t=r_t+\gamma Q^{\omega'}(s_{t+1},\mu_{\theta'}(s_{t+1}))-Q^\omega(s_t,a_t)\\
+&\omega_{t+1} = \omega_t+\alpha_\omega \delta_t \nabla_\omega Q^\omega(s_t,a_t) \\
+&\theta_{t+1} = \theta_t+\alpha_\theta \nabla_\theta\mu_\theta(s_t)\nabla_a Q^\omega(s_t,a_t)|_{a=\mu_\theta(s_t)} \\
+&\theta'=\tau\theta+(1-\tau)\theta' \\
+&\omega ' = \tau\omega+(1-\tau)\omega'
+\end{align}</script><p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680662/20181207173225338.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -865,7 +1064,7 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/post/3cc694a0.html" class="post-title-link" itemprop="url">PPO、GAE笔记</a>
+                <a href="/post/3cc694a0.html" class="post-title-link" itemprop="url">A3C、PPO、GAE笔记</a>
               
             
           </h2>
@@ -907,7 +1106,7 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-26 21:12:41" itemprop="dateModified" datetime="2019-03-26T21:12:41+08:00">2019-03-26</time>
+                <time title="修改时间：2019-03-27 20:55:45" itemprop="dateModified" datetime="2019-03-27T20:55:45+08:00">2019-03-27</time>
               
             
           </span>
@@ -920,7 +1119,7 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
 
           
           
-             <span id="/post/3cc694a0.html" class="leancloud_visitors" data-flag-title="PPO、GAE笔记">
+             <span id="/post/3cc694a0.html" class="leancloud_visitors" data-flag-title="A3C、PPO、GAE笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1901,12 +2100,24 @@ L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}
                 
               
 
-              <time title="创建时间：2019-02-17 18:41:32 / 修改时间：22:57:02" itemprop="dateCreated datePublished" datetime="2019-02-17T18:41:32+08:00">2019-02-17</time>
+              <time title="创建时间：2019-02-17 18:41:32" itemprop="dateCreated datePublished" datetime="2019-02-17T18:41:32+08:00">2019-02-17</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-27 16:50:06" itemprop="dateModified" datetime="2019-03-27T16:50:06+08:00">2019-03-27</time>
               
             
           </span>
@@ -2191,189 +2402,6 @@ S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.j
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/1eda57ac.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhkmxx930">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhkmxx930 blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/post/1eda57ac.html" class="post-title-link" itemprop="url">深度学习优化器</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-15 22:18:35 / 修改时间：22:20:43" itemprop="dateCreated datePublished" datetime="2019-02-15T22:18:35+08:00">2019-02-15</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/post/1eda57ac.html" class="leancloud_visitors" data-flag-title="深度学习优化器">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>参考资料：<a href="https://blog.csdn.net/u012759136/article/details/52302426" target="_blank" rel="noopener">深度学习最全优化方法总结比较（SGD，Adagrad，Adadelta，Adam，Adamax，Nadam）</a></p>
-<h3 id="1-随机梯度下降"><a href="#1-随机梯度下降" class="headerlink" title="1. 随机梯度下降"></a>1. 随机梯度下降</h3><ul>
-<li><strong>批梯度下降(Gradient Descent)</strong></li>
-<li><strong>随机批梯度下降(Stotastic Gradient Descent)</strong><ul>
-<li>每次梯度计算只使用一个随机样本(可能是噪声样本)<ul>
-<li>避免在类似的样本上进行冗余计算</li>
-<li>增加了跳出当前局部最小值的可能</li>
-<li>可以通过减小学习率，来使其能够与GD有相同的收敛速度</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>小批量随机梯度下降(Mini batch SGD)</strong><ul>
-<li>每次梯度计算使用小批量的样本<ul>
-<li>梯度计算比单样本计算更加稳定</li>
-<li>便于使用矩阵计算</li>
-<li>适当的batch size训练效率高</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/post/1eda57ac.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2423,7 +2451,7 @@ S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.j
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3348,10 +3376,7 @@ S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.j
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -3368,5 +3393,8 @@ S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.j
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
 </html>

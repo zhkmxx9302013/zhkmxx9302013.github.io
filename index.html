@@ -317,7 +317,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">28</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">27</span></a>
 
   </li>
         
@@ -420,205 +420,6 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/dad17569.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhkmxx930">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhkmxx930 blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/post/dad17569.html" class="post-title-link" itemprop="url">DPG</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-27 16:42:32 / 修改时间：21:02:13" itemprop="dateCreated datePublished" datetime="2019-03-27T16:42:32+08:00">2019-03-27</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/post/dad17569.html" class="leancloud_visitors" data-flag-title="DPG">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>参考 <a href="https://blog.csdn.net/weixin_37895339/article/details/84881872" target="_blank" rel="noopener">【强化学习】确定性策略强化学习-DPG&amp;DDPG算法推导及分析</a></p>
-</blockquote>
-<h3 id="一、DPG"><a href="#一、DPG" class="headerlink" title="一、DPG"></a>一、DPG</h3><p>DPG算法本身采用的是PG方法,且是Off-Policy方法(也可以是On-Policy)，因而直接对轨迹的价值回报进行求导。如下式求导，其中$\mu_\theta (s)$为生成确定性行动的策略函数。</p>
-<script type="math/tex; mode=display">
-\nabla_\theta v_\mu(s)=\nabla_\theta[q_\mu(s,\mu_\theta(s))]</script><p>根据链式法则，由于$\mu_\theta(s)$与确定性策略价值函数$q_\mu$有关,因而：</p>
-<script type="math/tex; mode=display">
-\nabla_\theta v_\mu(s) = \nabla_{\mu_\theta(s)}[q_\mu(s, \mu_\theta(s))]\nabla_\theta\mu_\theta(s)</script><p>由于是确定性策略，在价值函数$q(s,μ_\theta(s))$中有策略参数$\theta$，因此需要将价值函数对策略求导。</p>
-<p>相较于随机策略梯度算法而言,如下是随机性策略梯度的目标函数梯度:</p>
-<script type="math/tex; mode=display">
-∇_θJ(θ)=\mathbb{E}_{τ∼π_θ}[(\sum_{t=0}^T∇_θ\logπ_θ(a_{i,t}∣s_{i,t}))(\sum_{t=0}^Tr(s_{i,t},a_{i,t}))]</script><p>在DPG这个梯度公式中，没有了与动作有关的期望项，因此相对于随机性策略，确定性策略需要的学习数据少，算法效率高，尤其对于动作空间维数很大的情况。</p>
-<hr>
-<h3 id="二、策略模型参数的一致性"><a href="#二、策略模型参数的一致性" class="headerlink" title="二、策略模型参数的一致性"></a>二、策略模型参数的一致性</h3><p>​    在DPG中为了更好地使用Off-policy,并使用TD降低方差，定义函数 $Q^\omega (s,a):S×A→R$ 用来拟合真实的状态动作值函数$\hat{Q}^\pi(s,a)$，如果$Q^\omega$收敛，那么L2范数梯度将满足如下公式:    </p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\nabla_\omega Loss &∝ \nabla_\omega\mathbb{E}_{s,a}[\hat{Q}^\pi(s,a)-Q^\omega(s,a)]^2\\&= \mathbb{E}_{s,a\sim\tau}[(\hat{Q}^\pi(s,a)-Q^\omega(s,a))-\nabla _\omega Q^\omega(s,a)]\\&=0
-\end{aligned}</script><script type="math/tex; mode=display">
-\nabla_\omega Q^\omega(s,a)=\nabla_\theta\log\pi_\theta(s,a)=\nabla_\theta\pi_\theta(s,a)\frac{1}{\pi_\theta(s,a)}</script><p>​    在计算梯度时可以使用$Q^ω:S×A→R $代替真实的动作状态值函数$Q(s,a) $。并且神经网络满足这个性质，因此可以使用神经网络拟合动作状态值函数。这样价值模型不需要遵循某个具体的策略，因此可以使用off-policy的方式进行学习更新。</p>
-<hr>
-<h3 id="三、DPG目标函数"><a href="#三、DPG目标函数" class="headerlink" title="三、DPG目标函数"></a>三、DPG目标函数</h3><ul>
-<li><p>on-policy的确定性策略梯度算法</p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679079/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173019.png" alt=""></p>
-</li>
-<li><p>off-policy的确定性策略梯度算法                   </p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679073/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173100.png" alt=""></p>
-</li>
-</ul>
-<p>​        上两式的区别就是使用了不同的数据采样分布。可以看到off-policy缺少了重要性采样，这是由于确定性策略的动作是固定值，不是一个分布；其次是因为确定性策略值函数的评估采用的是Q-learning的方法，即使用TD(0)估计动作值函数并忽略重要性权重，值函数不依赖于任何策略，并贪心获取下一个动作。</p>
-<p>最终DPG的目标函数为:</p>
-<p>​                            <img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679178/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173249.png" alt=""></p>
-<p>参数更新为：</p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680271/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327175049.png" alt=""></p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680273/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327175059.png" alt=""></p>
-<hr>
-<h3 id="四、DDPG"><a href="#四、DDPG" class="headerlink" title="四、DDPG"></a>四、DDPG</h3><p>DDPG借用了target net还有滑动平均方法更新behavior网络参数</p>
-<p>其更新方法如下：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-&\delta_t=r_t+\gamma Q^{\omega'}(s_{t+1},\mu_{\theta'}(s_{t+1}))-Q^\omega(s_t,a_t)\\
-&\omega_{t+1} = \omega_t+\alpha_\omega \delta_t \nabla_\omega Q^\omega(s_t,a_t) \\
-&\theta_{t+1} = \theta_t+\alpha_\theta \nabla_\theta\mu_\theta(s_t)\nabla_a Q^\omega(s_t,a_t)|_{a=\mu_\theta(s_t)} \\
-&\theta'=\tau\theta+(1-\tau)\theta' \\
-&\omega ' = \tau\omega+(1-\tau)\omega'
-\end{align}</script><p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680662/20181207173225338.png" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
       
 
@@ -1106,7 +907,7 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-27 20:55:45" itemprop="dateModified" datetime="2019-03-27T20:55:45+08:00">2019-03-27</time>
+                <time title="修改时间：2019-03-28 16:12:25" itemprop="dateModified" datetime="2019-03-28T16:12:25+08:00">2019-03-28</time>
               
             
           </span>
@@ -1298,7 +1099,7 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-06 21:28:32" itemprop="dateModified" datetime="2019-03-06T21:28:32+08:00">2019-03-06</time>
+                <time title="修改时间：2019-03-29 22:08:12" itemprop="dateModified" datetime="2019-03-29T22:08:12+08:00">2019-03-29</time>
               
             
           </span>
@@ -1343,8 +1144,7 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p><strong>参考</strong></p>
 <ol>
 <li><a href="https://zhuanlan.zhihu.com/p/25071913?columnSlug=f00cb0979b57ab6d7f70e287b0cba55d" target="_blank" rel="noopener">令人拍案叫绝的Wasserstein GAN</a></li>
@@ -1352,103 +1152,42 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
 <li><a href="https://blog.csdn.net/Jasminexjf/article/details/82686953" target="_blank" rel="noopener">Ten paper: GAN-GP(Gradient Penalty)</a></li>
 <li><a href="https://blog.csdn.net/zhl493722771/article/details/82781914" target="_blank" rel="noopener">深度有趣 | 16 令人拍案叫绝的WGAN</a></li>
 <li><a href="https://www.cnblogs.com/bonelee/p/9166084.html" target="_blank" rel="noopener">开发者自述：我是这样学习 GAN 的</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&amp;mid=2247495668&amp;idx=1&amp;sn=e7e959b2bdd7b2763b9207ccb80fa6bc&amp;chksm=96ea3074a19db96208a51d26f7b5b4ef9c3a37a7799ec270becc77203de4294235041ede7206&amp;scene=0&amp;xtrack=1&amp;key=ea0a47f5b68e2b15d12fc7340eeaead8c766a680edb675d1e37261c54bf195211fca30c0935b743e9e6dd48a73a6ef5d12a3fc2ced96f775ec178345e1a5c665a9c23b45568dfc4dd79eda44cfbb4327&amp;ascene=1&amp;uin=MjMzNzA4OTgzMQ%3D%3D&amp;devicetype=Windows+10&amp;version=62060739&amp;lang=zh_CN&amp;pass_ticket=Ra%2BHQfQVPTFOQ2krrdR9WfmIhtZPhLL%2F4MTSGwpPVIL4A76Tszpn5qdPd%2B%2Bqxp4s" target="_blank" rel="noopener">推荐：生成对抗网络综述</a></li>
 </ol>
 </blockquote>
 <h3 id="一、-基本概念"><a href="#一、-基本概念" class="headerlink" title="一、 基本概念"></a>一、 基本概念</h3><ol>
 <li><p><strong>符号定义</strong></p>
 <p>$D$ 判别模型， $G$ 生成模型</p>
-<p>$x$ 数据集中的数据分布，$z$ 某种随机分布</p>
+<p>$x​$ 数据集中的数据分布，$z​$ 某种随机分布</p>
 </li>
-<li><p><strong>目标函数</strong></p>
+<li><p><strong>目标函数</strong>（详细参见第四部分）</p>
 <script type="math/tex; mode=display">
 min_Gmax_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script><ul>
-<li><p>原始 (<strong>判别器越好，生成器梯度消失越严重</strong>)</p>
+<li><p><strong>D Loss</strong> (MC采样，相当于训练二分类器$x \sim P_{data}$一类，$\hat{x} \sim G(z)$一类):</p>
+<script type="math/tex; mode=display">
+max_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script></li>
+<li><p><strong>G Loss原始</strong> （MiniMax GAN<strong>[MMGAN]</strong>）(<strong>判别器越好，生成器梯度消失越严重</strong>)</p>
 <script type="math/tex; mode=display">
 \mathbb{E}{_{x\sim P_g}}[log(1-D(x))]</script></li>
-<li><p>改进 (-log trick) (<strong>mode collapse</strong>)</p>
+<li><p><strong>G Loss改进</strong> (Non-saturating GAN<strong>[NSGAN]</strong> )(-log trick) </p>
 <script type="math/tex; mode=display">
 \mathbb{E}{_{x\sim P_g}}[-log(D(x))]</script></li>
 </ul>
 </li>
-</ol>
-<ol>
 <li><p><strong>释义</strong></p>
-<p>$G$的目标是最大化生成数据与数据集数据的似然</p>
-<p>$D$的目标是最大化</p>
+<p>$G$的目标是最大化生成数据与数据集数据的似然，减小生成数据与数据集数据之间的差距。</p>
+<p>$D$要解决的问题是一个二分类问题，$V(D,G)$ 为二分类问题中常见的交叉熵损失。对于生成器$ G $来说，为了尽可能欺骗$ D$，所以需要最大化生成样本的判别概率 $D(G(z))$，即最小化$ log(1-D(G(z)))$，注意：$log(D(x)) $一项与生成器$ G $无关，所以可以忽略。</p>
 </li>
 </ol>
-<h3 id="二、-原理推导"><a href="#二、-原理推导" class="headerlink" title="二、 原理推导"></a>二、 原理推导</h3><blockquote>
-<p>参考: <a href="https://www.cnblogs.com/bonelee/p/9166084.html" target="_blank" rel="noopener">开发者自述：我是这样学习 GAN 的</a></p>
-</blockquote>
-<p>真实数据的分布$ P_{data}(x)​$，$x​$ 是一个真实数据，是一个向量，这个向量集合的分布就是 $P_{data}​$。我们需要生成一些也在这个分布内的数据，如果直接就是这个分布的话，怕是做不到的。</p>
-<p>现有的 Generator 生成的分布可以假设为 $P_G(x;θ)$，这是一个由 $ θ $ 控制的分布，$θ$ 是这个分布的参数（如果是高斯混合模型，那么 $ θ$ 就是每个高斯分布的均值和方差) 。</p>
-<p>假设我们在真实分布中取出一些数据，${x_1, x_2, … , x_m}​$，我们想要计算一个似然 $P_G(x_i; θ)​$。</p>
-<p>对于这些数据，在生成模型中的似然就是</p>
-<script type="math/tex; mode=display">
-L=\prod_{i=1}^mP_G(x^i;\theta)</script><ol>
-<li><p><strong>Generator原理</strong></p>
-<p>最大化上面这个似然，等价于让 Generator 生成那些真实数据分布的概率最大。这就变成了一个最大似然估计的问题了，我们需要找到一个 $θ^*$ 来最大化这个似然。</p>
-<p><img src="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d343a395d.png?imageMogr2/format/jpg/quality/90" alt="å¼åèèªè¿°ï¼ææ¯è¿æ ·å­¦ä¹  GAN ç"></p>
-</li>
-<li><p>Discriminator</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{x\sim P_r}[\log D^*(x)] + \mathbb{E}_{x\sim P_g}[\log(1-D^*(x))] = 2JS(P_r || P_g) - 2\log 2</script></li>
-<li><p>Mode Collapse原因</p>
-<p>KL不对称</p>
-</li>
-</ol>
-<p>[未完…]</p>
-<h3 id="三、-WGAN"><a href="#三、-WGAN" class="headerlink" title="三、 WGAN"></a>三、 WGAN</h3><blockquote>
-<p>参考：<a href="https://zhuanlan.zhihu.com/p/25071913?columnSlug=f00cb0979b57ab6d7f70e287b0cba55d" target="_blank" rel="noopener">令人拍案叫绝的Wasserstein GAN</a></p>
-</blockquote>
-<p><strong>1. 形式改变</strong>：</p>
-<ul>
-<li>判别器最后一层去掉sigmoid</li>
-<li>生成器和判别器的loss不取log</li>
-<li>每次更新判别器的参数之后把它们的绝对值截断到不超过一个固定常数c</li>
-<li>不要用基于动量的优化算法（包括momentum和Adam），推荐RMSProp，SGD也行</li>
-</ul>
-<p><strong>2. Wasserstein距离的好处</strong>：</p>
-<p>Wasserstein距离：</p>
-<p><img src="https://zhihu.com/equation?tex=W%28P_r%2C+P_g%29+%3D+%5Cinf_%7B%5Cgamma+%5Csim+%5CPi+%28P_r%2C+P_g%29%7D+%5Cmathbb%7BE%7D_%7B%28x%2C+y%29+%5Csim+%5Cgamma%7D+%5B%7C%7Cx+-+y%7C%7C%5D" alt="img"></p>
-<p><strong>[公式释义]</strong>： 在所有的$P_r$、$P_g$的联合分布集合中选取真实样本x与生成样本y之间的距离期望最小的分布(取下界)。</p>
-<p><strong>[优点]</strong>：Wasserstein距离相比KL散度、JS散度的优越性在于，即便两个分布没有重叠，Wasserstein距离仍然能够反映它们的远近。（没有条件性突变发生）</p>
-<p><img src="https://zhihu.com/equation?tex=KL%28P_1+%7C%7C+P_2%29+%3D+KL%28P_1+%7C%7C+P_2%29+%3D%0A%5Cbegin%7Bcases%7D%0A%2B%5Cinfty+%26+%5Ctext%7Bif+%24%5Ctheta+%5Cneq+0%24%7D+%5C%5C%0A0+%26+%5Ctext%7Bif+%24%5Ctheta+%3D+0%24%7D%0A%5Cend%7Bcases%7D" alt="KL(P_1 || P_2) = KL(P_1 || P_2) =\begin{cases}+\infty &amp; \text{if $\theta \neq 0$} \\0 &amp; \text{if $\theta = 0$}\end{cases}"></p>
-<p><img src="https://zhihu.com/equation?tex=JS%28P_1%7C%7CP_2%29%3D%0A%5Cbegin%7Bcases%7D%0A%5Clog+2+%26+%5Ctext%7Bif+%24%5Ctheta+%5Cneq+0%24%7D+%5C%5C%0A0+%26+%5Ctext%7Bif+%24%5Ctheta+-+0%24%7D%0A%5Cend%7Bcases%7D" alt="JS(P_1||P_2)=\begin{cases}\log 2 &amp; \text{if $\theta \neq 0$} \\0 &amp; \text{if $\theta - 0$}\end{cases}"></p>
-<p><img src="https://zhihu.com/equation?tex=W%28P_0%2C+P_1%29+%3D+%7C%5Ctheta%7C" alt="W(P_0, P_1) = |\theta|"></p>
-<p><strong>3. Wasserstein距离在WGAN中的使用</strong></p>
-<p>Wasserstein距离中的下界inf难以计算，论文中，将其转换为了</p>
-<p><img src="https://zhihu.com/equation?tex=W%28P_r%2C+P_g%29+%3D+%5Cfrac%7B1%7D%7BK%7D+%5Csup_%7B%7C%7Cf%7C%7C_L+%5Cleq+K%7D+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_r%7D+%5Bf%28x%29%5D+-+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_g%7D+%5Bf%28x%29%5D" alt="img"></p>
-<ul>
-<li><p><strong>Lipschitz连续(导数有上界，限制了函数的大幅度震动)</strong></p>
-<script type="math/tex; mode=display">
-|f(x_1)-f(x_2)|≤K|x_1-x_2|  \space\space\space\space\space\space\space\space   (K≥0)</script><p>所以对于上面变换以后的Wasserstein距离，要求函数$f$的Lipschitz常数$||f||_L$不超过$K$的条件下，对所有可能满足条件的$f$取到$\mathbb{E}_{x \sim P_r} [f(x)] - \mathbb{E}_{x \sim P_g} [f(x)]$的上界，然后再除以$K$。</p>
-<p><img src="https://www.zhihu.com/equation?tex=K+%5Ccdot+W%28P_r%2C+P_g%29+%5Capprox+%5Cmax_%7Bw%3A+%7Cf_w%7C_L+%5Cleq+K%7D+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_r%7D+%5Bf_w%28x%29%5D+-+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_g%7D+%5Bf_w%28x%29%5D" alt="K \cdot W(P_r, P_g) \approx \max_{w: |f_w|_L \leq K} \mathbb{E}_{x \sim P_r} [f_w(x)] - \mathbb{E}_{x \sim P_g} [f_w(x)]"></p>
-</li>
-<li><p><strong>Weight Clipping</strong></p>
-<p>对于$||f_w||_L \leq K$这个限制。我们其实不关心具体的$K$是多少，只要它不是正无穷就行，因为它只是会使得梯度变大$K$倍，并不会影响梯度的方向。所以作者采取了一个非常简单的做法，就是限制神经网络$f_\theta$的所有参数$w_i$的不超过某个范围$[-c, c]$，比如$w_i \in [- 0.01, 0.01]$，此时关于输入样本$x$的导数$\frac{\partial f_w}{\partial x}$也不会超过某个范围，所以一定存在某个不知道的常数$K$使得$f_w$的局部变动幅度不会超过它，Lipschitz连续条件得以满足。具体在算法实现中，只需要每次更新完$w​$后把它clip回这个范围就可以了。</p>
-</li>
-</ul>
-<p>原始GAN的判别器做的是真假二分类任务，所以最后一层是sigmoid，但是现在WGAN中的判别器$f_w$做的是近似拟合Wasserstein距离，属于回归任务，所以要把最后一层的sigmoid拿掉。</p>
-<h3 id="四、WGAN-GP-GAN的稳定性"><a href="#四、WGAN-GP-GAN的稳定性" class="headerlink" title="四、WGAN-GP(GAN的稳定性)"></a>四、WGAN-GP(GAN的稳定性)</h3><p><strong>WGAN梯度裁剪的问题</strong></p>
-<p>梯度裁剪会导致最优化困难。在梯度裁剪约束下，大多数神经网络架构只有在学习极其简单地函数时才能达到k地最大梯度范数。因此，通过梯度裁剪来实现k-Lipschitz约束将会导致critic偏向更简单的函数。如下图所示，在小型数据集上，权重剪枝不能捕捉到数据分布的高阶矩。</p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1551773009/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305160316.png" alt=""></p>
-<p><strong>算法：</strong></p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1551771655/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305153950.png" alt=""></p>
-<p>先随机采一对真假样本，还有一个0-1的随机数:</p>
-<script type="math/tex; mode=display">
-x_r\sim P_r, x_g \sim P_g, \epsilon \sim Uniform[0,1]</script><p>在$x_r$和$x_g​$的连线上进行随机线性插值采样:</p>
-<script type="math/tex; mode=display">
-\\
-\hat{x}=\epsilon x_r+(1-\epsilon)x_g</script><p>最终的Loss:</p>
-<script type="math/tex; mode=display">
-L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}_r}[D(x)]+\lambda\mathbb{E}_{\hat{x}\sim\mathbb{P}_\hat{x}}[(||\nabla_{\hat{x}}D(\hat{x})||_2-1)^2]</script><ul>
-<li>Gradient Penalty 项： $\lambda\mathbb{E}_{\hat{x}\sim\mathbb{P}_\hat{x}}[(||\nabla_{\hat{x}}D(\hat{x})||_2-1)^2]​$</li>
-<li>Wasserstein 距离项:  $\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}_r}[D(x)]​$ </li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># [GP] 先随机采一对真假样本，还有一个0-1的随机数:</span></span><br><span class="line">epsilon = tf.random_uniform(shape=[batch_size, <span class="number">1</span>], minval=<span class="number">0.</span>, maxval=<span class="number">1.</span>)</span><br><span class="line"><span class="comment"># [GP] 在x_r和x_g的连线上进行随机线性插值采样:</span></span><br><span class="line">X_hat_State = self.expert_s + epsilon * (self.agent_s - self.expert_s)</span><br><span class="line">X_hat_Action = expert_a_one_hot + epsilon * (agent_a_one_hot - expert_a_one_hot)</span><br><span class="line">X_hat_s_a = tf.concat([X_hat_State, X_hat_Action], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'Discriminator_loss'</span>):</span><br><span class="line">    wasserstein = tf.reduce_mean(crit_A) - tf.reduce_mean(crit_e)  <span class="comment"># Wasserstein 距离</span></span><br><span class="line">    grad_D_X_hat = tf.gradients(X_hat_crit, [X_hat_s_a])[<span class="number">0</span>]</span><br><span class="line">    slopes = tf.sqrt(tf.reduce_sum(tf.square(grad_D_X_hat), reduction_indices=[<span class="number">1</span>])) </span><br><span class="line">    gradient_penalty = tf.reduce_mean((slopes - <span class="number">1.</span>) ** <span class="number">2</span>)  <span class="comment">#[GP] Gradient Penalty</span></span><br><span class="line">    loss = wasserstein + LAMBDA * gradient_penalty</span><br><span class="line">    tf.summary.scalar(<span class="string">'discriminator'</span>, loss)</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/d42ca19b.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2402,6 +2141,189 @@ S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.j
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/1eda57ac.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/post/1eda57ac.html" class="post-title-link" itemprop="url">深度学习优化器</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-15 22:18:35 / 修改时间：22:20:43" itemprop="dateCreated datePublished" datetime="2019-02-15T22:18:35+08:00">2019-02-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/1eda57ac.html" class="leancloud_visitors" data-flag-title="深度学习优化器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>参考资料：<a href="https://blog.csdn.net/u012759136/article/details/52302426" target="_blank" rel="noopener">深度学习最全优化方法总结比较（SGD，Adagrad，Adadelta，Adam，Adamax，Nadam）</a></p>
+<h3 id="1-随机梯度下降"><a href="#1-随机梯度下降" class="headerlink" title="1. 随机梯度下降"></a>1. 随机梯度下降</h3><ul>
+<li><strong>批梯度下降(Gradient Descent)</strong></li>
+<li><strong>随机批梯度下降(Stotastic Gradient Descent)</strong><ul>
+<li>每次梯度计算只使用一个随机样本(可能是噪声样本)<ul>
+<li>避免在类似的样本上进行冗余计算</li>
+<li>增加了跳出当前局部最小值的可能</li>
+<li>可以通过减小学习率，来使其能够与GD有相同的收敛速度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>小批量随机梯度下降(Mini batch SGD)</strong><ul>
+<li>每次梯度计算使用小批量的样本<ul>
+<li>梯度计算比单样本计算更加稳定</li>
+<li>便于使用矩阵计算</li>
+<li>适当的batch size训练效率高</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/1eda57ac.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2451,7 +2373,7 @@ S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.j
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3376,7 +3298,10 @@ S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.j
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -3393,8 +3318,5 @@ S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.j
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>

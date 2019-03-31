@@ -109,27 +109,28 @@
 
 
 
-  <meta name="description" content="参考博客：反向传播算法（过程及公式推导） 1. 符号定义 $w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。 $b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。 $z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。 $a_k^{L}=\sigma(z_j^L)$ 表示第$L">
-<meta name="keywords" content="深度学习基础">
+  <meta name="description" content="一、概述 提出一种较为通用的，去除繁杂假设的，高效的算法层次强化学习算法框架；  框架 $High-Level  \space\space\space\space\space     {———&amp;gt;}^{auto}  \space\space\space\space Goal  ————&amp;gt; ^{supervised}   \space\space\space\space Low-Lev">
+<meta name="keywords" content="分层强化学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="反向传播公式推导">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/post/9e924caa.html">
+<meta property="og:title" content="[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/e567270d.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="参考博客：反向传播算法（过程及公式推导） 1. 符号定义 $w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。 $b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。 $z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。 $a_k^{L}=\sigma(z_j^L)$ 表示第$L">
+<meta property="og:description" content="一、概述 提出一种较为通用的，去除繁杂假设的，高效的算法层次强化学习算法框架；  框架 $High-Level  \space\space\space\space\space     {———&amp;gt;}^{auto}  \space\space\space\space Goal  ————&amp;gt; ^{supervised}   \space\space\space\space Low-Lev">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png">
-<meta property="og:updated_time" content="2019-03-27T08:50:06.275Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554045806/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190331232312.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554041157/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190331220545.png">
+<meta property="og:updated_time" content="2019-03-31T15:36:41.776Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="反向传播公式推导">
-<meta name="twitter:description" content="参考博客：反向传播算法（过程及公式推导） 1. 符号定义 $w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。 $b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。 $z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。 $a_k^{L}=\sigma(z_j^L)$ 表示第$L">
-<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png">
+<meta name="twitter:title" content="[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)">
+<meta name="twitter:description" content="一、概述 提出一种较为通用的，去除繁杂假设的，高效的算法层次强化学习算法框架；  框架 $High-Level  \space\space\space\space\space     {———&amp;gt;}^{auto}  \space\space\space\space Goal  ————&amp;gt; ^{supervised}   \space\space\space\space Low-Lev">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554045806/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190331232312.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/9e924caa.html">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/e567270d.html">
 
 
 
@@ -139,7 +140,7 @@
   };
 </script>
 
-  <title>反向传播公式推导 | zhkmxx930 blog</title>
+  <title>[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO) | zhkmxx930 blog</title>
   
 
 
@@ -442,7 +443,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/9e924caa.html">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/e567270d.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -459,7 +460,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">反向传播公式推导
+          <h2 class="post-title" itemprop="name headline">[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)
 
               
             
@@ -485,24 +486,12 @@
                 
               
 
-              <time title="创建时间：2019-02-17 18:41:32" itemprop="dateCreated datePublished" datetime="2019-02-17T18:41:32+08:00">2019-02-17</time>
+              <time title="创建时间：2019-03-31 21:44:23 / 修改时间：23:36:41" itemprop="dateCreated datePublished" datetime="2019-03-31T21:44:23+08:00">2019-03-31</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-27 16:50:06" itemprop="dateModified" datetime="2019-03-27T16:50:06+08:00">2019-03-27</time>
               
             
           </span>
@@ -516,8 +505,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/9e924caa.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/9e924caa.html" itemprop="commentsCount"></span>
+                <a href="/post/e567270d.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/e567270d.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -525,7 +514,7 @@
 
           
           
-             <span id="/post/9e924caa.html" class="leancloud_visitors" data-flag-title="反向传播公式推导">
+             <span id="/post/e567270d.html" class="leancloud_visitors" data-flag-title="[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -556,60 +545,103 @@
       
 
       
-        <p><a href="https://blog.csdn.net/u014313009/article/details/51039334" target="_blank" rel="noopener">参考博客：反向传播算法（过程及公式推导）</a></p>
-<h3 id="1-符号定义"><a href="#1-符号定义" class="headerlink" title="1. 符号定义"></a>1. 符号定义</h3><ul>
-<li>$w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。</li>
-<li>$b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。</li>
-<li>$z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。</li>
-<li>$a_k^{L}=\sigma(z_j^L)$ 表示第$L$层经过sigmoid函数后的输出。</li>
-</ul>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png" alt=""></p>
+        <p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554045806/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190331232312.png" alt=""></p>
+<hr>
+<h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
+<li><p>提出一种较为通用的，去除繁杂假设的，高效的算法层次强化学习算法框架；</p>
+</li>
+<li><p>框架</p>
+<p>$High-Level  \space\space\space\space\space     {———&gt;}^{auto}  \space\space\space\space Goal  ————&gt; ^{supervised}   \space\space\space\space Low-Level controller$</p>
+</li>
+<li><p>使用Off-Policy进行High-level及Low-level训练，通用化的设计，使得较好的在low-level controller中使用DDPG，TD3等确定性、off-policy的算法，兼容性强；</p>
+</li>
+<li><p>提出针对于High-level的Off-Policy Correction。</p>
+</li>
+</ol>
 <a id="more"></a>
-<h3 id="2-损失函数定义"><a href="#2-损失函数定义" class="headerlink" title="2.  损失函数定义"></a>2.  损失函数定义</h3><p><strong>二次代价函数</strong>：($x$代表输入的样本，$y(x)$代表标签值)</p>
-<script type="math/tex; mode=display">
-C=\frac{1}{2n}\sum_x||y(x)-a^L(x)||^2</script><p>当只关注某一个样本$x_i​$的时候，有：</p>
-<script type="math/tex; mode=display">
-C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传播推导" class="headerlink" title="3. 反向传播推导"></a>3. 反向传播推导</h3><ul>
-<li><p><strong>计算最后一层神经网络产生的错误</strong></p>
-<p>对于<strong>每一个$L$层的神经元</strong>有：</p>
+<hr>
+<h3 id="二、-方法"><a href="#二、-方法" class="headerlink" title="二、 方法"></a>二、 方法</h3><p>HIRO(HIerarchical Reinforcement learning with Off-policy correction)</p>
+<ul>
+<li><strong>[Low-level $\mu^{lo}$]</strong><ol>
+<li>使用 <strong>Parameterized reward function</strong> 来表达特定的底层策略(潜在的无穷集合)；</li>
+<li>通过训练相关策略，使其能够将obs $S_t$ 与期望Goal $g_t$相匹配。</li>
+</ol>
+</li>
+<li><strong>[High-level $\mu^{hi}$]</strong> <ol>
+<li>为temporally-extended experience选择目标序列；</li>
+<li>使用<strong>off-policy correction</strong>使得其可以使用过往经验，来适应新的底层控制器策略。</li>
+</ol>
 </li>
 </ul>
-<script type="math/tex; mode=display">
-\delta^L_k=\frac{\partial{C}}{\partial{z_k^L}}=\frac{\partial{C}}{\partial{a_{k}^L}}\cdot\frac{\partial{a_k^L}}{\partial{z_{k}^{L}}}</script><p>​    则<strong>整个$L​$层</strong>可以用矩阵的Hadamard积(矩阵行行对应相乘)来进行计算：</p>
-<script type="math/tex; mode=display">
-\delta^L=\nabla_aC\odot\sigma^\prime(z^L)</script><ul>
-<li><p><strong>反向传播</strong></p>
-<p>计算每一层的每个神经元产生的误差，推广到每一层的每个神经元有：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\delta_k^L=\frac{\partial C}{\partial z_k^L}&=\sum_m\frac{\partial C}{\partial z_m^{L+1}}\cdot\frac{\partial{z_m^{L+1}}}{\partial{a_{k}^{L}}}\cdot\frac{\partial a_k^L}{\partial z_k^L}\\
-&=\sum_m{\delta_m^{L+1}}\cdot\frac{w_{km}^{L+1}a_k^{L}+b_m^{L+1}}{\partial{a_k^L}}\cdot\sigma'(z_k^L)\\
-&=\sum_m\delta_m^{L+1}\cdot w_{km}^{L+1}\cdot\sigma'(z_k^L)
-\end{align}</script><p>推广到整个一层有：</p>
-<script type="math/tex; mode=display">
-\delta^L=((W^{L+1})^T\cdot \delta^{L+1})\odot \sigma'(z^L)</script></li>
-<li><p><strong>计算权重的梯度</strong></p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial w_{jk}^L}=\frac{\partial C}{\partial{z_k^L}}\cdot \frac{\partial{z_k^L}}{\partial{w_{jk}^L}}=\delta_k^L\cdot\frac{\partial{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial w_{jk}^L}=a_j^{L-1}\cdot\delta_k^L</script></li>
-<li><p><strong>计算偏置的梯度</strong></p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\part b_k^L}=\frac{\partial{C}}{\partial z_{k}^L} \cdot \frac{\partial z_k^L}{\partial b_k^L}=\delta_k^L\cdot\frac{\partial{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial b_{k}^L}=\delta_k^L</script></li>
-</ul>
-<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>反向传播四个公式：</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554041157/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190331220545.png" alt=""></p>
+<ul>
+<li><p><strong>[综合]</strong> </p>
 <ol>
-<li><p>输出层误差：</p>
-<script type="math/tex; mode=display">
-\delta^L=\nabla_aC\odot\sigma^\prime(z^L)</script></li>
-<li><p>反向传播每一层误差：</p>
-<script type="math/tex; mode=display">
-\delta^L=((W^{L+1})^T\cdot \delta^{L+1})\odot \sigma'(z^L)</script></li>
-<li><p>权重梯度：</p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial w_{jk}^L}=a_j^{L-1}\cdot\delta_k^L</script></li>
-<li><p>偏置梯度：</p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial b_k^L}=\delta_k^L</script></li>
+<li><p>高层控制器构建较粗的抽象的目标给底层；</p>
+</li>
+<li><p>这些目标直接对应于底层控制器想要尝试去达到的states；</p>
+</li>
+<li><p>每一个timestep, 高层控制器使用由环境交互产生的state，并通过</p>
+<p>​    ①每隔一段时间从高层控制器网络$\mu^{hi}$中进行采样($g_t\sim\mu^{hi}$)，或者</p>
+<p>​    ②使用一个固定的目标转换函数$g_t=h(s_{t-1},g_{t-1},s_t)$</p>
+<p>等方式来生成high-level action(or goal) $g_t\in\mathbb{R}^{d_s}$；</p>
+</li>
+<li><p>对于上述产生的目标成为临时目标，每固定c步将进行重新采样；</p>
+</li>
+<li><p>底层控制器通过当前的状态及目标进行决策到仿真环境的动作$a_t \sim \mu^{lo}(s_t,g_t)$；</p>
+</li>
+<li><p>高层控制器使用一个固定的Parameterized reward function $r$ 向底层控制器提供一个内在的回报函数(intrinsic reward) $r_t=r(s_t,g_t,a_t,s_{t+_1})$；</p>
+</li>
+<li><p>底层策略将存储经验$(s_t,g_t,a_t,r_t,s_{t+1},h(s_t,g_t,s_{t+1}))$用于off-policy training；</p>
+</li>
+<li><p>高层控制器每隔c步获取环境回报$R_t$，存储高层状态转移序列$(s_{t:t+c-1},g_{t:t+c-1},a_{t:t+c-1},R_{t:t+c-1},s_{t+c})$用于off-policy training。</p>
+</li>
 </ol>
+</li>
+</ul>
+<hr>
+<h3 id="三、具体策略"><a href="#三、具体策略" class="headerlink" title="三、具体策略"></a>三、具体策略</h3><ol>
+<li><p><strong>Parameterized reward function</strong></p>
+<p><strong>(1) 如何理解目标$g_t$</strong></p>
+<p>​    高层控制器产生的Goal $g_t$ 意味着对于当前的观测状态的期望相对变化，即$g_t$代表着从当前$s_t$开始，底层控制器应该如何决策才能使得c步之后的$s_{t+c}$与$s_t+g_t$能够足够的接近。</p>
+<p><strong>(2) 如何设计一个比较泛化的目标空间</strong></p>
+<p>​    为了在不考虑状态变化的情况下保持目标的相同绝对位置，目标转换模型$h$定义为:</p>
+<script type="math/tex; mode=display">
+h(s_t,g_t,s_{t+1})=s_t+g_t-s_{t+1}</script><p><strong>(3) 如何设计高层到底层的内在回报函数Parameterized reward function</strong></p>
+<p>​    该回报函数通过定义当前状态与目标状态之间的欧式距离来表示:</p>
+<script type="math/tex; mode=display">
+r(s_t,g_t,a_t,s_{t+1})=-||s_t+g_t-s_{t+1}||_2</script><p><strong>(4) 底层控制器的策略算法如何选择</strong></p>
+<p>​    通过简单的将目标$g_t$加入观测元组的方式，使得底层框架可以使用强化学习的标准方法进行学习。</p>
+<p>​    比如使用DDPG那么loss就加入目标：</p>
+<script type="math/tex; mode=display">
+L_{DDPG}=[(r(s_t,g_t,a_t,s_{t+1})+\gamma Q_\theta^{lo}(s_{t+1},g_{t+1},\mu_φ^{lo}(s_{t+1},g_{t+1})-Q_{\theta}^{lo}(s_t,g_t,a_t)]^2</script><p><strong>(5) 与以往工作的不同</strong></p>
+<p>​    Parameterized reward function 在之前的工作中也用过，但是他们用的时候目标都是间接通过表征学习给出的，而本文直接将目标当做一种预期的状态给到底层，更加直接。</p>
+</li>
+<li><p><strong>高层训练使用的Off-policy Correction</strong></p>
+<p><strong>(1)以往的工作大多基于on-policy ，这里引入了off-policy进行学习会带来怎样的问题</strong></p>
+<p>​    引入off-policy的话，由于底层策略网络$\mu^{lo}$在当前和从replay buffer中采样的时候的策略网络是不同的，因而对于同一个目标，在前后两种策略网络下的状态转移序列是不同的。</p>
+<p><strong>(2) 如何解决以上问题</strong></p>
+<p>​    高层策略网络的状态转移序列为$(s_{t:t+c-1},g_{t:t+c-1},a_{t:t+c-1},R_{t:t+c-1},s_{t+c})$，我们将其转换为可以push到replay buffer中的state-action-reward 转移序列$(s_t,g_t\sum R_{t:t+c-1},s_{t+c})$，以兼容各种标准off-policy强化学习方法。</p>
+<p>​    更改$g_t$使其能够适应新的$\mu^{lo}$:</p>
+<ul>
+<li>先前的目标$g_t$诱导底层产生$a_{t:t+c−1} ∼ \mu^{lo}(s_{t:t+c−1}, g_{t:t+c−1})$行为。    </li>
+<li>调整上述目标变成$\tilde {g_t}$使其能够诱导新的底层策略产生最大化概率：$\mu^{lo}(a_{t:t+c−1}|s_{t:t+c−1}, \tilde{g}_{t:t+c−1})$</li>
+<li>$\tilde{g}$使用固定的目标转移函数$h$来得到</li>
+</ul>
+<p><strong>(3) 如何获得新目标$\tilde{g}​$的最大化概率</strong></p>
+<p>​    对于一般的强化学习算法而言策略的log概率可以表示为:</p>
+<script type="math/tex; mode=display">
+log \mu^{lo}(a_{t:t+c−1}|s_{t:t+c−1}, \tilde{g}_{t:t+c−1}) ∝ −\frac{1}{2}\sum^{
+t+c−1}_{i=t}
+||a_i − \mu^{lo}(s_i, \tilde{g}_i)||_2^2 + const.</script><p>​    这里文章通过离散采样的方式选择一个较大的值作为最大概率的估计，采样10个点为：</p>
+<pre><code>     * $g_t​$
+
+     * 按高斯分布在以$s_{t+c} − s_{t}​$为中心的分布上采样得到8个点
+
+     * $s_{t+c} − s_t$
+</code></pre></li>
+</ol>
+<p>   ​    </p>
 
       
     </div>
@@ -628,12 +660,12 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/post/9e924caa.html">反向传播公式推导</a></p>
+  <p><span>本文标题:</span><a href="/post/e567270d.html">[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
-  <p><span>发布时间:</span>2019年02月17日 - 18:02</p>
-  <p><span>最后更新:</span>2019年03月27日 - 16:03</p>
-  <p><span>原始链接:</span><a href="/post/9e924caa.html" title="反向传播公式推导">http://zhkmxx9302013.github.io/post/9e924caa.html</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/9e924caa.html" aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年03月31日 - 21:03</p>
+  <p><span>最后更新:</span>2019年03月31日 - 23:03</p>
+  <p><span>原始链接:</span><a href="/post/e567270d.html" title="[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)">http://zhkmxx9302013.github.io/post/e567270d.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/e567270d.html" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -667,7 +699,7 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
       
         <div class="post-tags">
           
-            <a href="/tags/深度学习基础/" rel="tag"># 深度学习基础</a>
+            <a href="/tags/分层强化学习/" rel="tag"># 分层强化学习</a>
           
         </div>
       
@@ -692,8 +724,8 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/19fc17a4.html" rel="next" title="深度学习常见Loss推导">
-                <i class="fa fa-chevron-left"></i> 深度学习常见Loss推导
+              <a href="/post/dad17569.html" rel="next" title="【确定性策略梯度类】 DPG,DDPG,TD3">
+                <i class="fa fa-chevron-left"></i> 【确定性策略梯度类】 DPG,DDPG,TD3
               </a>
             
           </div>
@@ -701,10 +733,6 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/7a6400a0.html" rel="prev" title="参数初始化与正则化">
-                参数初始化与正则化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -924,7 +952,7 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-符号定义"><span class="nav-number">1.</span> <span class="nav-text">1. 符号定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-损失函数定义"><span class="nav-number">2.</span> <span class="nav-text">2.  损失函数定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-反向传播推导"><span class="nav-number">3.</span> <span class="nav-text">3. 反向传播推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-总结"><span class="nav-number">4.</span> <span class="nav-text">4.总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概述"><span class="nav-number">1.</span> <span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、-方法"><span class="nav-number">2.</span> <span class="nav-text">二、 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、具体策略"><span class="nav-number">3.</span> <span class="nav-text">三、具体策略</span></a></li></ol></div>
             
 
           </div>

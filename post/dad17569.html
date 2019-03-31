@@ -109,27 +109,38 @@
 
 
 
-  <meta name="description" content="参考博客：反向传播算法（过程及公式推导） 1. 符号定义 $w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。 $b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。 $z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。 $a_k^{L}=\sigma(z_j^L)$ 表示第$L">
-<meta name="keywords" content="深度学习基础">
+  <meta name="description" content="参考  【强化学习】确定性策略强化学习-DPG&amp;amp;DDPG算法推导及分析 Deep Reinforcement Learning - 1. DDPG原理和算法  一、确定性策略梯度​    Deepmind的D.Silver等在2014年提出DPG： Deterministic Policy Gradient， 即确定性的行为策略，每一步的行为通过函数$μ$直接获得确定的值：">
+<meta name="keywords" content="强化学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="反向传播公式推导">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/post/9e924caa.html">
+<meta property="og:title" content="【确定性策略梯度类】 DPG,DDPG,TD3">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/dad17569.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="参考博客：反向传播算法（过程及公式推导） 1. 符号定义 $w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。 $b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。 $z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。 $a_k^{L}=\sigma(z_j^L)$ 表示第$L">
+<meta property="og:description" content="参考  【强化学习】确定性策略强化学习-DPG&amp;amp;DDPG算法推导及分析 Deep Reinforcement Learning - 1. DDPG原理和算法  一、确定性策略梯度​    Deepmind的D.Silver等在2014年提出DPG： Deterministic Policy Gradient， 即确定性的行为策略，每一步的行为通过函数$μ$直接获得确定的值：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png">
-<meta property="og:updated_time" content="2019-03-27T08:50:06.275Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679079/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173019.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679073/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173100.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679178/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173249.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680271/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327175049.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680273/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327175059.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680662/20181207173225338.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-14d930f99a102729?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-8648a8a5f3c47a76def05e4f5e7db259_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-b303f91e57ab55ff1884cf1d9cd36442_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-f9c9703f8892c46cb17d5fb24a95b012_hd.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-f7e163f79d41d3bc8939c8c8607f5e24_hd.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553831070/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190329114325.png">
+<meta property="og:updated_time" content="2019-03-31T15:36:30.010Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="反向传播公式推导">
-<meta name="twitter:description" content="参考博客：反向传播算法（过程及公式推导） 1. 符号定义 $w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。 $b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。 $z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。 $a_k^{L}=\sigma(z_j^L)$ 表示第$L">
-<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png">
+<meta name="twitter:title" content="【确定性策略梯度类】 DPG,DDPG,TD3">
+<meta name="twitter:description" content="参考  【强化学习】确定性策略强化学习-DPG&amp;amp;DDPG算法推导及分析 Deep Reinforcement Learning - 1. DDPG原理和算法  一、确定性策略梯度​    Deepmind的D.Silver等在2014年提出DPG： Deterministic Policy Gradient， 即确定性的行为策略，每一步的行为通过函数$μ$直接获得确定的值：">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679079/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173019.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/9e924caa.html">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/dad17569.html">
 
 
 
@@ -139,7 +150,7 @@
   };
 </script>
 
-  <title>反向传播公式推导 | zhkmxx930 blog</title>
+  <title>【确定性策略梯度类】 DPG,DDPG,TD3 | zhkmxx930 blog</title>
   
 
 
@@ -442,7 +453,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/9e924caa.html">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/dad17569.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -459,7 +470,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">反向传播公式推导
+          <h2 class="post-title" itemprop="name headline">【确定性策略梯度类】 DPG,DDPG,TD3
 
               
             
@@ -485,7 +496,7 @@
                 
               
 
-              <time title="创建时间：2019-02-17 18:41:32" itemprop="dateCreated datePublished" datetime="2019-02-17T18:41:32+08:00">2019-02-17</time>
+              <time title="创建时间：2019-03-27 16:42:32" itemprop="dateCreated datePublished" datetime="2019-03-27T16:42:32+08:00">2019-03-27</time>
             
 
             
@@ -502,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-27 16:50:06" itemprop="dateModified" datetime="2019-03-27T16:50:06+08:00">2019-03-27</time>
+                <time title="修改时间：2019-03-31 23:36:30" itemprop="dateModified" datetime="2019-03-31T23:36:30+08:00">2019-03-31</time>
               
             
           </span>
@@ -516,8 +527,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/9e924caa.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/9e924caa.html" itemprop="commentsCount"></span>
+                <a href="/post/dad17569.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/dad17569.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -525,7 +536,7 @@
 
           
           
-             <span id="/post/9e924caa.html" class="leancloud_visitors" data-flag-title="反向传播公式推导">
+             <span id="/post/dad17569.html" class="leancloud_visitors" data-flag-title="【确定性策略梯度类】 DPG,DDPG,TD3">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -556,60 +567,105 @@
       
 
       
-        <p><a href="https://blog.csdn.net/u014313009/article/details/51039334" target="_blank" rel="noopener">参考博客：反向传播算法（过程及公式推导）</a></p>
-<h3 id="1-符号定义"><a href="#1-符号定义" class="headerlink" title="1. 符号定义"></a>1. 符号定义</h3><ul>
-<li>$w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。</li>
-<li>$b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。</li>
-<li>$z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。</li>
-<li>$a_k^{L}=\sigma(z_j^L)$ 表示第$L$层经过sigmoid函数后的输出。</li>
-</ul>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png" alt=""></p>
+        <blockquote>
+<p>参考</p>
+<p> <a href="https://blog.csdn.net/weixin_37895339/article/details/84881872" target="_blank" rel="noopener">【强化学习】确定性策略强化学习-DPG&amp;DDPG算法推导及分析</a></p>
+<p><a href="https://blog.csdn.net/kenneth_yu/article/details/78478356" target="_blank" rel="noopener">Deep Reinforcement Learning - 1. DDPG原理和算法</a></p>
+</blockquote>
+<h3 id="一、确定性策略梯度"><a href="#一、确定性策略梯度" class="headerlink" title="一、确定性策略梯度"></a>一、确定性策略梯度</h3><p>​    Deepmind的D.Silver等在2014年提出DPG： Deterministic Policy Gradient， 即确定性的行为策略，每一步的行为通过函数$μ$直接获得确定的值：     </p>
+<script type="math/tex; mode=display">
+a_t=μ(s_t|θ_μ)</script><p>​    这个函数$μ$即最优行为策略，不再是一个需要采样的随机策略。为何需要确定性的策略？简单来说，PG方法有以下缺陷：</p>
+<p>​    即使通过PG学习得到了随机策略之后，在每一步行为时，我们还需要对得到的最优策略概率分布进行采样，才能获得action的具体值；而action通常是高维的向量，比如25维、50维，在高维的action空间的频繁采样，无疑是很耗费计算能力的。在PG的学习过程中，每一步计算policy gradient都需要在整个action space进行积分:      </p>
+<script type="math/tex; mode=display">
+\nabla_θ=∫_S∫_Aρ(s)π_θ(a|s)Q_π(s,a)dads</script><p>​    这个积分我们一般通过Monte Carlo 采样来进行估算，需要在高维的action空间进行采样，耗费计算能力。如果采取简单的Greedy策略，即每一步求解$ argmax_a Q(s,a)$也不可行，因为在连续的、高维度的action空间，如果每一步都求全局最优解，太耗费计算性能。<br>​    将DPG算法融合进actor-critic框架，结合Q-learning或者Gradient Q-learning这些传统的Q函数学习方法，经过训练得到一个确定性的最优行为策略函数。</p>
 <a id="more"></a>
-<h3 id="2-损失函数定义"><a href="#2-损失函数定义" class="headerlink" title="2.  损失函数定义"></a>2.  损失函数定义</h3><p><strong>二次代价函数</strong>：($x$代表输入的样本，$y(x)$代表标签值)</p>
+<h3 id="二、DPG"><a href="#二、DPG" class="headerlink" title="二、DPG"></a>二、DPG</h3><p>DPG算法本身采用的是PG方法,且是Off-Policy方法(也可以是On-Policy)，因而直接对轨迹的价值回报进行求导。如下式求导，其中$\mu_\theta (s)$为生成确定性行动的策略函数。</p>
 <script type="math/tex; mode=display">
-C=\frac{1}{2n}\sum_x||y(x)-a^L(x)||^2</script><p>当只关注某一个样本$x_i​$的时候，有：</p>
+\nabla_\theta v_{\mu_{\theta}} (s)=\nabla_\theta[q_\mu(s,\mu_\theta(s))]</script><p>根据链式法则，由于$\mu_\theta(s)$与确定性策略价值函数$q_\mu​$有关,因而：</p>
 <script type="math/tex; mode=display">
-C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传播推导" class="headerlink" title="3. 反向传播推导"></a>3. 反向传播推导</h3><ul>
-<li><p><strong>计算最后一层神经网络产生的错误</strong></p>
-<p>对于<strong>每一个$L$层的神经元</strong>有：</p>
+\nabla_\theta v_\mu(s) = \nabla_{\mu_\theta(s)}[q_\mu(s, \mu_\theta(s))]\nabla_\theta\mu_\theta(s)</script><p>由于是确定性策略，在价值函数$q(s,μ_\theta(s))$中有策略参数$\theta$，因此需要将价值函数对策略求导。</p>
+<p>相较于随机策略梯度算法而言,如下是随机性策略梯度的目标函数梯度:</p>
+<script type="math/tex; mode=display">
+∇_θJ(θ)=\mathbb{E}_{τ∼π_θ}[(\sum_{t=0}^T∇_θ\logπ_θ(a_{i,t}∣s_{i,t}))(\sum_{t=0}^Tr(s_{i,t},a_{i,t}))]</script><p>在DPG这个梯度公式中，没有了与动作有关的期望项，因此相对于随机性策略，确定性策略需要的学习数据少，算法效率高，尤其对于动作空间维数很大的情况。</p>
+<hr>
+<h3 id="三、策略模型参数的一致性"><a href="#三、策略模型参数的一致性" class="headerlink" title="三、策略模型参数的一致性"></a>三、策略模型参数的一致性</h3><p>​    在DPG中为了更好地使用Off-policy,并使用TD降低方差，定义函数 $Q^\omega (s,a):S×A→R$ 用来拟合真实的状态动作值函数$\hat{Q}^\pi(s,a)$，如果$Q^\omega$收敛，那么L2范数梯度将满足如下公式:    </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\nabla_\omega Loss &∝ \nabla_\omega\mathbb{E}_{s,a}[\hat{Q}^\pi(s,a)-Q^\omega(s,a)]^2\\&= \mathbb{E}_{s,a\sim\tau}[(\hat{Q}^\pi(s,a)-Q^\omega(s,a))-\nabla _\omega Q^\omega(s,a)]\\&=0
+\end{aligned}</script><script type="math/tex; mode=display">
+\nabla_\omega Q^\omega(s,a)=\nabla_\theta\log\pi_\theta(s,a)=\nabla_\theta\pi_\theta(s,a)\frac{1}{\pi_\theta(s,a)}</script><p>​    在计算梯度时可以使用$Q^ω:S×A→R $代替真实的动作状态值函数$Q(s,a) $。并且神经网络满足这个性质，因此可以使用神经网络拟合动作状态值函数。这样价值模型不需要遵循某个具体的策略，因此可以使用off-policy的方式进行学习更新。</p>
+<hr>
+<h3 id="四、DPG目标函数"><a href="#四、DPG目标函数" class="headerlink" title="四、DPG目标函数"></a>四、DPG目标函数</h3><ul>
+<li><p>on-policy的确定性策略梯度算法</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679079/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173019.png" alt=""></p>
+</li>
+<li><p>off-policy的确定性策略梯度算法(Replay buffer中的数据是通过$\beta$采样得到的)                  </p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679073/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173100.png" alt=""></p>
 </li>
 </ul>
+<p>​        上两式的区别就是使用了不同的数据采样分布。可以看到off-policy缺少了重要性采样，这是由于确定性策略的动作是固定值，不是一个分布；其次是因为确定性策略值函数的评估采用的是Q-learning的方法，即使用TD(0)估计动作值函数并忽略重要性权重，值函数不依赖于任何策略，并贪心获取下一个动作。</p>
+<p>​     这个$β$不是我们想要得到的最优策略，仅仅在训练过程中，生成下达给环境的action， 从而获得我们想要的数据集，比如状态转换(transitions)、或者agent的行走路径等，然后利用这个数据集去 训练策略$μ$，以获得最优策略。在test 和 evaluation时，使用$μ$，不会再使用$β$。</p>
+<hr>
+<ul>
+<li><strong>[Actor]</strong>衡量一个策略网络的表现(策略网络目标函数)，最大化策略目标: (根据上面推导的DPG)</li>
+</ul>
 <script type="math/tex; mode=display">
-\delta^L_k=\frac{\partial{C}}{\partial{z_k^L}}=\frac{\partial{C}}{\partial{a_{k}^L}}\cdot\frac{\partial{a_k^L}}{\partial{z_{k}^{L}}}</script><p>​    则<strong>整个$L​$层</strong>可以用矩阵的Hadamard积(矩阵行行对应相乘)来进行计算：</p>
+\begin{aligned}
+J_\beta (\theta)&=\int_S ρ^\beta(s)Q^\omega(s, \mu(s))ds\\
+&=\mathbb{E}_{s\simρ^\beta}[Q^\omega(s, \mu(s))]
+\end{aligned}</script><p>​    $s$是环境的状态，这些状态(或者说agent在环境中走过的状态路径)是基于agent的behavior策略产生的，它们的分布函数(pdf) 为$ρ^β$；<br>​    $Q^\omega(s,μ(s))$ 是在每个状态下，如果都按照$μ$策略选择acton时，能够产生的$Q$值。 也即，<strong>$J_β(μ)$是在$s$根据$ρ^β$分布时，$Q^\omega(s,μ(s))​$ 的期望值。</strong></p>
+<ul>
+<li><p><strong>[Critic]</strong>最小化值网络目标:</p>
 <script type="math/tex; mode=display">
-\delta^L=\nabla_aC\odot\sigma^\prime(z^L)</script><ul>
-<li><p><strong>反向传播</strong></p>
-<p>计算每一层的每个神经元产生的误差，推广到每一层的每个神经元有：</p>
+\hat{Q}^\omega(s_t, a_t)=\mathbb{E}[r(s_t,a_t)+\gamma Q^\omega(s_{t+1},a_{t+1})]</script><script type="math/tex; mode=display">
+J_\beta(\omega)=\mathbb{E}_{s\simρ^\beta}[\frac{1}{2}(r_t+\gamma Q^\omega(s_{t+1},a_{t+1})-Q^\omega(s_t,a_t))^2]</script></li>
+</ul>
+<p><strong>最终DPG的目标函数为:</strong>（$\omega$是值网络(SGD优化)，$\theta$是策略网络(SGA优化)）</p>
+<p>​                            <img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679178/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173249.png" alt=""></p>
+<p>参数更新为：</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680271/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327175049.png" alt=""></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680273/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327175059.png" alt=""></p>
+<hr>
+<h3 id="五、DDPG"><a href="#五、DDPG" class="headerlink" title="五、DDPG"></a>五、DDPG</h3><p>DDPG借用了target net还有滑动平均方法更新behavior网络参数</p>
+<p>其更新方法如下：</p>
 <script type="math/tex; mode=display">
 \begin{align}
-\delta_k^L=\frac{\partial C}{\partial z_k^L}&=\sum_m\frac{\partial C}{\partial z_m^{L+1}}\cdot\frac{\partial{z_m^{L+1}}}{\partial{a_{k}^{L}}}\cdot\frac{\partial a_k^L}{\partial z_k^L}\\
-&=\sum_m{\delta_m^{L+1}}\cdot\frac{w_{km}^{L+1}a_k^{L}+b_m^{L+1}}{\partial{a_k^L}}\cdot\sigma'(z_k^L)\\
-&=\sum_m\delta_m^{L+1}\cdot w_{km}^{L+1}\cdot\sigma'(z_k^L)
-\end{align}</script><p>推广到整个一层有：</p>
-<script type="math/tex; mode=display">
-\delta^L=((W^{L+1})^T\cdot \delta^{L+1})\odot \sigma'(z^L)</script></li>
-<li><p><strong>计算权重的梯度</strong></p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial w_{jk}^L}=\frac{\partial C}{\partial{z_k^L}}\cdot \frac{\partial{z_k^L}}{\partial{w_{jk}^L}}=\delta_k^L\cdot\frac{\partial{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial w_{jk}^L}=a_j^{L-1}\cdot\delta_k^L</script></li>
-<li><p><strong>计算偏置的梯度</strong></p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\part b_k^L}=\frac{\partial{C}}{\partial z_{k}^L} \cdot \frac{\partial z_k^L}{\partial b_k^L}=\delta_k^L\cdot\frac{\partial{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial b_{k}^L}=\delta_k^L</script></li>
-</ul>
-<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>反向传播四个公式：</p>
+&\delta_t=r_t+\gamma Q^{\omega'}(s_{t+1},\mu_{\theta'}(s_{t+1}))-Q^\omega(s_t,a_t)\\
+&\omega_{t+1} = \omega_t+\alpha_\omega \delta_t \nabla_\omega Q^\omega(s_t,a_t) \\
+&\theta_{t+1} = \theta_t+\alpha_\theta \nabla_\theta\mu_\theta(s_t)\nabla_a Q^\omega(s_t,a_t)|_{a=\mu_\theta(s_t)} \\
+&\theta'=\tau\theta+(1-\tau)\theta' \\
+&\omega ' = \tau\omega+(1-\tau)\omega'
+\end{align}</script><p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553680662/20181207173225338.png" alt=""></p>
+<p>对比一下DQN</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4155986-14d930f99a102729?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt="img"></p>
+<h3 id="六、TD3"><a href="#六、TD3" class="headerlink" title="六、TD3"></a>六、TD3</h3><blockquote>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/47182584" target="_blank" rel="noopener">TD3</a></p>
+</blockquote>
+<p>TD3(Twin Delayed Deep Deterministic policy gradient algorithm )主要对DDPG做了一些改进:</p>
 <ol>
-<li><p>输出层误差：</p>
+<li><p><strong>引入DoubleDQN的思想，来消除过拟合问题</strong>(两个Critic, 一个Actor)</p>
+<p>DoubleDQN中使用Current Net（Behavior net）来代替TargetNet，以减小Bias。</p>
 <script type="math/tex; mode=display">
-\delta^L=\nabla_aC\odot\sigma^\prime(z^L)</script></li>
-<li><p>反向传播每一层误差：</p>
+y_j = r_{j+1}+\gamma Q(s_{j+1},argmax_{a'}Q(s_{j+1},a';\theta);\theta^-)</script><p>映射到DPG过程中,其中$\pi_φ(s’)$是CurrentNet:</p>
 <script type="math/tex; mode=display">
-\delta^L=((W^{L+1})^T\cdot \delta^{L+1})\odot \sigma'(z^L)</script></li>
-<li><p>权重梯度：</p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial w_{jk}^L}=a_j^{L-1}\cdot\delta_k^L</script></li>
-<li><p>偏置梯度：</p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial b_k^L}=\delta_k^L</script></li>
+y = r + \gamma Q_\theta(s',\pi_φ(s'))</script><p>即critic用更新较慢的target network，actor还是更新快的；但由于本身actor更新也不快，所以没啥效果。</p>
+<p>如果类比double Q-learning，使用两个actor、两个critic写出来的更新目标为</p>
+<p><img src="https://pic2.zhimg.com/80/v2-8648a8a5f3c47a76def05e4f5e7db259_hd.jpg" alt="img"></p>
+<p>本着“宁可低估，也不要高估”的想法（因为actor会选择高的，因此高估的会累积起来），再把目标改写成</p>
+<p><img src="https://pic3.zhimg.com/80/v2-b303f91e57ab55ff1884cf1d9cd36442_hd.jpg" alt="img"></p>
+<p>最后发现两个actor也没啥用，就用一个actor，这个actor根据 $Q_{\theta_1}​$ 来更新。两个critic的更新目标都是一样的，即 $y_2 = y_1​$ 。这样的算法相比于改变之前的就等于多了一个和原来critic同步更新的辅助critic $Q_{\theta_2} ​$，在更新target的时候用来取min。</p>
+</li>
+<li><p><strong>使用TargetNet</strong></p>
+<p>实验结果表明，当policy固定不变的时候，是否使用target network其价值函数都能最后收敛到正确的值；但是actor和critic同步训练的时候，不用target network可能使得训练不稳定或者发散。因此算法的中critic的更新目标都由target network计算出来</p>
+<p><img src="https://pic3.zhimg.com/80/v2-f9c9703f8892c46cb17d5fb24a95b012_hd.jpg" alt="img"></p>
+<p>并且，价值函数估计准确之后再来更新policy会更好，因此采用了delayed policy update，即以较高的频率更新价值函数，以较低的频率更新policy。</p>
+</li>
+<li><p><strong>使用Target Policy 平滑正则</strong></p>
+<p>希望学到的价值函数在action的维度上更平滑，因此价值函数的更新目标每次都在action上加一个小扰动</p>
+<p><img src="https://pic1.zhimg.com/80/v2-f7e163f79d41d3bc8939c8c8607f5e24_hd.jpg" alt="img"></p>
+</li>
 </ol>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553831070/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190329114325.png" alt=""></p>
 
       
     </div>
@@ -628,12 +684,12 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/post/9e924caa.html">反向传播公式推导</a></p>
+  <p><span>本文标题:</span><a href="/post/dad17569.html">【确定性策略梯度类】 DPG,DDPG,TD3</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
-  <p><span>发布时间:</span>2019年02月17日 - 18:02</p>
-  <p><span>最后更新:</span>2019年03月27日 - 16:03</p>
-  <p><span>原始链接:</span><a href="/post/9e924caa.html" title="反向传播公式推导">http://zhkmxx9302013.github.io/post/9e924caa.html</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/9e924caa.html" aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年03月27日 - 16:03</p>
+  <p><span>最后更新:</span>2019年03月31日 - 23:03</p>
+  <p><span>原始链接:</span><a href="/post/dad17569.html" title="【确定性策略梯度类】 DPG,DDPG,TD3">http://zhkmxx9302013.github.io/post/dad17569.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/dad17569.html" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -667,7 +723,7 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
       
         <div class="post-tags">
           
-            <a href="/tags/深度学习基础/" rel="tag"># 深度学习基础</a>
+            <a href="/tags/强化学习/" rel="tag"># 强化学习</a>
           
         </div>
       
@@ -692,8 +748,8 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/19fc17a4.html" rel="next" title="深度学习常见Loss推导">
-                <i class="fa fa-chevron-left"></i> 深度学习常见Loss推导
+              <a href="/post/2f107dda.html" rel="next" title="聚类方法">
+                <i class="fa fa-chevron-left"></i> 聚类方法
               </a>
             
           </div>
@@ -702,8 +758,8 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/post/7a6400a0.html" rel="prev" title="参数初始化与正则化">
-                参数初始化与正则化 <i class="fa fa-chevron-right"></i>
+              <a href="/post/e567270d.html" rel="prev" title="[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)">
+                [论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -924,7 +980,7 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-符号定义"><span class="nav-number">1.</span> <span class="nav-text">1. 符号定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-损失函数定义"><span class="nav-number">2.</span> <span class="nav-text">2.  损失函数定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-反向传播推导"><span class="nav-number">3.</span> <span class="nav-text">3. 反向传播推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-总结"><span class="nav-number">4.</span> <span class="nav-text">4.总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、确定性策略梯度"><span class="nav-number">1.</span> <span class="nav-text">一、确定性策略梯度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、DPG"><span class="nav-number">2.</span> <span class="nav-text">二、DPG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、策略模型参数的一致性"><span class="nav-number">3.</span> <span class="nav-text">三、策略模型参数的一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、DPG目标函数"><span class="nav-number">4.</span> <span class="nav-text">四、DPG目标函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、DDPG"><span class="nav-number">5.</span> <span class="nav-text">五、DDPG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、TD3"><span class="nav-number">6.</span> <span class="nav-text">六、TD3</span></a></li></ol></div>
             
 
           </div>

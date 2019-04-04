@@ -109,43 +109,36 @@
 
 
 
-  <meta name="description" content="参考  令人拍案叫绝的Wasserstein GAN WGAN最新进展：从weight clipping到gradient penalty Ten paper: GAN-GP(Gradient Penalty) 深度有趣 | 16 令人拍案叫绝的WGAN 开发者自述：我是这样学习 GAN 的 推荐：生成对抗网络综述   一、 基本概念 符号定义 $D$ 判别模型， $G$ 生成模型 $x​$ 数">
-<meta name="keywords" content="GANs">
+  <meta name="keywords" content="元学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="生成对抗网络(笔记)">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/post/d42ca19b.html">
+<meta property="og:title" content="[论文]CONTINUOUS ADAPTATION VIA META-LEARNING IN NONSTATIONARY AND COMPETITIVE ENVIRONMENTS">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/177e574f.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="参考  令人拍案叫绝的Wasserstein GAN WGAN最新进展：从weight clipping到gradient penalty Ten paper: GAN-GP(Gradient Penalty) 深度有趣 | 16 令人拍案叫绝的WGAN 开发者自述：我是这样学习 GAN 的 推荐：生成对抗网络综述   一、 基本概念 符号定义 $D$ 判别模型， $G$ 生成模型 $x​$ 数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d343a395d.png?imageMogr2/format/jpg/quality/90">
-<meta property="og:image" content="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d6b71a9c4.png?imageMogr2/format/jpg/quality/90">
-<meta property="og:image" content="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d72e64539.png?imageMogr2/format/jpg/quality/90">
-<meta property="og:image" content="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d7617e528.png?imageMogr2/format/jpg/quality/90">
-<meta property="og:image" content="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d788afdf1.png?imageMogr2/format/jpg/quality/90">
-<meta property="og:image" content="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d79e1ea1e.png?imageMogr2/format/jpg/quality/90">
-<meta property="og:image" content="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d7bdc95a8.png?imageMogr2/format/jpg/quality/90">
-<meta property="og:image" content="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d7da92f9c.png?imageMogr2/format/jpg/quality/90">
-<meta property="og:image" content="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d86f91198.png?imageMogr2/format/jpg/quality/90">
-<meta property="og:image" content="https://zhihu.com/equation?tex=W%28P_r%2C+P_g%29+%3D+%5Cinf_%7B%5Cgamma+%5Csim+%5CPi+%28P_r%2C+P_g%29%7D+%5Cmathbb%7BE%7D_%7B%28x%2C+y%29+%5Csim+%5Cgamma%7D+%5B%7C%7Cx+-+y%7C%7C%5D">
-<meta property="og:image" content="https://zhihu.com/equation?tex=KL%28P_1+%7C%7C+P_2%29+%3D+KL%28P_1+%7C%7C+P_2%29+%3D%0A%5Cbegin%7Bcases%7D%0A%2B%5Cinfty+%26+%5Ctext%7Bif+%24%5Ctheta+%5Cneq+0%24%7D+%5C%5C%0A0+%26+%5Ctext%7Bif+%24%5Ctheta+%3D+0%24%7D%0A%5Cend%7Bcases%7D">
-<meta property="og:image" content="https://zhihu.com/equation?tex=JS%28P_1%7C%7CP_2%29%3D%0A%5Cbegin%7Bcases%7D%0A%5Clog+2+%26+%5Ctext%7Bif+%24%5Ctheta+%5Cneq+0%24%7D+%5C%5C%0A0+%26+%5Ctext%7Bif+%24%5Ctheta+-+0%24%7D%0A%5Cend%7Bcases%7D">
-<meta property="og:image" content="https://zhihu.com/equation?tex=W%28P_0%2C+P_1%29+%3D+%7C%5Ctheta%7C">
-<meta property="og:image" content="https://zhihu.com/equation?tex=W%28P_r%2C+P_g%29+%3D+%5Cfrac%7B1%7D%7BK%7D+%5Csup_%7B%7C%7Cf%7C%7C_L+%5Cleq+K%7D+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_r%7D+%5Bf%28x%29%5D+-+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_g%7D+%5Bf%28x%29%5D">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=K+%5Ccdot+W%28P_r%2C+P_g%29+%5Capprox+%5Cmax_%7Bw%3A+%7Cf_w%7C_L+%5Cleq+K%7D+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_r%7D+%5Bf_w%28x%29%5D+-+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_g%7D+%5Bf_w%28x%29%5D">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1551773009/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305160316.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1551771655/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305153950.png">
-<meta property="og:updated_time" content="2019-03-29T14:08:12.557Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554355299/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404132053.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554355299/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404132118.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554303429/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403225700.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554301995/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403223301.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554300870/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403221335.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554302085/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403223439.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554302355/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403223905.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554303319/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403225513.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554346096/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404104758.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554346986/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404110256.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554348074/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404112109.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554353682/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404125425.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554353917/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404125820.png">
+<meta property="og:updated_time" content="2019-04-04T05:35:45.241Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="生成对抗网络(笔记)">
-<meta name="twitter:description" content="参考  令人拍案叫绝的Wasserstein GAN WGAN最新进展：从weight clipping到gradient penalty Ten paper: GAN-GP(Gradient Penalty) 深度有趣 | 16 令人拍案叫绝的WGAN 开发者自述：我是这样学习 GAN 的 推荐：生成对抗网络综述   一、 基本概念 符号定义 $D$ 判别模型， $G$ 生成模型 $x​$ 数">
-<meta name="twitter:image" content="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d343a395d.png?imageMogr2/format/jpg/quality/90">
+<meta name="twitter:title" content="[论文]CONTINUOUS ADAPTATION VIA META-LEARNING IN NONSTATIONARY AND COMPETITIVE ENVIRONMENTS">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554355299/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404132053.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/d42ca19b.html">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/177e574f.html">
 
 
 
@@ -155,7 +148,7 @@
   };
 </script>
 
-  <title>生成对抗网络(笔记) | zhkmxx930 blog</title>
+  <title>[论文]CONTINUOUS ADAPTATION VIA META-LEARNING IN NONSTATIONARY AND COMPETITIVE ENVIRONMENTS | zhkmxx930 blog</title>
   
 
 
@@ -458,7 +451,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/d42ca19b.html">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/177e574f.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -475,7 +468,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">生成对抗网络(笔记)
+          <h2 class="post-title" itemprop="name headline">[论文]CONTINUOUS ADAPTATION VIA META-LEARNING IN NONSTATIONARY AND COMPETITIVE ENVIRONMENTS
 
               
             
@@ -501,7 +494,7 @@
                 
               
 
-              <time title="创建时间：2019-03-05 10:25:59" itemprop="dateCreated datePublished" datetime="2019-03-05T10:25:59+08:00">2019-03-05</time>
+              <time title="创建时间：2019-04-03 17:11:05" itemprop="dateCreated datePublished" datetime="2019-04-03T17:11:05+08:00">2019-04-03</time>
             
 
             
@@ -518,7 +511,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-29 22:08:12" itemprop="dateModified" datetime="2019-03-29T22:08:12+08:00">2019-03-29</time>
+                <time title="修改时间：2019-04-04 13:35:45" itemprop="dateModified" datetime="2019-04-04T13:35:45+08:00">2019-04-04</time>
               
             
           </span>
@@ -532,8 +525,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/d42ca19b.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/d42ca19b.html" itemprop="commentsCount"></span>
+                <a href="/post/177e574f.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/177e574f.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -541,7 +534,7 @@
 
           
           
-             <span id="/post/d42ca19b.html" class="leancloud_visitors" data-flag-title="生成对抗网络(笔记)">
+             <span id="/post/177e574f.html" class="leancloud_visitors" data-flag-title="[论文]CONTINUOUS ADAPTATION VIA META-LEARNING IN NONSTATIONARY AND COMPETITIVE ENVIRONMENTS">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -572,164 +565,93 @@
       
 
       
-        <blockquote>
-<p><strong>参考</strong></p>
-<ol>
-<li><a href="https://zhuanlan.zhihu.com/p/25071913?columnSlug=f00cb0979b57ab6d7f70e287b0cba55d" target="_blank" rel="noopener">令人拍案叫绝的Wasserstein GAN</a></li>
-<li><a href="http://www.dataguru.cn/article-11229-1.html" target="_blank" rel="noopener">WGAN最新进展：从weight clipping到gradient penalty</a></li>
-<li><a href="https://blog.csdn.net/Jasminexjf/article/details/82686953" target="_blank" rel="noopener">Ten paper: GAN-GP(Gradient Penalty)</a></li>
-<li><a href="https://blog.csdn.net/zhl493722771/article/details/82781914" target="_blank" rel="noopener">深度有趣 | 16 令人拍案叫绝的WGAN</a></li>
-<li><a href="https://www.cnblogs.com/bonelee/p/9166084.html" target="_blank" rel="noopener">开发者自述：我是这样学习 GAN 的</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&amp;mid=2247495668&amp;idx=1&amp;sn=e7e959b2bdd7b2763b9207ccb80fa6bc&amp;chksm=96ea3074a19db96208a51d26f7b5b4ef9c3a37a7799ec270becc77203de4294235041ede7206&amp;scene=0&amp;xtrack=1&amp;key=ea0a47f5b68e2b15d12fc7340eeaead8c766a680edb675d1e37261c54bf195211fca30c0935b743e9e6dd48a73a6ef5d12a3fc2ced96f775ec178345e1a5c665a9c23b45568dfc4dd79eda44cfbb4327&amp;ascene=1&amp;uin=MjMzNzA4OTgzMQ%3D%3D&amp;devicetype=Windows+10&amp;version=62060739&amp;lang=zh_CN&amp;pass_ticket=Ra%2BHQfQVPTFOQ2krrdR9WfmIhtZPhLL%2F4MTSGwpPVIL4A76Tszpn5qdPd%2B%2Bqxp4s" target="_blank" rel="noopener">推荐：生成对抗网络综述</a></li>
-</ol>
-</blockquote>
-<h3 id="一、-基本概念"><a href="#一、-基本概念" class="headerlink" title="一、 基本概念"></a>一、 基本概念</h3><ol>
-<li><p><strong>符号定义</strong></p>
-<p>$D$ 判别模型， $G$ 生成模型</p>
-<p>$x​$ 数据集中的数据分布，$z​$ 某种随机分布</p>
-</li>
-<li><p><strong>目标函数</strong>（详细参见第四部分）</p>
-<script type="math/tex; mode=display">
-min_Gmax_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script><ul>
-<li><p><strong>D Loss</strong> (MC采样，相当于训练二分类器$x \sim P_{data}$一类，$\hat{x} \sim G(z)$一类):</p>
-<script type="math/tex; mode=display">
-max_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script></li>
-<li><p><strong>G Loss原始</strong> （MiniMax GAN<strong>[MMGAN]</strong>）(<strong>判别器越好，生成器梯度消失越严重</strong>)</p>
-<script type="math/tex; mode=display">
-\mathbb{E}{_{x\sim P_g}}[log(1-D(x))]</script></li>
-<li><p><strong>G Loss改进</strong> (Non-saturating GAN<strong>[NSGAN]</strong> )(-log trick) </p>
-<script type="math/tex; mode=display">
-\mathbb{E}{_{x\sim P_g}}[-log(D(x))]</script></li>
-</ul>
-</li>
-<li><p><strong>释义</strong></p>
-<p>$G$的目标是最大化生成数据与数据集数据的似然，减小生成数据与数据集数据之间的差距。</p>
-<p>$D$要解决的问题是一个二分类问题，$V(D,G)$ 为二分类问题中常见的交叉熵损失。对于生成器$ G $来说，为了尽可能欺骗$ D$，所以需要最大化生成样本的判别概率 $D(G(z))$，即最小化$ log(1-D(G(z)))$，注意：$log(D(x)) $一项与生成器$ G $无关，所以可以忽略。</p>
-</li>
-</ol>
+        <p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554355299/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404132053.png" alt=""></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554355299/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404132118.png" alt=""></p>
 <a id="more"></a>
-<h3 id="二、-原理推导"><a href="#二、-原理推导" class="headerlink" title="二、 原理推导"></a>二、 原理推导</h3><blockquote>
-<p>参考: <a href="https://www.cnblogs.com/bonelee/p/9166084.html" target="_blank" rel="noopener">开发者自述：我是这样学习 GAN 的</a></p>
-</blockquote>
-<p>​    真实数据的分布$ P_{data}(x)$，$x$ 是一个真实数据，是一个向量，这个向量集合的分布就是 $P_{data}$。我们需要生成一些也在这个分布内的数据，如果直接就是这个分布的话，怕是做不到的。</p>
-<p>​    现有的 Generator 生成的分布可以假设为 $P_G(x;θ)$，这是一个由 $ θ $ 控制的分布，$θ$ 是这个分布的参数（如果是高斯混合模型，那么 $ θ$ 就是每个高斯分布的均值和方差) 。</p>
-<p>​    假设我们在真实分布中取出一些数据，${x_1, x_2, … , x_m}$，我们想要计算一个似然 $P_G(x_i; θ)$。</p>
-<p>​    对于这些数据，在生成模型中的似然就是</p>
+<h3 id="一、摘要"><a href="#一、摘要" class="headerlink" title="一、摘要"></a>一、摘要</h3><h3 id="二、先序工作"><a href="#二、先序工作" class="headerlink" title="二、先序工作"></a>二、先序工作</h3><h3 id="三、方法"><a href="#三、方法" class="headerlink" title="三、方法"></a>三、方法</h3><h4 id="3-1-Overview"><a href="#3-1-Overview" class="headerlink" title="3.1 Overview"></a>3.1 <strong>Overview</strong></h4><p>（1）<strong>使用few-shot 方法解决非确定性环境下的连续自适应问题存在的问题:</strong></p>
+<p>agent必须从有限的过往经验中学习，并且这些过往经验是在没有环境变化下收集的。</p>
+<p>（2）<strong>解决方法： </strong>  </p>
+<p>​    基于MAML进行构建，其中MAML (gradient-based model-agnostic meta-learning)，在few-shot方法中效果较好。</p>
+<p>​    本文从概率的角度对MAML在multi-task RF方向上进行扩展，并最终将其扩展到动态变化的任务中去。</p>
+<hr>
+<h4 id="3-2-MAML的概率视角"><a href="#3-2-MAML的概率视角" class="headerlink" title="3.2 MAML的概率视角"></a>3.2 <strong>MAML的概率视角</strong></h4><p><strong>2-1 定义</strong></p>
+<p>给定任务的分布 $D(T)$，对于每个任务$T$，$T$是一个如下的四元组</p>
 <script type="math/tex; mode=display">
-L=\prod_{i=1}^mP_G(x^i;\theta)</script><ol>
-<li><p><strong>GAN原理</strong></p>
-<p>最大化上面这个似然，等价于让 Generator 生成那些真实数据分布的概率最大。这就变成了一个最大似然估计的问题了，我们需要找到一个 $θ^*$ 来最大化这个似然。</p>
-<p><img src="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d343a395d.png?imageMogr2/format/jpg/quality/90" alt="å¼åèèªè¿°ï¼ææ¯è¿æ ·å­¦ä¹  GAN ç"></p>
-<p>固定$G$,求一个最优的$D^*$</p>
+T:=(L_T,P_T(x),P_T(x_{t+1}|x_t,a_t),H)</script><ul>
+<li>$L_T$表示任务相关的Loss function，其将trajectory $\tau:=(x_0,a_1,x_1,R_1,…a_H,x_H,R_H)$与loss值进行映射;</li>
+<li>$P_T(x)$和$P_T(x_{t+1}|x_t,a_t)$定义了任务$T$中的马尔科夫决策过程;</li>
+<li>$H$表示任务的时间域(Horizon)；</li>
+<li>$x_t$表示observations, $a_t$表示actions,</li>
+</ul>
+<p>对于每个任务的Loss function $L_T$定义为：</p>
+<script type="math/tex; mode=display">
+L_T(\tau):=-\sum_{t=1}^HR_t</script><p><strong>2-2 Adaption Update</strong></p>
+<ul>
+<li><p>元学习的目标是找到一个过程，该过程能够通过在从$D(T) $采样的任务中获得有限经验的情况下，产生解决元学习问题的良好策略。具体为：</p>
+</li>
+<li><p>在使用策略$\pi_\theta$，从$D(T)$上采样了$K$个task $T \sim D(T)$，表示成$\tau_\theta^{1:K}$之后，构建一个新的针对采样出来的某个特定任务的策略$\pi_\phi$， 该策略的目标是在任务$T$上减小子序列的loss的期望 (expected subsequent loss)。</p>
+</li>
+<li><p>公式化上述描述即<strong>Adaption Update（Meta Upate）过程</strong>，MAML使用参数为$\theta$的$L_T$的梯度，构建了针对特定任务策略的参数$\phi$:</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\phi:=\theta-\alpha\nabla_\theta L_T(\tau^{1:K}) \\
+where \space\space L_T(\tau_\theta^{1:K}):=\frac{1}{K}\sum_{k=1}^K L_T(\tau_\theta^k)\\
+and \space\space  \tau_\theta^k\sim P_T(\tau|\theta)</script><p><strong>2-3 Meta Loss定义</strong></p>
+<p>Meta-Loss的定义如下：</p>
+<script type="math/tex; mode=display">
+min_\theta\mathbb{E}_{T\sim D(T)}[L_T(\theta)]</script><p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554303429/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403225700.png" alt=""></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554301995/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403223301.png" alt=""></p>
+<ul>
+<li>一般情况下，$\phi$从某种条件概率分布 $P_T(\phi|\theta, \tau_{1:k})$ 中生成， <strong>Meta Update公式等价于假设delta分布</strong>，即<script type="math/tex; mode=display">
+P_T(\phi|\theta,\tau_{1:K}):=\delta(\theta-\alpha\nabla_\theta\frac{1}{K}\sum_{k=1}^K L_T(\tau_\theta^k))</script></li>
+</ul>
+<p><strong>2-4 Meta Loss优化</strong></p>
+<ul>
+<li>对于<strong>优化Meta-Loss</strong>，可以采用策略梯度的方法(TRPO，PPO等)按下述梯度进行优化。</li>
+</ul>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554300870/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403221335.png" alt=""></p>
+<hr>
+<h4 id="3-3-通过Meta-Learning实现连续自适应"><a href="#3-3-通过Meta-Learning实现连续自适应" class="headerlink" title="3.3 通过Meta-Learning实现连续自适应"></a>3.3 <strong>通过Meta-Learning实现连续自适应</strong></h4><p>​    在经典的多任务中，我们不假设任务的分布，$D(T)$。当环境是non-stationary时，可以把它看作是在某个时间尺度上的一系列stationary任务，其中任务对应于环境的不同动态。然后，$D(T)$由环境变化定义，任务将依赖于一定连续任务。因此，利用连续任务和meta-learn之间的依赖性，不断update policy，从而最大限度地减少与不断变化的环境交互过程中遇到的总loss期望。</p>
+<p>​    例如，在Multi-agent中，当与不断优化自身策略的对手（例如，由于学习）进行比赛时，我们的agent应该理想地进行元学习，以预测更改并相应地更新其策略。</p>
+<p><strong>3-1 non-stationary的马尔科夫表示</strong></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554302085/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403223439.png" alt=""></p>
+<p>​    以概率的角度来描述non-stationary环境，该环境等价于上图所示的Markov 链表示的任务序列分布。 其目标是最小化某个长度$L$的马尔科夫任务序列上的loss期望。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554302355/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403223905.png" alt=""></p>
+<p>​        其中$P(T_0)$和$P(T_{i+1}|T_i)$表示初始概率及任务序列的马尔科夫链的概率转移。 值得注意的是，</p>
+<p>​    （1）这里的动态马尔科夫链是二级层次化的，其中高层为任务的动态变化，下层为具体任务的MDP；</p>
+<p>​    （2）目标$L_{T_i,T_{i+1}}$依赖于Meta learning过程定义的形式。</p>
+<p><strong>3-2 连续任务的Meta Loss定义</strong></p>
+<p>​    由于我们对任务间马尔可夫变换的最佳Adaption Update感兴趣，因此我们将一对连续任务的Meta Loss    定义如下：</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554303319/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190403225513.png" alt=""></p>
+<p>​    对于连续任务的Meta Loss与第二章定义的Meta Loss的不同之处在于：</p>
+<p><strong>（1）</strong> 连续任务的Meta Loss的trajectory $\tau_{i,\theta}^{1:K} $来自当前的任务$T_i$ , 并且用来构建Policy $\pi_\phi$ ，以便于执行下一个任务$T_{i+1}$；<br><strong>（2）</strong> 虽然策略参数$\phi_i$是依赖于序列的，但是在上面<strong>连续任务的Meta Loss中一般初始参数设置为$\theta$</strong>。 P.S.(这是出于稳定性考虑。我们从经验上发现优化顺序更新$\phi_{i}$到$\phi_{i+1}$是不稳定的，通常倾向于发散，而从相同的初始化开始导致更好的行为。)</p>
+<p>​    因此，优化$L_{T_i，T_{i + 1}}(θ)$ 相当于使用任务链中的单位滞后，截断随着时间的推移反向传播。</p>
+<p><strong>3-3 连续任务的Adaption Update</strong></p>
+<p>​    为了构建任务$T_{i+1}$的策略参数，我们从参数$\theta$开始，使用adaptive update进行多次 meta-gradient step。(假设step数是$M$，经验参考值为2~5次): <strong>【原文中的公式(7)】</strong></p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-V&=\mathbb{E}_{x\sim P_{data}}[logD(x)]+\mathbb{E}_{x\sim P_G}[log(1-D(x))]\\
-&=\int_x P_{data}(x)\log D(x)dx+\int_xP_G(x)\log (1-D(x))dx \\
-&=\int_x[P_{data}(x)\log D(x)+P_G(x)\log(1-D(x))]dx
-\end{aligned}</script><p>那么转为优化$f(D) = P_{data}(x)\log D(x)+P_G(x)\log(1-D(x))$</p>
-<p>对$f(D)$求偏导:</p>
-<script type="math/tex; mode=display">
-\frac{df(D)}{dD} = P_{data}(x)×\frac{1}{D}+P_G(x)×\frac{1}{1-D}×(-1) = 0</script><p>可以解得:</p>
-<script type="math/tex; mode=display">
-D^*(x) = \frac{P_{data}(x)}{P_{data}(x)+P_G(x)}</script><p>对于一个给定的 x，得到最优的 D 如上图，范围在 (0,1) 内，把最优的 D 带入V</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&max_DV(G,D)&=V(G,D^*)\\
-&=\mathbb{E}_{x\sim P_{data}}[logD^*(x)]+\mathbb{E}_{x\sim P_G}[log(1-D^*(x))]\\
-&=\mathbb{E}_{x\sim P_{data}}[log\frac{P_{data}(x)}{P_{data}(x)+P_G(x)}]+\mathbb{E}_{x\sim P_G}[log(1-\frac{P_{G}(x)}{P_{data}(x)+P_G(x)})] \\
-&=\int_xP_{data}(x)log\frac{P_{data}(x)}{P_{data}(x)+P_G(x)}dx+\int_xP_G(x)log(1-\frac{P_{G}(x)}{P_{data}(x)+P_G(x)})dx\\
-&=-2log2+\int_xP_{data}(x)log\frac{P_{data}(x)}{(P_{data}(x)+P_G(x))/2}dx+\int_xP_G(x)log(1-\frac{P_{G}(x)}{(P_{data}(x)+P_G(x))/2})dx \\
-&=-2log2+KL(P_{data}(x)||\frac{P_{data}(x)+P_G(x)}{2})+KL(P_G(x)||\frac{P_{data}+P_G(x)}{2}) \\
-&= -2log2+2JSD(P_{data}(x)||P_G(x))
-\end{aligned}</script><p>所以最终</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{x\sim P_r}[\log D^*(x)] + \mathbb{E}_{x\sim P_g}[\log(1-D^*(x))] = 2JS(P_r || P_g) - 2\log 2</script><p>表示两个分布之间的差异，最小值是$ -2log2​$，最大值为 $0​$。观察上式，当 $P_G(x)=P_{data}(x)​$ 时，G 是最优的。</p>
-</li>
-</ol>
-<h3 id="三、GAN的训练"><a href="#三、GAN的训练" class="headerlink" title="三、GAN的训练"></a>三、GAN的训练</h3><p>有了上面推导的基础之后，我们就可以开始训练 GAN 了。结合我们开头说的，两个网络交替训练，我们可以在起初有一个 $G_0$ 和 $D_0$，先训练 $D_0$ 找到 ：</p>
-<p><img src="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d6b71a9c4.png?imageMogr2/format/jpg/quality/90" alt="开发者自述：我是这样学习 GAN 的"></p>
-<p>然后固定 $D_0$ 开始训练 $G_0$， 训练的过程都可以使用 gradient descent，以此类推，训练 $D_1,G_1,D_2,G_2,…$</p>
-<p>但是这里有个问题就是，你可能在 $D_0^*​$ 的位置取到了：</p>
-<p><img src="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d72e64539.png?imageMogr2/format/jpg/quality/90" alt="开发者自述：我是这样学习 GAN 的"></p>
-<p>然后更新 $G_0$ 为 $G_1$，可能会出现：</p>
-<p><img src="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d7617e528.png?imageMogr2/format/jpg/quality/90" alt="开发者自述：我是这样学习 GAN 的"></p>
-<p>但是并不保证会出现一个新的点$ D_1^*$ 使得：</p>
-<p><img src="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d788afdf1.png?imageMogr2/format/jpg/quality/90" alt="开发者自述：我是这样学习 GAN 的"></p>
-<p>这样更新 $G$ 就没达到它原来应该要的效果，如下图所示：</p>
-<p><img src="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d79e1ea1e.png?imageMogr2/format/jpg/quality/90" alt="开发者自述：我是这样学习 GAN 的"></p>
-<p>避免上述情况的方法就是更新 $G $的时候，不要更新 $G $太多。</p>
-<p>知道了网络的训练顺序，我们还需要设定两个 loss function，一个是$ D$ 的 loss，一个是 $G$ 的 loss。下面是整个 GAN 的训练具体步骤：(多练D，少练G以免JS散度太小)</p>
-<p><img src="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d7bdc95a8.png?imageMogr2/format/jpg/quality/90" alt="å¼åèèªè¿°ï¼ææ¯è¿æ ·å­¦ä¹  GAN ç"></p>
-<p>上述步骤在机器学习和深度学习中也是非常常见，易于理解。</p>
-<h3 id="四、存在的问题"><a href="#四、存在的问题" class="headerlink" title="四、存在的问题"></a>四、存在的问题</h3><ol>
-<li><p><strong>G的Loss function收敛速度问题：</strong></p>
-<p>  $G​$ 的 loss function $\mathbb{E}{_{x\sim P_g}}[log(1-D(x))]​$ 还是有一点小问题，下图是两个函数的图像：</p>
-</li>
-</ol>
-<p><img src="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d7da92f9c.png?imageMogr2/format/jpg/quality/90" alt="å¼åèèªè¿°ï¼ææ¯è¿æ ·å­¦ä¹  GAN ç"></p>
-<p>​    <strong>[问题原因]</strong> $log(1-D(x)) $是我们计算时 G 的 loss function，但是我们发现，在$ D(x) $接近于 0 的时候，这个函数十分平滑，梯度非常的小。这就会导致，在训练的初期，$G $想要骗过 $D$，变化十分的缓慢，而上面的函数，趋势和下面的是一样的，都是递减的。但是它的优势是在 $D(x) $接近 0 的时候，梯度很大，有利于训练，在 $D(x) $越来越大之后，梯度减小，这也很符合实际，在初期应该训练速度更快，到后期速度减慢。</p>
-<p>​    <strong>[解决方案]</strong> 所以我们把$ G$ 的 loss function 修改为:</p>
-<script type="math/tex; mode=display">
-minimizeV=-\frac{1}{m}\sum_{i=1}^m \log(D(x^i))</script><ol>
-<li><p><strong>Loss 没有变化，一直都是平的</strong></p>
-<p><strong>[问题]</strong> 此时$max_DV(G,D)=0$, $JS=log2$, $P_G$和$P_{data}$由于$D$过拟合导致完全没有交集，但是实际上两个分布是有交集的，造成这个的原因是因为，我们无法真正计算期望和积分，只能使用 sample 的方法，如果训练的过拟合了，D 还是能够完全把两部分的点分开:</p>
-<p><img src="https://static.leiphone.com/uploads/new/article/740_740/201707/5966d86f91198.png?imageMogr2/format/jpg/quality/90" alt="å¼åèèªè¿°ï¼ææ¯è¿æ ·å­¦ä¹  GAN ç"></p>
-<p><strong>[问题原因]</strong> 对于这个问题，我们是否应该让 $D$变得弱一点，减弱它的分类能力，但是从理论上讲，为了让它能够有效的区分真假图片，我们又希望它能够，所以这里就产生了矛盾。</p>
-<p>还有可能的原因是，虽然两个分布都是高维的，但是两个分布都十分的窄，可能交集相当小，这样也会导致 JS divergence 算出来为$log2$，约等于没有交集。</p>
-<p><strong>[解决方案]</strong> 解决的一些方法，有添加噪声，让两个分布变得更宽，可能可以增大它们的交集，这样 JS divergence 就可以计算，但是随着时间变化，噪声需要逐渐变小。</p>
-</li>
-<li><p><strong>Mode Collapse</strong></p>
-</li>
-</ol>
-<h3 id="五、-WGAN"><a href="#五、-WGAN" class="headerlink" title="五、 WGAN"></a>五、 WGAN</h3><blockquote>
-<p>参考：<a href="https://zhuanlan.zhihu.com/p/25071913?columnSlug=f00cb0979b57ab6d7f70e287b0cba55d" target="_blank" rel="noopener">令人拍案叫绝的Wasserstein GAN</a></p>
-</blockquote>
-<p><strong>1. 形式改变</strong>：</p>
-<ul>
-<li>判别器最后一层去掉sigmoid</li>
-<li>生成器和判别器的loss不取log</li>
-<li>每次更新判别器的参数之后把它们的绝对值截断到不超过一个固定常数c</li>
-<li>不要用基于动量的优化算法（包括momentum和Adam），推荐RMSProp，SGD也行</li>
-</ul>
-<p><strong>2. Wasserstein距离的好处</strong>：</p>
-<p>Wasserstein距离：</p>
-<p><img src="https://zhihu.com/equation?tex=W%28P_r%2C+P_g%29+%3D+%5Cinf_%7B%5Cgamma+%5Csim+%5CPi+%28P_r%2C+P_g%29%7D+%5Cmathbb%7BE%7D_%7B%28x%2C+y%29+%5Csim+%5Cgamma%7D+%5B%7C%7Cx+-+y%7C%7C%5D" alt="img"></p>
-<p><strong>[公式释义]</strong>： 在所有的$P_r$、$P_g$的联合分布集合中选取真实样本x与生成样本y之间的距离期望最小的分布(取下界)。</p>
-<p><strong>[优点]</strong>：Wasserstein距离相比KL散度、JS散度的优越性在于，即便两个分布没有重叠，Wasserstein距离仍然能够反映它们的远近。（没有条件性突变发生）</p>
-<p><img src="https://zhihu.com/equation?tex=KL%28P_1+%7C%7C+P_2%29+%3D+KL%28P_1+%7C%7C+P_2%29+%3D%0A%5Cbegin%7Bcases%7D%0A%2B%5Cinfty+%26+%5Ctext%7Bif+%24%5Ctheta+%5Cneq+0%24%7D+%5C%5C%0A0+%26+%5Ctext%7Bif+%24%5Ctheta+%3D+0%24%7D%0A%5Cend%7Bcases%7D" alt="KL(P_1 || P_2) = KL(P_1 || P_2) =\begin{cases}+\infty &amp; \text{if $\theta \neq 0$} \\0 &amp; \text{if $\theta = 0$}\end{cases}"></p>
-<p><img src="https://zhihu.com/equation?tex=JS%28P_1%7C%7CP_2%29%3D%0A%5Cbegin%7Bcases%7D%0A%5Clog+2+%26+%5Ctext%7Bif+%24%5Ctheta+%5Cneq+0%24%7D+%5C%5C%0A0+%26+%5Ctext%7Bif+%24%5Ctheta+-+0%24%7D%0A%5Cend%7Bcases%7D" alt="JS(P_1||P_2)=\begin{cases}\log 2 &amp; \text{if $\theta \neq 0$} \\0 &amp; \text{if $\theta - 0$}\end{cases}"></p>
-<p><img src="https://zhihu.com/equation?tex=W%28P_0%2C+P_1%29+%3D+%7C%5Ctheta%7C" alt="W(P_0, P_1) = |\theta|"></p>
-<p><strong>3. Wasserstein距离在WGAN中的使用</strong></p>
-<p>Wasserstein距离中的下界inf难以计算，论文中，将其转换为了</p>
-<p><img src="https://zhihu.com/equation?tex=W%28P_r%2C+P_g%29+%3D+%5Cfrac%7B1%7D%7BK%7D+%5Csup_%7B%7C%7Cf%7C%7C_L+%5Cleq+K%7D+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_r%7D+%5Bf%28x%29%5D+-+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_g%7D+%5Bf%28x%29%5D" alt="img"></p>
-<ul>
-<li><p><strong>Lipschitz连续(导数有上界，限制了函数的大幅度震动)</strong></p>
-<script type="math/tex; mode=display">
-|f(x_1)-f(x_2)|≤K|x_1-x_2|  \space\space\space\space\space\space\space\space   (K≥0)</script><p>所以对于上面变换以后的Wasserstein距离，要求函数$f$的Lipschitz常数$||f||_L$不超过$K$的条件下，对所有可能满足条件的$f$取到$\mathbb{E}_{x \sim P_r} [f(x)] - \mathbb{E}_{x \sim P_g} [f(x)]$的上界，然后再除以$K$。</p>
-<p><img src="https://www.zhihu.com/equation?tex=K+%5Ccdot+W%28P_r%2C+P_g%29+%5Capprox+%5Cmax_%7Bw%3A+%7Cf_w%7C_L+%5Cleq+K%7D+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_r%7D+%5Bf_w%28x%29%5D+-+%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_g%7D+%5Bf_w%28x%29%5D" alt="K \cdot W(P_r, P_g) \approx \max_{w: |f_w|_L \leq K} \mathbb{E}_{x \sim P_r} [f_w(x)] - \mathbb{E}_{x \sim P_g} [f_w(x)]"></p>
-</li>
-<li><p><strong>Weight Clipping</strong></p>
-<p>对于$||f_w||_L \leq K$这个限制。我们其实不关心具体的$K$是多少，只要它不是正无穷就行，因为它只是会使得梯度变大$K$倍，并不会影响梯度的方向。所以作者采取了一个非常简单的做法，就是限制神经网络$f_\theta$的所有参数$w_i$的不超过某个范围$[-c, c]$，比如$w_i \in [- 0.01, 0.01]$，此时关于输入样本$x$的导数$\frac{\partial f_w}{\partial x}$也不会超过某个范围，所以一定存在某个不知道的常数$K$使得$f_w$的局部变动幅度不会超过它，Lipschitz连续条件得以满足。具体在算法实现中，只需要每次更新完$w​$后把它clip回这个范围就可以了。</p>
-</li>
-</ul>
-<p>原始GAN的判别器做的是真假二分类任务，所以最后一层是sigmoid，但是现在WGAN中的判别器$f_w$做的是近似拟合Wasserstein距离，属于回归任务，所以要把最后一层的sigmoid拿掉。</p>
-<h3 id="六、WGAN-GP-GAN的稳定性"><a href="#六、WGAN-GP-GAN的稳定性" class="headerlink" title="六、WGAN-GP(GAN的稳定性)"></a>六、WGAN-GP(GAN的稳定性)</h3><p><strong>WGAN梯度裁剪的问题</strong></p>
-<p>梯度裁剪会导致最优化困难。在梯度裁剪约束下，大多数神经网络架构只有在学习极其简单地函数时才能达到k地最大梯度范数。因此，通过梯度裁剪来实现k-Lipschitz约束将会导致critic偏向更简单的函数。如下图所示，在小型数据集上，权重剪枝不能捕捉到数据分布的高阶矩。</p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1551773009/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305160316.png" alt=""></p>
-<p><strong>算法：</strong></p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1551771655/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305153950.png" alt=""></p>
-<p>先随机采一对真假样本，还有一个0-1的随机数:</p>
-<script type="math/tex; mode=display">
-x_r\sim P_r, x_g \sim P_g, \epsilon \sim Uniform[0,1]</script><p>在$x_r$和$x_g​$的连线上进行随机线性插值采样:</p>
-<script type="math/tex; mode=display">
-\\
-\hat{x}=\epsilon x_r+(1-\epsilon)x_g</script><p>最终的Loss:</p>
-<script type="math/tex; mode=display">
-L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}_r}[D(x)]+\lambda\mathbb{E}_{\hat{x}\sim\mathbb{P}_\hat{x}}[(||\nabla_{\hat{x}}D(\hat{x})||_2-1)^2]</script><ul>
-<li>Gradient Penalty 项： $\lambda\mathbb{E}_{\hat{x}\sim\mathbb{P}_\hat{x}}[(||\nabla_{\hat{x}}D(\hat{x})||_2-1)^2]​$</li>
-<li>Wasserstein 距离项:  $\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}_r}[D(x)]​$ </li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># [GP] 先随机采一对真假样本，还有一个0-1的随机数:</span></span><br><span class="line">epsilon = tf.random_uniform(shape=[batch_size, <span class="number">1</span>], minval=<span class="number">0.</span>, maxval=<span class="number">1.</span>)</span><br><span class="line"><span class="comment"># [GP] 在x_r和x_g的连线上进行随机线性插值采样:</span></span><br><span class="line">X_hat_State = self.expert_s + epsilon * (self.agent_s - self.expert_s)</span><br><span class="line">X_hat_Action = expert_a_one_hot + epsilon * (agent_a_one_hot - expert_a_one_hot)</span><br><span class="line">X_hat_s_a = tf.concat([X_hat_State, X_hat_Action], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'Discriminator_loss'</span>):</span><br><span class="line">    wasserstein = tf.reduce_mean(crit_A) - tf.reduce_mean(crit_e)  <span class="comment"># Wasserstein 距离</span></span><br><span class="line">    grad_D_X_hat = tf.gradients(X_hat_crit, [X_hat_s_a])[<span class="number">0</span>]</span><br><span class="line">    slopes = tf.sqrt(tf.reduce_sum(tf.square(grad_D_X_hat), reduction_indices=[<span class="number">1</span>])) </span><br><span class="line">    gradient_penalty = tf.reduce_mean((slopes - <span class="number">1.</span>) ** <span class="number">2</span>)  <span class="comment">#[GP] Gradient Penalty</span></span><br><span class="line">    loss = wasserstein + LAMBDA * gradient_penalty</span><br><span class="line">    tf.summary.scalar(<span class="string">'discriminator'</span>, loss)</span><br></pre></td></tr></table></figure>
+&\phi^0_{i}:=\theta, \space\space\space\space \tau_\theta^{1:K}\sim P_{T_i}(\tau|\theta), \\
+&\phi_i^m:=\phi_i^{m-1}-\alpha_m\nabla_{\phi_i^{m-1}}L_{T_i}(\tau_{i,\phi_i^{m-1}}^{1:K}),\space\space\space\space m=1,...,M-1,\\
+&\phi_{i+1}:=\phi_i^{M-1}-\alpha_M\nabla_{\phi_i^{M-1}}L_{T_i}(\tau_{i,\phi_i^{M-1}}^{1:K}) 
+\end{aligned}</script><p>​    其中$\{\alpha_m\}^M_{m=1}​$是meta-gradient step sizes 集合，其优化与$\theta​$ 相关。 这部分的meta-update计算图如下图所示:</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554346096/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404104758.png" alt=""></p>
+<p><strong>3-4 连续任务的Meta Loss优化</strong></p>
+<p>​    连续任务的Meta Loss优化和Meta Loss优化的形式基本相同，只是现在要同时考虑$T_i$和$T_{i+1}$的期望：<strong>【原文中的公式(8)】</strong></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554346986/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404110256.png" alt=""></p>
+<p>​    需要注意的是：</p>
+<p>​    计算adaption update的时候需要在策略$\pi_\theta$下与环境进行交互并同时计算meta-loss。</p>
+<hr>
+<h4 id="3-4-训练过程中的Meta-Learning"><a href="#3-4-训练过程中的Meta-Learning" class="headerlink" title="3.4 训练过程中的Meta-Learning"></a>3.4 训练过程中的Meta-Learning</h4><p>​    当获得了一系列连续任务对的分布$P(T_{i-1},T_i)$之后，我们可以通过使用梯度方法，对参数$\theta$和$\alpha$同时优化来实现对 adaptation updates 的 meta learn。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554348074/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404112109.png" alt=""></p>
+<p><strong>Algorithm1：</strong> 在任务$T_{i+1}$中交互时，使用$\pi_\theta$ 策略从$T_i$和$\pi_\phi$收集 trajectory。(line 5)</p>
+<p>​    直观地说，该算法搜索$θ$和$α$，这样根据$T_i$的轨迹计算出的adaptive update(参照原文公式(7))，产生一个策略$π_\phi$，这有助于对于求解$T_{i+1}$。这里的主要假设是，$T_i$的轨迹包含了一些关于$T_{i+1}$的信息。注意，将adaption steps 作为计算图(图c)的一部分，并通过整个图的反向传播来优化$θ$和$α$，这需要计算二阶导数。</p>
+<hr>
+<h4 id="3-5-执行过程中的自适应"><a href="#3-5-执行过程中的自适应" class="headerlink" title="3.5 执行过程中的自适应"></a>3.5 执行过程中的自适应</h4><p>​    为了在training过程中计算无偏自适应梯度，必须要使用策略$\pi_\theta $在任务$T_i$上收集经验。在test过程中，由于环境的不确定性，通常很难多次遇到同样的任务。因此，保持使用$\pi_\phi$进行决策，并且对每个新任务，reuse过往经验来计算更新参数$\phi$ (参考algorithm2)：</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554353682/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404125425.png" alt=""></p>
+<p>​    为了修正过往经验的策略与当前的策略$\pi_\theta$的区别，使用重要性采样进行修正，在每一个单步meta update过程中，执行以下操作：<strong>【原文中的公式(9)】</strong></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554353917/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404125820.png" alt=""></p>
+<p>​    其中$\pi_{\phi_{i-1}}$和$\pi_{\phi_i}$分别用来从任务$T_{i-1}$和$T_{i}$中生成轨迹。对于公式(7)中的多步更新，直接将对应项按照公式(9)换成重要性采样就行了</p>
 
       
     </div>
@@ -748,12 +670,12 @@ L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/post/d42ca19b.html">生成对抗网络(笔记)</a></p>
+  <p><span>本文标题:</span><a href="/post/177e574f.html">[论文]CONTINUOUS ADAPTATION VIA META-LEARNING IN NONSTATIONARY AND COMPETITIVE ENVIRONMENTS</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
-  <p><span>发布时间:</span>2019年03月05日 - 10:03</p>
-  <p><span>最后更新:</span>2019年03月29日 - 22:03</p>
-  <p><span>原始链接:</span><a href="/post/d42ca19b.html" title="生成对抗网络(笔记)">http://zhkmxx9302013.github.io/post/d42ca19b.html</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/d42ca19b.html" aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年04月03日 - 17:04</p>
+  <p><span>最后更新:</span>2019年04月04日 - 13:04</p>
+  <p><span>原始链接:</span><a href="/post/177e574f.html" title="[论文]CONTINUOUS ADAPTATION VIA META-LEARNING IN NONSTATIONARY AND COMPETITIVE ENVIRONMENTS">http://zhkmxx9302013.github.io/post/177e574f.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/177e574f.html" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -787,7 +709,7 @@ L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}
       
         <div class="post-tags">
           
-            <a href="/tags/GANs/" rel="tag"># GANs</a>
+            <a href="/tags/元学习/" rel="tag"># 元学习</a>
           
         </div>
       
@@ -812,8 +734,8 @@ L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/c0e17f81.html" rel="next" title="Hybrid A* 路径规划">
-                <i class="fa fa-chevron-left"></i> Hybrid A* 路径规划
+              <a href="/post/e567270d.html" rel="next" title="[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)">
+                <i class="fa fa-chevron-left"></i> [论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)
               </a>
             
           </div>
@@ -821,10 +743,6 @@ L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/3cc694a0.html" rel="prev" title="A3C、PPO、GAE笔记">
-                A3C、PPO、GAE笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1046,7 +964,7 @@ L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-基本概念"><span class="nav-number">1.</span> <span class="nav-text">一、 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、-原理推导"><span class="nav-number">2.</span> <span class="nav-text">二、 原理推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、GAN的训练"><span class="nav-number">3.</span> <span class="nav-text">三、GAN的训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、存在的问题"><span class="nav-number">4.</span> <span class="nav-text">四、存在的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、-WGAN"><span class="nav-number">5.</span> <span class="nav-text">五、 WGAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、WGAN-GP-GAN的稳定性"><span class="nav-number">6.</span> <span class="nav-text">六、WGAN-GP(GAN的稳定性)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、摘要"><span class="nav-number">1.</span> <span class="nav-text">一、摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、先序工作"><span class="nav-number">2.</span> <span class="nav-text">二、先序工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、方法"><span class="nav-number">3.</span> <span class="nav-text">三、方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-Overview"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Overview</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-MAML的概率视角"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 MAML的概率视角</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-通过Meta-Learning实现连续自适应"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 通过Meta-Learning实现连续自适应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-训练过程中的Meta-Learning"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 训练过程中的Meta-Learning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-执行过程中的自适应"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 执行过程中的自适应</span></a></li></ol></li></ol></div>
             
 
           </div>

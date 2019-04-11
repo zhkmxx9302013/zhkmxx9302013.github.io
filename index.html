@@ -317,7 +317,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">30</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">32</span></a>
 
   </li>
         
@@ -420,6 +420,458 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/64ddacfe.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/post/64ddacfe.html" class="post-title-link" itemprop="url">Wasserstein GAN 与 WGAN-GP</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-11 16:40:40 / 修改时间：18:47:00" itemprop="dateCreated datePublished" datetime="2019-04-11T16:40:40+08:00">2019-04-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/64ddacfe.html" class="leancloud_visitors" data-flag-title="Wasserstein GAN 与 WGAN-GP">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、fGAN使用JS散度存在的问题"><a href="#一、fGAN使用JS散度存在的问题" class="headerlink" title="一、fGAN使用JS散度存在的问题"></a>一、fGAN使用JS散度存在的问题</h3><p>当$P_G$分布与$P_{data}$分布没有重叠的时候，此时的JSD恒等于$log2$，这样导致$P_G$分布难以向$P_{data}$进行移动。</p>
+<p>而大多数情况下，$P_G$与$P_{data}$是难以重叠的，其原因有两方面理解：</p>
+<ol>
+<li><p>原始数据角度</p>
+<p>$P_{data}$与$P_G$和二维图像相似都属于高维空间的低维流形。因而其重叠的部分几乎可以被忽略(三维空间中的两个交叉曲面投影到二维中可能只有两个点是相交的)</p>
+</li>
+<li><p>采样角度</p>
+<p>由于采样的数量较少，而二者重叠的部分又比较小，所以很容易采样出来的都不是重叠部分的，因而会产生不重叠的现象。</p>
+</li>
+</ol>
+<h3 id="二、-WGAN"><a href="#二、-WGAN" class="headerlink" title="二、 WGAN"></a>二、 WGAN</h3><blockquote>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/25071913?columnSlug=f00cb0979b57ab6d7f70e287b0cba55d" target="_blank" rel="noopener">令人拍案叫绝的Wasserstein GAN</a></p>
+</blockquote>
+<ol>
+<li><p><strong>使用Wasserstein距离来替代JSD</strong></p>
+<p>​    Wasserstein距离又称作是Earth Mover’s 距离，他的目的是考虑一个最小的代价，将$P$分布转换成近似$Q$分布，如果用条形图来表示的话就和搬土块差不多。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554973227/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411165958.png" alt=""></p>
+<p>​    这样就带来一个问题，如上图所示，搬土块的方式有很多，那么哪种方式代价最小？这里常用的方式就是穷举<strong>moving plans</strong>找到一个代价小的方式。</p>
+<p>​    下图就是一个moving plan $\gamma​$其中每个小方块代表从P到Q需要搬动多少土，越亮搬得越多，对于P和Q上的每一个Bar都代表着对应的一行或者一列的小方块的累和。那么<strong>Wasserstein距离</strong>对应的就是<strong>求解一个最优化问题，使得穷举出来的不同的moving plan代价最小</strong>。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554973438/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411170338.png" alt=""></p>
+</li>
+<li><p><strong>WGAN</strong></p>
+<p>那么将Wasserstein距离应用到GAN中，就需要通过$V(G,D)$来评估Wasserstein距离，将原来的JSD换掉。其形式为：</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+V(G,D)=\max\limits_{D\in1-Lipschitz}\{\mathbb{E}_{x \sim P_{data}}[D(x)]-\mathbb{E}_{x\sim P_G}[D(x)]\}</script><p>​    其目标是让在$P_{data}$分布上的D值更大，让在$P_G$分布上的D值更小。</p>
+<ol>
+<li><p><strong>1-Lipschitz条件</strong></p>
+<p>Lipschitz function的目的是约束Discriminator函数不要过于崎岖，应该趋于平滑。如果没有进行平滑性约束，D可能在$P_G$部分趋于负无穷，而在$P_{data}$部分趋于正无穷。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554975185/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411173246.png" alt=""></p>
+<p><strong>Lipschitz function:</strong></p>
+<script type="math/tex; mode=display">
+||f(x_1)-f(x_2)||≤K|||x_1-x_2||</script><p>当$K=1$的时候称为”1-Lipschitz”，其中不等式左边部分为输出变化率，右边部分为输入变化率，可以看出来该条件是将D的导数约束在-1~1之间。</p>
+</li>
+<li><p><strong>Weight Clipping</strong></p>
+<p>​    这个是作者在发表论文的时候采取的一种比较粗暴的方式，而且并不能产生真正意义上的1-Lipschitz约束。对于$||f_w||_L \leq K$这个限制。我们其实不关心具体的$K$是多少，只要它不是正无穷就行，因为它只是会使得梯度变大$K$倍，并不会影响梯度的方向。所以作者采取了一个非常简单的做法，就是限制神经网络$f_\theta$的所有参数$w_i$的不超过某个范围$[-c, c]$，比如$w_i \in [- 0.01, 0.01]$，此时关于输入样本$x$的导数$\frac{\partial f_w}{\partial x}$也不会超过某个范围，所以一定存在某个不知道的常数$K$使得$f_w$的局部变动幅度不会超过它，Lipschitz连续条件得以满足。具体在算法实现中，只需要每次更新完$w$后把它clip回这个范围就可以了。</p>
+</li>
+</ol>
+<h3 id="三、Improved-WGAN-WGAN-GP"><a href="#三、Improved-WGAN-WGAN-GP" class="headerlink" title="三、Improved WGAN (WGAN-GP)"></a>三、Improved WGAN (WGAN-GP)</h3><ol>
+<li><p><strong>原理</strong> </p>
+<p>先来看一下在WGAN-GP中是如何改进以满足1-Lipschitz条件的。由上面的Lipschitz function可以得到，满足约束条件的等价条件是</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+||\nabla_xD(x)|| ≤ 1， \forall x</script><p>​    也就是说，我们可以通过在原有的V(G,D)上加一个惩罚项，使得其满足上述约束：</p>
+<script type="math/tex; mode=display">
+V(G,D)=\max_\limits{D}\{\mathbb{E}_{x \sim P_{data}}[D(x)]-\mathbb{E}_{x\sim P_G}[D(x)]\}-\lambda\int_x\max\{0,||\nabla_xD(x)||-1\}dx</script><p>​    由于上述条件说明对于$\forall x​$都满足，而难以实际采样到所有的样本，因而需要使用一个$P_{penalty}​$分布来进行采样。即将上式变成：</p>
+<script type="math/tex; mode=display">
+V(G,D)=\max_\limits{D}\{\mathbb{E}_{x \sim P_{data}}[D(x)]-\mathbb{E}_{x\sim P_G}[D(x)]\}-\lambda\mathbb{E}_{x\sim P_{penalty} }\max\{0,||\nabla_xD(x)||-1\}</script><p>​    在WGAN-GP中采用的$P_{penalty}$是通过$P_G$与$P_{data}$间的随机插值方式进行采样的：</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554976290/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411175107.png" alt=""></p>
+<p>​    这种方式<strong>并不是一个绝对的方式</strong>，论文中说明该种采样方式是可以达到一定效果的。</p>
+<ol>
+<li><strong>形式改变</strong>：</li>
+</ol>
+<ul>
+<li>判别器最后一层去掉sigmoid</li>
+<li>生成器和判别器的loss不取log</li>
+<li>每次更新判别器的参数之后把它们的绝对值截断到不超过一个固定常数c</li>
+<li>不要用基于动量的优化算法（包括momentum和Adam），推荐RMSProp，SGD也行</li>
+</ul>
+<p>原始GAN的判别器做的是真假二分类任务，所以最后一层是sigmoid，但是现在WGAN中的判别器$f_w​$做的是近似拟合Wasserstein距离，属于回归任务，所以要把最后一层的sigmoid拿掉。</p>
+<h3 id="四、WGAN-GP-GAN的稳定性"><a href="#四、WGAN-GP-GAN的稳定性" class="headerlink" title="四、WGAN-GP(GAN的稳定性)"></a>四、WGAN-GP(GAN的稳定性)</h3><p><strong>WGAN梯度裁剪的问题</strong></p>
+<p>梯度裁剪会导致最优化困难。在梯度裁剪约束下，大多数神经网络架构只有在学习极其简单地函数时才能达到k地最大梯度范数。因此，通过梯度裁剪来实现k-Lipschitz约束将会导致critic偏向更简单的函数。如下图所示，在小型数据集上，权重剪枝不能捕捉到数据分布的高阶矩。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1551773009/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305160316.png" alt=""></p>
+<p><strong>算法：</strong></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1551771655/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305153950.png" alt=""></p>
+<p>先随机采一对真假样本，还有一个0-1的随机数:</p>
+<script type="math/tex; mode=display">
+x_r\sim P_r, x_g \sim P_g, \epsilon \sim Uniform[0,1]</script><p>在$x_r$和$x_g$的连线上进行随机线性插值采样:</p>
+<script type="math/tex; mode=display">
+\\
+\hat{x}=\epsilon x_r+(1-\epsilon)x_g</script><p>最终的Loss:</p>
+<script type="math/tex; mode=display">
+L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}_r}[D(x)]+\lambda\mathbb{E}_{\hat{x}\sim\mathbb{P}_\hat{x}}[(||\nabla_{\hat{x}}D(\hat{x})||_2-1)^2]</script><ul>
+<li>Gradient Penalty 项： $\lambda\mathbb{E}_{\hat{x}\sim\mathbb{P}_\hat{x}}[(||\nabla_{\hat{x}}D(\hat{x})||_2-1)^2]$</li>
+<li>Wasserstein 距离项:  $\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}_r}[D(x)]$ </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># [GP] 先随机采一对真假样本，还有一个0-1的随机数:</span></span><br><span class="line">epsilon = tf.random_uniform(shape=[batch_size, <span class="number">1</span>], minval=<span class="number">0.</span>, maxval=<span class="number">1.</span>)</span><br><span class="line"><span class="comment"># [GP] 在x_r和x_g的连线上进行随机线性插值采样:</span></span><br><span class="line">X_hat_State = self.expert_s + epsilon * (self.agent_s - self.expert_s)</span><br><span class="line">X_hat_Action = expert_a_one_hot + epsilon * (agent_a_one_hot - expert_a_one_hot)</span><br><span class="line">X_hat_s_a = tf.concat([X_hat_State, X_hat_Action], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'Discriminator_loss'</span>):</span><br><span class="line">    wasserstein = tf.reduce_mean(crit_A) - tf.reduce_mean(crit_e)  <span class="comment"># Wasserstein 距离</span></span><br><span class="line">    grad_D_X_hat = tf.gradients(X_hat_crit, [X_hat_s_a])[<span class="number">0</span>]</span><br><span class="line">    slopes = tf.sqrt(tf.reduce_sum(tf.square(grad_D_X_hat), reduction_indices=[<span class="number">1</span>])) </span><br><span class="line">    gradient_penalty = tf.reduce_mean((slopes - <span class="number">1.</span>) ** <span class="number">2</span>)  <span class="comment">#[GP] Gradient Penalty</span></span><br><span class="line">    loss = wasserstein + LAMBDA * gradient_penalty</span><br><span class="line">    tf.summary.scalar(<span class="string">'discriminator'</span>, loss)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/3df84f8.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/post/3df84f8.html" class="post-title-link" itemprop="url">MAML</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-04 15:42:28" itemprop="dateCreated datePublished" datetime="2019-04-04T15:42:28+08:00">2019-04-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-11 16:40:05" itemprop="dateModified" datetime="2019-04-11T16:40:05+08:00">2019-04-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/3df84f8.html" class="leancloud_visitors" data-flag-title="MAML">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、-One-shot-Learning"><a href="#一、-One-shot-Learning" class="headerlink" title="一、 One-shot Learning"></a>一、 One-shot Learning</h3><ul>
+<li><p>解决的问题</p>
+<p>使用少量的样本进行快速的学习</p>
+</li>
+<li><p>解决的方法</p>
+<ul>
+<li>Transfer Learning</li>
+<li>Meta Learning<ul>
+<li>One-shot Learning with Memory-Augumented Neural Networks</li>
+<li>Optimization as a Model for Few Shot Learning</li>
+<li>Model-Agnostic Meta Learning (MAML)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、Model-Agnostic-Meta-Learning"><a href="#二、Model-Agnostic-Meta-Learning" class="headerlink" title="二、Model Agnostic Meta Learning"></a>二、Model Agnostic Meta Learning</h3><ul>
+<li>Intuition<ul>
+<li>在任务之间的相关性，(Interal representations)</li>
+<li>任务之间迁移</li>
+<li>类似于迁移学习</li>
+</ul>
+</li>
+<li>Meta Learning <ul>
+<li>参数对微小的变化敏感</li>
+<li>极大的优化了在任何问题上的Loss function</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-1-定义"><a href="#2-1-定义" class="headerlink" title="2.1 定义"></a>2.1 定义</h4><ul>
+<li>模型$f(\theta):(x→a)$, 输入$x$, 输出$a$</li>
+<li>任务$T =\{L(x_1, a_1, . . . , x_H, a_H), q(x_1), q(x_{t+1}|x_t, a_t),H\}$ ,其中$L$是trajectory的Loss，其将产生一个针对于特定任务的反馈 ，$H$是episode length，$q(x_1)$是初始observation 分布，$q(x_{t+1}|x_t,a_t)$是状态转移。</li>
+<li>对于监督学习任务来说，$H=1$</li>
+<li>$P(T)$是模型期望的任务分布，元学习场景中，希望模型能够适应的任务分布。</li>
+<li>对于K-shot Learning 来说，在元学习过程中，从$P(T)​$中采样一个任务$T_i​$，模型用$K​$个样本进行训练，然后从$T_i​$对应的Loss中进行feedback，之后在从$T_i​$上采样的新样本上进行测试。</li>
+</ul>
+<h4 id="2-2-方法"><a href="#2-2-方法" class="headerlink" title="2.2 方法"></a>2.2 方法</h4><ul>
+<li><p>模型$f_\theta$，当去适应新的任务$T_i$时，模型参数从$\theta$更新为$\theta’_i$:   </p>
+<script type="math/tex; mode=display">
+\theta'_i=\theta-\alpha\nabla_\theta L_{T_i}(f_\theta)</script><p>这里的参数$\alpha​$可以当成变量也可以当成超参数</p>
+</li>
+<li><p>目标函数(Meta objective)</p>
+<script type="math/tex; mode=display">
+min_\theta\sum_{T_i \sim p(T)} L_{T_i}(f_{\theta'_i})</script></li>
+<li><p>Meta optimization</p>
+<script type="math/tex; mode=display">
+\theta←\theta-\beta\nabla_\theta\sum_{T_i \sim p(T)}L_{T_i}(f_{\theta_i'})</script></li>
+</ul>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554368445/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404170030.png" alt=""></p>
+<p>直观表示适应过程</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554370299/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190404173122.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1644,7 +2096,7 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-29 22:08:12" itemprop="dateModified" datetime="2019-03-29T22:08:12+08:00">2019-03-29</time>
+                <time title="修改时间：2019-04-11 18:47:10" itemprop="dateModified" datetime="2019-04-11T18:47:10+08:00">2019-04-11</time>
               
             
           </span>
@@ -1705,7 +2157,7 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
 <p>$D$ 判别模型， $G$ 生成模型</p>
 <p>$x​$ 数据集中的数据分布，$z​$ 某种随机分布</p>
 </li>
-<li><p><strong>目标函数</strong>（详细参见第四部分）</p>
+<li><p><strong>目标函数</strong>（详细参见第四部分）(找一系列D让其对应的V最大，然后在这些最大的V里面选一个最小的)</p>
 <script type="math/tex; mode=display">
 min_Gmax_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script><ul>
 <li><p><strong>D Loss</strong> (MC采样，相当于训练二分类器$x \sim P_{data}$一类，$\hat{x} \sim G(z)$一类):</p>
@@ -1714,15 +2166,18 @@ max_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script></li>
 <li><p><strong>G Loss原始</strong> （MiniMax GAN<strong>[MMGAN]</strong>）(<strong>判别器越好，生成器梯度消失越严重</strong>)</p>
 <script type="math/tex; mode=display">
 \mathbb{E}{_{x\sim P_g}}[log(1-D(x))]</script></li>
-<li><p><strong>G Loss改进</strong> (Non-saturating GAN<strong>[NSGAN]</strong> )(-log trick) </p>
+<li><p><strong>G Loss改进</strong> (Non-saturating GAN<strong>[NSGAN]</strong> )(-log trick) (其实与原始的差别不大)</p>
 <script type="math/tex; mode=display">
 \mathbb{E}{_{x\sim P_g}}[-log(D(x))]</script></li>
 </ul>
 </li>
 <li><p><strong>释义</strong></p>
-<p>$G$的目标是最大化生成数据与数据集数据的似然，减小生成数据与数据集数据之间的差距。</p>
-<p>$D$要解决的问题是一个二分类问题，$V(D,G)$ 为二分类问题中常见的交叉熵损失。对于生成器$ G $来说，为了尽可能欺骗$ D$，所以需要最大化生成样本的判别概率 $D(G(z))$，即最小化$ log(1-D(G(z)))$，注意：$log(D(x)) $一项与生成器$ G $无关，所以可以忽略。</p>
-</li>
+<p>$G$的目标是最大化生成数据与数据集数据的似然，减小生成数据与数据集数据之间的差距（原始GAN就是JSD）。对于生成器$ G $来说，为了尽可能欺骗$ D$，所以需要最大化生成样本的判别概率 $D(G(z))$，即最小化$ log(1-D(G(z)))$，注意：$log(D(x)) $一项与生成器$ G $无关，所以可以忽略。</p>
+<script type="math/tex; mode=display">
+G^{*}=argmin_G(Divergence(P_G,P_{data}))=argmin_G max_DV(D,G)</script><p>$D$要解决的问题是一个二分类问题，$V(D,G)$ 为二分类问题中常见的交叉熵损失。</p>
+<script type="math/tex; mode=display">
+D^{*}=argmax_DV(D,G)\\
+V(D,G) = \mathbb{E}_{x\sim P_{data}}[logD(x)]+\mathbb{E}_{x \sim P_G}[1-log(1-D(x))]</script></li>
 </ol>
           <!--noindex-->
           
@@ -1956,379 +2411,11 @@ max_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script></li>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/cf8dbd9a.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhkmxx930">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhkmxx930 blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/post/cf8dbd9a.html" class="post-title-link" itemprop="url">RNN反向传播推导</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-23 15:22:11" itemprop="dateCreated datePublished" datetime="2019-02-23T15:22:11+08:00">2019-02-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-06 21:27:54" itemprop="dateModified" datetime="2019-03-06T21:27:54+08:00">2019-03-06</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/post/cf8dbd9a.html" class="leancloud_visitors" data-flag-title="RNN反向传播推导">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>参考：</p>
-<ul>
-<li><p><a href="http://www.cnblogs.com/pinard/p/6509630.html" target="_blank" rel="noopener">循环神经网络(RNN)模型与前向反向传播算法</a></p>
-</li>
-<li><p><a href="https://github.com/imhuay/Algorithm_Interview_Notes-Chinese/blob/master/A-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/B-%E4%B8%93%E9%A2%98-RNN.md" target="_blank" rel="noopener">RNN面试总结</a></p>
-</li>
-</ul>
-<h3 id="RNN正向传播推导"><a href="#RNN正向传播推导" class="headerlink" title="RNN正向传播推导"></a>RNN正向传播推导</h3><p>RNN原理图：</p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1550906908/%E7%BB%98%E5%9B%BE2.png" alt="x"><br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/post/cf8dbd9a.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/7a6400a0.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhkmxx930">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhkmxx930 blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/post/7a6400a0.html" class="post-title-link" itemprop="url">参数初始化与正则化</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-21 11:02:06" itemprop="dateCreated datePublished" datetime="2019-02-21T11:02:06+08:00">2019-02-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-05 22:58:41" itemprop="dateModified" datetime="2019-03-05T22:58:41+08:00">2019-03-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/post/7a6400a0.html" class="leancloud_visitors" data-flag-title="参数初始化与正则化">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>参考文献：</p>
-<p><a href="http://www.cnblogs.com/zhangchaoyang/articles/6581518.html#gv" target="_blank" rel="noopener"><a href="https://www.cnblogs.com/zhangchaoyang/articles/6581518.html" target="_blank" rel="noopener">神经网络调优</a></a></p>
-<p><a href="https://blog.csdn.net/VictoriaW/article/details/73000632" target="_blank" rel="noopener">深度学习之参数初始化（一）——Xavier初始化</a></p>
-</blockquote>
-<h3 id="一、参数初始化"><a href="#一、参数初始化" class="headerlink" title="一、参数初始化"></a>一、参数初始化</h3><p><strong>参数初始化的作用：</strong></p>
-<ul>
-<li>目的是为了让神经网络在训练过程中学习到有用的信息</li>
-<li><p>参数梯度不应该全部为0</p>
-<ul>
-<li>各层激活值不会出现饱和现象</li>
-<li>各层激活值不为0</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/post/7a6400a0.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </li></ul></div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2373,7 +2460,7 @@ max_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script></li>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3302,7 +3389,10 @@ max_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script></li>
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -3319,8 +3409,5 @@ max_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script></li>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>

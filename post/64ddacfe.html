@@ -109,21 +109,32 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/post/57092.html">
+  <meta name="description" content="一、fGAN使用JS散度存在的问题当$P_G$分布与$P_{data}$分布没有重叠的时候，此时的JSD恒等于$log2$，这样导致$P_G$分布难以向$P_{data}$进行移动。 而大多数情况下，$P_G$与$P_{data}$是难以重叠的，其原因有两方面理解：  原始数据角度 $P_{data}$与$P_G$和二维图像相似都属于高维空间的低维流形。因而其重叠的部分几乎可以被忽略(三维空间中的">
+<meta name="keywords" content="GANs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wasserstein GAN 与 WGAN-GP">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/64ddacfe.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="一、fGAN使用JS散度存在的问题当$P_G$分布与$P_{data}$分布没有重叠的时候，此时的JSD恒等于$log2$，这样导致$P_G$分布难以向$P_{data}$进行移动。 而大多数情况下，$P_G$与$P_{data}$是难以重叠的，其原因有两方面理解：  原始数据角度 $P_{data}$与$P_G$和二维图像相似都属于高维空间的低维流形。因而其重叠的部分几乎可以被忽略(三维空间中的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-24T13:28:18.806Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554973227/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411165958.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554973438/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411170338.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554975185/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411173246.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554976290/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411175107.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1551773009/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305160316.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1551771655/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305153950.png">
+<meta property="og:updated_time" content="2019-04-11T10:47:00.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的博客">
+<meta name="twitter:title" content="Wasserstein GAN 与 WGAN-GP">
+<meta name="twitter:description" content="一、fGAN使用JS散度存在的问题当$P_G$分布与$P_{data}$分布没有重叠的时候，此时的JSD恒等于$log2$，这样导致$P_G$分布难以向$P_{data}$进行移动。 而大多数情况下，$P_G$与$P_{data}$是难以重叠的，其原因有两方面理解：  原始数据角度 $P_{data}$与$P_G$和二维图像相似都属于高维空间的低维流形。因而其重叠的部分几乎可以被忽略(三维空间中的">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554973227/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411165958.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/57092.html">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/64ddacfe.html">
 
 
 
@@ -133,7 +144,7 @@
   };
 </script>
 
-  <title>我的博客 | zhkmxx930 blog</title>
+  <title>Wasserstein GAN 与 WGAN-GP | zhkmxx930 blog</title>
   
 
 
@@ -436,7 +447,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/57092.html">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/64ddacfe.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -453,7 +464,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">我的博客
+          <h2 class="post-title" itemprop="name headline">Wasserstein GAN 与 WGAN-GP
 
               
             
@@ -479,24 +490,12 @@
                 
               
 
-              <time title="创建时间：2019-01-03 19:46:53" itemprop="dateCreated datePublished" datetime="2019-01-03T19:46:53+08:00">2019-01-03</time>
+              <time title="创建时间：2019-04-11 16:40:40 / 修改时间：18:47:00" itemprop="dateCreated datePublished" datetime="2019-04-11T16:40:40+08:00">2019-04-11</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-24 21:28:18" itemprop="dateModified" datetime="2019-01-24T21:28:18+08:00">2019-01-24</time>
               
             
           </span>
@@ -510,8 +509,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/57092.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/57092.html" itemprop="commentsCount"></span>
+                <a href="/post/64ddacfe.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/64ddacfe.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -519,7 +518,7 @@
 
           
           
-             <span id="/post/57092.html" class="leancloud_visitors" data-flag-title="我的博客">
+             <span id="/post/64ddacfe.html" class="leancloud_visitors" data-flag-title="Wasserstein GAN 与 WGAN-GP">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -550,7 +549,86 @@
       
 
       
-        
+        <h3 id="一、fGAN使用JS散度存在的问题"><a href="#一、fGAN使用JS散度存在的问题" class="headerlink" title="一、fGAN使用JS散度存在的问题"></a>一、fGAN使用JS散度存在的问题</h3><p>当$P_G$分布与$P_{data}$分布没有重叠的时候，此时的JSD恒等于$log2$，这样导致$P_G$分布难以向$P_{data}$进行移动。</p>
+<p>而大多数情况下，$P_G$与$P_{data}$是难以重叠的，其原因有两方面理解：</p>
+<ol>
+<li><p>原始数据角度</p>
+<p>$P_{data}$与$P_G$和二维图像相似都属于高维空间的低维流形。因而其重叠的部分几乎可以被忽略(三维空间中的两个交叉曲面投影到二维中可能只有两个点是相交的)</p>
+</li>
+<li><p>采样角度</p>
+<p>由于采样的数量较少，而二者重叠的部分又比较小，所以很容易采样出来的都不是重叠部分的，因而会产生不重叠的现象。</p>
+</li>
+</ol>
+<h3 id="二、-WGAN"><a href="#二、-WGAN" class="headerlink" title="二、 WGAN"></a>二、 WGAN</h3><blockquote>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/25071913?columnSlug=f00cb0979b57ab6d7f70e287b0cba55d" target="_blank" rel="noopener">令人拍案叫绝的Wasserstein GAN</a></p>
+</blockquote>
+<ol>
+<li><p><strong>使用Wasserstein距离来替代JSD</strong></p>
+<p>​    Wasserstein距离又称作是Earth Mover’s 距离，他的目的是考虑一个最小的代价，将$P$分布转换成近似$Q$分布，如果用条形图来表示的话就和搬土块差不多。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554973227/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411165958.png" alt=""></p>
+<p>​    这样就带来一个问题，如上图所示，搬土块的方式有很多，那么哪种方式代价最小？这里常用的方式就是穷举<strong>moving plans</strong>找到一个代价小的方式。</p>
+<p>​    下图就是一个moving plan $\gamma​$其中每个小方块代表从P到Q需要搬动多少土，越亮搬得越多，对于P和Q上的每一个Bar都代表着对应的一行或者一列的小方块的累和。那么<strong>Wasserstein距离</strong>对应的就是<strong>求解一个最优化问题，使得穷举出来的不同的moving plan代价最小</strong>。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554973438/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411170338.png" alt=""></p>
+</li>
+<li><p><strong>WGAN</strong></p>
+<p>那么将Wasserstein距离应用到GAN中，就需要通过$V(G,D)$来评估Wasserstein距离，将原来的JSD换掉。其形式为：</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+V(G,D)=\max\limits_{D\in1-Lipschitz}\{\mathbb{E}_{x \sim P_{data}}[D(x)]-\mathbb{E}_{x\sim P_G}[D(x)]\}</script><p>​    其目标是让在$P_{data}$分布上的D值更大，让在$P_G$分布上的D值更小。</p>
+<ol>
+<li><p><strong>1-Lipschitz条件</strong></p>
+<p>Lipschitz function的目的是约束Discriminator函数不要过于崎岖，应该趋于平滑。如果没有进行平滑性约束，D可能在$P_G$部分趋于负无穷，而在$P_{data}$部分趋于正无穷。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554975185/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411173246.png" alt=""></p>
+<p><strong>Lipschitz function:</strong></p>
+<script type="math/tex; mode=display">
+||f(x_1)-f(x_2)||≤K|||x_1-x_2||</script><p>当$K=1$的时候称为”1-Lipschitz”，其中不等式左边部分为输出变化率，右边部分为输入变化率，可以看出来该条件是将D的导数约束在-1~1之间。</p>
+</li>
+<li><p><strong>Weight Clipping</strong></p>
+<p>​    这个是作者在发表论文的时候采取的一种比较粗暴的方式，而且并不能产生真正意义上的1-Lipschitz约束。对于$||f_w||_L \leq K$这个限制。我们其实不关心具体的$K$是多少，只要它不是正无穷就行，因为它只是会使得梯度变大$K$倍，并不会影响梯度的方向。所以作者采取了一个非常简单的做法，就是限制神经网络$f_\theta$的所有参数$w_i$的不超过某个范围$[-c, c]$，比如$w_i \in [- 0.01, 0.01]$，此时关于输入样本$x$的导数$\frac{\partial f_w}{\partial x}$也不会超过某个范围，所以一定存在某个不知道的常数$K$使得$f_w$的局部变动幅度不会超过它，Lipschitz连续条件得以满足。具体在算法实现中，只需要每次更新完$w$后把它clip回这个范围就可以了。</p>
+</li>
+</ol>
+<h3 id="三、Improved-WGAN-WGAN-GP"><a href="#三、Improved-WGAN-WGAN-GP" class="headerlink" title="三、Improved WGAN (WGAN-GP)"></a>三、Improved WGAN (WGAN-GP)</h3><ol>
+<li><p><strong>原理</strong> </p>
+<p>先来看一下在WGAN-GP中是如何改进以满足1-Lipschitz条件的。由上面的Lipschitz function可以得到，满足约束条件的等价条件是</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+||\nabla_xD(x)|| ≤ 1， \forall x</script><p>​    也就是说，我们可以通过在原有的V(G,D)上加一个惩罚项，使得其满足上述约束：</p>
+<script type="math/tex; mode=display">
+V(G,D)=\max_\limits{D}\{\mathbb{E}_{x \sim P_{data}}[D(x)]-\mathbb{E}_{x\sim P_G}[D(x)]\}-\lambda\int_x\max\{0,||\nabla_xD(x)||-1\}dx</script><p>​    由于上述条件说明对于$\forall x​$都满足，而难以实际采样到所有的样本，因而需要使用一个$P_{penalty}​$分布来进行采样。即将上式变成：</p>
+<script type="math/tex; mode=display">
+V(G,D)=\max_\limits{D}\{\mathbb{E}_{x \sim P_{data}}[D(x)]-\mathbb{E}_{x\sim P_G}[D(x)]\}-\lambda\mathbb{E}_{x\sim P_{penalty} }\max\{0,||\nabla_xD(x)||-1\}</script><p>​    在WGAN-GP中采用的$P_{penalty}$是通过$P_G$与$P_{data}$间的随机插值方式进行采样的：</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554976290/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411175107.png" alt=""></p>
+<p>​    这种方式<strong>并不是一个绝对的方式</strong>，论文中说明该种采样方式是可以达到一定效果的。</p>
+<ol>
+<li><strong>形式改变</strong>：</li>
+</ol>
+<ul>
+<li>判别器最后一层去掉sigmoid</li>
+<li>生成器和判别器的loss不取log</li>
+<li>每次更新判别器的参数之后把它们的绝对值截断到不超过一个固定常数c</li>
+<li>不要用基于动量的优化算法（包括momentum和Adam），推荐RMSProp，SGD也行</li>
+</ul>
+<p>原始GAN的判别器做的是真假二分类任务，所以最后一层是sigmoid，但是现在WGAN中的判别器$f_w​$做的是近似拟合Wasserstein距离，属于回归任务，所以要把最后一层的sigmoid拿掉。</p>
+<h3 id="四、WGAN-GP-GAN的稳定性"><a href="#四、WGAN-GP-GAN的稳定性" class="headerlink" title="四、WGAN-GP(GAN的稳定性)"></a>四、WGAN-GP(GAN的稳定性)</h3><p><strong>WGAN梯度裁剪的问题</strong></p>
+<p>梯度裁剪会导致最优化困难。在梯度裁剪约束下，大多数神经网络架构只有在学习极其简单地函数时才能达到k地最大梯度范数。因此，通过梯度裁剪来实现k-Lipschitz约束将会导致critic偏向更简单的函数。如下图所示，在小型数据集上，权重剪枝不能捕捉到数据分布的高阶矩。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1551773009/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305160316.png" alt=""></p>
+<p><strong>算法：</strong></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1551771655/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305153950.png" alt=""></p>
+<p>先随机采一对真假样本，还有一个0-1的随机数:</p>
+<script type="math/tex; mode=display">
+x_r\sim P_r, x_g \sim P_g, \epsilon \sim Uniform[0,1]</script><p>在$x_r$和$x_g$的连线上进行随机线性插值采样:</p>
+<script type="math/tex; mode=display">
+\\
+\hat{x}=\epsilon x_r+(1-\epsilon)x_g</script><p>最终的Loss:</p>
+<script type="math/tex; mode=display">
+L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}_r}[D(x)]+\lambda\mathbb{E}_{\hat{x}\sim\mathbb{P}_\hat{x}}[(||\nabla_{\hat{x}}D(\hat{x})||_2-1)^2]</script><ul>
+<li>Gradient Penalty 项： $\lambda\mathbb{E}_{\hat{x}\sim\mathbb{P}_\hat{x}}[(||\nabla_{\hat{x}}D(\hat{x})||_2-1)^2]$</li>
+<li>Wasserstein 距离项:  $\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}_r}[D(x)]$ </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># [GP] 先随机采一对真假样本，还有一个0-1的随机数:</span></span><br><span class="line">epsilon = tf.random_uniform(shape=[batch_size, <span class="number">1</span>], minval=<span class="number">0.</span>, maxval=<span class="number">1.</span>)</span><br><span class="line"><span class="comment"># [GP] 在x_r和x_g的连线上进行随机线性插值采样:</span></span><br><span class="line">X_hat_State = self.expert_s + epsilon * (self.agent_s - self.expert_s)</span><br><span class="line">X_hat_Action = expert_a_one_hot + epsilon * (agent_a_one_hot - expert_a_one_hot)</span><br><span class="line">X_hat_s_a = tf.concat([X_hat_State, X_hat_Action], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'Discriminator_loss'</span>):</span><br><span class="line">    wasserstein = tf.reduce_mean(crit_A) - tf.reduce_mean(crit_e)  <span class="comment"># Wasserstein 距离</span></span><br><span class="line">    grad_D_X_hat = tf.gradients(X_hat_crit, [X_hat_s_a])[<span class="number">0</span>]</span><br><span class="line">    slopes = tf.sqrt(tf.reduce_sum(tf.square(grad_D_X_hat), reduction_indices=[<span class="number">1</span>])) </span><br><span class="line">    gradient_penalty = tf.reduce_mean((slopes - <span class="number">1.</span>) ** <span class="number">2</span>)  <span class="comment">#[GP] Gradient Penalty</span></span><br><span class="line">    loss = wasserstein + LAMBDA * gradient_penalty</span><br><span class="line">    tf.summary.scalar(<span class="string">'discriminator'</span>, loss)</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -562,6 +640,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/post/64ddacfe.html">Wasserstein GAN 与 WGAN-GP</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
+  <p><span>发布时间:</span>2019年04月11日 - 16:04</p>
+  <p><span>最后更新:</span>2019年04月11日 - 18:04</p>
+  <p><span>原始链接:</span><a href="/post/64ddacfe.html" title="Wasserstein GAN 与 WGAN-GP">http://zhkmxx9302013.github.io/post/64ddacfe.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/64ddacfe.html" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
       
     </div>
 
@@ -575,6 +682,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GANs/" rel="tag"># GANs</a>
+          
+        </div>
       
 
       
@@ -597,15 +710,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/post/3df84f8.html" rel="next" title="MAML">
+                <i class="fa fa-chevron-left"></i> MAML
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/34931.html" rel="prev" title="在raspbian-jessie上搭建nat123自启动">
-                在raspbian-jessie上搭建nat123自启动 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -657,8 +770,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -807,6 +929,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、fGAN使用JS散度存在的问题"><span class="nav-number">1.</span> <span class="nav-text">一、fGAN使用JS散度存在的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、-WGAN"><span class="nav-number">2.</span> <span class="nav-text">二、 WGAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Improved-WGAN-WGAN-GP"><span class="nav-number">3.</span> <span class="nav-text">三、Improved WGAN (WGAN-GP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、WGAN-GP-GAN的稳定性"><span class="nav-number">4.</span> <span class="nav-text">四、WGAN-GP(GAN的稳定性)</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1466,6 +1605,43 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
   
 
 

@@ -112,7 +112,7 @@
   <meta name="description" content="参考  【强化学习】确定性策略强化学习-DPG&amp;amp;DDPG算法推导及分析 Deep Reinforcement Learning - 1. DDPG原理和算法  一、确定性策略梯度​    Deepmind的D.Silver等在2014年提出DPG： Deterministic Policy Gradient， 即确定性的行为策略，每一步的行为通过函数$μ$直接获得确定的值：">
 <meta name="keywords" content="强化学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【确定性策略梯度类】 DPG,DDPG,TD3">
+<meta property="og:title" content="【确定性策略梯度类】 DPG,DDPG,TD3,D4PG">
 <meta property="og:url" content="http://zhkmxx9302013.github.io/post/dad17569.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
 <meta property="og:description" content="参考  【强化学习】确定性策略强化学习-DPG&amp;amp;DDPG算法推导及分析 Deep Reinforcement Learning - 1. DDPG原理和算法  一、确定性策略梯度​    Deepmind的D.Silver等在2014年提出DPG： Deterministic Policy Gradient， 即确定性的行为策略，每一步的行为通过函数$μ$直接获得确定的值：">
@@ -129,9 +129,10 @@
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-f9c9703f8892c46cb17d5fb24a95b012_hd.jpg">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-f7e163f79d41d3bc8939c8c8607f5e24_hd.jpg">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553831070/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190329114325.png">
-<meta property="og:updated_time" content="2019-03-31T15:36:30.010Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1555731589/qweqwzsdxa.png">
+<meta property="og:updated_time" content="2019-04-20T03:51:44.332Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【确定性策略梯度类】 DPG,DDPG,TD3">
+<meta name="twitter:title" content="【确定性策略梯度类】 DPG,DDPG,TD3,D4PG">
 <meta name="twitter:description" content="参考  【强化学习】确定性策略强化学习-DPG&amp;amp;DDPG算法推导及分析 Deep Reinforcement Learning - 1. DDPG原理和算法  一、确定性策略梯度​    Deepmind的D.Silver等在2014年提出DPG： Deterministic Policy Gradient， 即确定性的行为策略，每一步的行为通过函数$μ$直接获得确定的值：">
 <meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553679079/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190327173019.png">
 
@@ -150,7 +151,7 @@
   };
 </script>
 
-  <title>【确定性策略梯度类】 DPG,DDPG,TD3 | zhkmxx930 blog</title>
+  <title>【确定性策略梯度类】 DPG,DDPG,TD3,D4PG | zhkmxx930 blog</title>
   
 
 
@@ -334,7 +335,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">32</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">34</span></a>
 
   </li>
         
@@ -470,7 +471,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">【确定性策略梯度类】 DPG,DDPG,TD3
+          <h2 class="post-title" itemprop="name headline">【确定性策略梯度类】 DPG,DDPG,TD3,D4PG
 
               
             
@@ -513,7 +514,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-31 23:36:30" itemprop="dateModified" datetime="2019-03-31T23:36:30+08:00">2019-03-31</time>
+                <time title="修改时间：2019-04-20 11:51:44" itemprop="dateModified" datetime="2019-04-20T11:51:44+08:00">2019-04-20</time>
               
             
           </span>
@@ -536,7 +537,7 @@
 
           
           
-             <span id="/post/dad17569.html" class="leancloud_visitors" data-flag-title="【确定性策略梯度类】 DPG,DDPG,TD3">
+             <span id="/post/dad17569.html" class="leancloud_visitors" data-flag-title="【确定性策略梯度类】 DPG,DDPG,TD3,D4PG">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -581,7 +582,7 @@ a_t=μ(s_t|θ_μ)</script><p>​    这个函数$μ$即最优行为策略，不�
 <a id="more"></a>
 <h3 id="二、DPG"><a href="#二、DPG" class="headerlink" title="二、DPG"></a>二、DPG</h3><p>DPG算法本身采用的是PG方法,且是Off-Policy方法(也可以是On-Policy)，因而直接对轨迹的价值回报进行求导。如下式求导，其中$\mu_\theta (s)$为生成确定性行动的策略函数。</p>
 <script type="math/tex; mode=display">
-\nabla_\theta v_{\mu_{\theta}} (s)=\nabla_\theta[q_\mu(s,\mu_\theta(s))]</script><p>根据链式法则，由于$\mu_\theta(s)$与确定性策略价值函数$q_\mu​$有关,因而：</p>
+\nabla_\theta v_{\mu_{\theta}} (s)=\nabla_\theta[q_\mu(s,\mu_\theta(s))]</script><p>根据链式法则，由于$\mu_\theta(s)$与确定性策略价值函数$q_\mu$有关,因而：</p>
 <script type="math/tex; mode=display">
 \nabla_\theta v_\mu(s) = \nabla_{\mu_\theta(s)}[q_\mu(s, \mu_\theta(s))]\nabla_\theta\mu_\theta(s)</script><p>由于是确定性策略，在价值函数$q(s,μ_\theta(s))$中有策略参数$\theta$，因此需要将价值函数对策略求导。</p>
 <p>相较于随机策略梯度算法而言,如下是随机性策略梯度的目标函数梯度:</p>
@@ -666,6 +667,23 @@ y = r + \gamma Q_\theta(s',\pi_φ(s'))</script><p>即critic用更新较慢的tar
 </li>
 </ol>
 <p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553831070/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190329114325.png" alt=""></p>
+<h3 id="七、D4PG"><a href="#七、D4PG" class="headerlink" title="七、D4PG"></a>七、D4PG</h3><blockquote>
+<p>论文 <a href="https://arxiv.org/pdf/1804.08617.pdf" target="_blank" rel="noopener">DISTRIBUTED DISTRIBUTIONAL DETERMINISTIC<br>POLICY GRADIENTS</a></p>
+</blockquote>
+<p>总体框架与DDPG相同，引入了一些trick：</p>
+<ol>
+<li><p>支持分布式，由于是off-policy的算法，因此可以使用多个actor去分布式地采样，然后存储在同一个replay buffer中，learner从buffer中采样，更新之后再将权重同步到各个actor上</p>
+</li>
+<li><p>critic使用价值函数分布，损失函数变为(d是距离度量)：</p>
+<script type="math/tex; mode=display">
+L(w)=\mathbb{E}_ρ[d(\Tau_{\pi_{\theta'}}Z_{\omega'}(x,a),Z_\omega(x,a))]</script><p>其中$(T_\pi Z)(x, a)=r(x,a)+\gamma\mathbb{E}[Z(x’,\pi(x’))|x,a]$ 为 distributional Bellman operator, $Z$是用来估计Q的， $Q_\pi(x,a) = \mathbb{E}Z_\pi(x,a)$</p>
+</li>
+<li><p>引入n-step TD error：这样可以减少更新的variance</p>
+</li>
+<li><p>使用prioritized experience replay：可以加速学习</p>
+</li>
+</ol>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1555731589/qweqwzsdxa.png" alt=""></p>
 
       
     </div>
@@ -684,11 +702,11 @@ y = r + \gamma Q_\theta(s',\pi_φ(s'))</script><p>即critic用更新较慢的tar
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/post/dad17569.html">【确定性策略梯度类】 DPG,DDPG,TD3</a></p>
+  <p><span>本文标题:</span><a href="/post/dad17569.html">【确定性策略梯度类】 DPG,DDPG,TD3,D4PG</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
   <p><span>发布时间:</span>2019年03月27日 - 16:03</p>
-  <p><span>最后更新:</span>2019年03月31日 - 23:03</p>
-  <p><span>原始链接:</span><a href="/post/dad17569.html" title="【确定性策略梯度类】 DPG,DDPG,TD3">http://zhkmxx9302013.github.io/post/dad17569.html</a>
+  <p><span>最后更新:</span>2019年04月20日 - 11:04</p>
+  <p><span>原始链接:</span><a href="/post/dad17569.html" title="【确定性策略梯度类】 DPG,DDPG,TD3,D4PG">http://zhkmxx9302013.github.io/post/dad17569.html</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/dad17569.html" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
@@ -839,7 +857,7 @@ y = r + \gamma Q_\theta(s',\pi_φ(s'))</script><p>即critic用更新较慢的tar
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -982,7 +1000,7 @@ y = r + \gamma Q_\theta(s',\pi_φ(s'))</script><p>即critic用更新较慢的tar
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、确定性策略梯度"><span class="nav-number">1.</span> <span class="nav-text">一、确定性策略梯度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、DPG"><span class="nav-number">2.</span> <span class="nav-text">二、DPG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、策略模型参数的一致性"><span class="nav-number">3.</span> <span class="nav-text">三、策略模型参数的一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、DPG目标函数"><span class="nav-number">4.</span> <span class="nav-text">四、DPG目标函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、DDPG"><span class="nav-number">5.</span> <span class="nav-text">五、DDPG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、TD3"><span class="nav-number">6.</span> <span class="nav-text">六、TD3</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、确定性策略梯度"><span class="nav-number">1.</span> <span class="nav-text">一、确定性策略梯度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、DPG"><span class="nav-number">2.</span> <span class="nav-text">二、DPG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、策略模型参数的一致性"><span class="nav-number">3.</span> <span class="nav-text">三、策略模型参数的一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、DPG目标函数"><span class="nav-number">4.</span> <span class="nav-text">四、DPG目标函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、DDPG"><span class="nav-number">5.</span> <span class="nav-text">五、DDPG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、TD3"><span class="nav-number">6.</span> <span class="nav-text">六、TD3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、D4PG"><span class="nav-number">7.</span> <span class="nav-text">七、D4PG</span></a></li></ol></div>
             
 
           </div>

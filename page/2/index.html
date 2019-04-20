@@ -317,7 +317,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">32</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">34</span></a>
 
   </li>
         
@@ -420,6 +420,398 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/d42ca19b.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/post/d42ca19b.html" class="post-title-link" itemprop="url">生成对抗网络(笔记)</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-05 10:25:59" itemprop="dateCreated datePublished" datetime="2019-03-05T10:25:59+08:00">2019-03-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-11 18:47:10" itemprop="dateModified" datetime="2019-04-11T18:47:10+08:00">2019-04-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/d42ca19b.html" class="leancloud_visitors" data-flag-title="生成对抗网络(笔记)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><strong>参考</strong></p>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/25071913?columnSlug=f00cb0979b57ab6d7f70e287b0cba55d" target="_blank" rel="noopener">令人拍案叫绝的Wasserstein GAN</a></li>
+<li><a href="http://www.dataguru.cn/article-11229-1.html" target="_blank" rel="noopener">WGAN最新进展：从weight clipping到gradient penalty</a></li>
+<li><a href="https://blog.csdn.net/Jasminexjf/article/details/82686953" target="_blank" rel="noopener">Ten paper: GAN-GP(Gradient Penalty)</a></li>
+<li><a href="https://blog.csdn.net/zhl493722771/article/details/82781914" target="_blank" rel="noopener">深度有趣 | 16 令人拍案叫绝的WGAN</a></li>
+<li><a href="https://www.cnblogs.com/bonelee/p/9166084.html" target="_blank" rel="noopener">开发者自述：我是这样学习 GAN 的</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&amp;mid=2247495668&amp;idx=1&amp;sn=e7e959b2bdd7b2763b9207ccb80fa6bc&amp;chksm=96ea3074a19db96208a51d26f7b5b4ef9c3a37a7799ec270becc77203de4294235041ede7206&amp;scene=0&amp;xtrack=1&amp;key=ea0a47f5b68e2b15d12fc7340eeaead8c766a680edb675d1e37261c54bf195211fca30c0935b743e9e6dd48a73a6ef5d12a3fc2ced96f775ec178345e1a5c665a9c23b45568dfc4dd79eda44cfbb4327&amp;ascene=1&amp;uin=MjMzNzA4OTgzMQ%3D%3D&amp;devicetype=Windows+10&amp;version=62060739&amp;lang=zh_CN&amp;pass_ticket=Ra%2BHQfQVPTFOQ2krrdR9WfmIhtZPhLL%2F4MTSGwpPVIL4A76Tszpn5qdPd%2B%2Bqxp4s" target="_blank" rel="noopener">推荐：生成对抗网络综述</a></li>
+</ol>
+</blockquote>
+<h3 id="一、-基本概念"><a href="#一、-基本概念" class="headerlink" title="一、 基本概念"></a>一、 基本概念</h3><ol>
+<li><p><strong>符号定义</strong></p>
+<p>$D$ 判别模型， $G$ 生成模型</p>
+<p>$x​$ 数据集中的数据分布，$z​$ 某种随机分布</p>
+</li>
+<li><p><strong>目标函数</strong>（详细参见第四部分）(找一系列D让其对应的V最大，然后在这些最大的V里面选一个最小的)</p>
+<script type="math/tex; mode=display">
+min_Gmax_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script><ul>
+<li><p><strong>D Loss</strong> (MC采样，相当于训练二分类器$x \sim P_{data}$一类，$\hat{x} \sim G(z)$一类):</p>
+<script type="math/tex; mode=display">
+max_DV(G,D)=\mathbb{E}_x[log(D(x))]+\mathbb{E}_z[log(1-D(G(z)))]</script></li>
+<li><p><strong>G Loss原始</strong> （MiniMax GAN<strong>[MMGAN]</strong>）(<strong>判别器越好，生成器梯度消失越严重</strong>)</p>
+<script type="math/tex; mode=display">
+\mathbb{E}{_{x\sim P_g}}[log(1-D(x))]</script></li>
+<li><p><strong>G Loss改进</strong> (Non-saturating GAN<strong>[NSGAN]</strong> )(-log trick) (其实与原始的差别不大)</p>
+<script type="math/tex; mode=display">
+\mathbb{E}{_{x\sim P_g}}[-log(D(x))]</script></li>
+</ul>
+</li>
+<li><p><strong>释义</strong></p>
+<p>$G$的目标是最大化生成数据与数据集数据的似然，减小生成数据与数据集数据之间的差距（原始GAN就是JSD）。对于生成器$ G $来说，为了尽可能欺骗$ D$，所以需要最大化生成样本的判别概率 $D(G(z))$，即最小化$ log(1-D(G(z)))$，注意：$log(D(x)) $一项与生成器$ G $无关，所以可以忽略。</p>
+<script type="math/tex; mode=display">
+G^{*}=argmin_G(Divergence(P_G,P_{data}))=argmin_G max_DV(D,G)</script><p>$D$要解决的问题是一个二分类问题，$V(D,G)$ 为二分类问题中常见的交叉熵损失。</p>
+<script type="math/tex; mode=display">
+D^{*}=argmax_DV(D,G)\\
+V(D,G) = \mathbb{E}_{x\sim P_{data}}[logD(x)]+\mathbb{E}_{x \sim P_G}[1-log(1-D(x))]</script></li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/d42ca19b.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/c0e17f81.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/post/c0e17f81.html" class="post-title-link" itemprop="url">Hybrid A* 路径规划</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-01 16:32:38" itemprop="dateCreated datePublished" datetime="2019-03-01T16:32:38+08:00">2019-03-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-05 22:58:40" itemprop="dateModified" datetime="2019-03-05T22:58:40+08:00">2019-03-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/c0e17f81.html" class="leancloud_visitors" data-flag-title="Hybrid A* 路径规划">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>参考:</p>
+<p><a href="https://zhuanlan.zhihu.com/p/40776683" target="_blank" rel="noopener"> Hybrid A Star 路径规划</a></p>
+<p><a href="https://github.com/karlkurzer/path_planner" target="_blank" rel="noopener">Hybrid A* Path Planner for the KTH Research Concept Vehicle</a></p>
+<p><a href="https://blog.csdn.net/AdamShan/article/details/80633099" target="_blank" rel="noopener">分层有限状态机和无人车行为规划</a></p>
+<p><a href="http://kth.diva-portal.org/smash/record.jsf?pid=diva2:1057261" target="_blank" rel="noopener"> [PAPER] : Path Planning in Unstructured Environments</a></p>
+<h3 id="Hybrid-A-的使用场景"><a href="#Hybrid-A-的使用场景" class="headerlink" title="Hybrid A* 的使用场景"></a>Hybrid A* 的使用场景</h3><p>​    在斯坦福大学2007年参加的DARPA无人车城市挑战赛时使用的Junior，其在行为规划层提出了分层有限状态机的方式，如下图所示。</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1551429769/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190301164059.png" alt=""></p>
+<p>​    其中，<strong>BAD_RNDF</strong>状态表示的是，当前道路与系统的路网图不同的时候，无人车将采用Hybrid A*来进行规划路径。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/c0e17f81.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1913,383 +2305,6 @@ S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.j
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/db3d6a7.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhkmxx930">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhkmxx930 blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/post/db3d6a7.html" class="post-title-link" itemprop="url">刷题-栈和队列</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-09 10:35:05" itemprop="dateCreated datePublished" datetime="2019-02-09T10:35:05+08:00">2019-02-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-02 13:28:20" itemprop="dateModified" datetime="2019-03-02T13:28:20+08:00">2019-03-02</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/post/db3d6a7.html" class="leancloud_visitors" data-flag-title="刷题-栈和队列">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="1-Leetcode-232-用栈实现队列-（剑指OFFER面试题-9）"><a href="#1-Leetcode-232-用栈实现队列-（剑指OFFER面试题-9）" class="headerlink" title="1. [Leetcode 232] 用栈实现队列 （剑指OFFER面试题 9）"></a>1. [Leetcode 232] <a href="https://leetcode-cn.com/problems/implement-queue-using-stacks/" target="_blank" rel="noopener">用栈实现队列</a> （剑指OFFER面试题 9）</h3><ul>
-<li><strong>解法</strong>：一个栈(push栈)用于接收push，一个栈(pop栈)用于top(peek)和pop<ol>
-<li>当pop栈为空，且push栈不为空时，将push栈的元素转移到pop栈中</li>
-<li>当pop栈不为空时，将pop栈的数据pop出去</li>
-<li>push操作只在push栈进行</li>
-</ol>
-</li>
-<li><strong>注意</strong>：<ul>
-<li>leetcode上可以不进行异常处理，能a过，但是面试时候最好还是加上空栈的异常处理。</li>
-<li>泛型支持。</li>
-<li>线程安全。
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/post/db3d6a7.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </li></ul></li></ul></div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/76e180f5.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhkmxx930">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhkmxx930 blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/post/76e180f5.html" class="post-title-link" itemprop="url">[刷题]二叉树专题</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-07 21:31:21" itemprop="dateCreated datePublished" datetime="2019-02-07T21:31:21+08:00">2019-02-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-19 11:35:03" itemprop="dateModified" datetime="2019-03-19T11:35:03+08:00">2019-03-19</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/post/76e180f5.html" class="leancloud_visitors" data-flag-title="[刷题]二叉树专题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>参考 <a href="https://www.toutiao.com/a6669724491066638859/?tt_from=weixin&amp;utm_campaign=client_share&amp;wxshare_count=1&amp;timestamp=1552926051&amp;app=news_article&amp;utm_source=weixin&amp;utm_medium=toutiao_android&amp;group_id=6669724491066638859" target="_blank" rel="noopener">几道和「二叉树」有关的算法面试题</a></p>
-</blockquote>
-<h3 id="1-Leetcode-105-从前序与中序遍历序列构造二叉树-剑指OFFER面试题-7"><a href="#1-Leetcode-105-从前序与中序遍历序列构造二叉树-剑指OFFER面试题-7" class="headerlink" title="1. [Leetcode 105] 从前序与中序遍历序列构造二叉树 (剑指OFFER面试题 7)"></a>1. [Leetcode 105] <a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">从前序与中序遍历序列构造二叉树</a> (剑指OFFER面试题 7)</h3><ul>
-<li><strong>解法：</strong>递归，由先序序列确定子树根节点，由中序序列确定当前节点下的子树范围。</li>
-<li><strong>主要参数(递归函数)：</strong>先序序列的起点idx与终点idx， 中序序列的起点idx与终点idx。</li>
-<li><strong>递归停止条件：</strong> 先序序列或中序序列的起点idx &gt; 终点idx。</li>
-<li><strong>递归参数更新方法：</strong><ul>
-<li><strong>左子树更新:</strong> <ul>
-<li>先序起点idx+1。 <code>preL + 1</code></li>
-<li>先序终点为中序确定左子树节点数量num + 先序起点idx。 <code>preL + num</code></li>
-<li>中序起点为之前递归层中的中序起点。 <code>inL</code></li>
-<li>中序终点为根节点在中序序列中的idx - 1。 <code>inRoot - 1</code></li>
-</ul>
-</li>
-<li><strong>右子树更新:</strong><ul>
-<li>先序起点idx+1 + 中序确定左子树节点数量num。 <code>preL + num + 1</code></li>
-<li>先序终点为之前递归层中的先序终点。 <code>preR</code></li>
-<li>中序起点为根节点在中序序列中的idx + 1。 <code>inRoot + 1</code></li>
-<li>中序终点为为之前递归层中的中序终点。 <code>inR</code>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/post/76e180f5.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </li></ul></li></ul></li></ul></div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2339,7 +2354,7 @@ S_i=\frac{e^{a_i}}{\sum_{j}e^{a_j}}</script><p><img src="https://upload-images.j
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

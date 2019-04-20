@@ -109,20 +109,24 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhkmxx930 blog">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/tags/干货分享/index.html">
+  <meta name="description" content="tf.slice 函数原型 tf.slice(inputs,begin,size,name=’’)  用途：从inputs中抽取部分内容 inputs：可以是list,array,tensorbegin：n维列表，begin[i] 表示从inputs中第i维抽取数据时，相对0的起始偏移量，也就是从第i维的begin[i]开始抽取数据size：n维列表，size[i]表示要抽取的第i维元素的数目有几">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tensorflow常用基础变换">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/d4f958cd.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="tf.slice 函数原型 tf.slice(inputs,begin,size,name=’’)  用途：从inputs中抽取部分内容 inputs：可以是list,array,tensorbegin：n维列表，begin[i] 表示从inputs中第i维抽取数据时，相对0的起始偏移量，也就是从第i维的begin[i]开始抽取数据size：n维列表，size[i]表示要抽取的第i维元素的数目有几">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-20T04:02:02.275Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhkmxx930 blog">
+<meta name="twitter:title" content="tensorflow常用基础变换">
+<meta name="twitter:description" content="tf.slice 函数原型 tf.slice(inputs,begin,size,name=’’)  用途：从inputs中抽取部分内容 inputs：可以是list,array,tensorbegin：n维列表，begin[i] 表示从inputs中第i维抽取数据时，相对0的起始偏移量，也就是从第i维的begin[i]开始抽取数据size：n维列表，size[i]表示要抽取的第i维元素的数目有几">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/tags/干货分享/">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/d4f958cd.html">
 
 
 
@@ -132,7 +136,7 @@
   };
 </script>
 
-  <title>标签: 干货分享 | zhkmxx930 blog</title>
+  <title>tensorflow常用基础变换 | zhkmxx930 blog</title>
   
 
 
@@ -190,7 +194,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -266,7 +270,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -415,88 +419,262 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>干货分享<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/d4f958cd.html">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/post/b8a74939.html" itemprop="url">
-            
-              <span itemprop="name">干货收集</span>
-            
-          </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">tensorflow常用基础变换
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-26T16:10:32+08:00" content="2019-01-26">
-          01-26
-        </time>
-      </div>
+              
+            
+          </h2>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-15 11:16:40" itemprop="dateCreated datePublished" datetime="2019-04-15T11:16:40+08:00">2019-04-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-20 12:02:02" itemprop="dateModified" datetime="2019-04-20T12:02:02+08:00">2019-04-20</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/d4f958cd.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/d4f958cd.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/post/d4f958cd.html" class="leancloud_visitors" data-flag-title="tensorflow常用基础变换">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="tf-slice"><a href="#tf-slice" class="headerlink" title="tf.slice"></a>tf.slice</h3><ul>
+<li><p>函数原型 tf.slice(inputs,begin,size,name=’’)</p>
+</li>
+<li><p>用途：从inputs中抽取部分内容</p>
+<p>inputs：可以是list,array,tensor<br>begin：n维列表，begin[i] 表示从inputs中第i维抽取数据时，相对0的起始偏移量，也就是从第i维的begin[i]开始抽取数据<br>size：n维列表，size[i]表示要抽取的第i维元素的数目<br>有几个关系式如下:<br>（1） i in [0,n]<br>（2）tf.shape(inputs)[0]=len(begin)=len(size)<br>（3）begin[i]&gt;=0   抽取第i维元素的起始位置要大于等于0<br>（4）begin[i]+size[i]&lt;=tf.shape(inputs)[i]</p>
+<a id="more"></a>
+</li>
+</ul>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]]</span><br><span class="line">y = np.arange(<span class="number">24</span>).reshape([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">z = tf.constant([[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]], [[<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>], [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]], [[<span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>], [<span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>]]])</span><br><span class="line"></span><br><span class="line">sess = tf.Session()</span><br><span class="line">begin_x = [<span class="number">1</span>, <span class="number">0</span>]  <span class="comment"># 第一个1，决定了从x的第二行[4,5,6]开始，第二个0，决定了从[4,5,6] 中的4开始抽取</span></span><br><span class="line">size_x = [<span class="number">1</span>, <span class="number">2</span>]  <span class="comment"># 第一个1决定了，从第二行以起始位置抽取1行，也就是只抽取[4,5,6] 这一行，在这一行中从4开始抽取2个元素</span></span><br><span class="line"></span><br><span class="line">out = tf.slice(x, begin=begin_x, size=size_x)</span><br><span class="line"><span class="keyword">print</span> (sess.run(out) ) <span class="comment"># 结果:[[4 5]]</span></span><br><span class="line"></span><br><span class="line">begin_y = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">size_y = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">out = tf.slice(y, begin_y, size_y)</span><br><span class="line">print(sess.run(out)  )<span class="comment"># 结果:[[[12 13 14] [16 17 18]]]</span></span><br><span class="line"></span><br><span class="line">begin_z = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">size_z = [<span class="number">-1</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">out = tf.slice(z, begin_z, size_z)</span><br><span class="line">print(sess.run(out))  <span class="comment"># size[i]=-1 表示第i维从begin[i]剩余的元素都要被抽取，结果：[[[ 5  6]] [[11 12]] [[17 18]]]</span></span><br></pre></td></tr></table></figure>
+<h3 id="tf-transpose"><a href="#tf-transpose" class="headerlink" title="tf.transpose"></a>tf.transpose</h3><p>主要注意多维的时候perm的用法，其实很简单，就是正常perm顺序是[0,1,2]，如果原来的shape是2x3x4的，对应的新perm顺序是多少，就把乘数的位置换到多少，也就是perm变成[1,0,2]那么shape就是3x2x4</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"> </span><br><span class="line"><span class="comment">#x = tf.constant([[1, 2 ,3],[4, 5, 6]])</span></span><br><span class="line">x = [[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>],[<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]],[[<span class="number">21</span>,<span class="number">22</span>,<span class="number">23</span>,<span class="number">24</span>],[<span class="number">25</span>,<span class="number">26</span>,<span class="number">27</span>,<span class="number">28</span>],[<span class="number">29</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">32</span>]]]</span><br><span class="line"><span class="comment">#a=tf.constant(x)</span></span><br><span class="line">a=tf.transpose(x, [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">b=tf.transpose(x, [<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br><span class="line">c=tf.transpose(x, [<span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>])</span><br><span class="line">d=tf.transpose(x, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>])</span><br><span class="line">e=tf.transpose(x, [<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>])</span><br><span class="line">f=tf.transpose(x, [<span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">output:</span><br><span class="line">--------------- a: 2 x 3*4</span><br><span class="line">[[[ 1  2  3  4]</span><br><span class="line">  [ 5  6  7  8]</span><br><span class="line">  [ 9 10 11 12]]</span><br><span class="line"> </span><br><span class="line"> [[21 22 23 24]</span><br><span class="line">  [25 26 27 28]</span><br><span class="line">  [29 30 31 32]]]</span><br><span class="line">--------------- b: 2 x 4*3</span><br><span class="line">[[[ 1  5  9]</span><br><span class="line">  [ 2  6 10]</span><br><span class="line">  [ 3  7 11]</span><br><span class="line">  [ 4  8 12]]</span><br><span class="line"> </span><br><span class="line"> [[21 25 29]</span><br><span class="line">  [22 26 30]</span><br><span class="line">  [23 27 31]</span><br><span class="line">  [24 28 32]]]</span><br><span class="line">--------------- c: 3 x 2*4</span><br><span class="line">[[[ 1  2  3  4]</span><br><span class="line">  [21 22 23 24]]</span><br><span class="line"> </span><br><span class="line"> [[ 5  6  7  8]</span><br><span class="line">  [25 26 27 28]]</span><br><span class="line"> </span><br><span class="line"> [[ 9 10 11 12]</span><br><span class="line">  [29 30 31 32]]]</span><br><span class="line">--------------- d: 3 x 4*2</span><br><span class="line">[[[ 1 21]</span><br><span class="line">  [ 2 22]</span><br><span class="line">  [ 3 23]</span><br><span class="line">  [ 4 24]]</span><br><span class="line"> </span><br><span class="line"> [[ 5 25]</span><br><span class="line">  [ 6 26]</span><br><span class="line">  [ 7 27]</span><br><span class="line">  [ 8 28]]</span><br><span class="line"> </span><br><span class="line"> [[ 9 29]</span><br><span class="line">  [10 30]</span><br><span class="line">  [11 31]</span><br><span class="line">  [12 32]]]</span><br><span class="line">--------------- e: 4 x 3*2</span><br><span class="line">[[[ 1 21]</span><br><span class="line">  [ 5 25]</span><br><span class="line">  [ 9 29]]</span><br><span class="line"> </span><br><span class="line"> [[ 2 22]</span><br><span class="line">  [ 6 26]</span><br><span class="line">  [10 30]]</span><br><span class="line"> </span><br><span class="line"> [[ 3 23]</span><br><span class="line">  [ 7 27]</span><br><span class="line">  [11 31]]</span><br><span class="line"> </span><br><span class="line"> [[ 4 24]</span><br><span class="line">  [ 8 28]</span><br><span class="line">  [12 32]]]</span><br><span class="line">---------------f: 4 x 2*3</span><br><span class="line">[[[ 1  5  9]</span><br><span class="line">  [21 25 29]]</span><br><span class="line"> </span><br><span class="line"> [[ 2  6 10]</span><br><span class="line">  [22 26 30]]</span><br><span class="line"> </span><br><span class="line"> [[ 3  7 11]</span><br><span class="line">  [23 27 31]]</span><br><span class="line"> </span><br><span class="line"> [[ 4  8 12]</span><br><span class="line">  [24 28 32]]]</span><br><span class="line">---------------</span><br></pre></td></tr></table></figure>
+<h3 id="tf-nn-conv1d"><a href="#tf-nn-conv1d" class="headerlink" title="tf.nn.conv1d"></a>tf.nn.conv1d</h3><p> conv1d的参数含义：(以NHWC格式为例，即，通道维在最后)</p>
+<ul>
+<li><p>value：在注释中，value的格式为：[batch, in_width, in_channels]，batch为样本维，表示多少个样本，in_width为宽度维，表示样本的宽度，in_channels维通道维，表示样本有多少个通道。 </p>
+</li>
+<li><p>filters：在注释中，filters的格式为：[filter_width, in_channels, out_channels]。按照value的第二种看法，filter_width可以看作每次与value进行卷积的行数，in_channels表示value一共有多少列（与value中的in_channels相对应）。out_channels表示输出通道，可以理解为一共有多少个卷积核，即卷积核的数目。</p>
+</li>
+<li><p>stride：一个整数，表示步长，每次（向下）移动的距离</p>
+</li>
+<li><p>padding：同conv2d，value是否需要在下方填补0。 <strong>Valid:</strong> 用过滤器在输入的矩阵中按步长移动时候，会把最后的不足部分的列和行抛弃；<strong>Same:</strong> 先在输入矩阵上下各加个值为0的行，在左右各加个个值为0的列，也就是用0把原先的矩阵包裹一层，然后在移动的时候如果输入矩阵的列或者行长度不够，就用0来补齐</p>
+</li>
+<li><p>name：名称。</p>
+</li>
+</ul>
+<p>测试代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个矩阵a，表示需要被卷积的矩阵。</span></span><br><span class="line">a = np.array(np.arange(<span class="number">1</span>, <span class="number">1</span> + <span class="number">20</span>).reshape([<span class="number">1</span>, <span class="number">10</span>, <span class="number">2</span>]), dtype=np.float32)</span><br><span class="line">print(a, a.shape)</span><br><span class="line"><span class="comment"># 卷积核，此处卷积核的数目为1</span></span><br><span class="line">kernel = np.array(np.arange(<span class="number">1</span>, <span class="number">1</span> + <span class="number">4</span>), dtype=np.float32).reshape([<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br><span class="line">print(kernel, kernel.shape)</span><br><span class="line"><span class="comment"># 进行conv1d卷积</span></span><br><span class="line">conv1d = tf.nn.conv1d(a, kernel, <span class="number">1</span>, <span class="string">'VALID'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment"># 初始化</span></span><br><span class="line">    tf.global_variables_initializer().run()</span><br><span class="line">    <span class="comment"># 输出卷积值</span></span><br><span class="line">    out = sess.run(conv1d)</span><br><span class="line">    print(out, out.shape)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">a: shape (1, 10, 2)</span><br><span class="line">a:</span><br><span class="line">[[[ 1.  2.]</span><br><span class="line">  [ 3.  4.]</span><br><span class="line">  [ 5.  6.]</span><br><span class="line">  [ 7.  8.]</span><br><span class="line">  [ 9. 10.]</span><br><span class="line">  [11. 12.]</span><br><span class="line">  [13. 14.]</span><br><span class="line">  [15. 16.]</span><br><span class="line">  [17. 18.]</span><br><span class="line">  [19. 20.]]]</span><br><span class="line">  </span><br><span class="line">filter: shape (2, 2, 1)</span><br><span class="line">filter:</span><br><span class="line">[[[1.]</span><br><span class="line">  [2.]]</span><br><span class="line"></span><br><span class="line"> [[3.]</span><br><span class="line">  [4.]]]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">output: shape(1, 9, 1)</span><br><span class="line">output:</span><br><span class="line">[[[ 30.]</span><br><span class="line">  [ 50.]</span><br><span class="line">  [ 70.]</span><br><span class="line">  [ 90.]</span><br><span class="line">  [110.]</span><br><span class="line">  [130.]</span><br><span class="line">  [150.]</span><br><span class="line">  [170.]</span><br><span class="line">  [190.]]]</span><br></pre></td></tr></table></figure>
 
       
     </div>
 
+    
+
+    
+    
+    
+    <div>
+      
+        
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/64ddacfe.html" rel="next" title="Wasserstein GAN 与 WGAN-GP">
+                <i class="fa fa-chevron-left"></i> Wasserstein GAN 与 WGAN-GP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/b1fd4278.html" rel="prev" title="[论文] Go-Explore">
+                [论文] Go-Explore <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -517,8 +695,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -667,6 +854,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-slice"><span class="nav-number">1.</span> <span class="nav-text">tf.slice</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-transpose"><span class="nav-number">2.</span> <span class="nav-text">tf.transpose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-nn-conv1d"><span class="nav-number">3.</span> <span class="nav-text">tf.nn.conv1d</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -836,6 +1040,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -871,6 +1079,30 @@
     </style>
   
 
+  
+    <script>
+    function renderGitment(){
+      var gitment = new Gitmint({
+        id: window.location.pathname,
+        owner: 'zhkmxx9302013',
+        repo: 'zhkmxx9302013.github.io',
+        
+        lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+        
+        oauth: {
+        
+        
+          client_secret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
+        
+          client_id: '8ffda7fd0bcee5f2074f'
+        }});
+      gitment.render('gitment-container');
+    }
+
+    
+      renderGitment();
+    
+    </script>
   
 
 
@@ -1210,43 +1442,40 @@
   
   <script>
     
-    function showTime(Counter) {
-      var entries = [];
+    function addCount(Counter) {
       var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
         .done(function ({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
           }
         })
-        .fail(function ({ responseJSON }) {
-          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
-        });
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
     }
     
 
@@ -1266,9 +1495,7 @@
             });
           };
           
-          if ($('.post-title-link').length >= 1) {
-            showTime(Counter);
-          }
+          addCount(Counter);
           
         })
     });
@@ -1309,6 +1536,25 @@
   
 
   
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 16260,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
 
   
 

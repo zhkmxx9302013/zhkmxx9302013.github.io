@@ -317,7 +317,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">32</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">34</span></a>
 
   </li>
         
@@ -420,6 +420,364 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/33864.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/post/33864.html" class="post-title-link" itemprop="url">使用Scala基于词法单元的解析器定制EBNF范式文法解析</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-05 15:10:01" itemprop="dateCreated datePublished" datetime="2019-01-05T15:10:01+08:00">2019-01-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-25 09:54:45" itemprop="dateModified" datetime="2019-01-25T09:54:45+08:00">2019-01-25</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/33864.html" class="leancloud_visitors" data-flag-title="使用Scala基于词法单元的解析器定制EBNF范式文法解析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近期在做<strong>Oracle</strong>迁移到<strong>Spark</strong>平台的项目上遇到了一些平台公式翻译为<strong>SparkSQL(on Hive)</strong>的需求，而<strong>Spark</strong>采用亲妈语言<strong>Scala</strong>进行开发。分析过大概需求过后，拟使用编译原理中的<strong>EBNF范式</strong>模式，进行基于词法的文法解析。于是拟采用传统的<strong>正则词法解析</strong>到<strong>EBNF文法解析</strong>的套路来实现,直到发现了<code>StandardTokenParsers</code>这个Scala基于词法单元的解析器类。</p>
+<h1 id="平台公式及翻译后的SparkSQL"><a href="#平台公式及翻译后的SparkSQL" class="headerlink" title="平台公式及翻译后的SparkSQL"></a>平台公式及翻译后的SparkSQL</h1><p>平台公式的样子如下所示：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (XX1_m001[D003]="邢おb7肮α䵵薇" || XX1_m001[H003]&lt;"2") &amp;&amp; XX1_m001[D005]!="wed" then XX1_m001[H022,COUNT]</span><br></pre></td></tr></table></figure></p>
+<p>这里面字段值”邢おb7肮α䵵薇”为这个的目的是为了测试各种字符集是否都能匹配满足。<br>那么对应的<strong>SparkSQL</strong>应该是这个样子的,由于是使用的<strong>Hive on Spark</strong>，因而长得跟<strong>Oracle的SQL语句</strong>差不多：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(H022) <span class="keyword">FROM</span> XX1_m001 <span class="keyword">WHERE</span> (XX1_m001.D003=<span class="string">'邢おb7肮α䵵薇'</span> <span class="keyword">OR</span>  XX1_m001.H003&lt;<span class="string">'2'</span>)  <span class="keyword">AND</span>  XX1_m001.D005&lt;<span class="string">'wed'</span></span><br></pre></td></tr></table></figure></p>
+<p>总体而言比较简单，因为我只是想在这里做一个Demo。<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/33864.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/24621.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/post/24621.html" class="post-title-link" itemprop="url">Linux内存占用过高？非也</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-05 11:41:08" itemprop="dateCreated datePublished" datetime="2019-01-05T11:41:08+08:00">2019-01-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-25 11:08:51" itemprop="dateModified" datetime="2019-01-25T11:08:51+08:00">2019-01-25</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/24621.html" class="leancloud_visitors" data-flag-title="Linux内存占用过高？非也">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>今天在我的RPi2上测试GPIO程序，忽然发现机器超卡，重启之后依然如此。于是我top了一下发现了一个问题就是内存爆满！！可我还啥都没干呢这是咋了？于是我呵呵地开始查资料，终于找到了问题所在。</p>
+</blockquote>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><ul>
+<li>先来在阿里的ECS上top一下感受内存爆满的感觉，终端输入<code>top</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#top</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548332209/1.png" alt="图片标题"></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/24621.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -820,7 +1178,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1587,6 +1945,10 @@
 
   
   
+    
+      
+    
+      
     
       
     

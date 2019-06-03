@@ -109,27 +109,31 @@
 
 
 
-  <meta name="description" content="一、 重要性采样TRPO和PPO主要思想的数学基础是重要性采样  重要性采样：$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。   \begin{aligned} \mathbb{E}_{x\sim p}[f(x)] &amp;=\int f(x)p(x) dx \\ &amp;=\int f(x) \frac{p(x)}{q(x">
-<meta name="keywords" content="强化学习">
+  <meta name="description" content="硬件平台项目详情  迁移resnet到RISC-V Soc 1. 改进Nano-scale UAV 低功耗视觉导航模块PULP-Shield GreenWaves Technologies GAP8 SoC ULP camera  Flash/DRAM memory 兼容 CrazyFlie 2.0 nano-UAV   提出CNN-Based DroNet 在常规尺寸无人机上做离线计算 在na">
+<meta name="keywords" content="平台">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A3C、PPO、GAE笔记">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/post/3cc694a0.html">
+<meta property="og:title" content="[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation Engine for Autonomous Nano-UAVs">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/2ee983bb.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="一、 重要性采样TRPO和PPO主要思想的数学基础是重要性采样  重要性采样：$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。   \begin{aligned} \mathbb{E}_{x\sim p}[f(x)] &amp;=\int f(x)p(x) dx \\ &amp;=\int f(x) \frac{p(x)}{q(x">
+<meta property="og:description" content="硬件平台项目详情  迁移resnet到RISC-V Soc 1. 改进Nano-scale UAV 低功耗视觉导航模块PULP-Shield GreenWaves Technologies GAP8 SoC ULP camera  Flash/DRAM memory 兼容 CrazyFlie 2.0 nano-UAV   提出CNN-Based DroNet 在常规尺寸无人机上做离线计算 在na">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553760534/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190328160651.png">
-<meta property="og:updated_time" content="2019-04-13T09:40:00.310Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1559528609/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190603102300.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1559184012/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190530103904.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1559188421/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190530115329.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1559228447/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190530225934.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1559285729/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190531145449.png">
+<meta property="og:updated_time" content="2019-06-03T02:23:44.680Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A3C、PPO、GAE笔记">
-<meta name="twitter:description" content="一、 重要性采样TRPO和PPO主要思想的数学基础是重要性采样  重要性采样：$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。   \begin{aligned} \mathbb{E}_{x\sim p}[f(x)] &amp;=\int f(x)p(x) dx \\ &amp;=\int f(x) \frac{p(x)}{q(x">
-<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553760534/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190328160651.png">
+<meta name="twitter:title" content="[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation Engine for Autonomous Nano-UAVs">
+<meta name="twitter:description" content="硬件平台项目详情  迁移resnet到RISC-V Soc 1. 改进Nano-scale UAV 低功耗视觉导航模块PULP-Shield GreenWaves Technologies GAP8 SoC ULP camera  Flash/DRAM memory 兼容 CrazyFlie 2.0 nano-UAV   提出CNN-Based DroNet 在常规尺寸无人机上做离线计算 在na">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1559528609/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190603102300.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/3cc694a0.html">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/2ee983bb.html">
 
 
 
@@ -139,7 +143,7 @@
   };
 </script>
 
-  <title>A3C、PPO、GAE笔记 | zhkmxx930 blog</title>
+  <title>[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation Engine for Autonomous Nano-UAVs | zhkmxx930 blog</title>
   
 
 
@@ -442,7 +446,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/3cc694a0.html">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/2ee983bb.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -459,7 +463,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">A3C、PPO、GAE笔记
+          <h2 class="post-title" itemprop="name headline">[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation Engine for Autonomous Nano-UAVs
 
               
             
@@ -485,24 +489,12 @@
                 
               
 
-              <time title="创建时间：2019-03-06 16:34:27" itemprop="dateCreated datePublished" datetime="2019-03-06T16:34:27+08:00">2019-03-06</time>
+              <time title="创建时间：2019-06-03 10:16:07 / 修改时间：10:23:44" itemprop="dateCreated datePublished" datetime="2019-06-03T10:16:07+08:00">2019-06-03</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-13 17:40:00" itemprop="dateModified" datetime="2019-04-13T17:40:00+08:00">2019-04-13</time>
               
             
           </span>
@@ -516,8 +508,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/3cc694a0.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/3cc694a0.html" itemprop="commentsCount"></span>
+                <a href="/post/2ee983bb.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/2ee983bb.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -525,7 +517,7 @@
 
           
           
-             <span id="/post/3cc694a0.html" class="leancloud_visitors" data-flag-title="A3C、PPO、GAE笔记">
+             <span id="/post/2ee983bb.html" class="leancloud_visitors" data-flag-title="[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation Engine for Autonomous Nano-UAVs">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -556,172 +548,105 @@
       
 
       
-        <h3 id="一、-重要性采样"><a href="#一、-重要性采样" class="headerlink" title="一、 重要性采样"></a>一、 重要性采样</h3><p>TRPO和PPO主要思想的数学基础是重要性采样</p>
-<ul>
-<li><strong>重要性采样：</strong>$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb{E}_{x\sim p}[f(x)] &=\int f(x)p(x) dx \\
-&=\int f(x) \frac{p(x)}{q(x)}q(x)dx \\
-&=\mathbb{E}_{x\sim q}[f(x)\frac{p(x)}{q(x)}]
-\end{aligned}</script><ul>
-<li><p><strong>条件</strong>：</p>
-<ul>
-<li>$p$分布与$q$分布需要相近，才能得到较好的效果。</li>
+        <blockquote>
+<p><a href="http://iis-projects.ee.ethz.ch/index.php?title=PULP-Shield_for_Autonomous_UAV&amp;oldid=3546" target="_blank" rel="noopener">硬件平台项目详情</a></p>
+</blockquote>
+<p>迁移resnet到RISC-V Soc</p>
+<h2 id="1-改进Nano-scale-UAV"><a href="#1-改进Nano-scale-UAV" class="headerlink" title="1. 改进Nano-scale UAV"></a>1. 改进Nano-scale UAV</h2><ol>
+<li>低功耗视觉导航模块<a href="http://iis-projects.ee.ethz.ch/index.php/PULP-Shield_for_Autonomous_UAV" target="_blank" rel="noopener">PULP-Shield</a><ul>
+<li><a href="http://www.appnz.com/it/20190115_5650.html" target="_blank" rel="noopener">GreenWaves Technologies GAP8 SoC</a></li>
+<li>ULP camera </li>
+<li>Flash/DRAM memory</li>
+<li>兼容 <a href="https://item.taobao.com/item.htm?id=531865932925&amp;ali_refid=a3_430582_1006:1121643831:N:vN07eM9kSLOskCIyJPK3aLXPPiJLN7BD:969dc8994432618e9cfbb7a8d5edb393&amp;ali_trackid=1_969dc8994432618e9cfbb7a8d5edb393&amp;spm=a230r.1.14.1#detail" target="_blank" rel="noopener">CrazyFlie 2.0 nano-UAV</a></li>
 </ul>
 </li>
-<li><p><strong>用在强化学习里面</strong>:</p>
-<ul>
-<li>由于策略梯度原始公式中的 新策略分布难以得到，因而使用旧策略进行间接采样，以使得未知项变成可估计的已知项进行计算。</li>
+<li>提出CNN-Based DroNet<ul>
+<li>在常规尺寸无人机上做离线计算</li>
+<li>在nano无人机上做在线计算</li>
 </ul>
+</li>
+<li>功耗<ul>
+<li>6fps 功耗64mW</li>
+<li>18fps 功耗 272mW</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1559528609/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190603102300.png" alt=""></p>
 <a id="more"></a>
+<h2 id="2-DroNet"><a href="#2-DroNet" class="headerlink" title="2. DroNet"></a>2. DroNet</h2><p>Dronet的训练，将一个未处理的图片转换成两个高层的信息</p>
+<p>(1) 估计障碍碰撞的概率，用来确定UAV的前向目标速度 (使用<a href="http://rpg.ifi.uzh.ch/dronet.html" target="_blank" rel="noopener">Z¨urich bicycle dataset</a>进行训练)</p>
+<p>(2) 期望方向(根据障碍物、地上的白线等) (使用<a href="https://www.udacity.com/self-driving-car" target="_blank" rel="noopener">Udacity自动驾驶数据集</a>进行训练)</p>
+<ol>
+<li><p>网络结构</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1559184012/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190530103904.png" alt=""></p>
 </li>
+</ol>
+<p>   网络输出的方向角与障碍概率，直接影响到控制决策上，通过一个低通滤波器影响目标偏航角变化率，以及目标前向速度。</p>
+<ol>
+<li><p>计算平台 GAP8 SoC</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1559188421/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190530115329.png" alt=""></p>
+<ul>
+<li>基于PULP开源架构， RISC-V精简指令集</li>
+<li>两个子系统，一个供电模块<ul>
+<li><strong>Fabric controller结构控制器</strong>，带一个RISC-V精简指令集的on-SoC微控制器<ul>
+<li>FC的结构跟微控制器相同，一个内部时钟，512kB SRAM(L2 Memory)，一个用于boot的ROM，一个适用于多种接口的IO子系统($\mu$DMA)</li>
+<li>L2 Memory是与cpu独立的不会被cpu中断。</li>
 </ul>
-<hr>
-<h3 id="二、-梯度与参数更新"><a href="#二、-梯度与参数更新" class="headerlink" title="二、 梯度与参数更新"></a>二、 梯度与参数更新</h3><p><strong>1. 回报的期望：</strong>最大化全部采样轨迹上的策略回报值，$R(\tau)$ 表示某一个轨迹$\tau$的回报值</p>
-<script type="math/tex; mode=display">
-argmax_\theta \space \mathbb{E}[{R_\theta}]=\sum_\tau R(\tau)p_\theta(\tau)</script><p><strong>2. 回报的期望的梯度</strong>：(第三个等号用到的公式：$\nabla f(x) = f(x) \nabla \log f(x)​$)</p>
+</li>
+<li>8核加速器簇(Cluster(<strong>CL</strong>))(RISC-V指令集)<ul>
+<li>8核共享一个单独的指令缓存cache</li>
+<li>8核共享一个64kB的L1暂存器</li>
+<li>从L2 Memory到后端的数据移动由CL内部的DMA软件进行控制</li>
+</ul>
+</li>
+<li>所有的core都支持RV32IMC指令集，和SIMD DSP扩展(SIMD是一个512B的单指令多数据向量)，能够实现基础的点积(加速线性代数计算及信号处理过程)。</li>
+</ul>
+</li>
+<li>这种架构能够在具有规则的、可预测的数据访问模式的典型并行内核上实现最大的效率和利用率，同时节省共享数据缓存的区域开销。</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>在嵌入式上应用算法</p>
+<p>​    首先，导航算法必须能够以足以实现令人满意的闭环控制性能的帧速率执行主要工作负荷（一次解算需要的乘法累积操作约4100万次）。此外，虽然嵌入式处理器通常使用较低的精度来表示数据和较低分辨率的图像，但结果的质量必须保持与原始算法相似。这些限制对原始算法进行了很多调整，在无人机的情况下，可以分为两大类。</p>
+<p>(1) 数据集fine-tuning 并将网络离散分层(network quantization)</p>
+<ul>
+<li>使用一个grayscale QVGA-resolution HiMax摄像头，采集数据，1122 张用于训练的新图片 以及228 张用于test/validation的新图片，将其丢到开源的碰撞数据集中去。</li>
+<li>将3x3卷积换成2x2的</li>
+<li>将浮点换成定点表示</li>
+<li>通过测试，中间的feature map的动态阈值范围在+-16，精度2^-11，足够用来表示BN+激活函数后的值。</li>
+<li>将所有的Relu使用16位 Q5.11定点表示（整数5位带符号，11位小数定点）。</li>
+<li>网络重新训练，架构不变。</li>
+</ul>
+<p>(2) BN 折叠</p>
+<ul>
+<li><p>BN过程是线性的，可以将其计算合并到卷积层中去，具体是将BN折叠到卷积层权重W和偏置b中去，假设$\gamma, \beta,\sigma ,\mu$是normalization的参数，则有：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\nabla \mathbb{E}[{R_\theta}]&=\sum_\tau R(\tau) \nabla p_{\theta}(\tau) \\
-&= \sum_\tau R(\tau)p_\theta(\tau)\frac{\nabla p_\theta(\tau)}{p_\theta(\tau)} \\
-&= \sum_\tau R(\tau)p_\theta(\tau){\nabla \log p_\theta(\tau)}\\
-&= \mathbb{E}_{\tau \sim p_\theta{(\tau)}}[R(\tau){\nabla \log p_\theta(\tau)}] \\
-&≈ \frac{1}{N} \sum_{n=1}^{N}R(\tau^n)\nabla \log p_{\theta}(\tau^n) \\
-&=\frac{1}{N}\sum_{n=1}^{N} \sum_{t=1}^{T_n} R(\tau^n)\nabla \log p_\theta(a_t^n|s_t^n)
-
-\end{aligned}</script><p>式中</p>
-<ul>
-<li><p>$N​$表示采样了$N​$条trajectory, $T_n​$表示每条trajectory的step数量。</p>
-</li>
-<li><p>关于$p_{\theta}(\tau)$ </p>
+BN(W*x+b)&=\frac{\gamma}{\sigma}\cdot(W*x+b-\mu)+\beta \\
+&=(\frac{\gamma}{\sigma} \cdot W)*x+(\beta+\frac{\gamma}{\sigma}(b-u)) \\
+&=W'*x+b'
+\end{aligned}</script></li>
+<li><p>DroNet中主枝上的Res block是经过BN的，旁支的没有经过BN，因而还需要对上式做调整。先当做每一个res block都进行了BN，然后对旁支上的res block用下式进行反BN:</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-p_{\theta}(\tau) &= p(s_1)p_\theta(a_1|s_1)p(s_2|s_1,a_1)p_\theta(a_2|s_2)p(s_3|s_2,a_2) \space\space...\space\space \\
-&=p(s_1) \prod_{t=1}^T p_{\theta}(a_t|s_t)p(s_{t+1}|s_t, a_t)
-\end{aligned}</script><p>由两部分组成一部分是来自环境的 $p_\theta(s_{t+1}|s_t, a)$， 一部分是来自agent的 $p_\theta {(a_t|s_t)}$, 其中来自环境的部分不带入计算，策略更新只考虑agent这部分。所以最后一步并没有$t+1$这部分。</p>
+BN^{-1}(W'*x+b')=W''*x+b'' \\
+W''=\frac{\sigma}{\gamma}\cdot W' \\
+b'' =  b'+\sum_{ic}(\mu \sum_{fs}{W'}) - \sum_{ic}{\beta\cdot\frac{\sigma}{\gamma} \cdot\sum_{fs}{W'}}</script><p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1559228447/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190530225934.png" alt=""></p>
+</li>
+<li><p>最终的DroNet权重使用定点Q2.14， 除了第一层的分支层使用Q9.7</p>
 </li>
 </ul>
-<p><strong>3. 参数更新：</strong></p>
-<script type="math/tex; mode=display">
-\theta = \theta+\eta \nabla \bar{R_\theta}</script><hr>
-<h3 id="三、-实际算法中对策略梯度的处理方法"><a href="#三、-实际算法中对策略梯度的处理方法" class="headerlink" title="三、 实际算法中对策略梯度的处理方法"></a>三、 实际算法中对策略梯度的处理方法</h3><ol>
-<li><p><strong>策略梯度方法：</strong></p>
-<p>加入baseline</p>
-<script type="math/tex; mode=display">
-\nabla \bar{R_\theta}=\frac{1}{N} \sum_{n=1}^{N}(R(\tau^n)-b)\nabla \log p_{\theta}(\tau^n) \\
-b≈\mathbb{E}[R(\tau)]</script></li>
-</ol>
-<p>   $b$ 的加入保证reward不是恒大于0的，若reward一直大于0，则会导致未被采样的action无法得到提升，但其实该action并不是不好而是未被采样。</p>
-<ol>
-<li><p><strong>状态值函数估计轨迹回报：</strong></p>
-<p>$R(\tau^n)-b$ 部分使用状态值函数来替代</p>
-<script type="math/tex; mode=display">
-q(s,a)</script></li>
-<li><p><strong>优势函数估计轨迹回报：</strong></p>
-<p>$R(\tau^n)-b​$ 部分用以下Advantage function来替代</p>
-</li>
-</ol>
-<script type="math/tex; mode=display">
-A(s_t,a_t)= q(s,a)-V(s)</script><ol>
-<li><p><strong>TD-Error估计轨迹回报：(A3C)使用值网络估计值，引入bias减小variance</strong></p>
-<p>$R(\tau^n)-b​$ 部分用以下TD-Error 代替</p>
-<script type="math/tex; mode=display">
-r(s_t. a_t)+v(s_{t+1})-v(s)​</script></li>
-</ol>
-<hr>
-<h3 id="四、GAE-Generalized-Advantage-Estimation"><a href="#四、GAE-Generalized-Advantage-Estimation" class="headerlink" title="四、GAE(Generalized Advantage Estimation)"></a>四、GAE(Generalized Advantage Estimation)</h3><ol>
-<li><p><strong>GAE的作用</strong></p>
+<h2 id="3-PULP-Shield"><a href="#3-PULP-Shield" class="headerlink" title="3. PULP-Shield"></a>3. PULP-Shield</h2><p>pulpshield：</p>
 <ul>
-<li>GAE的意思是泛化优势估计，因而他是用来<strong>优化Advantage Function优势函数</strong>的。</li>
-<li>GAE的存在是用来权衡variance和bias问题的：<ul>
-<li>On-policy直接交互并用每一时刻的回报作为长期回报的估计$\sum_{t’=t}^{T} \gamma^{t’-t}r_{t’}$ 会产生较大的方差，Variance较大。</li>
-<li>而通过基于优势函数的AC方法来进行回报值估计，则会产生方差较小，而Bias较大的问题。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>GAE 推导</strong></p>
-<p>满足$\gamma$-just条件。(未完待续)</p>
-</li>
-<li><p><strong>GAE形式</strong></p>
-<p>GAE的形式为多个价值估计的加权平均数。</p>
-<script type="math/tex; mode=display">
-TD Error=\delta_t=r_t+\gamma v(s_{t+1})-v(s_t)</script><p>运用GAE公式进行优势函数的估计：</p>
-</li>
-</ol>
-<script type="math/tex; mode=display">
-\sum_{l=0}^\infin(\gamma\lambda)^l \delta_{t+1}^V</script><p>​    为了快速估计序列中所有时刻的估计值，采用倒序计算，从t+1时刻估计t时刻：</p>
-<script type="math/tex; mode=display">
-\hat{A_t}^{GAE(\gamma,\lambda)}=\sum_{l=0}^{\infin}(\gamma\lambda)^l \delta_{t+1}^V=\delta_t^V+\gamma\lambda\hat{A}_{t+1}^{GAE(\gamma,\lambda)}</script><hr>
-<h3 id="五、PPO关于策略梯度的目标函数"><a href="#五、PPO关于策略梯度的目标函数" class="headerlink" title="五、PPO关于策略梯度的目标函数"></a>五、PPO关于策略梯度的目标函数</h3><p>以上所述的策略梯度算法属于on-policy的算法，而<strong>PPO属于off-policy</strong>的算法</p>
-<ul>
-<li><p><strong>on-policy:</strong> 使用当前策略$\pi_\theta$收集数据，当参数$\theta$更新后，必须重新采样。</p>
-<script type="math/tex; mode=display">
-\nabla \bar{R_\theta}=\mathbb{E}_{\tau \sim p_\theta{\tau}}[R(\tau){\nabla \log p_\theta(\tau)}]</script></li>
-<li><p><strong>off-policy:</strong> 可以从可重用的样本数据中获取样本来训练当前的策略$\pi _\theta​$，下式用了重要性采样。</p>
-<script type="math/tex; mode=display">
-\nabla \bar{R_\theta}=\mathbb{E}_{\tau \sim p_{\theta^\prime}{\tau}}[\frac{p_\theta(\tau)}{p_{\theta^\prime}(\tau)} R(\tau){\nabla \log p_\theta(\tau)}]</script></li>
-</ul>
-<p><strong>1. PPO目标函数</strong></p>
-<p>   对于PPO而言，轨迹回报通过采用Advantage function的方式进行估计，因而其梯度更新方式为：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\nabla \bar{R_\theta} &=\mathbb{E}_{(s_t,a_t)\sim\pi_\theta}[A^\theta(s_t,a_t)\nabla \log p_\theta({a_t^n|s_t^n})] \\
-&=\mathbb{E}_{(s_t,a_t)\sim\pi_\theta^\prime}[\frac{p_\theta(s_t,a_t)}{p_\theta^\prime(s_t,a_t)}A^{\theta^\prime}(s_t,a_t)\nabla \log p_\theta({a_t^n|s_t^n})] \\
-&=\mathbb{E}_{(s_t,a_t)\sim\pi_\theta^\prime}[\frac{p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)}\frac{p_\theta(s_t)}{p_\theta^\prime(s_t)}A^{\theta^\prime}(s_t,a_t)\nabla \log p_\theta({a_t^n|s_t^n})] \\
-&≈\mathbb{E}_{(s_t,a_t) \sim \pi_\theta^\prime}[\frac{\nabla p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)}A^{\theta^\prime}(s_t,a_t)]
-\end{aligned}</script><p>​    其中，从第二个等式用的是重要性采样，第三到第四个约等式由于$\frac{p_\theta(s_t)}{p_\theta^\prime(s_t)}​$这一项来源于重要性采样，前提假设两个分布差别不大，近似为1，且不易计算，故省略，后面的$\nabla \log p_\theta({a_t^n|s_t^n})​$ ,根据公式$\nabla f(x) = f(x) \nabla \log f(x)​$转换。     </p>
-<p>​    因而，定义<strong>目标函数</strong>为：</p>
-<script type="math/tex; mode=display">
-J^{\theta^{\prime}} (\theta)=\mathbb{E}_{(s_t,a_t) \sim \pi_\theta^\prime}[\frac{p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)}A^{\theta^\prime}(s_t,a_t)]</script><p><strong>2. PPO对于重要性采样约束的处理</strong></p>
-<p>​    为了保证$p_\theta(s_t,a_t) ​$ 与 $p_\theta^\prime(s_t,a_t)​$ 分布的差别不会太大，采用以下约束：</p>
-<ul>
-<li><strong>TRPO</strong>： 使用约束 $KL(\theta,\theta’)&lt;\delta$，在分布上进行约束。</li>
-<li><strong>PPO1</strong>(Adaptive KL)：使用$J_{PPO}^{\theta’}(\theta)=J^{\theta’}(\theta)-\beta KL(\theta,\theta’)$，在目标函数上加一个正则项进行约束，注意，这里KL散度衡量的是action之间的距离，而不是参数$\theta$与$\theta’$之间的距离。</li>
-<li><strong>PPO2</strong> (Clip，论文中推荐的)：使用$J_{PPO_2}^{\theta’}(\theta)=\sum_{(s_t,a_t)}\min\{([\frac{p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)}A^{\theta^\prime}(s_t,a_t)], [clip(\frac{p_\theta(a_t|s_t)}{p_\theta^\prime(a_t|s_t)},1-\epsilon,1+\epsilon)A^{\theta^\prime}(s_t,a_t)])\}​$, 来约束分布距离。</li>
-</ul>
-<ol>
-<li><strong>使用GAE对优势函数进行优化</strong></li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_gaes</span><span class="params">(self, rewards, v_preds, v_preds_next)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    GAE</span></span><br><span class="line"><span class="string">    :param rewards: r(t)</span></span><br><span class="line"><span class="string">    :param v_preds: v(st)</span></span><br><span class="line"><span class="string">    :param v_preds_next: v(st+1)</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    deltas = [r_t + self.gamma * v_next - v <span class="keyword">for</span> r_t, v_next, v <span class="keyword">in</span> zip(rewards, v_preds_next, v_preds)]</span><br><span class="line"></span><br><span class="line">    <span class="comment">#计算GAE(lambda = 1), 参见 ppo paper eq(11)</span></span><br><span class="line">    gaes = copy.deepcopy(deltas)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 倒序计算GAE</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> reversed(range(len(gaes) - <span class="number">1</span>)):</span><br><span class="line">        gaes[t] = gaes[t] + self.gamma * gaes[t + <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> gaes</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="六、-PPO的目标函数"><a href="#六、-PPO的目标函数" class="headerlink" title="六、 PPO的目标函数"></a>六、 PPO的目标函数</h3><p>PPO的最终目标函数由三部分组成，可使用梯度下降求解，而不是像TRPO一样使用共轭梯度法：</p>
-<ul>
-<li>策略梯度目标函数： $L_t^{CLIP}(\theta)​$</li>
-<li>值函数目标函数：$L_t^{VF}(\theta)=(V_\theta(s_t)-V_t^{target})^2=((r+\gamma v(s_{t+1}))-v(s_t))^2$</li>
-<li>策略模型的熵: $S_{[\pi_\theta]}(s_t)=-\pi_\theta(a|s)\log\pi_\theta(a|s)​$</li>
-</ul>
-<p>完整的形式如下：</p>
-<script type="math/tex; mode=display">
-L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_2S_{[\pi_\theta]}(s_t)]</script><p>这部分相应的代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'assign_op'</span>):</span><br><span class="line">    self.assign_ops = []</span><br><span class="line">    <span class="keyword">for</span> v_old, v <span class="keyword">in</span> zip(old_pi_trainable, pi_trainable):</span><br><span class="line">        self.assign_ops.append(tf.assign(v_old, v))</span><br><span class="line"></span><br><span class="line"><span class="comment"># inputs for train_op</span></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'train_inp'</span>):</span><br><span class="line">    self.actions = tf.placeholder(dtype=tf.int32, shape=[<span class="keyword">None</span>], name=<span class="string">'actions'</span>)</span><br><span class="line">    self.rewards = tf.placeholder(dtype=tf.float32, shape=[<span class="keyword">None</span>], name=<span class="string">'rewards'</span>)</span><br><span class="line">    self.v_preds_next = tf.placeholder(dtype=tf.float32, shape=[<span class="keyword">None</span>], name=<span class="string">'v_preds_next'</span>)</span><br><span class="line">    self.gaes = tf.placeholder(dtype=tf.float32, shape=[<span class="keyword">None</span>], name=<span class="string">'gaes'</span>)</span><br><span class="line"></span><br><span class="line">act_probs = self.Policy.act_probs</span><br><span class="line">act_probs_old = self.Old_Policy.act_probs</span><br><span class="line"></span><br><span class="line"><span class="comment"># agent通过新策略选择action的概率 probabilities of actions which agent took with policy</span></span><br><span class="line">act_probs = act_probs * tf.one_hot(indices=self.actions, depth=act_probs.shape[<span class="number">1</span>])</span><br><span class="line">act_probs = tf.reduce_sum(act_probs, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># agent通过旧策略选择action的概率 probabilities of actions which agent took with old policy</span></span><br><span class="line">act_probs_old = act_probs_old * tf.one_hot(indices=self.actions, depth=act_probs_old.shape[<span class="number">1</span>])</span><br><span class="line">act_probs_old = tf.reduce_sum(act_probs_old, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'PPO_loss'</span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        策略目标函数</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># ratios = tf.divide(act_probs, act_probs_old)</span></span><br><span class="line">    <span class="comment"># r_t(θ) = π/πold 为了防止除数为0，这里截取一下值，然后使用e(log减法)来代替直接除法</span></span><br><span class="line">    ratios = tf.exp(</span><br><span class="line">        tf.log(tf.clip_by_value(act_probs, <span class="number">1e-10</span>, <span class="number">1.0</span>)) - tf.log(tf.clip_by_value(act_probs_old, <span class="number">1e-10</span>, <span class="number">1.0</span>)))</span><br><span class="line">    <span class="comment"># L_CLIP 裁剪优势函数值</span></span><br><span class="line">    clipped_ratios = tf.clip_by_value(ratios, clip_value_min=<span class="number">1</span> - clip_value, clip_value_max=<span class="number">1</span> + clip_value)</span><br><span class="line">    self.loss_clip = tf.minimum(tf.multiply(self.gaes, ratios), tf.multiply(self.gaes, clipped_ratios))</span><br><span class="line">    self.loss_clip = tf.reduce_mean(self.loss_clip)</span><br><span class="line"></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        策略模型的熵</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 计算新策略πθ的熵 S = -p log(p) 这里裁剪防止p=0</span></span><br><span class="line">    self.entropy = -tf.reduce_sum(</span><br><span class="line">        self.Policy.act_probs * tf.log(tf.clip_by_value(self.Policy.act_probs, <span class="number">1e-10</span>, <span class="number">1.0</span>)), axis=<span class="number">1</span>)</span><br><span class="line">    self.entropy = tf.reduce_mean(self.entropy, axis=<span class="number">0</span>)  <span class="comment"># mean of entropy of pi(obs)</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        值目标函数</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># L_vf = [(r+γV(π(st+1))) - (V(π(st)))]^2</span></span><br><span class="line">    v_preds = self.Policy.v_preds</span><br><span class="line">    self.loss_vf = tf.squared_difference(self.rewards + self.gamma * self.v_preds_next, v_preds)</span><br><span class="line">    self.loss_vf = tf.reduce_mean(self.loss_vf)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># construct computation graph for loss</span></span><br><span class="line">    <span class="comment"># L(θ) = E_hat[L_CLIP(θ) - c1 L_VF(θ) + c2 S[πθ](s)]</span></span><br><span class="line">    <span class="comment"># L = 策略目标函数 + 值目标函数 + 策略模型的熵</span></span><br><span class="line">    self.loss = self.loss_clip - c_1 * self.loss_vf + c_2 * self.entropy</span><br><span class="line">    <span class="comment"># minimize -loss == maximize loss</span></span><br><span class="line">    self.loss = -self.loss</span><br><span class="line"></span><br><span class="line">optimizer = tf.train.RMSPropOptimizer(learning_rate=args.ppo_lr, epsilon=<span class="number">1e-5</span>)</span><br><span class="line">self.gradients = optimizer.compute_gradients(self.loss, var_list=pi_trainable)</span><br><span class="line">self.train_op = optimizer.minimize(self.loss, var_list=pi_trainable)</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="七、Actor-Critic"><a href="#七、Actor-Critic" class="headerlink" title="七、Actor-Critic"></a>七、Actor-Critic</h3><p>A2C、A3C等方法采用的是TD方法来替代R-b部分</p>
-<ol>
-<li><p>A3C</p>
-<ul>
-<li><p>方法:</p>
-<ul>
-<li>启动N个线程，Agent在N线程中同时进行环境交互收集样本；</li>
-<li>收集完样本后，每一个线程将独立完成训练并得到参数更新量，异步更新到全局的模型参数中；</li>
-<li>下一次训练的时候，线程的模型参数将与全局参数完成同步，使用新的参数进行下一次训练。</li>
-</ul>
-</li>
-<li><p>目标函数:</p>
-<p>使用TD-$\lambda$减小TD带来的偏差，可以在训练早期更快的提升价值模型。为了增加模型的探索性，目标函数中引入了策略的熵。</p>
-</li>
+<li>板载视觉导航引擎</li>
+<li>可以兼容Crazyflie 2.0 (CF) nano-quadrotor （10cm直径，27g，支持最大15g载重）</li>
+<li>其核心基于GAP8 SoC</li>
+<li>两个Cypress HyperBus Memories，使其能灵活配置一个甚低功耗的 gray-scale HiMax QVGA CMOS image sensor, 通过平行相机接口协议(parallel camera interface PCI)进行交互。</li>
+<li>在两个BGA memory槽上，挂载一个64 Mbit HyperRAM (DRAM) chip 和一个 128 Mbit HyperFlash memory</li>
 </ul>
 </li>
 </ol>
-<script type="math/tex; mode=display">
-\nabla_\theta J(\theta)=\frac{1}{T}\sum_t^T\nabla_\theta \log \pi(a_t|s_t;\theta)(\sum_{i=0}^n\gamma^{i-1}r_{t+1}+v(s_{t+n})-v(s_t))+\beta\nabla_\theta H(s_t;\theta)</script><p>   <img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1553760534/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190328160651.png" alt=""></p>
-<ol>
-<li><p>A2C</p>
-<p>与A3C不同的是参数更新全部在全局master完成，每个子线程只负责env.step()进行探索。</p>
-</li>
-</ol>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1559285729/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190531145449.png" alt=""></p>
 
       
     </div>
@@ -740,12 +665,12 @@ L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/post/3cc694a0.html">A3C、PPO、GAE笔记</a></p>
+  <p><span>本文标题:</span><a href="/post/2ee983bb.html">[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation Engine for Autonomous Nano-UAVs</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
-  <p><span>发布时间:</span>2019年03月06日 - 16:03</p>
-  <p><span>最后更新:</span>2019年04月13日 - 17:04</p>
-  <p><span>原始链接:</span><a href="/post/3cc694a0.html" title="A3C、PPO、GAE笔记">http://zhkmxx9302013.github.io/post/3cc694a0.html</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/3cc694a0.html" aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年06月03日 - 10:06</p>
+  <p><span>最后更新:</span>2019年06月03日 - 10:06</p>
+  <p><span>原始链接:</span><a href="/post/2ee983bb.html" title="[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation Engine for Autonomous Nano-UAVs">http://zhkmxx9302013.github.io/post/2ee983bb.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/2ee983bb.html" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -779,7 +704,7 @@ L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_
       
         <div class="post-tags">
           
-            <a href="/tags/强化学习/" rel="tag"># 强化学习</a>
+            <a href="/tags/平台/" rel="tag"># 平台</a>
           
         </div>
       
@@ -804,8 +729,8 @@ L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/d42ca19b.html" rel="next" title="生成对抗网络(笔记)">
-                <i class="fa fa-chevron-left"></i> 生成对抗网络(笔记)
+              <a href="/post/4ed814e8.html" rel="next" title="[论文](DAC) DISCRIMINATOR-ACTOR-CRITIC: ADDRESSING SAMPLE INEFFICIENCY AND REWARD BIAS IN ADVERSARIAL IMITATION LEARNING">
+                <i class="fa fa-chevron-left"></i> [论文](DAC) DISCRIMINATOR-ACTOR-CRITIC: ADDRESSING SAMPLE INEFFICIENCY AND REWARD BIAS IN ADVERSARIAL IMITATION LEARNING
               </a>
             
           </div>
@@ -813,10 +738,6 @@ L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/a80d0031.html" rel="prev" title="动态规划">
-                动态规划 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1040,7 +961,7 @@ L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-重要性采样"><span class="nav-number">1.</span> <span class="nav-text">一、 重要性采样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、-梯度与参数更新"><span class="nav-number">2.</span> <span class="nav-text">二、 梯度与参数更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、-实际算法中对策略梯度的处理方法"><span class="nav-number">3.</span> <span class="nav-text">三、 实际算法中对策略梯度的处理方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、GAE-Generalized-Advantage-Estimation"><span class="nav-number">4.</span> <span class="nav-text">四、GAE(Generalized Advantage Estimation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、PPO关于策略梯度的目标函数"><span class="nav-number">5.</span> <span class="nav-text">五、PPO关于策略梯度的目标函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、-PPO的目标函数"><span class="nav-number">6.</span> <span class="nav-text">六、 PPO的目标函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、Actor-Critic"><span class="nav-number">7.</span> <span class="nav-text">七、Actor-Critic</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-改进Nano-scale-UAV"><span class="nav-number">1.</span> <span class="nav-text">1. 改进Nano-scale UAV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DroNet"><span class="nav-number">2.</span> <span class="nav-text">2. DroNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-PULP-Shield"><span class="nav-number">3.</span> <span class="nav-text">3. PULP-Shield</span></a></li></ol></div>
             
 
           </div>

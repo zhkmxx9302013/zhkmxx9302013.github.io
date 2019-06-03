@@ -123,7 +123,7 @@
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1554976290/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411175107.png">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1551773009/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305160316.png">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1551771655/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190305153950.png">
-<meta property="og:updated_time" content="2019-04-11T10:47:48.883Z">
+<meta property="og:updated_time" content="2019-05-09T13:33:16.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wasserstein GAN 与 WGAN-GP">
 <meta name="twitter:description" content="一、fGAN使用JS散度存在的问题当$P_G$分布与$P_{data}$分布没有重叠的时候，此时的JSD恒等于$log2$，这样导致$P_G$分布难以向$P_{data}$进行移动。 而大多数情况下，$P_G$与$P_{data}$是难以重叠的，其原因有两方面理解：  原始数据角度 $P_{data}$与$P_G$和二维图像相似都属于高维空间的低维流形。因而其重叠的部分几乎可以被忽略(三维空间中的">
@@ -290,7 +290,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">16</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">17</span></a>
 
   </li>
         
@@ -328,7 +328,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">34</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">36</span></a>
 
   </li>
         
@@ -490,12 +490,24 @@
                 
               
 
-              <time title="创建时间：2019-04-11 16:40:40 / 修改时间：18:47:48" itemprop="dateCreated datePublished" datetime="2019-04-11T16:40:40+08:00">2019-04-11</time>
+              <time title="创建时间：2019-04-11 16:40:40" itemprop="dateCreated datePublished" datetime="2019-04-11T16:40:40+08:00">2019-04-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-09 21:33:16" itemprop="dateModified" datetime="2019-05-09T21:33:16+08:00">2019-05-09</time>
               
             
           </span>
@@ -567,7 +579,7 @@
 <p>​    Wasserstein距离又称作是Earth Mover’s 距离，他的目的是考虑一个最小的代价，将$P$分布转换成近似$Q$分布，如果用条形图来表示的话就和搬土块差不多。</p>
 <p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554973227/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411165958.png" alt=""></p>
 <p>​    这样就带来一个问题，如上图所示，搬土块的方式有很多，那么哪种方式代价最小？这里常用的方式就是穷举<strong>moving plans</strong>找到一个代价小的方式。</p>
-<p>​    下图就是一个moving plan $\gamma​$其中每个小方块代表从P到Q需要搬动多少土，越亮搬得越多，对于P和Q上的每一个Bar都代表着对应的一行或者一列的小方块的累和。那么<strong>Wasserstein距离</strong>对应的就是<strong>求解一个最优化问题，使得穷举出来的不同的moving plan代价最小</strong>。</p>
+<p>​    下图就是一个moving plan $\gamma$其中每个小方块代表从P到Q需要搬动多少土，越亮搬得越多，对于P和Q上的每一个Bar都代表着对应的一行或者一列的小方块的累和。那么<strong>Wasserstein距离</strong>对应的就是<strong>求解一个最优化问题，使得穷举出来的不同的moving plan代价最小</strong>。</p>
 <p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1554973438/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190411170338.png" alt=""></p>
 </li>
 <li><p><strong>WGAN</strong></p>
@@ -585,7 +597,7 @@ V(G,D)=\max\limits_{D\in1-Lipschitz}\{\mathbb{E}_{x \sim P_{data}}[D(x)]-\mathbb
 ||f(x_1)-f(x_2)||≤K|||x_1-x_2||</script><p>当$K=1$的时候称为”1-Lipschitz”，其中不等式左边部分为输出变化率，右边部分为输入变化率，可以看出来该条件是将D的导数约束在-1~1之间。</p>
 </li>
 <li><p><strong>Weight Clipping</strong></p>
-<p>​    这个是作者在发表论文的时候采取的一种比较粗暴的方式，而且并不能产生真正意义上的1-Lipschitz约束。对于$||f_w||_L \leq K$这个限制。我们其实不关心具体的$K$是多少，只要它不是正无穷就行，因为它只是会使得梯度变大$K$倍，并不会影响梯度的方向。所以作者采取了一个非常简单的做法，就是限制神经网络$f_\theta$的所有参数$w_i$的不超过某个范围$[-c, c]$，比如$w_i \in [- 0.01, 0.01]$，此时关于输入样本$x$的导数$\frac{\partial f_w}{\partial x}$也不会超过某个范围，所以一定存在某个不知道的常数$K$使得$f_w$的局部变动幅度不会超过它，Lipschitz连续条件得以满足。具体在算法实现中，只需要每次更新完$w$后把它clip回这个范围就可以了。</p>
+<p>​    这个是作者在发表论文的时候采取的一种比较粗暴的方式，而且并不能产生真正意义上的1-Lipschitz约束。对于$||f_w||_L \leq K​$这个限制。我们其实不关心具体的$K​$是多少，只要它不是正无穷就行，因为它只是会使得梯度变大$K​$倍，并不会影响梯度的方向。所以作者采取了一个非常简单的做法，就是限制神经网络$f_\omega​$的所有参数$w_i​$的不超过某个范围$[-c, c]​$，比如$w_i \in [- 0.01, 0.01]​$，此时关于输入样本$x​$的导数$\frac{\partial f_w}{\partial x}​$也不会超过某个范围，所以一定存在某个不知道的常数$K​$使得$f_w​$的局部变动幅度不会超过它，Lipschitz连续条件得以满足。具体在算法实现中，只需要每次更新完$w​$后把它clip回这个范围就可以了。</p>
 </li>
 </ol>
 <h3 id="三、Improved-WGAN-WGAN-GP"><a href="#三、Improved-WGAN-WGAN-GP" class="headerlink" title="三、Improved WGAN (WGAN-GP)"></a>三、Improved WGAN (WGAN-GP)</h3><ol>
@@ -649,7 +661,7 @@ L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}
   <p><span>本文标题:</span><a href="/post/64ddacfe.html">Wasserstein GAN 与 WGAN-GP</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
   <p><span>发布时间:</span>2019年04月11日 - 16:04</p>
-  <p><span>最后更新:</span>2019年04月11日 - 18:04</p>
+  <p><span>最后更新:</span>2019年05月09日 - 21:05</p>
   <p><span>原始链接:</span><a href="/post/64ddacfe.html" title="Wasserstein GAN 与 WGAN-GP">http://zhkmxx9302013.github.io/post/64ddacfe.html</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/64ddacfe.html" aria-label="复制成功！"></i></span>
   </p>
@@ -801,7 +813,7 @@ L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -848,7 +860,9 @@ L=\mathbb{E}_{\hat{x}\sim\mathbb{P}_g}[D(\tilde{x})]-\mathbb{E}_{x\sim\mathbb{P}
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

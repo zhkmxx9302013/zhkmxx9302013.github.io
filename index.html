@@ -481,7 +481,7 @@
                 
               
 
-              <time title="创建时间：2019-06-03 10:16:07 / 修改时间：10:23:44" itemprop="dateCreated datePublished" datetime="2019-06-03T10:16:07+08:00">2019-06-03</time>
+              <time title="创建时间：2019-06-03 10:16:07 / 修改时间：10:24:11" itemprop="dateCreated datePublished" datetime="2019-06-03T10:16:07+08:00">2019-06-03</time>
             
 
             
@@ -666,12 +666,24 @@
                 
               
 
-              <time title="创建时间：2019-04-29 16:39:58 / 修改时间：23:23:48" itemprop="dateCreated datePublished" datetime="2019-04-29T16:39:58+08:00">2019-04-29</time>
+              <time title="创建时间：2019-04-29 16:39:58" itemprop="dateCreated datePublished" datetime="2019-04-29T16:39:58+08:00">2019-04-29</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-03 10:24:11" itemprop="dateModified" datetime="2019-06-03T10:24:11+08:00">2019-06-03</time>
               
             
           </span>
@@ -2368,7 +2380,45 @@ a_t=μ(s_t|θ_μ)</script><p>​    这个函数$μ$即最优行为策略，不�
           </div>
           
 
-        </div>
+<% if(theme.gitment.enable)="" {="" %="">
+<div id="gitment_title" class="gitment_title"></div>
+<div id="container" style="display:none"></div>
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: decodeURI(window.location.pathname),
+      theme: myTheme,
+      owner: 'detectiveHLH',
+      repo: 'detectiveHLH.github.io',
+      oauth: {
+        client_id: 'xxx',
+        client_secret: 'xxx'
+      }
+    });
+    gitment.render('container');
+  }
+  showGitment();
+</script>
+<% }="" %="">
+
+        </%></%></div>
         
           
   
@@ -2525,6 +2575,10 @@ a_t=μ(s_t|θ_μ)</script><p>​    这个函数$μ$即最优行为策略，不�
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://blog.csdn.net/musi_shuang" title="https://blog.csdn.net/musi_shuang" rel="noopener" target="_blank">musi-tianshuang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shaun2016.github.io/" title="https://shaun2016.github.io/" rel="noopener" target="_blank">Shuan JM</a>
                   </li>
                 
               </ul>

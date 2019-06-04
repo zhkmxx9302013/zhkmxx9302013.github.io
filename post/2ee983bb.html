@@ -122,7 +122,7 @@
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1559188421/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190530115329.png">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1559228447/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190530225934.png">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1559285729/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190531145449.png">
-<meta property="og:updated_time" content="2019-06-03T02:23:44.680Z">
+<meta property="og:updated_time" content="2019-06-03T02:24:11.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation Engine for Autonomous Nano-UAVs">
 <meta name="twitter:description" content="硬件平台项目详情  迁移resnet到RISC-V Soc 1. 改进Nano-scale UAV 低功耗视觉导航模块PULP-Shield GreenWaves Technologies GAP8 SoC ULP camera  Flash/DRAM memory 兼容 CrazyFlie 2.0 nano-UAV   提出CNN-Based DroNet 在常规尺寸无人机上做离线计算 在na">
@@ -489,7 +489,7 @@
                 
               
 
-              <time title="创建时间：2019-06-03 10:16:07 / 修改时间：10:23:44" itemprop="dateCreated datePublished" datetime="2019-06-03T10:16:07+08:00">2019-06-03</time>
+              <time title="创建时间：2019-06-03 10:16:07 / 修改时间：10:24:11" itemprop="dateCreated datePublished" datetime="2019-06-03T10:16:07+08:00">2019-06-03</time>
             
 
             
@@ -770,7 +770,45 @@ b'' =  b'+\sum_{ic}(\mu \sum_{fs}{W'}) - \sum_{ic}{\beta\cdot\frac{\sigma}{\gamm
 
 
 
-        </div>
+<% if(theme.gitment.enable)="" {="" %="">
+<div id="gitment_title" class="gitment_title"></div>
+<div id="container" style="display:none"></div>
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: decodeURI(window.location.pathname),
+      theme: myTheme,
+      owner: 'detectiveHLH',
+      repo: 'detectiveHLH.github.io',
+      oauth: {
+        client_id: 'xxx',
+        client_secret: 'xxx'
+      }
+    });
+    gitment.render('container');
+  }
+  showGitment();
+</script>
+<% }="" %="">
+
+        </%></%></div>
         
           
   
@@ -936,6 +974,10 @@ b'' =  b'+\sum_{ic}(\mu \sum_{fs}{W'}) - \sum_{ic}{\beta\cdot\frac{\sigma}{\gamm
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://blog.csdn.net/musi_shuang" title="https://blog.csdn.net/musi_shuang" rel="noopener" target="_blank">musi-tianshuang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shaun2016.github.io/" title="https://shaun2016.github.io/" rel="noopener" target="_blank">Shuan JM</a>
                   </li>
                 
               </ul>
@@ -1188,9 +1230,9 @@ b'' =  b'+\sum_{ic}(\mu \sum_{fs}{W'}) - \sum_{ic}{\beta\cdot\frac{\sigma}{\gamm
         oauth: {
         
         
-          client_secret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
+          client_secret: '05f289da643f836ac39389e51e1d0f9af423c761',
         
-          client_id: '8ffda7fd0bcee5f2074f'
+          client_id: '7a462735a7507270f2f1'
         }});
       gitment.render('gitment-container');
     }

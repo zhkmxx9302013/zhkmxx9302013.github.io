@@ -748,7 +748,45 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
 
 
 
-        </div>
+<% if(theme.gitment.enable)="" {="" %="">
+<div id="gitment_title" class="gitment_title"></div>
+<div id="container" style="display:none"></div>
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: decodeURI(window.location.pathname),
+      theme: myTheme,
+      owner: 'detectiveHLH',
+      repo: 'detectiveHLH.github.io',
+      oauth: {
+        client_id: 'xxx',
+        client_secret: 'xxx'
+      }
+    });
+    gitment.render('container');
+  }
+  showGitment();
+</script>
+<% }="" %="">
+
+        </%></%></div>
         
           
   
@@ -914,6 +952,10 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://blog.csdn.net/musi_shuang" title="https://blog.csdn.net/musi_shuang" rel="noopener" target="_blank">musi-tianshuang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shaun2016.github.io/" title="https://shaun2016.github.io/" rel="noopener" target="_blank">Shuan JM</a>
                   </li>
                 
               </ul>
@@ -1166,9 +1208,9 @@ OPT(i)=max\{(OPT(i-2)+arr[i]), OPT(i-1)\}</script><p>终止条件是第0个的�
         oauth: {
         
         
-          client_secret: 'a7a4f2177b3ddf296045c8e26e901c56cc69eff4',
+          client_secret: '05f289da643f836ac39389e51e1d0f9af423c761',
         
-          client_id: '8ffda7fd0bcee5f2074f'
+          client_id: '7a462735a7507270f2f1'
         }});
       gitment.render('gitment-container');
     }

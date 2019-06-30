@@ -109,21 +109,32 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="schedule">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/schedule/index.html">
+  <meta name="description" content="1. 贡献 将通过视觉惯性里程计构造的local map 融合进global map 在地图上，使用在线重定位(online relocalization)补偿视觉惯性里程计漂移的问题 提出从稀疏的姿态图(pose graph) 构建稠密3D occupancy grid的方法，并用octomap八叉树地图表示 提出改进3D路径规划算法“Polynomial Trajectory Planning">
+<meta name="keywords" content="决策规划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs in Unknown Environments">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/97601234.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="1. 贡献 将通过视觉惯性里程计构造的local map 融合进global map 在地图上，使用在线重定位(online relocalization)补偿视觉惯性里程计漂移的问题 提出从稀疏的姿态图(pose graph) 构建稠密3D occupancy grid的方法，并用octomap八叉树地图表示 提出改进3D路径规划算法“Polynomial Trajectory Planning">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-22T08:10:07.121Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1561709179/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190628160257.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1561792488/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190629151434.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1561793743/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190629153511_1.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1561793743/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190629153518_1.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1561796250/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190629161148.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1561796251/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190629161201.png">
+<meta property="og:updated_time" content="2019-06-30T15:15:08.220Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="schedule">
+<meta name="twitter:title" content="[论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs in Unknown Environments">
+<meta name="twitter:description" content="1. 贡献 将通过视觉惯性里程计构造的local map 融合进global map 在地图上，使用在线重定位(online relocalization)补偿视觉惯性里程计漂移的问题 提出从稀疏的姿态图(pose graph) 构建稠密3D occupancy grid的方法，并用octomap八叉树地图表示 提出改进3D路径规划算法“Polynomial Trajectory Planning">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1561709179/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190628160257.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/schedule/">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/97601234.html">
 
 
 
@@ -133,7 +144,7 @@
   };
 </script>
 
-  <title>schedule | zhkmxx930 blog</title>
+  <title>[论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs in Unknown Environments | zhkmxx930 blog</title>
   
 
 
@@ -324,7 +335,7 @@
         
         
           
-          <li class="menu-item menu-item-schedule menu-item-active">
+          <li class="menu-item menu-item-schedule">
 
     
     
@@ -416,79 +427,289 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/97601234.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h2 class="post-title" itemprop="name headline">schedule
-
-</h2>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h2 class="post-title" itemprop="name headline">[论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs in Unknown Environments
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 10:39:38" itemprop="dateCreated datePublished" datetime="2019-06-28T10:39:38+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-30 23:15:08" itemprop="dateModified" datetime="2019-06-30T23:15:08+08:00">2019-06-30</time>
+              
+            
+          </span>
+
           
-        
-      </div>
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/97601234.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/97601234.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/post/97601234.html" class="leancloud_visitors" data-flag-title="[论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs in Unknown Environments">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="1-贡献"><a href="#1-贡献" class="headerlink" title="1. 贡献"></a>1. 贡献</h2><ul>
+<li>将通过视觉惯性里程计构造的local map 融合进global map</li>
+<li>在地图上，使用在线重定位(online relocalization)补偿视觉惯性里程计漂移的问题</li>
+<li>提出从稀疏的姿态图(pose graph) 构建稠密3D occupancy grid的方法，并用octomap八叉树地图表示</li>
+<li>提出改进3D路径规划算法“Polynomial Trajectory Planning for Aggressive Quadrotor Flight in Dense Indoor Environments”</li>
+<li>能够适应控制状态约束，提升稳定性及减少计算时间</li>
+</ul>
+<p>分层规划，</p>
+<h2 id="2-平台"><a href="#2-平台" class="headerlink" title="2.平台"></a>2.平台</h2><p>AscTecFly + stereo camera + IMU</p>
+<p>平台概述如下图：</p>
+<ol>
+<li>VI模块在local drift坐标下，返回pose消息，变换为Mission坐标（M）,该坐标系保证控制器层能够确保飞机的安全及避障</li>
+<li>构建局部地图，以进行局部避障(不是本文的工作)</li>
+<li>sparse mapping/relocalization层，并行构建全局地图（G），并进行<a href="https://ieeexplore.ieee.org/abstract/document/7139575/" target="_blank" rel="noopener">高效的存储</a>以便复用</li>
+<li>在全局地图上构建全局三维路径规划</li>
+<li>Mission controller被用来作为MAV和规划器之间的桥梁，手动控制时，速度控制指令直接给到MAV，轨迹跟踪时，全局规划信息需要转换为Mission坐标，给到MAV</li>
+</ol>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1561709179/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190628160257.png" alt=""></p>
+<a id="more"></a>
+<h2 id="3-Mapping和Localization"><a href="#3-Mapping和Localization" class="headerlink" title="3.Mapping和Localization"></a>3.Mapping和Localization</h2><p>使用基于关键帧的视觉惯性里程计，通过在后台基于里程计的输出，来构建局部地图，进而使用局部地图进行relocation，以减少视觉惯性里程计带来的漂移误差。该方法还支持在后端跑BA进而减少误差。</p>
+<h3 id="3-1-构建Local-map"><a href="#3-1-构建Local-map" class="headerlink" title="3.1 构建Local map"></a>3.1 构建Local map</h3><p>基于关键帧的视觉里程计使用的苏黎世他们自己提的“<strong>Keyframe-based visual–inertial odometry using nonlinear optimization</strong>”这篇论文的方法。由于计算能力限制，导致只有很少的历史关键帧能够被用来进行优化。文中使用了使用关键帧及关键特征点构建局部地图，来充分利用图优化过程，以此生成一个<strong>以关键帧为顶点</strong>，<strong>以IMU测量值为边</strong>的<strong>稀疏位姿图</strong>。顶点中主要包含帧图像关键点，关键点描述子，3D三角测量landmark。</p>
+<p>本文所提出的姿势图的一个重要特征是，使用具有独立base帧的任务（子地图），使任务与global帧保持一致，所有顶点位姿和landmark都在local mission 帧中表示。这允许通过改变它们之间的基础帧变换来使得几个子图之间可以相对的对齐，而不必更新地图中的每个顶点或landmarks。使用时固定参考地图，并在新信息可用时不断更新局部地图和参考地图之间的转换。</p>
+<h3 id="3-2-重定位"><a href="#3-2-重定位" class="headerlink" title="3.2 重定位"></a>3.2 重定位</h3><p>通过在BRISK特征描述子空间中检测最近邻，然后用RANSAC方案使用几何验证进行异常值排除。此过程中的任何内点都将作为约束添加到参考映射中的当前顶点和三角形3D关键点之间。</p>
+<h3 id="3-3-全局稠密模型"><a href="#3-3-全局稠密模型" class="headerlink" title="3.3 全局稠密模型"></a>3.3 全局稠密模型</h3><p>在构建local map时，还记录了立体视差图像，将它们存储在MAV上的磁盘上，并将它们与稀疏重定位图相关联。只存储视觉测距的关键帧（位姿图中的顶点）的视差图，从而最大限度地减少对磁盘的访问。由于视觉惯性测距中的关键帧已经被选中并且其间具有足够的运动，这将产生均匀且有效的覆盖。在中断参考任务并运行BA后，迭代参考任务中的所有过去顶点，并使用更新的顶点位姿将视差图像重新投影到全局地图中。从而建立环境的3D occupancy grid。</p>
+<h2 id="4-路径规划"><a href="#4-路径规划" class="headerlink" title="4. 路径规划"></a>4. 路径规划</h2><p>牺牲最优，来换取更少的计算时间，使用首先仅采样位置点使用直线路径，然后将得到的位置顶点用作支撑点以计算平滑的分段多项式轨迹，同时迭代地处理直线路径中不存在的碰撞，而不是在高维的状态空间中进行随机的采样，并生成多项式轨迹。</p>
+<h3 id="4-1-无约束线性初始解决方案"><a href="#4-1-无约束线性初始解决方案" class="headerlink" title="4.1 无约束线性初始解决方案"></a>4.1 无约束线性初始解决方案</h3><p><a href="https://blog.csdn.net/q597967420/article/details/76099491" target="_blank" rel="noopener">轨迹规划参考Minimum snap</a>,这里面提到的方法使用的是将多项式轨迹的n阶导构建成一个带约束的QP问题，本文使用的方法，将其转化为一个<a href="https://blog.csdn.net/q597967420/article/details/79031791" target="_blank" rel="noopener">不带约束的QP问题</a>(适用于只有等式约束的闭式求解)。</p>
+<h3 id="4-2-非线性轨迹细化"><a href="#4-2-非线性轨迹细化" class="headerlink" title="4.2 非线性轨迹细化"></a>4.2 非线性轨迹细化</h3><p>通过无约束初始方案得到分段的多项式轨迹，现在需要增加约束，使得无人机能够在每一个段中的速度及加速度最大，时间尽可能短。</p>
+<p>(1) 构建非线性优化，在cost 函数中加入了每段轨迹行驶时间的平方和</p>
+<p>(2) 解最大速度及加速度：如果使用在轨迹上进行离散采样，则会带来很多不等式约束的求解，对于较长的路径来说会造成计算缓慢。文中的处理方式是对速度的导数进行处理，将其变形为两个多项式方程的卷积的形式，然后使用JenkinsTraub 方法求解实数解</p>
+<p>(3)将状态约束结合到非线性优化问题中:增加软约束</p>
+<p>(4)使用轨迹插值进行轨迹优化防止由于速度过快，在轨迹拐点处产生过度冲击，通过插值的方式，对拐点处进行降速处理</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1561792488/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190629151434.png" alt=""></p>
+<h2 id="5-实验结果"><a href="#5-实验结果" class="headerlink" title="5. 实验结果"></a>5. 实验结果</h2><h3 id="5-1-轨迹优化结果"><a href="#5-1-轨迹优化结果" class="headerlink" title="5.1 轨迹优化结果"></a>5.1 轨迹优化结果</h3><p>左图是使用初始线性解决方案的轨迹，右图是加入了非线性轨迹细化后的轨迹，可以看出其飞行时间更短，轨迹更接近于保持直线连接</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1561793743/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190629153511_1.png" alt=""></p>
+<p>下表列出了轨迹分段下，线性初始化时间，优化时间，以及成功率的对比</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1561793743/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190629153518_1.png" alt=""></p>
+<h3 id="5-2-地图生成及返航"><a href="#5-2-地图生成及返航" class="headerlink" title="5.2 地图生成及返航"></a>5.2 地图生成及返航</h3><ol>
+<li>初始环境未知，飞行员给定high-level的位置指令对环境进行探索(下图的绿色线)。在探索过程中，构建稀疏位姿图以及由立体相机构建局部3D occupancy map，此时视觉里程计会产生一定的漂移，</li>
+<li>返航阶段，经过BA的几次迭代后，通过将视差图从优化的关键帧位置投影到3D空间中来生成全局3D occupancy grid。</li>
+<li>下图以粗体显示了reference路径，飞行轨迹使用的漂移的视觉里程计坐标。为了克服漂移，重定位模块尝试在每个关键帧（大约4Hz）对局部地图和经过BA后的参考地图进行调整，并在必要时校正参考轨迹，调整的地方在下图中用蓝色垂直线表示。可以看出，由于视点与先前看到的轨迹的较大偏差，在轨迹的开始和结束处仅存在闭环。结果还表明，控制器可以处理参考路径中的小跳跃，这表面了重定位单独运行的优势。在未来的工作中，可以触发规划器，以便在新的闭环情况下重新规划当前段。</li>
+</ol>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1561796250/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190629161148.png" alt=""></p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1561796251/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190629161201.png" alt=""></p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/post/97601234.html">[论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs in Unknown Environments</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
+  <p><span>发布时间:</span>2019年06月28日 - 10:06</p>
+  <p><span>最后更新:</span>2019年06月30日 - 23:06</p>
+  <p><span>原始链接:</span><a href="/post/97601234.html" title="[论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs in Unknown Environments">http://zhkmxx9302013.github.io/post/97601234.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/97601234.html" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/决策规划/" rel="tag"># 决策规划</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/2ee983bb.html" rel="next" title="[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation Engine for Autonomous Nano-UAVs">
+                <i class="fa fa-chevron-left"></i> [论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation Engine for Autonomous Nano-UAVs
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -557,8 +778,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -715,6 +945,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-贡献"><span class="nav-number">1.</span> <span class="nav-text">1. 贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-平台"><span class="nav-number">2.</span> <span class="nav-text">2.平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Mapping和Localization"><span class="nav-number">3.</span> <span class="nav-text">3.Mapping和Localization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-构建Local-map"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 构建Local map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-重定位"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 重定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-全局稠密模型"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 全局稠密模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-路径规划"><span class="nav-number">4.</span> <span class="nav-text">4. 路径规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-无约束线性初始解决方案"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 无约束线性初始解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-非线性轨迹细化"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 非线性轨迹细化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-实验结果"><span class="nav-number">5.</span> <span class="nav-text">5. 实验结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-轨迹优化结果"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 轨迹优化结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-地图生成及返航"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 地图生成及返航</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1286,43 +1533,40 @@
   
   <script>
     
-    function showTime(Counter) {
-      var entries = [];
+    function addCount(Counter) {
       var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
         .done(function ({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
           }
         })
-        .fail(function ({ responseJSON }) {
-          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
-        });
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
     }
     
 
@@ -1342,9 +1586,7 @@
             });
           };
           
-          if ($('.post-title-link').length >= 1) {
-            showTime(Counter);
-          }
+          addCount(Counter);
           
         })
     });
@@ -1380,11 +1622,67 @@
   
 
   
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
 
 
   
 
   
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 16260,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
 
   
 

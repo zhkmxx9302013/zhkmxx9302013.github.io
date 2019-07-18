@@ -109,27 +109,25 @@
 
 
 
-  <meta name="description" content="参考博客：反向传播算法（过程及公式推导） 1. 符号定义 $w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。 $b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。 $z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。 $a_k^{L}=\sigma(z_j^L)$ 表示第$L">
-<meta name="keywords" content="深度学习基础">
+  <meta name="description" content="1. 朴素贝叶斯1.1 极大似然估计的朴素贝叶斯 特点： 计算简单，假设约束较强，假设每个条件分布都是独立的。  推导时使用的数学工具：  条件独立假设 通过贝叶斯公式，得到后验概率 构建0-1损失函数，对其进行推导可得到0-1损失函数时的期望风险最小化准则与后验概率最大化准则的等价性 由上一条得出最大后验概率 使用极大似然估计，对先验概率及条件概率进行估计。   算法目标即核心公式：  目标:">
+<meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="反向传播公式推导">
-<meta property="og:url" content="http://zhkmxx9302013.github.io/post/9e924caa.html">
+<meta property="og:title" content="朴素贝叶斯">
+<meta property="og:url" content="http://zhkmxx9302013.github.io/post/f77f0066.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="参考博客：反向传播算法（过程及公式推导） 1. 符号定义 $w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。 $b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。 $z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。 $a_k^{L}=\sigma(z_j^L)$ 表示第$L">
+<meta property="og:description" content="1. 朴素贝叶斯1.1 极大似然估计的朴素贝叶斯 特点： 计算简单，假设约束较强，假设每个条件分布都是独立的。  推导时使用的数学工具：  条件独立假设 通过贝叶斯公式，得到后验概率 构建0-1损失函数，对其进行推导可得到0-1损失函数时的期望风险最小化准则与后验概率最大化准则的等价性 由上一条得出最大后验概率 使用极大似然估计，对先验概率及条件概率进行估计。   算法目标即核心公式：  目标:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png">
-<meta property="og:updated_time" content="2019-03-27T08:50:06.275Z">
+<meta property="og:updated_time" content="2019-07-18T09:13:32.304Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="反向传播公式推导">
-<meta name="twitter:description" content="参考博客：反向传播算法（过程及公式推导） 1. 符号定义 $w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。 $b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。 $z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。 $a_k^{L}=\sigma(z_j^L)$ 表示第$L">
-<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png">
+<meta name="twitter:title" content="朴素贝叶斯">
+<meta name="twitter:description" content="1. 朴素贝叶斯1.1 极大似然估计的朴素贝叶斯 特点： 计算简单，假设约束较强，假设每个条件分布都是独立的。  推导时使用的数学工具：  条件独立假设 通过贝叶斯公式，得到后验概率 构建0-1损失函数，对其进行推导可得到0-1损失函数时的期望风险最小化准则与后验概率最大化准则的等价性 由上一条得出最大后验概率 使用极大似然估计，对先验概率及条件概率进行估计。   算法目标即核心公式：  目标:">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/9e924caa.html">
+  <link rel="canonical" href="http://zhkmxx9302013.github.io/post/f77f0066.html">
 
 
 
@@ -139,7 +137,7 @@
   };
 </script>
 
-  <title>反向传播公式推导 | zhkmxx930 blog</title>
+  <title>朴素贝叶斯 | zhkmxx930 blog</title>
   
 
 
@@ -442,7 +440,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/9e924caa.html">
+    <link itemprop="mainEntityOfPage" href="http://zhkmxx9302013.github.io/post/f77f0066.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -459,7 +457,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">反向传播公式推导
+          <h2 class="post-title" itemprop="name headline">朴素贝叶斯
 
               
             
@@ -485,24 +483,12 @@
                 
               
 
-              <time title="创建时间：2019-02-17 18:41:32" itemprop="dateCreated datePublished" datetime="2019-02-17T18:41:32+08:00">2019-02-17</time>
+              <time title="创建时间：2019-07-18 17:11:32 / 修改时间：17:13:32" itemprop="dateCreated datePublished" datetime="2019-07-18T17:11:32+08:00">2019-07-18</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-27 16:50:06" itemprop="dateModified" datetime="2019-03-27T16:50:06+08:00">2019-03-27</time>
               
             
           </span>
@@ -516,8 +502,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/9e924caa.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/9e924caa.html" itemprop="commentsCount"></span>
+                <a href="/post/f77f0066.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/post/f77f0066.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -525,7 +511,7 @@
 
           
           
-             <span id="/post/9e924caa.html" class="leancloud_visitors" data-flag-title="反向传播公式推导">
+             <span id="/post/f77f0066.html" class="leancloud_visitors" data-flag-title="朴素贝叶斯">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -556,60 +542,120 @@
       
 
       
-        <p><a href="https://blog.csdn.net/u014313009/article/details/51039334" target="_blank" rel="noopener">参考博客：反向传播算法（过程及公式推导）</a></p>
-<h3 id="1-符号定义"><a href="#1-符号定义" class="headerlink" title="1. 符号定义"></a>1. 符号定义</h3><ul>
-<li>$w_{jk}^L$ 表示第$L-1$层的第$j$个神经元到第$L$层的第$k$个神经元映射的权值。</li>
-<li>$b_k^L$ 表示第$L$层的第$k$个神经元的偏置量。</li>
-<li>$z_k^L=\sum_j w_{jk}^L a_j^{L-1}+b_k^L​$ 表示第$L​$层的未经激活函数的输出。</li>
-<li>$a_k^{L}=\sigma(z_j^L)$ 表示第$L$层经过sigmoid函数后的输出。</li>
+        <h2 id="1-朴素贝叶斯"><a href="#1-朴素贝叶斯" class="headerlink" title="1. 朴素贝叶斯"></a>1. 朴素贝叶斯</h2><h4 id="1-1-极大似然估计的朴素贝叶斯"><a href="#1-1-极大似然估计的朴素贝叶斯" class="headerlink" title="1.1 极大似然估计的朴素贝叶斯"></a>1.1 极大似然估计的朴素贝叶斯</h4><ul>
+<li><p><strong>特点：</strong> 计算简单，假设约束较强，假设每个条件分布都是独立的。</p>
+</li>
+<li><p><strong>推导时使用的数学工具：</strong></p>
+<ul>
+<li>条件独立假设</li>
+<li>通过贝叶斯公式，得到后验概率</li>
+<li>构建0-1损失函数，对其进行推导可得到0-1损失函数时的期望风险最小化准则与后验概率最大化准则的等价性</li>
+<li>由上一条得出最大后验概率</li>
+<li>使用极大似然估计，对先验概率及条件概率进行估计。</li>
 </ul>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1550404145/%E7%BB%98%E5%9B%BE1.png" alt=""></p>
-<a id="more"></a>
-<h3 id="2-损失函数定义"><a href="#2-损失函数定义" class="headerlink" title="2.  损失函数定义"></a>2.  损失函数定义</h3><p><strong>二次代价函数</strong>：($x$代表输入的样本，$y(x)$代表标签值)</p>
+</li>
+<li><p><strong>算法目标即核心公式：</strong></p>
+<ul>
+<li><p>目标:</p>
+<p>​        是为了推出最大后验概率，计算过程中用到联合概率及先验概率，因而是生成模型，将生成数据的过程全都算了一遍</p>
+</li>
+<li><p>核心公式：</p>
 <script type="math/tex; mode=display">
-C=\frac{1}{2n}\sum_x||y(x)-a^L(x)||^2</script><p>当只关注某一个样本$x_i​$的时候，有：</p>
+P(Y|X) = \frac{P(X,Y)}{P(X)} = \frac{P(X|Y)P(Y)}{\sum_{Y}P(Y)P(X|Y)}</script><a id="more"></a>
+</li>
+</ul>
+</li>
+<li><p><strong>算法步骤：</strong></p>
+</li>
+</ul>
+<ol>
+<li><p>计算先验概率及条件概率</p>
+<ul>
+<li>先验：</li>
+</ul>
 <script type="math/tex; mode=display">
-C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传播推导" class="headerlink" title="3. 反向传播推导"></a>3. 反向传播推导</h3><ul>
-<li><p><strong>计算最后一层神经网络产生的错误</strong></p>
-<p>对于<strong>每一个$L$层的神经元</strong>有：</p>
+P(Y=c_k)=\frac{\sum_{i=1}^{N} \mathbb{I}(y_i = c_k)}{N},k=1,2,...,K</script><ul>
+<li>条件：</li>
+</ul>
+<script type="math/tex; mode=display">
+P(X^{(j)}=a_{jl}|Y=c_k) = \frac{\sum_{i=1}^{N} \mathbb{I}(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^{N}\mathbb{I}(y_i=c_k)}\space ,j=1,2..,N; l=1,2,...,S_j;k=1,2,...,K</script></li>
+</ol>
+<ol>
+<li><p>对于给定的数据集计算不同类别的后验概率（j是对数据集的每个特征进行条件概率累乘）</p>
+<script type="math/tex; mode=display">
+P(Y=c_k|X^{(j)}=x^{(j)})=P(Y=c_k)\prod _{j=1}^{n}P(X^{(j)}=x^{(j)} | Y=c_k), k=1,2,...K</script></li>
+<li><p>选择最大的后验概率作为最终分类</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+y=argmax_{c_k}P(Y=c_k|X^{(j)}=x^{(j)})</script><h4 id="1-2-贝叶斯估计的朴素贝叶斯"><a href="#1-2-贝叶斯估计的朴素贝叶斯" class="headerlink" title="1.2 贝叶斯估计的朴素贝叶斯"></a>1.2 贝叶斯估计的朴素贝叶斯</h4><p>由于极大似然估计的朴素贝叶斯，在极大似然估计过程中可能出现概率为0的情况，影响后续计算。因而使用贝叶斯估计，在先验概率及条件概率公式中加入$\lambda$作为平滑项。</p>
+<ul>
+<li><p>先验：($K$为分类类别)</p>
+<script type="math/tex; mode=display">
+P(Y=c_k)=\frac{\sum_{i=1}^{N} \mathbb{I}(y_i = c_k)+\lambda}{N+K\lambda}</script></li>
+<li><p>条件:($S_j$为第j个特征的可能的取值)</p>
 </li>
 </ul>
 <script type="math/tex; mode=display">
-\delta^L_k=\frac{\partial{C}}{\partial{z_k^L}}=\frac{\partial{C}}{\partial{a_{k}^L}}\cdot\frac{\partial{a_k^L}}{\partial{z_{k}^{L}}}</script><p>​    则<strong>整个$L​$层</strong>可以用矩阵的Hadamard积(矩阵行行对应相乘)来进行计算：</p>
+P(X^{(j)}=a_{jl}|Y=c_k) = \frac{\sum_{i=1}^{N} \mathbb{I}(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^{N}\mathbb{I}(y_i=c_k)+S_j\lambda}</script><p>当$\lambda = 0$的时候即为极大似然估计，$\lambda=1$的时候为拉普拉斯平滑。     </p>
+<p>​              </p>
+<h2 id="2-由贝叶斯得到的Sigmoid"><a href="#2-由贝叶斯得到的Sigmoid" class="headerlink" title="2. 由贝叶斯得到的Sigmoid"></a>2. 由贝叶斯得到的Sigmoid</h2><p>在二分类过程中，由上述的二分类的贝叶斯公式可以得到：</p>
 <script type="math/tex; mode=display">
-\delta^L=\nabla_aC\odot\sigma^\prime(z^L)</script><ul>
-<li><p><strong>反向传播</strong></p>
-<p>计算每一层的每个神经元产生的误差，推广到每一层的每个神经元有：</p>
+P(c_1|x) = \frac{P(x|c_1)P(c_1)}{P(x|c_1)P(c_1)+P(x|c_2)P(c_2)}</script><p>对该式上下除以分子得到：</p>
 <script type="math/tex; mode=display">
-\begin{align}
-\delta_k^L=\frac{\partial C}{\partial z_k^L}&=\sum_m\frac{\partial C}{\partial z_m^{L+1}}\cdot\frac{\partial{z_m^{L+1}}}{\partial{a_{k}^{L}}}\cdot\frac{\partial a_k^L}{\partial z_k^L}\\
-&=\sum_m{\delta_m^{L+1}}\cdot\frac{w_{km}^{L+1}a_k^{L}+b_m^{L+1}}{\partial{a_k^L}}\cdot\sigma'(z_k^L)\\
-&=\sum_m\delta_m^{L+1}\cdot w_{km}^{L+1}\cdot\sigma'(z_k^L)
-\end{align}</script><p>推广到整个一层有：</p>
+\begin{aligned}
+P(c_1|x)&=\frac{1}{1+\frac{P(c_2|x)P(c_2)}{P(c_1|x)P(c_1)}} \\
+&=\frac{1}{1+e^{-z}}
+\end{aligned}</script><p>其中：</p>
 <script type="math/tex; mode=display">
-\delta^L=((W^{L+1})^T\cdot \delta^{L+1})\odot \sigma'(z^L)</script></li>
-<li><p><strong>计算权重的梯度</strong></p>
+z=ln \frac{P(x|c_1)P(c_1)}{P(x|c_2)P(c_2)}</script><h2 id="3-分类问题"><a href="#3-分类问题" class="headerlink" title="3. 分类问题"></a>3. 分类问题</h2><p>从贝叶斯角度入手，对于二分类问题，可以用两个高斯分布去对其进行极大似然估计，$N_1(\mu1,\Sigma_1)$,$N_2(\mu2,\Sigma_2)$</p>
+<p>如果两个分布的$\Sigma$不同，则其分类决策面是一个非线性的，两个分布的$\Sigma$相同，其分类决策面是一个线性的，其中的原因可以由使用贝叶斯公式得到的Sigmoid函数的展开来说明。两个分布的协方差矩阵相同的话可以做一次简化，使其形式上是线性方程。</p>
+<p>推导过程参考<a href="https://www.bilibili.com/video/av10590361/?p=10" target="_blank" rel="noopener">李宏毅61:35s</a></p>
+<h2 id="4-Linear-Regression-和-Logistic-Regression"><a href="#4-Linear-Regression-和-Logistic-Regression" class="headerlink" title="4. Linear Regression 和 Logistic Regression"></a>4. Linear Regression 和 Logistic Regression</h2><h4 id="4-1-关于交叉熵"><a href="#4-1-关于交叉熵" class="headerlink" title="4.1 关于交叉熵"></a>4.1 关于交叉熵</h4><p>在逻辑回归中，对于二分类问题可以定义其似然函数为：</p>
 <script type="math/tex; mode=display">
-\frac{\partial C}{\partial w_{jk}^L}=\frac{\partial C}{\partial{z_k^L}}\cdot \frac{\partial{z_k^L}}{\partial{w_{jk}^L}}=\delta_k^L\cdot\frac{\partial{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial w_{jk}^L}=a_j^{L-1}\cdot\delta_k^L</script></li>
-<li><p><strong>计算偏置的梯度</strong></p>
+L(w,b) = \prod_{i=1}^{n}[f_{w,b}(x^{i})^{\hat{y}^{i}}]\cdot [1-f_{w,b}(x^{i})^{1-\hat{y}^{i}}]</script><p>对其取对数似然:</p>
 <script type="math/tex; mode=display">
-\frac{\partial C}{\part b_k^L}=\frac{\partial{C}}{\partial z_{k}^L} \cdot \frac{\partial z_k^L}{\partial b_k^L}=\delta_k^L\cdot\frac{\partial{(w_{jk}^La_j^{L-1}+b_k^L)}}{\partial b_{k}^L}=\delta_k^L</script></li>
-</ul>
-<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>反向传播四个公式：</p>
-<ol>
-<li><p>输出层误差：</p>
+-lnL(w,b)=-\sum_{i=1}^{n}\hat{y}^{i}lnf_{w,b}(x^n)+ (1-\hat{y}^{i})ln(1-f_{w,b}(x^n))</script><p>这里$\sum$后面的部分就是交叉熵$C$</p>
 <script type="math/tex; mode=display">
-\delta^L=\nabla_aC\odot\sigma^\prime(z^L)</script></li>
-<li><p>反向传播每一层误差：</p>
+H(p,q)=-\sum_{x}p(x)ln(q(x))</script><p>其中$p$为训练集中的样本标签分布：</p>
 <script type="math/tex; mode=display">
-\delta^L=((W^{L+1})^T\cdot \delta^{L+1})\odot \sigma'(z^L)</script></li>
-<li><p>权重梯度：</p>
+\begin{aligned}
+&p(x=1)=\hat{y}^n \\
+&p(x=0)=1-\hat{y}^n
+\end{aligned}</script><p>其中$q$为模型预测的标签分布：</p>
 <script type="math/tex; mode=display">
-\frac{\partial C}{\partial w_{jk}^L}=a_j^{L-1}\cdot\delta_k^L</script></li>
-<li><p>偏置梯度：</p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial b_k^L}=\delta_k^L</script></li>
-</ol>
+\begin{aligned}
+&q(x=1)=f_{w,b}(x^n) \\
+&q(x=0)=1-f_{w,b}(x^n) 
+\end{aligned}</script><h4 id="4-2-二者异同"><a href="#4-2-二者异同" class="headerlink" title="4.2 二者异同"></a>4.2 二者异同</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">Logistic Regression</th>
+<th>Linear Regression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">函数集</td>
+<td style="text-align:left">$f_{w,b}(x)=\sigma(\sum_i w_ix_i+b)$ 该函数值域介于0~1之间</td>
+<td>$f_{w,b}(x)=\sum_i w_ix_i+b$ 该函数值域是任意实数</td>
+</tr>
+<tr>
+<td style="text-align:left">Loss</td>
+<td style="text-align:left">训练集：$(x^n,\hat{y}^n)$ ,$\hat{y}^n$满足伯努利分布，$L(f)= \sum _n C(f(x^n),\hat{y}^n)$</td>
+<td>训练集：$(x^n,\hat{y}^n)$ ,$\hat{y}^n$是任意实数，$L(f)= \frac{1}{2}\sum _n (f(x^n),\hat{y}^n)^2$</td>
+</tr>
+<tr>
+<td style="text-align:left">GD</td>
+<td style="text-align:left">$ w_i=w_i - \eta\sum_n-(\hat{y}^n-f_{w,b}(x^n))x_i^n$</td>
+<td>$ w_i=w_i - \eta\sum_n-(\hat{y}^n-f_{w,b}(x^n))x_i^n$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="4-3-关于Logistic-Regression为何不使用平方误差作为loss"><a href="#4-3-关于Logistic-Regression为何不使用平方误差作为loss" class="headerlink" title="4.3 关于Logistic Regression为何不使用平方误差作为loss"></a>4.3 关于Logistic Regression为何不使用平方误差作为loss</h4><p>若像Linear Regression一样使用平方误差作为loss，公式展开后会发现，当$\hat{y}^n=0$时，无论$f_{w,b}(x^n)$为0还是1，其loss都为0，这使得训练过程极为缓慢，并且难以调参得到效果。</p>
 
       
     </div>
@@ -628,12 +674,12 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/post/9e924caa.html">反向传播公式推导</a></p>
+  <p><span>本文标题:</span><a href="/post/f77f0066.html">朴素贝叶斯</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
-  <p><span>发布时间:</span>2019年02月17日 - 18:02</p>
-  <p><span>最后更新:</span>2019年03月27日 - 16:03</p>
-  <p><span>原始链接:</span><a href="/post/9e924caa.html" title="反向传播公式推导">http://zhkmxx9302013.github.io/post/9e924caa.html</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/9e924caa.html" aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年07月18日 - 17:07</p>
+  <p><span>最后更新:</span>2019年07月18日 - 17:07</p>
+  <p><span>原始链接:</span><a href="/post/f77f0066.html" title="朴素贝叶斯">http://zhkmxx9302013.github.io/post/f77f0066.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhkmxx9302013.github.io/post/f77f0066.html" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -667,7 +713,7 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
       
         <div class="post-tags">
           
-            <a href="/tags/深度学习基础/" rel="tag"># 深度学习基础</a>
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
           
         </div>
       
@@ -692,8 +738,8 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/19fc17a4.html" rel="next" title="深度学习常见Loss推导">
-                <i class="fa fa-chevron-left"></i> 深度学习常见Loss推导
+              <a href="/post/97601234.html" rel="next" title="[论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs in Unknown Environments">
+                <i class="fa fa-chevron-left"></i> [论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs in Unknown Environments
               </a>
             
           </div>
@@ -701,10 +747,6 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/7a6400a0.html" rel="prev" title="参数初始化与正则化">
-                参数初始化与正则化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -966,7 +1008,7 @@ C=\frac{1}{2}(y-a)^2</script><h3 id="3-反向传播推导"><a href="#3-反向传
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-符号定义"><span class="nav-number">1.</span> <span class="nav-text">1. 符号定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-损失函数定义"><span class="nav-number">2.</span> <span class="nav-text">2.  损失函数定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-反向传播推导"><span class="nav-number">3.</span> <span class="nav-text">3. 反向传播推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-总结"><span class="nav-number">4.</span> <span class="nav-text">4.总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-朴素贝叶斯"><span class="nav-number">1.</span> <span class="nav-text">1. 朴素贝叶斯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-极大似然估计的朴素贝叶斯"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.1 极大似然估计的朴素贝叶斯</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-贝叶斯估计的朴素贝叶斯"><span class="nav-number">1.0.2.</span> <span class="nav-text">1.2 贝叶斯估计的朴素贝叶斯</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#2-由贝叶斯得到的Sigmoid"><span class="nav-number">2.</span> <span class="nav-text">2. 由贝叶斯得到的Sigmoid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-分类问题"><span class="nav-number">3.</span> <span class="nav-text">3. 分类问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Linear-Regression-和-Logistic-Regression"><span class="nav-number">4.</span> <span class="nav-text">4. Linear Regression 和 Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-关于交叉熵"><span class="nav-number">4.0.1.</span> <span class="nav-text">4.1 关于交叉熵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-二者异同"><span class="nav-number">4.0.2.</span> <span class="nav-text">4.2 二者异同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-关于Logistic-Regression为何不使用平方误差作为loss"><span class="nav-number">4.0.3.</span> <span class="nav-text">4.3 关于Logistic Regression为何不使用平方误差作为loss</span></a></li></ol></li></div>
             
 
           </div>

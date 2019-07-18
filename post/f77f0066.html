@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="zhkmxx930 blog">
 <meta property="og:description" content="1. 朴素贝叶斯1.1 极大似然估计的朴素贝叶斯 特点： 计算简单，假设约束较强，假设每个条件分布都是独立的。  推导时使用的数学工具：  条件独立假设 通过贝叶斯公式，得到后验概率 构建0-1损失函数，对其进行推导可得到0-1损失函数时的期望风险最小化准则与后验概率最大化准则的等价性 由上一条得出最大后验概率 使用极大似然估计，对先验概率及条件概率进行估计。   算法目标即核心公式：  目标:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-18T09:13:32.304Z">
+<meta property="og:updated_time" content="2019-07-18T09:21:40.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="朴素贝叶斯">
 <meta name="twitter:description" content="1. 朴素贝叶斯1.1 极大似然估计的朴素贝叶斯 特点： 计算简单，假设约束较强，假设每个条件分布都是独立的。  推导时使用的数学工具：  条件独立假设 通过贝叶斯公式，得到后验概率 构建0-1损失函数，对其进行推导可得到0-1损失函数时的期望风险最小化准则与后验概率最大化准则的等价性 由上一条得出最大后验概率 使用极大似然估计，对先验概率及条件概率进行估计。   算法目标即核心公式：  目标:">
@@ -483,7 +483,7 @@
                 
               
 
-              <time title="创建时间：2019-07-18 17:11:32 / 修改时间：17:13:32" itemprop="dateCreated datePublished" datetime="2019-07-18T17:11:32+08:00">2019-07-18</time>
+              <time title="创建时间：2019-07-18 17:11:32 / 修改时间：17:21:40" itemprop="dateCreated datePublished" datetime="2019-07-18T17:11:32+08:00">2019-07-18</time>
             
 
             
@@ -509,19 +509,12 @@
             
           
 
-          
-          
-             <span id="/post/f77f0066.html" class="leancloud_visitors" data-flag-title="朴素贝叶斯">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
+
+&nbsp; | &nbsp;
+<span id="/post/f77f0066.html" class="leancloud_visitors" data-flag-title="朴素贝叶斯">
+         &nbsp;post.visitors
+        </span>
+
 
           
 
@@ -1829,7 +1822,91 @@ H(p,q)=-\sum_{x}p(x)ln(q(x))</script><p>其中$p$为训练集中的样本标签�
   
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("dhdGON8GhV8BltoYQwBHA7SE-gzGzoHsz", "eMDHv3t5DLe9eXn8hRSnOCXV");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1847,7 +1924,6 @@ H(p,q)=-\sum_{x}p(x)ln(q(x))</script><p>其中$p$为训练集中的样本标签�
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-  
 
 <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script></body>
 </html>

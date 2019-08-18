@@ -118,7 +118,7 @@
 <meta property="og:description" content="一、 重要性采样TRPO和PPO主要思想的数学基础是重要性采样  重要性采样：$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。   \begin{aligned} \mathbb{E}_{x\sim p}[f(x)] &amp;=\int f(x)p(x) dx \\ &amp;=\int f(x) \frac{p(x)}{q(x">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1553760534/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190328160651.png">
-<meta property="og:updated_time" content="2019-04-13T09:40:00.310Z">
+<meta property="og:updated_time" content="2019-08-18T08:34:28.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A3C、PPO、GAE笔记">
 <meta name="twitter:description" content="一、 重要性采样TRPO和PPO主要思想的数学基础是重要性采样  重要性采样：$x_i $是从$p(x)$分布中采样得到的， 但是$p(x)$的值往往无法直接获得，需要通过其他分布$q(x)$进行间接采样获得。   \begin{aligned} \mathbb{E}_{x\sim p}[f(x)] &amp;=\int f(x)p(x) dx \\ &amp;=\int f(x) \frac{p(x)}{q(x">
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-13 17:40:00" itemprop="dateModified" datetime="2019-04-13T17:40:00+08:00">2019-04-13</time>
+                <time title="修改时间：2019-08-18 16:34:28" itemprop="dateModified" datetime="2019-08-18T16:34:28+08:00">2019-08-18</time>
               
             
           </span>
@@ -635,9 +635,9 @@ TD Error=\delta_t=r_t+\gamma v(s_{t+1})-v(s_t)</script><p>运用GAE公式进行�
 </li>
 </ol>
 <script type="math/tex; mode=display">
-\sum_{l=0}^\infin(\gamma\lambda)^l \delta_{t+1}^V</script><p>​    为了快速估计序列中所有时刻的估计值，采用倒序计算，从t+1时刻估计t时刻：</p>
+\sum_{l=0}^\infin(\gamma\lambda)^l \delta_{t+l}^V</script><p>​    为了快速估计序列中所有时刻的估计值，采用倒序计算，从t+1时刻估计t时刻：</p>
 <script type="math/tex; mode=display">
-\hat{A_t}^{GAE(\gamma,\lambda)}=\sum_{l=0}^{\infin}(\gamma\lambda)^l \delta_{t+1}^V=\delta_t^V+\gamma\lambda\hat{A}_{t+1}^{GAE(\gamma,\lambda)}</script><hr>
+\hat{A_t}^{GAE(\gamma,\lambda)}=\sum_{l=0}^{\infin}(\gamma\lambda)^l \delta_{t+l}^V=\delta_t^V+\gamma\lambda\hat{A}_{t+l}^{GAE(\gamma,\lambda)}</script><hr>
 <h3 id="五、PPO关于策略梯度的目标函数"><a href="#五、PPO关于策略梯度的目标函数" class="headerlink" title="五、PPO关于策略梯度的目标函数"></a>五、PPO关于策略梯度的目标函数</h3><p>以上所述的策略梯度算法属于on-policy的算法，而<strong>PPO属于off-policy</strong>的算法</p>
 <ul>
 <li><p><strong>on-policy:</strong> 使用当前策略$\pi_\theta$收集数据，当参数$\theta$更新后，必须重新采样。</p>
@@ -726,7 +726,7 @@ L_t^{PPO_2}(\theta)=\hat{\mathbb{E}}_t[L_t^{CLIP}(\theta)-c_1L_t^{VF}(\theta)+c_
   <p><span>本文标题:</span><a href="/post/3cc694a0.html">A3C、PPO、GAE笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
   <p><span>发布时间:</span>2019年03月06日 - 16:03</p>
-  <p><span>最后更新:</span>2019年04月13日 - 17:04</p>
+  <p><span>最后更新:</span>2019年08月18日 - 16:08</p>
   <p><span>原始链接:</span><a href="/post/3cc694a0.html" title="A3C、PPO、GAE笔记">https://zhkmxx9302013.github.io/post/3cc694a0.html</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://zhkmxx9302013.github.io/post/3cc694a0.html" aria-label="复制成功！"></i></span>
   </p>

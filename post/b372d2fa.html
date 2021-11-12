@@ -163,33 +163,27 @@ enable_page_level_ads: true
 
 
 
-  <meta name="description" content="DQN (Nature) 一、 算法流程： 定义可配置参数 episode 数量 M 最大仿真时间 T，$\epsilon-greedy$参数$\epsilon_{low}$,$\epsilon_{high}$ batch size $N​$ 折扣率 $\gamma$，学习率 $\alpha$等优化器参数 Soft update 频率 $C​$">
-<meta name="keywords" content="强化学习">
+  <meta name="description" content="双凤桥TOD 凤舞七里 业主群 欢迎各位业主加入双凤桥TOD 凤舞七里业主群（成都轨道交通）本链接为群主个人博客推广渠道本群为唯一业主群   本群目的：双凤桥tod 各批次购房交流  本群要求：欢迎交流购房经验、楼盘优势劣势、区域发展规划动向等。不要地域歧视、恶意攻击他人，禁止发布恶意广告，违者秒踢。    QQ群号: 565426681   群二维码：">
+<meta name="keywords" content="购房">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[强化学习笔记专题(二)]Nature DQN">
-<meta property="og:url" content="https://zhkmxx9302013.github.io/post/22518.html">
+<meta property="og:title" content="双凤桥TOD 凤舞七里 业主群">
+<meta property="og:url" content="https://zhkmxx9302013.github.io/post/b372d2fa.html">
 <meta property="og:site_name" content="zhkmxx930 blog">
-<meta property="og:description" content="DQN (Nature) 一、 算法流程： 定义可配置参数 episode 数量 M 最大仿真时间 T，$\epsilon-greedy$参数$\epsilon_{low}$,$\epsilon_{high}$ batch size $N​$ 折扣率 $\gamma$，学习率 $\alpha$等优化器参数 Soft update 频率 $C​$">
+<meta property="og:description" content="双凤桥TOD 凤舞七里 业主群 欢迎各位业主加入双凤桥TOD 凤舞七里业主群（成都轨道交通）本链接为群主个人博客推广渠道本群为唯一业主群   本群目的：双凤桥tod 各批次购房交流  本群要求：欢迎交流购房经验、楼盘优势劣势、区域发展规划动向等。不要地域歧视、恶意攻击他人，禁止发布恶意广告，违者秒踢。    QQ群号: 565426681   群二维码：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548320185/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190124165548.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548321569/dqn_loss.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548385957/1.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548385957/2.png">
-<meta property="og:image" content="http://intheworld.win/wordpress/wp-content/uploads/2018/07/dqn.jpg">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548386089/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190125111426.png">
-<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548387003/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190125112753.png">
-<meta property="og:updated_time" content="2019-02-17T13:38:47.095Z">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1636694358/tod/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20211112131829.jpg">
+<meta property="og:updated_time" content="2021-11-12T05:33:56.077Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[强化学习笔记专题(二)]Nature DQN">
-<meta name="twitter:description" content="DQN (Nature) 一、 算法流程： 定义可配置参数 episode 数量 M 最大仿真时间 T，$\epsilon-greedy$参数$\epsilon_{low}$,$\epsilon_{high}$ batch size $N​$ 折扣率 $\gamma$，学习率 $\alpha$等优化器参数 Soft update 频率 $C​$">
-<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548320185/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190124165548.png">
+<meta name="twitter:title" content="双凤桥TOD 凤舞七里 业主群">
+<meta name="twitter:description" content="双凤桥TOD 凤舞七里 业主群 欢迎各位业主加入双凤桥TOD 凤舞七里业主群（成都轨道交通）本链接为群主个人博客推广渠道本群为唯一业主群   本群目的：双凤桥tod 各批次购房交流  本群要求：欢迎交流购房经验、楼盘优势劣势、区域发展规划动向等。不要地域歧视、恶意攻击他人，禁止发布恶意广告，违者秒踢。    QQ群号: 565426681   群二维码：">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1636694358/tod/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20211112131829.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://zhkmxx9302013.github.io/post/22518.html">
+  <link rel="canonical" href="https://zhkmxx9302013.github.io/post/b372d2fa.html">
 
 
 
@@ -199,7 +193,7 @@ enable_page_level_ads: true
   };
 </script>
 
-  <title>[强化学习笔记专题(二)]Nature DQN | zhkmxx930 blog</title>
+  <title>双凤桥TOD 凤舞七里 业主群 | zhkmxx930 blog</title>
   
 
 
@@ -560,7 +554,7 @@ enable_page_level_ads: true
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhkmxx9302013.github.io/post/22518.html">
+    <link itemprop="mainEntityOfPage" href="https://zhkmxx9302013.github.io/post/b372d2fa.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkmxx930">
@@ -577,7 +571,7 @@ enable_page_level_ads: true
 
         
         
-          <h2 class="post-title" itemprop="name headline">[强化学习笔记专题(二)]Nature DQN
+          <h2 class="post-title" itemprop="name headline">双凤桥TOD 凤舞七里 业主群
 
               
             
@@ -603,28 +597,34 @@ enable_page_level_ads: true
                 
               
 
-              <time title="创建时间：2019-01-24 16:53:42" itemprop="dateCreated datePublished" datetime="2019-01-24T16:53:42+08:00">2019-01-24</time>
+              <time title="创建时间：2021-11-12 13:29:14 / 修改时间：13:33:56" itemprop="dateCreated datePublished" datetime="2021-11-12T13:29:14+08:00">2021-11-12</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-17 21:38:47" itemprop="dateModified" datetime="2019-02-17T21:38:47+08:00">2019-02-17</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/购房/" itemprop="url" rel="index"><span itemprop="name">购房</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -634,8 +634,8 @@ enable_page_level_ads: true
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/22518.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/post/22518.html" itemprop="commentCount"></span>
+                <a href="/post/b372d2fa.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/post/b372d2fa.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -656,7 +656,7 @@ enable_page_level_ads: true
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">26k</span>
+                <span title="本文字数">548</span>
               
 
               
@@ -670,7 +670,7 @@ enable_page_level_ads: true
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">24 分钟</span>
+                <span title="阅读时长">1 分钟</span>
               
             </div>
           
@@ -690,86 +690,21 @@ enable_page_level_ads: true
       
 
       
-        <h2 id="DQN-Nature"><a href="#DQN-Nature" class="headerlink" title="DQN (Nature)"></a>DQN (Nature)</h2><p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548320185/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190124165548.png" alt="1"></p>
-<h2 id="一、-算法流程："><a href="#一、-算法流程：" class="headerlink" title="一、 算法流程："></a>一、 算法流程：</h2><ol>
-<li><h5 id="定义可配置参数"><a href="#定义可配置参数" class="headerlink" title="定义可配置参数"></a>定义可配置参数</h5><ul>
-<li>episode 数量 M</li>
-<li>最大仿真时间 T，$\epsilon-greedy$参数$\epsilon_{low}$,$\epsilon_{high}$</li>
-<li>batch size $N​$</li>
-<li>折扣率 $\gamma$，学习率 $\alpha$等优化器参数</li>
-<li>Soft update 频率 $C​$<a id="more"></a></li>
-</ul>
+        <h2 id="双凤桥TOD-凤舞七里-业主群"><a href="#双凤桥TOD-凤舞七里-业主群" class="headerlink" title="双凤桥TOD 凤舞七里 业主群"></a>双凤桥TOD 凤舞七里 业主群</h2><blockquote>
+<p>欢迎各位业主加入双凤桥TOD 凤舞七里业主群（成都轨道交通）<br>本链接为群主个人博客推广渠道<br>本群为唯一业主群</p>
+</blockquote>
+<ul>
+<li><p>本群目的：双凤桥tod 各批次购房交流</p>
 </li>
-<li><h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><ul>
-<li>初始化 replay buffer 大小N</li>
-<li>初始化 Q 网络 $Q​$ ，使用随机权值 $\theta​$</li>
-<li>初始化 TargetQ 网络 $\hat{Q}$ 权值 $\theta^-$，使用 Q 网络的权值 $\theta$</li>
-</ul>
-</li>
-<li><h5 id="DQN-一个Episode的流程"><a href="#DQN-一个Episode的流程" class="headerlink" title="DQN 一个Episode的流程"></a>DQN 一个Episode的流程</h5><ul>
-<li>使用 $\epsilon-greedy$ 策略 选择一个 action $a_t$</li>
-<li>执行当前 action $a_t$， 获取下一个状态 $s_{t+1}$ 和 reward $r_{t}$ </li>
-<li>将当前状态$s_t$赋值为下一个状态 $s_{t+1}$</li>
-<li>将五元组$\langle s_t,a_t,r_t,s_{t+1},done \rangle $存入 replay buffer $D$</li>
-<li>训练Q网络$Q​$:<ul>
-<li><strong>[Pre-condition]</strong>训练网络的前提是 <strong>replay buffer 的已有五元组数量大于 batch size </strong> $N$</li>
-<li>从 replay buffer $D​$中随机选取 batch size $N​$条数据$\langle s_j,a_j,r_j,s_{j+1},done\rangle​$ $D_{selected}​$</li>
-<li>计算目标Q值$y​$， $y​$是一个向量，$\{y_j \in y |j\in[0,N]\} ​$，大小为 batch size $N​$<ul>
-<li>当 $D_{selected}​$[j] 中 $done=True​$ 时，即终局状态，此时 $y_j=r_j​$</li>
-<li>当 $D_{selected}$[j] 中 $done=False$ 时，即非终局状态，此时$y_i=r_j+\gamma max_{a’}\hat{Q}(s_{j+1},a’;\theta^-)$， 注意这里是用的 TargetQ 网络进行的</li>
-</ul>
-</li>
-<li>使用优化器进行梯度下降，损失函数是(一个batch里面)  $(y-Q(s,a;\theta))^2​$，注意这里使用的是Q网络进行，来让<strong>计算出来的目标Q值</strong>与<strong>当前Q网络输出的Q值</strong>进行<strong>MSE</strong></li>
-<li>每 $C$ 次 episode，soft update 一次 target net 参数，$\theta^- = \theta$</li>
-</ul>
+<li><p>本群要求：欢迎交流购房经验、楼盘优势劣势、区域发展规划动向等。不要地域歧视、恶意攻击他人，禁止发布恶意广告，违者秒踢。</p>
 </li>
 </ul>
-</li>
-<li><h5 id="不断迭代Episode流程-M-次"><a href="#不断迭代Episode流程-M-次" class="headerlink" title="不断迭代Episode流程$M$次"></a>不断迭代Episode流程$M$次</h5></li>
-</ol>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548321569/dqn_loss.png" alt="img"></p>
-<h2 id="二、对应代码"><a href="#二、对应代码" class="headerlink" title="二、对应代码"></a>二、对应代码</h2><p>完整代码地址： <a href="https://coding.net/u/zhkmxx930/p/DQN_Nature/git/blob/master/NatureDQN.py" target="_blank" rel="noopener">Nature DQN</a></p>
-<ol>
-<li><h5 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h5><ul>
-<li>初始化 replay buffer 大小N</li>
-<li>初始化 Q 网络 $Q$ ，使用随机权值$\theta$</li>
-<li>初始化 TargetQ 网络 $\hat{Q}$ 权值 $\theta^-$，使用 Q 网络的权值 $\theta$</li>
+<ul>
+<li>QQ群号: 565426681</li>
 </ul>
-</li>
-</ol>
-<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_Q_network</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Q net 网络定义</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 输入状态 placeholder</span></span><br><span class="line">        self.state_input = tf.placeholder(<span class="string">"float"</span>, [<span class="keyword">None</span>, self.state_dim])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Q 网络结构 两层全连接</span></span><br><span class="line">        <span class="keyword">with</span> tf.variable_scope(<span class="string">'current_net'</span>):</span><br><span class="line">            W1 = self.weight_variable([self.state_dim, <span class="number">100</span>])</span><br><span class="line">            b1 = self.bias_variable([<span class="number">100</span>])</span><br><span class="line">            W2 = self.weight_variable([<span class="number">100</span>, self.action_dim])</span><br><span class="line">            b2 = self.bias_variable([self.action_dim])</span><br><span class="line">            h_layer = tf.nn.relu(tf.matmul(self.state_input, W1) + b1)</span><br><span class="line">            <span class="comment"># Q Value</span></span><br><span class="line">            self.Q_value = tf.matmul(h_layer, W2) + b2</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Target Net 结构与 Q相同，可以用tf的reuse实现</span></span><br><span class="line">        <span class="keyword">with</span> tf.variable_scope(<span class="string">'target_net'</span>):</span><br><span class="line">            W1t = self.weight_variable([self.state_dim, <span class="number">100</span>])</span><br><span class="line">            b1t = self.bias_variable([<span class="number">100</span>])</span><br><span class="line">            W2t = self.weight_variable([<span class="number">100</span>, self.action_dim])</span><br><span class="line">            b2t = self.bias_variable([self.action_dim])</span><br><span class="line">            h_layer_t = tf.nn.relu(tf.matmul(self.state_input, W1t) + b1t)</span><br><span class="line">            <span class="comment"># target Q Value</span></span><br><span class="line">            self.target_Q_value = tf.matmul(h_layer_t, W2t) + b2t</span><br><span class="line"></span><br><span class="line">        t_params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=<span class="string">'target_net'</span>)</span><br><span class="line">        e_params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=<span class="string">'current_net'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># soft update 更新 target net</span></span><br><span class="line">        <span class="keyword">with</span> tf.variable_scope(<span class="string">'soft_replacement'</span>):</span><br><span class="line">            self.target_replace_op = [tf.assign(t, e) <span class="keyword">for</span> t, e <span class="keyword">in</span> zip(t_params, e_params)]</span><br><span class="line"></span><br><span class="line"><span class="comment">#===============================================================#</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">weight_variable</span><span class="params">(self, shape)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        初始化网络权值(随机, truncated_normal)</span></span><br><span class="line"><span class="string">        :param shape:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        initial = tf.truncated_normal(shape)</span><br><span class="line">        <span class="keyword">return</span> tf.Variable(initial)</span><br><span class="line"></span><br><span class="line"><span class="comment">#===============================================================#</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bias_variable</span><span class="params">(self, shape)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        初始化bias(const)</span></span><br><span class="line"><span class="string">        :param shape:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        initial = tf.constant(<span class="number">0.01</span>, shape=shape)</span><br><span class="line">        <span class="keyword">return</span> tf.Variable(initial)</span><br></pre></td></tr></table></figure>
-</code></pre><ol>
-<li><p>$\epsilon-greedy$ 策略 定义，这里对$\epsilon$进行一个随时间步的迁移而减小的策略，使其动作选择的不确定性逐渐减小。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">egreedy_action</span><span class="params">(self, state)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    epsilon-greedy策略</span></span><br><span class="line"><span class="string">    :param state:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    Q_value = self.Q_value.eval(feed_dict=&#123;</span><br><span class="line">        self.state_input: [state]</span><br><span class="line">    &#125;)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> random.random() &lt;= self.epsilon:</span><br><span class="line">        self.epsilon -= (INITIAL_EPSILON - FINAL_EPSILON) / <span class="number">10000</span></span><br><span class="line">        <span class="keyword">return</span> random.randint(<span class="number">0</span>, self.action_dim - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        self.epsilon -= (INITIAL_EPSILON - FINAL_EPSILON) / <span class="number">10000</span></span><br><span class="line">        <span class="keyword">return</span> np.argmax(Q_value)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>Replay buffer的定义</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">perceive</span><span class="params">(self, state, action, reward, next_state, done)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Replay buffer</span></span><br><span class="line"><span class="string">    :param state:</span></span><br><span class="line"><span class="string">    :param action:</span></span><br><span class="line"><span class="string">    :param reward:</span></span><br><span class="line"><span class="string">    :param next_state:</span></span><br><span class="line"><span class="string">    :param done:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 对action 进行one-hot存储，方便网络进行处理</span></span><br><span class="line">    <span class="comment"># [0,0,0,0,1,0,0,0,0] action=5</span></span><br><span class="line">    one_hot_action = np.zeros(self.action_dim)</span><br><span class="line">    one_hot_action[action] = <span class="number">1</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment"># 存入replay_buffer</span></span><br><span class="line">    <span class="comment"># self.replay_buffer = deque()</span></span><br><span class="line">    self.replay_buffer.append((state, one_hot_action, reward, next_state, done))</span><br><span class="line">   </span><br><span class="line">    <span class="comment"># 溢出出队</span></span><br><span class="line">    <span class="keyword">if</span> len(self.replay_buffer) &gt; REPLAY_SIZE:</span><br><span class="line">        self.replay_buffer.popleft()</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 可进行训练条件</span></span><br><span class="line">    <span class="keyword">if</span> len(self.replay_buffer) &gt; BATCH_SIZE:</span><br><span class="line">        self.train_Q_network()</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>Q网络训练</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_Q_network</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Q网络训练</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    self.time_step += <span class="number">1</span></span><br><span class="line">    <span class="comment"># 从 replay buffer D中随机选取 batch size N条数据&lt;s_j,a_j,r_j,s_j+1,done&gt;   D_selected</span></span><br><span class="line">    minibatch = random.sample(self.replay_buffer, BATCH_SIZE)</span><br><span class="line">    state_batch = [data[<span class="number">0</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    action_batch = [data[<span class="number">1</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    reward_batch = [data[<span class="number">2</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    next_state_batch = [data[<span class="number">3</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">   </span><br><span class="line">    <span class="comment"># 计算目标Q值y</span></span><br><span class="line">    y_batch = []</span><br><span class="line">    Q_value_batch = self.target_Q_value.eval(feed_dict=&#123;self.state_input: next_state_batch&#125;)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, BATCH_SIZE):</span><br><span class="line">        done = minibatch[i][<span class="number">4</span>]</span><br><span class="line">        <span class="keyword">if</span> done:</span><br><span class="line">            y_batch.append(reward_batch[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y_batch.append(reward_batch[i] + GAMMA * np.max(Q_value_batch[i]))</span><br><span class="line">   </span><br><span class="line">    self.optimizer.run(feed_dict=&#123;</span><br><span class="line">        self.y_input: y_batch,</span><br><span class="line">        self.action_input: action_batch,</span><br><span class="line">        self.state_input: state_batch</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>Soft update</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_target_q_network</span><span class="params">(self, episode)</span>:</span></span><br><span class="line">   <span class="comment"># 更新 target Q netowrk</span></span><br><span class="line">   <span class="keyword">if</span> episode % REPLACE_TARGET_FREQ == <span class="number">0</span>:</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="三、实验结果"><a href="#三、实验结果" class="headerlink" title="三、实验结果"></a>三、实验结果</h2><p>环境 cart-pole-v0 (期望回报是200)</p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548385957/1.png" alt=""><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548385957/2.png" alt=""></p>
-<h2 id="四、DQN参考论文流程："><a href="#四、DQN参考论文流程：" class="headerlink" title="四、DQN参考论文流程："></a>四、DQN参考论文流程：</h2><p><img src="http://intheworld.win/wordpress/wp-content/uploads/2018/07/dqn.jpg" alt="img"></p>
-<h2 id="五、Double-DQN"><a href="#五、Double-DQN" class="headerlink" title="五、Double DQN"></a>五、Double DQN</h2><p><strong>DQN存在的问题是Q function容易过拟合</strong>，根据状态 $s_{t+1}$ 选择动作 $a_{t+1}$ 的过程,以及估计 $Q(s_{t+1},a_{t+1})​$ 使用的同一个Q net网络参数，这可能导致选择过高的估计值，从而导致过于乐观的值估计。为了避免这种情况的出现，可以对选择和衡量进行解耦，从而就有了使用 Double DQN 来解决这一问题。</p>
-<p>Double DQN与DQN的区别仅在于$y$的求解方式不同，Double DQN根据Q网络参数来选择动作$a_{t+1}$,再用Target Q网络参数来衡量$Q(s_{t+1},a_{t+1})$的值。</p>
-<script type="math/tex; mode=display">
-Y_t^{DQN}=R_{t+1}+\gamma \hat{Q}(S_{t+1},argmax_a\hat{Q}(S_{t+1},a;\theta_t^-);\theta_t^-)\\
-Y_t^{DDQN}=R_{t+1}+\gamma \hat{Q}(S_{t+1},argmax_aQ(S_{t+1},a;\theta_t);\theta_t^-)</script><p>反映在代码上，就是训练的时候选择Q的时候有点变动：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_Q_network</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Q网络训练</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    self.time_step += <span class="number">1</span></span><br><span class="line">    <span class="comment"># 从 replay buffer D中随机选取 batch size N条数据&lt;s_j,a_j,r_j,s_j+1,done&gt;$  D_selected</span></span><br><span class="line">    minibatch = random.sample(self.replay_buffer, BATCH_SIZE)</span><br><span class="line">    state_batch = [data[<span class="number">0</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    action_batch = [data[<span class="number">1</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    reward_batch = [data[<span class="number">2</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    next_state_batch = [data[<span class="number">3</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算目标Q值y</span></span><br><span class="line">    y_batch = []</span><br><span class="line">    QTarget_value_batch = self.target_Q_value.eval(feed_dict=&#123;self.state_input: next_state_batch&#125;)</span><br><span class="line">    Q_value_batch = self.Q_value.eval(feed_dict=&#123;self.state_input: next_state_batch&#125;)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, BATCH_SIZE):</span><br><span class="line">        done = minibatch[i][<span class="number">4</span>]</span><br><span class="line">        <span class="keyword">if</span> done:</span><br><span class="line">            y_batch.append(reward_batch[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment">#################用target Q(Q)#######################</span></span><br><span class="line">            <span class="keyword">if</span> DOUBLE_DQN:</span><br><span class="line">                selected_q_next = QTarget_value_batch[i][np.argmax(Q_value_batch[i])]</span><br><span class="line">            <span class="comment">#################用target Q(target Q)################</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                selected_q_next = np.max(QTarget_value_batch[i])</span><br><span class="line"></span><br><span class="line">            y_batch.append(reward_batch[i] + GAMMA * selected_q_next)</span><br><span class="line"></span><br><span class="line">    self.optimizer.run(feed_dict=&#123;</span><br><span class="line">        self.y_input: y_batch,</span><br><span class="line">        self.action_input: action_batch,</span><br><span class="line">        self.state_input: state_batch</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="六、DQN，DDQN实验结果对比"><a href="#六、DQN，DDQN实验结果对比" class="headerlink" title="六、DQN，DDQN实验结果对比"></a>六、DQN，DDQN实验结果对比</h2><p>可以看到DoubleDQN的表现比 DQN稳定</p>
-<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548386089/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190125111426.png" alt=""></p>
-<h2 id="七、-Dueling-DDQN"><a href="#七、-Dueling-DDQN" class="headerlink" title="七、 Dueling DDQN"></a>七、 Dueling DDQN</h2><h2 id="八、-Dueling-DQN-DDQN-DQN对比"><a href="#八、-Dueling-DQN-DDQN-DQN对比" class="headerlink" title="八、 Dueling DQN, DDQN, DQN对比"></a>八、 Dueling DQN, DDQN, DQN对比</h2><p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548387003/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190125112753.png" alt=""></p>
+<ul>
+<li>群二维码：<br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1636694358/tod/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20211112131829.jpg" alt="img"></li>
+</ul>
 
       
     </div>
@@ -782,35 +717,6 @@ Y_t^{DDQN}=R_{t+1}+\gamma \hat{Q}(S_{t+1},argmax_aQ(S_{t+1},a;\theta_t);\theta_t
     <div>
       
         
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/post/22518.html">[强化学习笔记专题(二)]Nature DQN</a></p>
-  <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
-  <p><span>发布时间:</span>2019年01月24日 - 16:01</p>
-  <p><span>最后更新:</span>2019年02月17日 - 21:02</p>
-  <p><span>原始链接:</span><a href="/post/22518.html" title="[强化学习笔记专题(二)]Nature DQN">https://zhkmxx9302013.github.io/post/22518.html</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://zhkmxx9302013.github.io/post/22518.html" aria-label="复制成功！"></i></span>
-  </p>
-  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
-</div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-    $(".fa-clipboard").click(function(){
-      clipboard.on('success', function(){
-        swal({   
-          title: "",   
-          text: '复制成功',
-          icon: "success", 
-          showConfirmButton: true
-          });
-    });
-    });  
-</script>
-
       
     </div>
 
@@ -851,7 +757,7 @@ Y_t^{DDQN}=R_{t+1}+\gamma \hat{Q}(S_{t+1},argmax_aQ(S_{t+1},a;\theta_t);\theta_t
       
         <div class="post-tags">
           
-            <a href="/tags/强化学习/" rel="tag"># 强化学习</a>
+            <a href="/tags/购房/" rel="tag"># 购房</a>
           
         </div>
       
@@ -882,8 +788,8 @@ Y_t^{DDQN}=R_{t+1}+\gamma \hat{Q}(S_{t+1},argmax_aQ(S_{t+1},a;\theta_t);\theta_t
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/10845.html" rel="next" title="[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation">
-                <i class="fa fa-chevron-left"></i> [强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation
+              <a href="/post/f77f0066.html" rel="next" title="朴素贝叶斯">
+                <i class="fa fa-chevron-left"></i> 朴素贝叶斯
               </a>
             
           </div>
@@ -891,10 +797,6 @@ Y_t^{DDQN}=R_{t+1}+\gamma \hat{Q}(S_{t+1},argmax_aQ(S_{t+1},a;\theta_t);\theta_t
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/b8a74939.html" rel="prev" title="干货收集">
-                干货收集 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1138,7 +1040,7 @@ Y_t^{DDQN}=R_{t+1}+\gamma \hat{Q}(S_{t+1},argmax_aQ(S_{t+1},a;\theta_t);\theta_t
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DQN-Nature"><span class="nav-text">DQN (Nature)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-算法流程："><span class="nav-text">一、 算法流程：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义可配置参数"><span class="nav-text">定义可配置参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DQN-一个Episode的流程"><span class="nav-text">DQN 一个Episode的流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不断迭代Episode流程-M-次"><span class="nav-text">不断迭代Episode流程$M$次</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#二、对应代码"><span class="nav-text">二、对应代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化-1"><span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、实验结果"><span class="nav-text">三、实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、DQN参考论文流程："><span class="nav-text">四、DQN参考论文流程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、Double-DQN"><span class="nav-text">五、Double DQN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、DQN，DDQN实验结果对比"><span class="nav-text">六、DQN，DDQN实验结果对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、-Dueling-DDQN"><span class="nav-text">七、 Dueling DDQN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、-Dueling-DQN-DDQN-DQN对比"><span class="nav-text">八、 Dueling DQN, DDQN, DQN对比</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#双凤桥TOD-凤舞七里-业主群"><span class="nav-text">双凤桥TOD 凤舞七里 业主群</span></a></li></ol></div>
             
 
           </div>
@@ -1805,43 +1707,6 @@ Y_t^{DDQN}=R_{t+1}+\gamma \hat{Q}(S_{t+1},argmax_aQ(S_{t+1},a;\theta_t);\theta_t
   
   
 
-  
-    
-      <script type="text/x-mathjax-config">
-  
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-      for (i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<style>
-.MathJax_Display {
-  overflow: auto hidden;
-}
-</style>
-
-    
   
 
 

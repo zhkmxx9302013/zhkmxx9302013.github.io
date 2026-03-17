@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="j11Fn840nZ">
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+<meta name="baidu-site-verification" content="4LtKZHjZfl">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({
+google_ad_client: "ca-pub-7575138372156475",
+enable_page_level_ads: true
+});
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="DQN (Nature) 一、 算法流程： 定义可配置参数 episode 数量 M 最大仿真时间 T，$\epsilon-greedy$参数$\epsilon_{low}$,$\epsilon_{high}$ batch size $N​$ 折扣率 $\gamma$，学习率 $\alpha$等优化器参数 Soft update 频率 $C​$">
+<meta name="keywords" content="强化学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[强化学习笔记专题(二)]Nature DQN">
+<meta property="og:url" content="https://zhkmxx9302013.github.io/post/22518.html">
+<meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="DQN (Nature) 一、 算法流程： 定义可配置参数 episode 数量 M 最大仿真时间 T，$\epsilon-greedy$参数$\epsilon_{low}$,$\epsilon_{high}$ batch size $N​$ 折扣率 $\gamma$，学习率 $\alpha$等优化器参数 Soft update 频率 $C​$">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548320185/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190124165548.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548321569/dqn_loss.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548385957/1.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548385957/2.png">
+<meta property="og:image" content="http://intheworld.win/wordpress/wp-content/uploads/2018/07/dqn.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548386089/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190125111426.png">
+<meta property="og:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548387003/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190125112753.png">
+<meta property="og:updated_time" content="2019-02-17T13:38:47.095Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[强化学习笔记专题(二)]Nature DQN">
+<meta name="twitter:description" content="DQN (Nature) 一、 算法流程： 定义可配置参数 episode 数量 M 最大仿真时间 T，$\epsilon-greedy$参数$\epsilon_{low}$,$\epsilon_{high}$ batch size $N​$ 折扣率 $\gamma$，学习率 $\alpha$等优化器参数 Soft update 频率 $C​$">
+<meta name="twitter:image" content="https://res.cloudinary.com/djhkiiiap/image/upload/v1548320185/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190124165548.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://zhkmxx9302013.github.io/post/22518.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[强化学习笔记专题(二)]Nature DQN | zhkmxx930 blog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?409c3eabddee1e62470dc0787e221430";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zhkmxx930 blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-top">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">18</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">0</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">39</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友情链接">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/friendlink/" rel="section"><i class="menu-item-icon fa fa-fw fa-thumbs-up"></i> <br>友情链接</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/books/" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>读书</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/movies/" rel="section"><i class="menu-item-icon fa fa-fw fa-video-camera"></i> <br>电影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-games">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/games/" rel="section"><i class="menu-item-icon fa fa-fw fa-gamepad"></i> <br>游戏</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhkmxx9302013.github.io/post/22518.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkmxx930">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">[强化学习笔记专题(二)]Nature DQN
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-24 16:53:42" itemprop="dateCreated datePublished" datetime="2019-01-24T16:53:42+08:00">2019-01-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-17 21:38:47" itemprop="dateModified" datetime="2019-02-17T21:38:47+08:00">2019-02-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/22518.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/post/22518.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">26k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">24 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="DQN-Nature"><a href="#DQN-Nature" class="headerlink" title="DQN (Nature)"></a>DQN (Nature)</h2><p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548320185/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190124165548.png" alt="1"></p>
+<h2 id="一、-算法流程："><a href="#一、-算法流程：" class="headerlink" title="一、 算法流程："></a>一、 算法流程：</h2><ol>
+<li><h5 id="定义可配置参数"><a href="#定义可配置参数" class="headerlink" title="定义可配置参数"></a>定义可配置参数</h5><ul>
+<li>episode 数量 M</li>
+<li>最大仿真时间 T，$\epsilon-greedy$参数$\epsilon_{low}$,$\epsilon_{high}$</li>
+<li>batch size $N​$</li>
+<li>折扣率 $\gamma$，学习率 $\alpha$等优化器参数</li>
+<li>Soft update 频率 $C​$<a id="more"></a></li>
+</ul>
+</li>
+<li><h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><ul>
+<li>初始化 replay buffer 大小N</li>
+<li>初始化 Q 网络 $Q​$ ，使用随机权值 $\theta​$</li>
+<li>初始化 TargetQ 网络 $\hat{Q}$ 权值 $\theta^-$，使用 Q 网络的权值 $\theta$</li>
+</ul>
+</li>
+<li><h5 id="DQN-一个Episode的流程"><a href="#DQN-一个Episode的流程" class="headerlink" title="DQN 一个Episode的流程"></a>DQN 一个Episode的流程</h5><ul>
+<li>使用 $\epsilon-greedy$ 策略 选择一个 action $a_t$</li>
+<li>执行当前 action $a_t$， 获取下一个状态 $s_{t+1}$ 和 reward $r_{t}$ </li>
+<li>将当前状态$s_t$赋值为下一个状态 $s_{t+1}$</li>
+<li>将五元组$\langle s_t,a_t,r_t,s_{t+1},done \rangle $存入 replay buffer $D$</li>
+<li>训练Q网络$Q​$:<ul>
+<li><strong>[Pre-condition]</strong>训练网络的前提是 <strong>replay buffer 的已有五元组数量大于 batch size </strong> $N$</li>
+<li>从 replay buffer $D​$中随机选取 batch size $N​$条数据$\langle s_j,a_j,r_j,s_{j+1},done\rangle​$ $D_{selected}​$</li>
+<li>计算目标Q值$y​$， $y​$是一个向量，$\{y_j \in y |j\in[0,N]\} ​$，大小为 batch size $N​$<ul>
+<li>当 $D_{selected}​$[j] 中 $done=True​$ 时，即终局状态，此时 $y_j=r_j​$</li>
+<li>当 $D_{selected}$[j] 中 $done=False$ 时，即非终局状态，此时$y_i=r_j+\gamma max_{a’}\hat{Q}(s_{j+1},a’;\theta^-)$， 注意这里是用的 TargetQ 网络进行的</li>
+</ul>
+</li>
+<li>使用优化器进行梯度下降，损失函数是(一个batch里面)  $(y-Q(s,a;\theta))^2​$，注意这里使用的是Q网络进行，来让<strong>计算出来的目标Q值</strong>与<strong>当前Q网络输出的Q值</strong>进行<strong>MSE</strong></li>
+<li>每 $C$ 次 episode，soft update 一次 target net 参数，$\theta^- = \theta$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h5 id="不断迭代Episode流程-M-次"><a href="#不断迭代Episode流程-M-次" class="headerlink" title="不断迭代Episode流程$M$次"></a>不断迭代Episode流程$M$次</h5></li>
+</ol>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548321569/dqn_loss.png" alt="img"></p>
+<h2 id="二、对应代码"><a href="#二、对应代码" class="headerlink" title="二、对应代码"></a>二、对应代码</h2><p>完整代码地址： <a href="https://coding.net/u/zhkmxx930/p/DQN_Nature/git/blob/master/NatureDQN.py" target="_blank" rel="noopener">Nature DQN</a></p>
+<ol>
+<li><h5 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h5><ul>
+<li>初始化 replay buffer 大小N</li>
+<li>初始化 Q 网络 $Q$ ，使用随机权值$\theta$</li>
+<li>初始化 TargetQ 网络 $\hat{Q}$ 权值 $\theta^-$，使用 Q 网络的权值 $\theta$</li>
+</ul>
+</li>
+</ol>
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_Q_network</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Q net 网络定义</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 输入状态 placeholder</span></span><br><span class="line">        self.state_input = tf.placeholder(<span class="string">"float"</span>, [<span class="keyword">None</span>, self.state_dim])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Q 网络结构 两层全连接</span></span><br><span class="line">        <span class="keyword">with</span> tf.variable_scope(<span class="string">'current_net'</span>):</span><br><span class="line">            W1 = self.weight_variable([self.state_dim, <span class="number">100</span>])</span><br><span class="line">            b1 = self.bias_variable([<span class="number">100</span>])</span><br><span class="line">            W2 = self.weight_variable([<span class="number">100</span>, self.action_dim])</span><br><span class="line">            b2 = self.bias_variable([self.action_dim])</span><br><span class="line">            h_layer = tf.nn.relu(tf.matmul(self.state_input, W1) + b1)</span><br><span class="line">            <span class="comment"># Q Value</span></span><br><span class="line">            self.Q_value = tf.matmul(h_layer, W2) + b2</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Target Net 结构与 Q相同，可以用tf的reuse实现</span></span><br><span class="line">        <span class="keyword">with</span> tf.variable_scope(<span class="string">'target_net'</span>):</span><br><span class="line">            W1t = self.weight_variable([self.state_dim, <span class="number">100</span>])</span><br><span class="line">            b1t = self.bias_variable([<span class="number">100</span>])</span><br><span class="line">            W2t = self.weight_variable([<span class="number">100</span>, self.action_dim])</span><br><span class="line">            b2t = self.bias_variable([self.action_dim])</span><br><span class="line">            h_layer_t = tf.nn.relu(tf.matmul(self.state_input, W1t) + b1t)</span><br><span class="line">            <span class="comment"># target Q Value</span></span><br><span class="line">            self.target_Q_value = tf.matmul(h_layer_t, W2t) + b2t</span><br><span class="line"></span><br><span class="line">        t_params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=<span class="string">'target_net'</span>)</span><br><span class="line">        e_params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=<span class="string">'current_net'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># soft update 更新 target net</span></span><br><span class="line">        <span class="keyword">with</span> tf.variable_scope(<span class="string">'soft_replacement'</span>):</span><br><span class="line">            self.target_replace_op = [tf.assign(t, e) <span class="keyword">for</span> t, e <span class="keyword">in</span> zip(t_params, e_params)]</span><br><span class="line"></span><br><span class="line"><span class="comment">#===============================================================#</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">weight_variable</span><span class="params">(self, shape)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        初始化网络权值(随机, truncated_normal)</span></span><br><span class="line"><span class="string">        :param shape:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        initial = tf.truncated_normal(shape)</span><br><span class="line">        <span class="keyword">return</span> tf.Variable(initial)</span><br><span class="line"></span><br><span class="line"><span class="comment">#===============================================================#</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bias_variable</span><span class="params">(self, shape)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        初始化bias(const)</span></span><br><span class="line"><span class="string">        :param shape:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        initial = tf.constant(<span class="number">0.01</span>, shape=shape)</span><br><span class="line">        <span class="keyword">return</span> tf.Variable(initial)</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>$\epsilon-greedy$ 策略 定义，这里对$\epsilon$进行一个随时间步的迁移而减小的策略，使其动作选择的不确定性逐渐减小。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">egreedy_action</span><span class="params">(self, state)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    epsilon-greedy策略</span></span><br><span class="line"><span class="string">    :param state:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    Q_value = self.Q_value.eval(feed_dict=&#123;</span><br><span class="line">        self.state_input: [state]</span><br><span class="line">    &#125;)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> random.random() &lt;= self.epsilon:</span><br><span class="line">        self.epsilon -= (INITIAL_EPSILON - FINAL_EPSILON) / <span class="number">10000</span></span><br><span class="line">        <span class="keyword">return</span> random.randint(<span class="number">0</span>, self.action_dim - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        self.epsilon -= (INITIAL_EPSILON - FINAL_EPSILON) / <span class="number">10000</span></span><br><span class="line">        <span class="keyword">return</span> np.argmax(Q_value)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>Replay buffer的定义</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">perceive</span><span class="params">(self, state, action, reward, next_state, done)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Replay buffer</span></span><br><span class="line"><span class="string">    :param state:</span></span><br><span class="line"><span class="string">    :param action:</span></span><br><span class="line"><span class="string">    :param reward:</span></span><br><span class="line"><span class="string">    :param next_state:</span></span><br><span class="line"><span class="string">    :param done:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 对action 进行one-hot存储，方便网络进行处理</span></span><br><span class="line">    <span class="comment"># [0,0,0,0,1,0,0,0,0] action=5</span></span><br><span class="line">    one_hot_action = np.zeros(self.action_dim)</span><br><span class="line">    one_hot_action[action] = <span class="number">1</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment"># 存入replay_buffer</span></span><br><span class="line">    <span class="comment"># self.replay_buffer = deque()</span></span><br><span class="line">    self.replay_buffer.append((state, one_hot_action, reward, next_state, done))</span><br><span class="line">   </span><br><span class="line">    <span class="comment"># 溢出出队</span></span><br><span class="line">    <span class="keyword">if</span> len(self.replay_buffer) &gt; REPLAY_SIZE:</span><br><span class="line">        self.replay_buffer.popleft()</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 可进行训练条件</span></span><br><span class="line">    <span class="keyword">if</span> len(self.replay_buffer) &gt; BATCH_SIZE:</span><br><span class="line">        self.train_Q_network()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>Q网络训练</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_Q_network</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Q网络训练</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    self.time_step += <span class="number">1</span></span><br><span class="line">    <span class="comment"># 从 replay buffer D中随机选取 batch size N条数据&lt;s_j,a_j,r_j,s_j+1,done&gt;   D_selected</span></span><br><span class="line">    minibatch = random.sample(self.replay_buffer, BATCH_SIZE)</span><br><span class="line">    state_batch = [data[<span class="number">0</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    action_batch = [data[<span class="number">1</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    reward_batch = [data[<span class="number">2</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    next_state_batch = [data[<span class="number">3</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">   </span><br><span class="line">    <span class="comment"># 计算目标Q值y</span></span><br><span class="line">    y_batch = []</span><br><span class="line">    Q_value_batch = self.target_Q_value.eval(feed_dict=&#123;self.state_input: next_state_batch&#125;)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, BATCH_SIZE):</span><br><span class="line">        done = minibatch[i][<span class="number">4</span>]</span><br><span class="line">        <span class="keyword">if</span> done:</span><br><span class="line">            y_batch.append(reward_batch[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y_batch.append(reward_batch[i] + GAMMA * np.max(Q_value_batch[i]))</span><br><span class="line">   </span><br><span class="line">    self.optimizer.run(feed_dict=&#123;</span><br><span class="line">        self.y_input: y_batch,</span><br><span class="line">        self.action_input: action_batch,</span><br><span class="line">        self.state_input: state_batch</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>Soft update</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_target_q_network</span><span class="params">(self, episode)</span>:</span></span><br><span class="line">   <span class="comment"># 更新 target Q netowrk</span></span><br><span class="line">   <span class="keyword">if</span> episode % REPLACE_TARGET_FREQ == <span class="number">0</span>:</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="三、实验结果"><a href="#三、实验结果" class="headerlink" title="三、实验结果"></a>三、实验结果</h2><p>环境 cart-pole-v0 (期望回报是200)</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548385957/1.png" alt=""><br><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548385957/2.png" alt=""></p>
+<h2 id="四、DQN参考论文流程："><a href="#四、DQN参考论文流程：" class="headerlink" title="四、DQN参考论文流程："></a>四、DQN参考论文流程：</h2><p><img src="http://intheworld.win/wordpress/wp-content/uploads/2018/07/dqn.jpg" alt="img"></p>
+<h2 id="五、Double-DQN"><a href="#五、Double-DQN" class="headerlink" title="五、Double DQN"></a>五、Double DQN</h2><p><strong>DQN存在的问题是Q function容易过拟合</strong>，根据状态 $s_{t+1}$ 选择动作 $a_{t+1}$ 的过程,以及估计 $Q(s_{t+1},a_{t+1})​$ 使用的同一个Q net网络参数，这可能导致选择过高的估计值，从而导致过于乐观的值估计。为了避免这种情况的出现，可以对选择和衡量进行解耦，从而就有了使用 Double DQN 来解决这一问题。</p>
+<p>Double DQN与DQN的区别仅在于$y$的求解方式不同，Double DQN根据Q网络参数来选择动作$a_{t+1}$,再用Target Q网络参数来衡量$Q(s_{t+1},a_{t+1})$的值。</p>
+<script type="math/tex; mode=display">
+Y_t^{DQN}=R_{t+1}+\gamma \hat{Q}(S_{t+1},argmax_a\hat{Q}(S_{t+1},a;\theta_t^-);\theta_t^-)\\
+Y_t^{DDQN}=R_{t+1}+\gamma \hat{Q}(S_{t+1},argmax_aQ(S_{t+1},a;\theta_t);\theta_t^-)</script><p>反映在代码上，就是训练的时候选择Q的时候有点变动：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_Q_network</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Q网络训练</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    self.time_step += <span class="number">1</span></span><br><span class="line">    <span class="comment"># 从 replay buffer D中随机选取 batch size N条数据&lt;s_j,a_j,r_j,s_j+1,done&gt;$  D_selected</span></span><br><span class="line">    minibatch = random.sample(self.replay_buffer, BATCH_SIZE)</span><br><span class="line">    state_batch = [data[<span class="number">0</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    action_batch = [data[<span class="number">1</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    reward_batch = [data[<span class="number">2</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line">    next_state_batch = [data[<span class="number">3</span>] <span class="keyword">for</span> data <span class="keyword">in</span> minibatch]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算目标Q值y</span></span><br><span class="line">    y_batch = []</span><br><span class="line">    QTarget_value_batch = self.target_Q_value.eval(feed_dict=&#123;self.state_input: next_state_batch&#125;)</span><br><span class="line">    Q_value_batch = self.Q_value.eval(feed_dict=&#123;self.state_input: next_state_batch&#125;)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, BATCH_SIZE):</span><br><span class="line">        done = minibatch[i][<span class="number">4</span>]</span><br><span class="line">        <span class="keyword">if</span> done:</span><br><span class="line">            y_batch.append(reward_batch[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment">#################用target Q(Q)#######################</span></span><br><span class="line">            <span class="keyword">if</span> DOUBLE_DQN:</span><br><span class="line">                selected_q_next = QTarget_value_batch[i][np.argmax(Q_value_batch[i])]</span><br><span class="line">            <span class="comment">#################用target Q(target Q)################</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                selected_q_next = np.max(QTarget_value_batch[i])</span><br><span class="line"></span><br><span class="line">            y_batch.append(reward_batch[i] + GAMMA * selected_q_next)</span><br><span class="line"></span><br><span class="line">    self.optimizer.run(feed_dict=&#123;</span><br><span class="line">        self.y_input: y_batch,</span><br><span class="line">        self.action_input: action_batch,</span><br><span class="line">        self.state_input: state_batch</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="六、DQN，DDQN实验结果对比"><a href="#六、DQN，DDQN实验结果对比" class="headerlink" title="六、DQN，DDQN实验结果对比"></a>六、DQN，DDQN实验结果对比</h2><p>可以看到DoubleDQN的表现比 DQN稳定</p>
+<p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548386089/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190125111426.png" alt=""></p>
+<h2 id="七、-Dueling-DDQN"><a href="#七、-Dueling-DDQN" class="headerlink" title="七、 Dueling DDQN"></a>七、 Dueling DDQN</h2><h2 id="八、-Dueling-DQN-DDQN-DQN对比"><a href="#八、-Dueling-DQN-DDQN-DQN对比" class="headerlink" title="八、 Dueling DQN, DDQN, DQN对比"></a>八、 Dueling DQN, DDQN, DQN对比</h2><p><img src="https://res.cloudinary.com/djhkiiiap/image/upload/v1548387003/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190125112753.png" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/post/22518.html">[强化学习笔记专题(二)]Nature DQN</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 zhkmxx930 的个人博客">zhkmxx930</a></p>
+  <p><span>发布时间:</span>2019年01月24日 - 16:01</p>
+  <p><span>最后更新:</span>2019年02月17日 - 21:02</p>
+  <p><span>原始链接:</span><a href="/post/22518.html" title="[强化学习笔记专题(二)]Nature DQN">https://zhkmxx9302013.github.io/post/22518.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://zhkmxx9302013.github.io/post/22518.html" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>一分钱也是爱，mua~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="zhkmxx930 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/强化学习/" rel="tag"># 强化学习</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-7575138372156475" data-ad-slot="3455315420"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/10845.html" rel="next" title="[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation">
+                <i class="fa fa-chevron-left"></i> [强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/b8a74939.html" rel="prev" title="干货收集">
+                干货收集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="zhkmxx930">
+            
+              <p class="site-author-name" itemprop="name">zhkmxx930</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhkmxx9302013" title="GitHub &rarr; https://github.com/zhkmxx9302013" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://zhkmxx930.leanote.com/" title="远方的家 &rarr; http://zhkmxx930.leanote.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-avianex"></i>远方的家</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://plushunter.github.io" title="https://plushunter.github.io" rel="noopener" target="_blank">Free Will</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://crystalmiao.com/" title="http://crystalmiao.com/" rel="noopener" target="_blank">老喵家小喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://eason-yang.com/categories/" title="https://eason-yang.com/categories/" rel="noopener" target="_blank">eason-yang的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jacksu.github.io/utils4s/" title="http://jacksu.github.io/utils4s/" rel="noopener" target="_blank">utils4s</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" title="http://www.kaimingwan.com/post/kafka/kafka-producerxing-neng-diao-you?utm_source=tuicool&utm_medium=referral" rel="noopener" target="_blank">Blog of Kami Wan</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/musi_shuang" title="https://blog.csdn.net/musi_shuang" rel="noopener" target="_blank">musi-tianshuang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shaun2016.github.io/" title="https://shaun2016.github.io/" rel="noopener" target="_blank">Shuan JM</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DQN-Nature"><span class="nav-text">DQN (Nature)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-算法流程："><span class="nav-text">一、 算法流程：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义可配置参数"><span class="nav-text">定义可配置参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DQN-一个Episode的流程"><span class="nav-text">DQN 一个Episode的流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不断迭代Episode流程-M-次"><span class="nav-text">不断迭代Episode流程$M$次</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#二、对应代码"><span class="nav-text">二、对应代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化-1"><span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、实验结果"><span class="nav-text">三、实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、DQN参考论文流程："><span class="nav-text">四、DQN参考论文流程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、Double-DQN"><span class="nav-text">五、Double DQN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、DQN，DDQN实验结果对比"><span class="nav-text">六、DQN，DDQN实验结果对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、-Dueling-DDQN"><span class="nav-text">七、 Dueling DDQN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、-Dueling-DQN-DDQN-DQN对比"><span class="nav-text">八、 Dueling DQN, DDQN, DQN对比</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhkmxx930</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">122k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">1:51</span>
+  
+</div>
+
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  本站总访问量<span id="busuanzi_value_site_uv"></span>次
+
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="powered-by">星际战舰 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.7.0</div>
+
+
+
+
+        
+ <span class="site-uv" title="你是我的第 undefined 位三体朋友，">
+ <span class="site-uv">
+   你是我的第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 位三体朋友，
+   <i class="fa fa-user"></i>
+   <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+  </span>
+
+
+ <span class="site-pv" title="共有 undefined 个三体星人来到该星球">
+ <span class="site-pv">
+   共有 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 个三体星人来到该星球
+   <i class="fa fa-eye"></i>
+   <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+  </span>
+
+
+
+
+
+
+
+        
+      </span></span></div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+      <div>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c49ca34f67bd1c6" async="async"></script>
+</div>
+
+      </div>
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: 'dhdGON8GhV8BltoYQwBHA7SE-gzGzoHsz',
+      appKey: 'eMDHv3t5DLe9eXn8hRSnOCXV',
+      placeholder: '留下您的三体星语',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "dhdGON8GhV8BltoYQwBHA7SE-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "dhdGON8GhV8BltoYQwBHA7SE-gzGzoHsz",
+                'X-LC-Key': "eMDHv3t5DLe9eXn8hRSnOCXV",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 16260,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("dhdGON8GhV8BltoYQwBHA7SE-gzGzoHsz", "eMDHv3t5DLe9eXn8hRSnOCXV");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"hOffset":0,"vOffset":-20,"position":"right","width":80,"height":320},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":1},"log":false,"tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end --><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

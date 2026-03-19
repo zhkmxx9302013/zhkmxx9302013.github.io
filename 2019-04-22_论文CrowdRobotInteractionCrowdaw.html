@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhkmxx9302013.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/config.min.js" defer></script>
+
+    <meta name="description" content="一、 概述1.1 解决的问题​    Crowd-Robot Interaction (CRI)，1.2 先前方法总结存在的问题 人群的集体影响通常是由成对相互作用的简化集合建模的，例如Maximin运算符或LSTM，它可能无法完全表示所有的相互作用。大多数方法只关注从人到机器人的单向交互，而忽略了人群中可能间接影响机器人的交互。 已有的方法【第一类基于人工设计函数】 Social Force">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[论文]Crowd-Robot Interaction:Crowd-aware Robot Navigation with Attention-based De">
+<meta property="og:url" content="https://zhkmxx9302013.github.io/2019-04-22_%E8%AE%BA%E6%96%87CrowdRobotInteractionCrowdaw.html">
+<meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="一、 概述1.1 解决的问题​    Crowd-Robot Interaction (CRI)，1.2 先前方法总结存在的问题 人群的集体影响通常是由成对相互作用的简化集合建模的，例如Maximin运算符或LSTM，它可能无法完全表示所有的相互作用。大多数方法只关注从人到机器人的单向交互，而忽略了人群中可能间接影响机器人的交互。 已有的方法【第一类基于人工设计函数】 Social Force">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-18T07:24:11.098Z">
+<meta property="article:author" content="zhkmxx930">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhkmxx9302013.github.io/2019-04-22_%E8%AE%BA%E6%96%87CrowdRobotInteractionCrowdaw.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhkmxx9302013.github.io/2019-04-22_%E8%AE%BA%E6%96%87CrowdRobotInteractionCrowdaw.html","path":"2019-04-22_论文CrowdRobotInteractionCrowdaw.html","title":"[论文]Crowd-Robot Interaction:Crowd-aware Robot Navigation with Attention-based De"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[论文]Crowd-Robot Interaction:Crowd-aware Robot Navigation with Attention-based De | zhkmxx930 blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/utils.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/motion.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/sidebar.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/next-boot.min.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/third-party/math/mathjax.min.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhkmxx930 blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zhkmxx930</p>
+  <div class="site-description" itemprop="description">技术博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhkmxx9302013.github.io/2019-04-22_%E8%AE%BA%E6%96%87CrowdRobotInteractionCrowdaw.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zhkmxx930">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+      <meta itemprop="description" content="技术博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[论文]Crowd-Robot Interaction:Crowd-aware Robot Navigation with Attention-based De | zhkmxx930 blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [论文]Crowd-Robot Interaction:Crowd-aware Robot Navigation with Attention-based De
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-22T00:00:00+08:00">2019-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-18 15:24:11" itemprop="dateModified" datetime="2026-03-18T15:24:11+08:00">2026-03-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>一、 概述1.1 解决的问题​    Crowd-Robot Interaction (CRI)，<br>1.2 先前方法总结<br>存在的问题</p>
+<p>人群的集体影响通常是由成对相互作用的简化集合建模的，例如Maximin运算符或LSTM，它可能无法完全表示所有的相互作用。<br>大多数方法只关注从人到机器人的单向交互，而忽略了人群中可能间接影响机器人的交互。</p>
+<p>已有的方法<br>【第一类基于人工设计函数】</p>
+<p>Social Force </p>
+<p>Interacting Gaussian Process (IGP)：<br>将每个agent的traj建模为一个独立的高斯过程，并提出一个相互作用势项来结合单个的高斯过程，进行相互作用。</p>
+<p>【第二类基于Imitation Learning】</p>
+<p>BC<br>IRL<br>GAIL</p>
+<p>【第三类基于强化学习】</p>
+<p>本文的方法</p>
+<p>用self-attention mechanism重新思考人-机器人的配对互动<br>在强化学习框架中联合建模Human-Robot和Human-Human 交互</p>
+<p>1.3 问题的建模robot从n个人的人群中穿越到目标点。<br>对于每一个agent(人和机器人)，已知：<br>【可相互观测】位置$p&#x3D;[p_x,p_y]$，速度$v&#x3D;[v_x,v_y]$，半径$r$<br>【不可观测】目标位置$p_g$，期望速度$v_{pref}$<br>【假设】robot的速度$v_t$，在执行action $a_t$ 后可以即时获得，$s_t$ 表示robot的状态，$w_t&#x3D;[w_t^1,w_t^2…w_t^n]$表示人的状态，Human-Robot联合状态可以表示为：$s_t^{jn}&#x3D;[s_t,w_t]$<br>【最优策略的定义】$\pi^*(s_t^{jn}):s_t^{jn}→a_t​$<br>【回报定义】$d_t$为$[t-\Delta t,t]$之间的robot与human的最小间隔</p>
+<p>1.4 价值网络训练基于TD、Replay buffer、target net。</p>
+<p>1-3行使用demonstration experience 进行 imitation learning 初始化</p>
+<p>4-14行 使用强化学习进行学习</p>
+<p>7行的下一时刻状态，使用的是通过仿真获得的真实值，而非通过线性模型进行估计，减少动态模型误差带来的影响。</p>
+<p>状态转移概率可以使用进行估计</p>
+<p>价值网络模型需要精确地近似最优价值函数$V$，该函数隐式地encode了agent之间的social coorperation。以前的工作并没有模拟人群交互，这降低了对人口稠密场景的价值估计的准确性。<br>二、 方法2.1 基本结构<br>Interaction module<br>对Human-Robot 交互进行显式建模，并通过粗粒度局部映射对Human-Robot进行encode。</p>
+<p>Pooling module<br>通过self-attention制将相互作用聚合成固定长度的嵌入向量。</p>
+<p>Planning module<br>估计robot和human联合状态对social navigation的value。</p>
+<p>2.2 详细模块说明2.2.1 Parameterization使用 robot-center parameterization。 以robot所在位置为中心，以当前位置到目标位置的向量方向为x轴。以此进行建模得到的robot及human的states如下：<br>其中 $d_g&#x3D;||p-p_g||_2$ 表示robot到目标点的距离，$d_i&#x3D;||p-p_i||_2$代表robot与neighbor $i$ 之间的距离。<br>2.2.2 Interaction Module如果考虑相互间的交互，那么算法的时间复杂度较高是$O(n^2)$的，本文使用local map 表示粗粒度的human-human的交互。</p>
+<p>构建local map 特征<br>假设neighbor大小为$L$, 那么以每个human $i$ 为中心构建一个$L×L×3$大小的 tensor $M_i$， 来encode neighbor的位置及速度特征。</p>
+<p>构建 embedded encode<br>使用human的state， map tensor以及 robot state 构建embedded vector $e_i$ (固定长度)，这里用一个MLP</p>
+<p>2.2.3</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019-04-20_%E8%AE%BA%E6%96%87GoExplore.html" rel="prev" title="[论文] Go-Explore">
+                  <i class="fa fa-angle-left"></i> [论文] Go-Explore
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019-04-29_%E8%AE%BA%E6%96%87DACDISCRIMINATORACTORCRITICA.html" rel="next" title="[论文](DAC) DISCRIMINATOR-ACTOR-CRITIC: ADDRESSING SAMPLE INEFFICIENCY AND REWARD ">
+                  [论文](DAC) DISCRIMINATOR-ACTOR-CRITIC: ADDRESSING SAMPLE INEFFICIENCY AND REWARD  <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zhkmxx930</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"tororo"},"display":{"position":"right","width":150,"height":150,"hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8,"opacityDefault":0.8,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

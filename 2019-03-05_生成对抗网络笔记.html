@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhkmxx9302013.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/config.min.js" defer></script>
+
+    <meta name="description" content="参考 一、 基本概念符号定义$D$ 判别模型， $G$ 生成模型$x​$ 数据集中的数据分布，$z​$ 某种随机分布 目标函数（详细参见第四部分）(找一系列D让其对应的V最大，然后在这些最大的V里面选一个最小的) D Loss (MC采样，相当于训练二分类器$x \sim P_{data}$一类，$\hat{x} \sim G(z)$一类): G Loss原始 （MiniMax GAN[MMGAN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成对抗网络(笔记)">
+<meta property="og:url" content="https://zhkmxx9302013.github.io/2019-03-05_%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0.html">
+<meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="参考 一、 基本概念符号定义$D$ 判别模型， $G$ 生成模型$x​$ 数据集中的数据分布，$z​$ 某种随机分布 目标函数（详细参见第四部分）(找一系列D让其对应的V最大，然后在这些最大的V里面选一个最小的) D Loss (MC采样，相当于训练二分类器$x \sim P_{data}$一类，$\hat{x} \sim G(z)$一类): G Loss原始 （MiniMax GAN[MMGAN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-18T07:24:12.932Z">
+<meta property="article:author" content="zhkmxx930">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhkmxx9302013.github.io/2019-03-05_%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhkmxx9302013.github.io/2019-03-05_%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0.html","path":"2019-03-05_生成对抗网络笔记.html","title":"生成对抗网络(笔记)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>生成对抗网络(笔记) | zhkmxx930 blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/utils.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/motion.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/sidebar.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/next-boot.min.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/third-party/math/mathjax.min.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhkmxx930 blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zhkmxx930</p>
+  <div class="site-description" itemprop="description">技术博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhkmxx9302013.github.io/2019-03-05_%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zhkmxx930">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+      <meta itemprop="description" content="技术博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="生成对抗网络(笔记) | zhkmxx930 blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          生成对抗网络(笔记)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-05T00:00:00+08:00">2019-03-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-18 15:24:12" itemprop="dateModified" datetime="2026-03-18T15:24:12+08:00">2026-03-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>参考</p>
+<p>一、 基本概念<br>符号定义<br>$D$ 判别模型， $G$ 生成模型<br>$x​$ 数据集中的数据分布，$z​$ 某种随机分布</p>
+<p>目标函数（详细参见第四部分）(找一系列D让其对应的V最大，然后在这些最大的V里面选一个最小的)</p>
+<p>D Loss (MC采样，相当于训练二分类器$x \sim P_{data}$一类，$\hat{x} \sim G(z)$一类):</p>
+<p>G Loss原始 （MiniMax GAN[MMGAN]）(判别器越好，生成器梯度消失越严重)</p>
+<p>G Loss改进 (Non-saturating GAN[NSGAN] )(-log trick) (其实与原始的差别不大)</p>
+<p>释义<br>$G$的目标是最大化生成数据与数据集数据的似然，减小生成数据与数据集数据之间的差距（原始GAN就是JSD）。对于生成器$ G $来说，为了尽可能欺骗$ D$，所以需要最大化生成样本的判别概率 $D(G(z))$，即最小化$ log(1-D(G(z)))$，注意：$log(D(x)) $一项与生成器$ G $无关，所以可以忽略。<br>$D$要解决的问题是一个二分类问题，$V(D,G)$ 为二分类问题中常见的交叉熵损失。</p>
+<p>二、 原理推导<br>参考: </p>
+<p>​    真实数据的分布$ P_{data}(x)$，$x$ 是一个真实数据，是一个向量，这个向量集合的分布就是 $P_{data}$。我们需要生成一些也在这个分布内的数据，如果直接就是这个分布的话，怕是做不到的。<br>​    现有的 Generator 生成的分布可以假设为 $P_G(x;θ)$，这是一个由 $ θ $ 控制的分布，$θ$ 是这个分布的参数（如果是高斯混合模型，那么 $ θ$ 就是每个高斯分布的均值和方差) 。<br>​    假设我们在真实分布中取出一些数据，${x_1, x_2, … , x_m}$，我们想要计算一个似然 $P_G(x_i; θ)$。<br>​    对于这些数据，在生成模型中的似然就是</p>
+<p>GAN原理<br>最大化上面这个似然，等价于让 Generator 生成那些真实数据分布的概率最大。这就变成了一个最大似然估计的问题了，我们需要找到一个 $θ^*$ 来最大化这个似然。(倒数第三行减掉的$P_{data}$项是为了凑KL，其不包含G的参数相关项，没有影响单调性。)</p>
+<p>固定$G$,求一个最优的$D^<em>​$<br>那么转为优化$f(D) &#x3D; P_{data}(x)\log D(x)+P_G(x)\log(1-D(x))$<br>对$f(D)$求偏导:<br>可以解得:<br>对于一个给定的 x，得到最优的 D 如上图，范围在 (0,1) 内，把最优的 $D^{</em>} ​$ 带入V<br>所以最终(V(G,D)可以看成是JSD)<br>表示两个分布之间的差异，最小值是$ -2log2​$，最大值为 $0​$。观察上式，当 $P_G(x)&#x3D;P_{data}(x)​$ 时，G 是最优的。</p>
+<p>三、GAN的训练有了上面推导的基础之后，我们就可以开始训练 GAN 了。结合我们开头说的，两个网络交替训练，我们可以在起初有一个 $G_0$ 和 $D_0$，先用Gradient Ascent训练 $D_0$ 找到 ：</p>
+<p>然后固定 $D_0​$ 开始训练 $G_0​$， 训练的过程都可以使用 gradient descent，以此类推，训练 $D_1,G_1,D_2,G_2,…​$<br>但是这里有个问题就是，你可能在 $D_0^*​$ 的位置取到了：</p>
+<p>然后更新 $G_0$ 为 $G_1​$，可能会出现：</p>
+<p>但是并不保证会出现一个新的点$ D_1^*$ 使得：</p>
+<p>这样更新 $G$ 就没达到它原来应该要的效果，如下图所示(G变化太大导致的JS值不稳定)：</p>
+<p>避免上述情况的方法就是更新 $G ​$的时候，不要更新 $G ​$太多。<br>知道了网络的训练顺序，我们还需要设定两个 loss function，一个是$ D$ 的 loss，一个是 $G$ 的 loss。下面是整个 GAN 的训练具体步骤：</p>
+<p>​    适当多练D，少练G以免G的变化过大，导致JS大小不稳定，在原始GAN中，D也不要练太多，原始GAN的D是一个二分类器，用sigmoid激活，如果练的太多，导致分布很难继续拟合，形象的说就是土推不动，这块儿可以用 Least square GAN来解决，参见下面这张图(来自李宏毅老师的教程。</p>
+<p>四、存在的问题<br>G的Loss function收敛速度问题：<br>  $G​$ 的 loss function $\mathbb{E}{_{x\sim P_g}}[log(1-D(x))]​$ 还是有一点小问题，下图是两个函数的图像：</p>
+<p>​    [问题原因] $log(1-D(x)) $是我们计算时 G 的 loss function，但是我们发现，在$ D(x) $接近于 0 的时候，这个函数十分平滑，梯度非常的小。这就会导致，在训练的初期，$G $想要骗过 $D$，变化十分的缓慢，而上面的函数，趋势和下面的是一样的，都是递减的。但是它的优势是在 $D(x) $接近 0 的时候，梯度很大，有利于训练，在 $D(x) $越来越大之后，梯度减小，这也很符合实际，在初期应该训练速度更快，到后期速度减慢。<br>​    [解决方案] 所以我们把$ G$ 的 loss function 修改为:</p>
+<p>Loss 没有变化，一直都是平的<br>[问题] 此时$max_DV(G,D)&#x3D;0$, $JS&#x3D;log2$, $P_G$和$P_{data}$由于$D$过拟合导致完全没有交集，但是实际上两个分布是有交集的，造成这个的原因是因为，我们无法真正计算期望和积分，只能使用 sample 的方法，如果训练的过拟合了，D 还是能够完全把两部分的点分开:</p>
+<p>[问题原因] 对于这个问题，我们是否应该让 $D$变得弱一点，减弱它的分类能力，但是从理论上讲，为了让它能够有效的区分真假图片，我们又希望它能够，所以这里就产生了矛盾。<br>还有可能的原因是，虽然两个分布都是高维的，但是两个分布都十分的窄，可能交集相当小，这样也会导致 JS divergence 算出来为$log2$，约等于没有交集。<br>[解决方案] 解决的一些方法，有添加噪声，让两个分布变得更宽，可能可以增大它们的交集，这样 JS divergence 就可以计算，但是随着时间变化，噪声需要逐渐变小，换一种距离计算方法比如使用Wasserstein</p>
+<p>Mode Collapse<br>Mode collapse的出现应该可以说是必然的，其通过不同的散度进行拟合，最优的情况很可能就是出现在某一个密度较高的分布峰上。结局mode collapse的方法可以使用ensemble的方式，我这边还尝试过先聚类后gan的方式。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019-03-01_HybridA%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92.html" rel="prev" title="Hybrid A* 路径规划">
+                  <i class="fa fa-angle-left"></i> Hybrid A* 路径规划
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019-03-06_A3CPPOGAE%E7%AC%94%E8%AE%B0.html" rel="next" title="A3C、PPO、GAE笔记">
+                  A3C、PPO、GAE笔记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zhkmxx930</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"tororo"},"display":{"position":"right","width":150,"height":150,"hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8,"opacityDefault":0.8,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

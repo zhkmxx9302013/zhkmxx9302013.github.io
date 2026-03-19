@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhkmxx9302013.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/config.min.js" defer></script>
+
+    <meta name="description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有意义：由此我们引出长期回报的概念，即从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="强化学习专题笔记(一) 强化学习基础">
+<meta property="og:url" content="https://zhkmxx9302013.github.io/2019-01-22_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E4%B8%80%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80.html">
+<meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有意义：由此我们引出长期回报的概念，即从">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-01-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-18T07:24:10.866Z">
+<meta property="article:author" content="zhkmxx930">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhkmxx9302013.github.io/2019-01-22_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E4%B8%80%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhkmxx9302013.github.io/2019-01-22_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E4%B8%80%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80.html","path":"2019-01-22_强化学习专题笔记一强化学习基础.html","title":"强化学习专题笔记(一) 强化学习基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>强化学习专题笔记(一) 强化学习基础 | zhkmxx930 blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/utils.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/motion.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/sidebar.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/next-boot.min.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/third-party/math/mathjax.min.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhkmxx930 blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zhkmxx930</p>
+  <div class="site-description" itemprop="description">技术博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhkmxx9302013.github.io/2019-01-22_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E4%B8%80%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zhkmxx930">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+      <meta itemprop="description" content="技术博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="强化学习专题笔记(一) 强化学习基础 | zhkmxx930 blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          强化学习专题笔记(一) 强化学习基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-01-22 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-22T00:00:00+08:00">2019-01-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-18 15:24:10" itemprop="dateModified" datetime="2026-03-18T15:24:10+08:00">2026-03-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>一、长期回报对于问题的简化，采用理想的MDP，简化问题到具有马尔科夫性，对于马尔科夫决策过程而言，在理想状态下，每一个行动都要为最终的目标最大化长期回报 而努力。<br>但是很多情况下，仿真的时间维度较大，步数较多，甚至可以无限循环下去，这样的情况下我们需要引入一个可以和收敛的无穷数列，来替代我们最原始的长期回报公式。即对未来的回报乘以一个折扣率，使得长期回报变得更有意义：<br>由此我们引出长期回报的概念，即从当前状态开始对之后的所有回报，运用上式进行累加的折扣率计算：<br>但是长期回报需要知道未来的行动情况，我们需要对上式进行一个合理的估计，因而我们定义了策略的价值。<br>二、值函数由于环境的原因，MDP中的状态转移概率有时候并不能够确定，因而需要基于状态转移来估计长期回报的期望。τ是从某个状态s出发，根据策略与状态转移概率采样得到的序列(trajectory)。那么价值函数可以表示为：<br>根据MDP模型的形式，值函数一般分为两种：</p>
+<p>状态值函数  $v_{\pi}{(s)}​$:               已知当前状态s，按照某种策略行动产生的长期回报期望；<br>状态-动作值函数  $q_{\pi}{(s,a)}​$:  已知当前状态s及动作a，按照某种策略行动产生的长期回报期望。</p>
+<p>由于符合马尔科夫性，我们可以将值函数的形式进行马尔科夫展开,其中${\pi(a_t|s_t)}$表示，在$s_t$状态下选择策略$\pi$的概率，策略$\pi$将产生行动$a_t$，$p(s_{t+1}|s_t,a_t)$表示在策略$\pi$的情况下，从$s_t，a_t$到达$s_{t+1}$的概率。<br>三、贝尔曼方程<br>状态值函数的贝尔曼方程</p>
+<p>通过代换消元，可以将上式整理为状态值函数的贝尔曼方程：<br>更直观一点可以将贝尔曼方程描述为一种DP的形式，即当前状态$s$下，选择策略$\pi$的长期回报期望。<br>按Sutton的书表示：</p>
+<p>状态-动作值函数的贝尔曼方程</p>
+<p>类似地，可以定义状态-动作值函数的贝尔曼方程：<br>按Sutton的书表示:</p>
+<p>Bellman optimality equation</p>
+<p>四、Monte-Carlo与Time Difference<br>MC 方差较大，需要较深的探索获取回报<br>TD  方差较小，偏差较大，可设定探索深度(1-step, n-step), Q-Learning, SARSA都属于TD</p>
+<p>【参考】<br>Monte-Carlo method适用于“情节式任务”（情节任务序列有终点，与“情节式任务”相对应的是“连续型任务”）。$Q(s,a)$就是整个序列的期望回报。MC增量更新中的Monte-Carlo error ($R-Q(s_t,a_t)$)：<br>TD（Time Difference） method，是MC和DP 方法的一个结合。相比MC方法，TD除了能够适用于连续任务外，和MC的差异从下图可以清楚看到。MC需要回退整个序列更新Q值，而TD只需要回退1步或n步更新Q值。因为MC需要等待序列结束才能训练，而TD没有这个限制，因此TD收敛速度明显比MC快，目前的主要算法都是基于TD。下图是TD和MC的回退图，很显然MC回退的更深。</p>
+<p>1-step TD error: ($r_{t+1}+\gamma Q(s_{t+1}a_{t+1}-Q(s_t,a_t)​$)：<br>n-steps TD error：</p>
+<p>TD(λ) error:</p>
+<p>事实上，MC error可以视为一个情节任务的max-step TD error。另外，一般来说，在TD error中，n越大，用到的真实回报信息更多，收敛也会越快。</p>
+<p>五、推荐文章</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019-01-18_MPC%E6%8E%A7%E5%88%B6%E7%AC%94%E8%AE%B0%E4%B8%80.html" rel="prev" title="MPC控制笔记(一)">
+                  <i class="fa fa-angle-left"></i> MPC控制笔记(一)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019-01-23_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87HDQNIntegratingTemporalA.html" rel="next" title="[强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation">
+                  [强化学习论文] (HDQN) Integrating Temporal Abstraction and Intrinsic Motivation <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zhkmxx930</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"tororo"},"display":{"position":"right","width":150,"height":150,"hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8,"opacityDefault":0.8,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhkmxx9302013.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/config.min.js" defer></script>
+
+    <meta name="description" content="迁移resnet到RISC-V Soc  改进Nano-scale UAV低功耗视觉导航模块  ULP cameraFlash&#x2F;DRAM memory兼容  提出CNN-Based DroNet在常规尺寸无人机上做离线计算在nano无人机上做在线计算 功耗6fps 功耗64mW18fps 功耗 272mW  DroNetDronet的训练，将一个未处理的图片转换成两个高层的信息(1) 估">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation En">
+<meta property="og:url" content="https://zhkmxx9302013.github.io/2019-06-03_%E8%AE%BA%E6%96%87AnOpenSourceandOpenHardwareD.html">
+<meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="迁移resnet到RISC-V Soc  改进Nano-scale UAV低功耗视觉导航模块  ULP cameraFlash&#x2F;DRAM memory兼容  提出CNN-Based DroNet在常规尺寸无人机上做离线计算在nano无人机上做在线计算 功耗6fps 功耗64mW18fps 功耗 272mW  DroNetDronet的训练，将一个未处理的图片转换成两个高层的信息(1) 估">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-06-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-18T07:24:11.439Z">
+<meta property="article:author" content="zhkmxx930">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhkmxx9302013.github.io/2019-06-03_%E8%AE%BA%E6%96%87AnOpenSourceandOpenHardwareD.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhkmxx9302013.github.io/2019-06-03_%E8%AE%BA%E6%96%87AnOpenSourceandOpenHardwareD.html","path":"2019-06-03_论文AnOpenSourceandOpenHardwareD.html","title":"[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation En"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation En | zhkmxx930 blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/utils.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/motion.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/sidebar.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/next-boot.min.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/third-party/math/mathjax.min.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhkmxx930 blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zhkmxx930</p>
+  <div class="site-description" itemprop="description">技术博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhkmxx9302013.github.io/2019-06-03_%E8%AE%BA%E6%96%87AnOpenSourceandOpenHardwareD.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zhkmxx930">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+      <meta itemprop="description" content="技术博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation En | zhkmxx930 blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation En
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-06-03 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-03T00:00:00+08:00">2019-06-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-18 15:24:11" itemprop="dateModified" datetime="2026-03-18T15:24:11+08:00">2026-03-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>迁移resnet到RISC-V Soc</p>
+<ol>
+<li>改进Nano-scale UAV<br>低功耗视觉导航模块</li>
+</ol>
+<p>ULP camera<br>Flash&#x2F;DRAM memory<br>兼容 </p>
+<p>提出CNN-Based DroNet<br>在常规尺寸无人机上做离线计算<br>在nano无人机上做在线计算</p>
+<p>功耗<br>6fps 功耗64mW<br>18fps 功耗 272mW</p>
+<ol start="2">
+<li>DroNetDronet的训练，将一个未处理的图片转换成两个高层的信息<br>(1) 估计障碍碰撞的概率，用来确定UAV的前向目标速度 (使用进行训练)<br>(2) 期望方向(根据障碍物、地上的白线等) (使用进行训练)</li>
+</ol>
+<p>网络结构</p>
+<p>   网络输出的方向角与障碍概率，直接影响到控制决策上，通过一个低通滤波器影响目标偏航角变化率，以及目标前向速度。</p>
+<p>计算平台 GAP8 SoC</p>
+<p>基于PULP开源架构， RISC-V精简指令集<br>两个子系统，一个供电模块<br>Fabric controller结构控制器，带一个RISC-V精简指令集的on-SoC微控制器<br>FC的结构跟微控制器相同，一个内部时钟，512kB SRAM(L2 Memory)，一个用于boot的ROM，一个适用于多种接口的IO子系统($\mu$DMA)<br>L2 Memory是与cpu独立的不会被cpu中断。</p>
+<p>8核加速器簇(Cluster(CL))(RISC-V指令集)<br>8核共享一个单独的指令缓存cache<br>8核共享一个64kB的L1暂存器<br>从L2 Memory到后端的数据移动由CL内部的DMA软件进行控制</p>
+<p>所有的core都支持RV32IMC指令集，和SIMD DSP扩展(SIMD是一个512B的单指令多数据向量)，能够实现基础的点积(加速线性代数计算及信号处理过程)。</p>
+<p>这种架构能够在具有规则的、可预测的数据访问模式的典型并行内核上实现最大的效率和利用率，同时节省共享数据缓存的区域开销。</p>
+<p>在嵌入式上应用算法<br>​    首先，导航算法必须能够以足以实现令人满意的闭环控制性能的帧速率执行主要工作负荷（一次解算需要的乘法累积操作约4100万次）。此外，虽然嵌入式处理器通常使用较低的精度来表示数据和较低分辨率的图像，但结果的质量必须保持与原始算法相似。这些限制对原始算法进行了很多调整，在无人机的情况下，可以分为两大类。<br>(1) 数据集fine-tuning 并将网络离散分层(network quantization)</p>
+<p>使用一个grayscale QVGA-resolution HiMax摄像头，采集数据，1122 张用于训练的新图片 以及228 张用于test&#x2F;validation的新图片，将其丢到开源的碰撞数据集中去。<br>将3x3卷积换成2x2的<br>将浮点换成定点表示<br>通过测试，中间的feature map的动态阈值范围在+-16，精度2^-11，足够用来表示BN+激活函数后的值。<br>将所有的Relu使用16位 Q5.11定点表示（整数5位带符号，11位小数定点）。<br>网络重新训练，架构不变。</p>
+<p>(2) BN 折叠</p>
+<p>BN过程是线性的，可以将其计算合并到卷积层中去，具体是将BN折叠到卷积层权重W和偏置b中去，假设$\gamma, \beta,\sigma ,\mu$是normalization的参数，则有：</p>
+<p>DroNet中主枝上的Res block是经过BN的，旁支的没有经过BN，因而还需要对上式做调整。先当做每一个res block都进行了BN，然后对旁支上的res block用下式进行反BN:</p>
+<p>最终的DroNet权重使用定点Q2.14， 除了第一层的分支层使用Q9.7</p>
+<ol start="3">
+<li>PULP-Shieldpulpshield：</li>
+</ol>
+<p>板载视觉导航引擎<br>可以兼容Crazyflie 2.0 (CF) nano-quadrotor （10cm直径，27g，支持最大15g载重）<br>其核心基于GAP8 SoC<br>两个Cypress HyperBus Memories，使其能灵活配置一个甚低功耗的 gray-scale HiMax QVGA CMOS image sensor, 通过平行相机接口协议(parallel camera interface PCI)进行交互。<br>在两个BGA memory槽上，挂载一个64 Mbit HyperRAM (DRAM) chip 和一个 128 Mbit HyperFlash memory</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019-04-29_%E8%AE%BA%E6%96%87DACDISCRIMINATORACTORCRITICA.html" rel="prev" title="[论文](DAC) DISCRIMINATOR-ACTOR-CRITIC: ADDRESSING SAMPLE INEFFICIENCY AND REWARD ">
+                  <i class="fa fa-angle-left"></i> [论文](DAC) DISCRIMINATOR-ACTOR-CRITIC: ADDRESSING SAMPLE INEFFICIENCY AND REWARD 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019-06-28_%E8%AE%BA%E6%96%87RealTimeVisualInertialMappin.html" rel="next" title="[论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs">
+                  [论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zhkmxx930</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"tororo"},"display":{"position":"right","width":150,"height":150,"hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8,"opacityDefault":0.8,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

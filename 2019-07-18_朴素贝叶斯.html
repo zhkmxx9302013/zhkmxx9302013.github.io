@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhkmxx9302013.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/config.min.js" defer></script>
+
+    <meta name="description" content="朴素贝叶斯1.1 极大似然估计的朴素贝叶斯特点： 计算简单，假设约束较强，假设每个条件分布都是独立的。  推导时使用的数学工具： 条件独立假设通过贝叶斯公式，得到后验概率构建0-1损失函数，对其进行推导可得到0-1损失函数时的期望风险最小化准则与后验概率最大化准则的等价性由上一条得出最大后验概率使用极大似然估计，对先验概率及条件概率进行估计。 算法目标即核心公式： 目标:​        是为了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="朴素贝叶斯">
+<meta property="og:url" content="https://zhkmxx9302013.github.io/2019-07-18_%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF.html">
+<meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="朴素贝叶斯1.1 极大似然估计的朴素贝叶斯特点： 计算简单，假设约束较强，假设每个条件分布都是独立的。  推导时使用的数学工具： 条件独立假设通过贝叶斯公式，得到后验概率构建0-1损失函数，对其进行推导可得到0-1损失函数时的期望风险最小化准则与后验概率最大化准则的等价性由上一条得出最大后验概率使用极大似然估计，对先验概率及条件概率进行估计。 算法目标即核心公式： 目标:​        是为了">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-18T07:24:13.535Z">
+<meta property="article:author" content="zhkmxx930">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhkmxx9302013.github.io/2019-07-18_%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhkmxx9302013.github.io/2019-07-18_%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF.html","path":"2019-07-18_朴素贝叶斯.html","title":"朴素贝叶斯"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>朴素贝叶斯 | zhkmxx930 blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/utils.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/motion.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/sidebar.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/next-boot.min.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/third-party/math/mathjax.min.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhkmxx930 blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zhkmxx930</p>
+  <div class="site-description" itemprop="description">技术博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhkmxx9302013.github.io/2019-07-18_%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zhkmxx930">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+      <meta itemprop="description" content="技术博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="朴素贝叶斯 | zhkmxx930 blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          朴素贝叶斯
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-07-18 00:00:00" itemprop="dateCreated datePublished" datetime="2019-07-18T00:00:00+08:00">2019-07-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-18 15:24:13" itemprop="dateModified" datetime="2026-03-18T15:24:13+08:00">2026-03-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><ol>
+<li>朴素贝叶斯1.1 极大似然估计的朴素贝叶斯<br>特点： 计算简单，假设约束较强，假设每个条件分布都是独立的。</li>
+</ol>
+<p>推导时使用的数学工具：</p>
+<p>条件独立假设<br>通过贝叶斯公式，得到后验概率<br>构建0-1损失函数，对其进行推导可得到0-1损失函数时的期望风险最小化准则与后验概率最大化准则的等价性<br>由上一条得出最大后验概率<br>使用极大似然估计，对先验概率及条件概率进行估计。</p>
+<p>算法目标即核心公式：</p>
+<p>目标:<br>​        是为了推出最大后验概率，计算过程中用到联合概率及先验概率，因而是生成模型，将生成数据的过程全都算了一遍</p>
+<p>核心公式：</p>
+<p>算法步骤：</p>
+<p>计算先验概率及条件概率</p>
+<p>先验：</p>
+<p>条件：</p>
+<p>对于给定的数据集计算不同类别的后验概率（j是对数据集的每个特征进行条件概率累乘）</p>
+<p>选择最大的后验概率作为最终分类</p>
+<p>1.2 贝叶斯估计的朴素贝叶斯由于极大似然估计的朴素贝叶斯，在极大似然估计过程中可能出现概率为0的情况，影响后续计算。因而使用贝叶斯估计，在先验概率及条件概率公式中加入$\lambda$作为平滑项。</p>
+<p>先验：($K$为分类类别)</p>
+<p>条件:($S_j$为第j个特征的可能的取值)</p>
+<p>当$\lambda &#x3D; 0$的时候即为极大似然估计，$\lambda&#x3D;1$的时候为拉普拉斯平滑。<br>​<br>2. 由贝叶斯得到的Sigmoid在二分类过程中，由上述的二分类的贝叶斯公式可以得到：<br>对该式上下除以分子得到：<br>其中：<br>3. 分类问题从贝叶斯角度入手，对于二分类问题，可以用两个高斯分布去对其进行极大似然估计，$N_1(\mu1,\Sigma_1)$,$N_2(\mu2,\Sigma_2)$<br>如果两个分布的$\Sigma$不同，则其分类决策面是一个非线性的，两个分布的$\Sigma$相同，其分类决策面是一个线性的，其中的原因可以由使用贝叶斯公式得到的Sigmoid函数的展开来说明。两个分布的协方差矩阵相同的话可以做一次简化，使其形式上是线性方程。<br>推导过程参考<br>4. Linear Regression 和 Logistic Regression4.1 关于交叉熵在逻辑回归中，对于二分类问题可以定义其似然函数为：<br>对其取对数似然:<br>这里$\sum$后面的部分就是交叉熵$C$<br>其中$p$为训练集中的样本标签分布：<br>其中$q$为模型预测的标签分布：<br>4.2 二者异同</p>
+<p>Logistic Regression<br>Linear Regression</p>
+<p>函数集<br>$f_{w,b}(x)&#x3D;\sigma(\sum_i w_ix_i+b)$ 该函数值域介于0~1之间<br>$f_{w,b}(x)&#x3D;\sum_i w_ix_i+b$ 该函数值域是任意实数</p>
+<p>Loss<br>训练集：$(x^n,\hat{y}^n)$ ,$\hat{y}^n$满足伯努利分布，$L(f)&#x3D; \sum _n C(f(x^n),\hat{y}^n)$<br>训练集：$(x^n,\hat{y}^n)$ ,$\hat{y}^n$是任意实数，$L(f)&#x3D; \frac{1}{2}\sum _n (f(x^n),\hat{y}^n)^2$</p>
+<p>GD<br>$ w_i&#x3D;w_i - \eta\sum_n-(\hat{y}^n-f_{w,b}(x^n))x_i^n$<br>$ w_i&#x3D;w_i - \eta\sum_n-(\hat{y}^n-f_{w,b}(x^n))x_i^n$</p>
+<p>4.3 关于Logistic Regression为何不使用平方误差作为loss若像Linear Regression一样使用平方误差作为loss，公式展开后会发现，当$\hat{y}^n&#x3D;0$时，无论$f_{w,b}(x^n)$为0还是1，其loss都为0，这使得训练过程极为缓慢，并且难以调参得到效果。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019-06-28_%E8%AE%BA%E6%96%87RealTimeVisualInertialMappin.html" rel="prev" title="[论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs">
+                  <i class="fa fa-angle-left"></i> [论文]Real-Time Visual-Inertial Mapping, Re-localization and Planning Onboard MAVs
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026-03-17_AI%E5%86%9B%E4%BA%8B%E5%89%8D%E6%B2%BF%E6%97%A5%E6%8A%A5.html" rel="next" title="AI军事前沿日报 2026-03-17">
+                  AI军事前沿日报 2026-03-17 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zhkmxx930</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"tororo"},"display":{"position":"right","width":150,"height":150,"hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8,"opacityDefault":0.8,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

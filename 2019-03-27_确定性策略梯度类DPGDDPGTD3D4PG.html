@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhkmxx9302013.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/config.min.js" defer></script>
+
+    <meta name="description" content="参考 一、确定性策略梯度​    Deepmind的D.Silver等在2014年提出DPG： Deterministic Policy Gradient， 即确定性的行为策略，每一步的行为通过函数$μ$直接获得确定的值：​    这个函数$μ$即最优行为策略，不再是一个需要采样的随机策略。为何需要确定性的策略？简单来说，PG方法有以下缺陷：​    即使通过PG学习得到了随机策略之后，在每一步行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【确定性策略梯度类】 DPG,DDPG,TD3,D4PG">
+<meta property="og:url" content="https://zhkmxx9302013.github.io/2019-03-27_%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E7%B1%BBDPGDDPGTD3D4PG.html">
+<meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="参考 一、确定性策略梯度​    Deepmind的D.Silver等在2014年提出DPG： Deterministic Policy Gradient， 即确定性的行为策略，每一步的行为通过函数$μ$直接获得确定的值：​    这个函数$μ$即最优行为策略，不再是一个需要采样的随机策略。为何需要确定性的策略？简单来说，PG方法有以下缺陷：​    即使通过PG学习得到了随机策略之后，在每一步行">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-18T07:24:13.348Z">
+<meta property="article:author" content="zhkmxx930">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhkmxx9302013.github.io/2019-03-27_%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E7%B1%BBDPGDDPGTD3D4PG.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhkmxx9302013.github.io/2019-03-27_%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E7%B1%BBDPGDDPGTD3D4PG.html","path":"2019-03-27_确定性策略梯度类DPGDDPGTD3D4PG.html","title":"【确定性策略梯度类】 DPG,DDPG,TD3,D4PG"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【确定性策略梯度类】 DPG,DDPG,TD3,D4PG | zhkmxx930 blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/utils.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/motion.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/sidebar.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/next-boot.min.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/third-party/math/mathjax.min.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhkmxx930 blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zhkmxx930</p>
+  <div class="site-description" itemprop="description">技术博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhkmxx9302013.github.io/2019-03-27_%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E7%B1%BBDPGDDPGTD3D4PG.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zhkmxx930">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+      <meta itemprop="description" content="技术博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【确定性策略梯度类】 DPG,DDPG,TD3,D4PG | zhkmxx930 blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【确定性策略梯度类】 DPG,DDPG,TD3,D4PG
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-27T00:00:00+08:00">2019-03-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-18 15:24:13" itemprop="dateModified" datetime="2026-03-18T15:24:13+08:00">2026-03-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>参考</p>
+<p>一、确定性策略梯度​    Deepmind的D.Silver等在2014年提出DPG： Deterministic Policy Gradient， 即确定性的行为策略，每一步的行为通过函数$μ$直接获得确定的值：<br>​    这个函数$μ$即最优行为策略，不再是一个需要采样的随机策略。为何需要确定性的策略？简单来说，PG方法有以下缺陷：<br>​    即使通过PG学习得到了随机策略之后，在每一步行为时，我们还需要对得到的最优策略概率分布进行采样，才能获得action的具体值；而action通常是高维的向量，比如25维、50维，在高维的action空间的频繁采样，无疑是很耗费计算能力的。在PG的学习过程中，每一步计算policy gradient都需要在整个action space进行积分:<br>​    这个积分我们一般通过Monte Carlo 采样来进行估算，需要在高维的action空间进行采样，耗费计算能力。如果采取简单的Greedy策略，即每一步求解$ argmax_a Q(s,a)$也不可行，因为在连续的、高维度的action空间，如果每一步都求全局最优解，太耗费计算性能。​    将DPG算法融合进actor-critic框架，结合Q-learning或者Gradient Q-learning这些传统的Q函数学习方法，经过训练得到一个确定性的最优行为策略函数。</p>
+<p>二、DPGDPG算法本身采用的是PG方法,且是Off-Policy方法(也可以是On-Policy)，因而直接对轨迹的价值回报进行求导。如下式求导，其中$\mu_\theta (s)$为生成确定性行动的策略函数。<br>根据链式法则，由于$\mu_\theta(s)$与确定性策略价值函数$q_\mu$有关,因而：<br>由于是确定性策略，在价值函数$q(s,μ_\theta(s))$中有策略参数$\theta$，因此需要将价值函数对策略求导。<br>相较于随机策略梯度算法而言,如下是随机性策略梯度的目标函数梯度:<br>在DPG这个梯度公式中，没有了与动作有关的期望项，因此相对于随机性策略，确定性策略需要的学习数据少，算法效率高，尤其对于动作空间维数很大的情况。</p>
+<p>三、策略模型参数的一致性​    在DPG中为了更好地使用Off-policy,并使用TD降低方差，定义函数 $Q^\omega (s,a):S×A→R$ 用来拟合真实的状态动作值函数$\hat{Q}^\pi(s,a)$，如果$Q^\omega$收敛，那么L2范数梯度将满足如下公式:<br>​    在计算梯度时可以使用$Q^ω:S×A→R $代替真实的动作状态值函数$Q(s,a) $。并且神经网络满足这个性质，因此可以使用神经网络拟合动作状态值函数。这样价值模型不需要遵循某个具体的策略，因此可以使用off-policy的方式进行学习更新。</p>
+<p>四、DPG目标函数<br>on-policy的确定性策略梯度算法</p>
+<p>off-policy的确定性策略梯度算法(Replay buffer中的数据是通过$\beta$采样得到的)                  </p>
+<p>​        上两式的区别就是使用了不同的数据采样分布。可以看到off-policy缺少了重要性采样，这是由于确定性策略的动作是固定值，不是一个分布；其次是因为确定性策略值函数的评估采用的是Q-learning的方法，即使用TD(0)估计动作值函数并忽略重要性权重，值函数不依赖于任何策略，并贪心获取下一个动作。<br>​     这个$β$不是我们想要得到的最优策略，仅仅在训练过程中，生成下达给环境的action， 从而获得我们想要的数据集，比如状态转换(transitions)、或者agent的行走路径等，然后利用这个数据集去 训练策略$μ$，以获得最优策略。在test 和 evaluation时，使用$μ$，不会再使用$β$。</p>
+<p>[Actor]衡量一个策略网络的表现(策略网络目标函数)，最大化策略目标: (根据上面推导的DPG)</p>
+<p>​    $s$是环境的状态，这些状态(或者说agent在环境中走过的状态路径)是基于agent的behavior策略产生的，它们的分布函数(pdf) 为$ρ^β$；​    $Q^\omega(s,μ(s))$ 是在每个状态下，如果都按照$μ$策略选择acton时，能够产生的$Q$值。 也即，$J_β(μ)$是在$s$根据$ρ^β$分布时，$Q^\omega(s,μ(s))​$ 的期望值。</p>
+<p>[Critic]最小化值网络目标:</p>
+<p>最终DPG的目标函数为:（$\omega$是值网络(SGD优化)，$\theta$是策略网络(SGA优化)）<br>​<br>参数更新为：</p>
+<p>五、DDPGDDPG借用了target net还有滑动平均方法更新behavior网络参数<br>其更新方法如下：</p>
+<p>对比一下DQN</p>
+<p>六、TD3<br>参考：</p>
+<p>TD3(Twin Delayed Deep Deterministic policy gradient algorithm )主要对DDPG做了一些改进:</p>
+<p>引入DoubleDQN的思想，来消除过拟合问题(两个Critic, 一个Actor)<br>DoubleDQN中使用Current Net（Behavior net）来代替TargetNet，以减小Bias。<br>映射到DPG过程中,其中$\pi_φ(s’)$是CurrentNet:<br>即critic用更新较慢的target network，actor还是更新快的；但由于本身actor更新也不快，所以没啥效果。<br>如果类比double Q-learning，使用两个actor、两个critic写出来的更新目标为</p>
+<p>本着“宁可低估，也不要高估”的想法（因为actor会选择高的，因此高估的会累积起来），再把目标改写成</p>
+<p>最后发现两个actor也没啥用，就用一个actor，这个actor根据 $Q_{\theta_1}​$ 来更新。两个critic的更新目标都是一样的，即 $y_2 &#x3D; y_1​$ 。这样的算法相比于改变之前的就等于多了一个和原来critic同步更新的辅助critic $Q_{\theta_2} ​$，在更新target的时候用来取min。</p>
+<p>使用TargetNet<br>实验结果表明，当policy固定不变的时候，是否使用target network其价值函数都能最后收敛到正确的值；但是actor和critic同步训练的时候，不用target network可能使得训练不稳定或者发散。因此算法的中critic的更新目标都由target network计算出来</p>
+<p>并且，价值函数估计准确之后再来更新policy会更好，因此采用了delayed policy update，即以较高的频率更新价值函数，以较低的频率更新policy。</p>
+<p>使用Target Policy 平滑正则<br>希望学到的价值函数在action的维度上更平滑，因此价值函数的更新目标每次都在action上加一个小扰动</p>
+<p>七、D4PG<br>论文 </p>
+<p>总体框架与DDPG相同，引入了一些trick：</p>
+<p>支持分布式，由于是off-policy的算法，因此可以使用多个actor去分布式地采样，然后存储在同一个replay buffer中，learner从buffer中采样，更新之后再将权重同步到各个actor上</p>
+<p>critic使用价值函数分布，损失函数变为(d是距离度量)：<br>其中$(T_\pi Z)(x, a)&#x3D;r(x,a)+\gamma\mathbb{E}[Z(x’,\pi(x’))|x,a]$ 为 distributional Bellman operator, $Z$是用来估计Q的， $Q_\pi(x,a) &#x3D; \mathbb{E}Z_\pi(x,a)$</p>
+<p>引入n-step TD error：这样可以减少更新的variance</p>
+<p>使用prioritized experience replay：可以加速学习</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019-03-18_%E8%81%9A%E7%B1%BB%E6%96%B9%E6%B3%95.html" rel="prev" title="聚类方法">
+                  <i class="fa fa-angle-left"></i> 聚类方法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019-03-31_%E8%AE%BA%E6%96%87DataEfficientHierarchicalRei.html" rel="next" title="[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)">
+                  [论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO) <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zhkmxx930</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"tororo"},"display":{"position":"right","width":150,"height":150,"hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8,"opacityDefault":0.8,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhkmxx9302013.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/config.min.js" defer></script>
+
+    <meta name="description" content="一、概述1.1 AIL存在的问题bias reward，由于不正确的MDP吸收态导致的回报偏差需要大量的交互，才能使得策略收敛absorbing state（MDP吸收态）无法学习 1.2 本文所提方案Discriminator-Actor-Critic (DAC)  兼容GAIL及AIRL框架，在二者原有框架基础上扩展 off-policy discriminator及 off-policy a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[论文](DAC) DISCRIMINATOR-ACTOR-CRITIC: ADDRESSING SAMPLE INEFFICIENCY AND REWARD ">
+<meta property="og:url" content="https://zhkmxx9302013.github.io/2019-04-29_%E8%AE%BA%E6%96%87DACDISCRIMINATORACTORCRITICA.html">
+<meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="一、概述1.1 AIL存在的问题bias reward，由于不正确的MDP吸收态导致的回报偏差需要大量的交互，才能使得策略收敛absorbing state（MDP吸收态）无法学习 1.2 本文所提方案Discriminator-Actor-Critic (DAC)  兼容GAIL及AIRL框架，在二者原有框架基础上扩展 off-policy discriminator及 off-policy a">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-18T07:24:11.846Z">
+<meta property="article:author" content="zhkmxx930">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhkmxx9302013.github.io/2019-04-29_%E8%AE%BA%E6%96%87DACDISCRIMINATORACTORCRITICA.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhkmxx9302013.github.io/2019-04-29_%E8%AE%BA%E6%96%87DACDISCRIMINATORACTORCRITICA.html","path":"2019-04-29_论文DACDISCRIMINATORACTORCRITICA.html","title":"[论文](DAC) DISCRIMINATOR-ACTOR-CRITIC: ADDRESSING SAMPLE INEFFICIENCY AND REWARD "}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[论文](DAC) DISCRIMINATOR-ACTOR-CRITIC: ADDRESSING SAMPLE INEFFICIENCY AND REWARD  | zhkmxx930 blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/utils.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/motion.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/sidebar.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/next-boot.min.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/third-party/math/mathjax.min.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhkmxx930 blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zhkmxx930</p>
+  <div class="site-description" itemprop="description">技术博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhkmxx9302013.github.io/2019-04-29_%E8%AE%BA%E6%96%87DACDISCRIMINATORACTORCRITICA.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zhkmxx930">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+      <meta itemprop="description" content="技术博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[论文](DAC) DISCRIMINATOR-ACTOR-CRITIC: ADDRESSING SAMPLE INEFFICIENCY AND REWARD  | zhkmxx930 blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [论文](DAC) DISCRIMINATOR-ACTOR-CRITIC: ADDRESSING SAMPLE INEFFICIENCY AND REWARD 
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-29 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-29T00:00:00+08:00">2019-04-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-18 15:24:11" itemprop="dateModified" datetime="2026-03-18T15:24:11+08:00">2026-03-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>一、概述1.1 AIL存在的问题<br>bias reward，由于不正确的MDP吸收态导致的回报偏差<br>需要大量的交互，才能使得策略收敛<br>absorbing state（MDP吸收态）无法学习</p>
+<p>1.2 本文所提方案<br>Discriminator-Actor-Critic (DAC)  兼容GAIL及AIRL框架，在二者原有框架基础上扩展 off-policy discriminator及 off-policy actor-critic 算法<br>改进：<br>通过上述改进去除了AIL算法中由于不准确的吸收态导致的偏差(bias due to the incorrect absorbing state)<br>加速从demonstration中的学习速度(off policy扩展)<br>增加鲁棒性。</p>
+<p>二、方法2.1 Bias in Reward<br>Absorbing states in MDPs:  GAIL (GMMIL), Option GAN, AIRL，等这种AIL框架的算法，都忽略了absorbing state, 无法学习到吸收态的回报，所以导致吸收态的回报是0<br>一种常见的reward类型：$r(s,a)&#x3D;-\log(1-D(s,a))​$，这种严格正值reward容易导致局部最优，而且agent都被这种positive reward带跑偏了，去追求更高的reward，而不是真正的去学习demonstration。<br>另一种常见的reward类型：$r(s,a)&#x3D;\log(D(s,a))$ ,这种回报经常用在单步penalty的场景，加入一个固定的单步惩罚，这种的并不能很好的学到一个优秀的策略，事实上，这种强先验式回报即使不用模仿demonstration也可能获得一个好结果.</p>
+<p>2.2 Unbias in Reward作者要明确吸收态的回报$R_T&#x3D;r(s_T,a_T) + \sum_{t&#x3D;T+1}^{\infin}\gamma^{t-T}r(s_a,\cdot)$， 注意这里使用的是一个学到的回报$r(s_a,\cdot)$, 而非直接使用$R_T&#x3D;r(s_T,a_T)$，这样将吸收态回报引入到学习过程，根据吸收态回报进行策略的学习。<br>为了能够兼容AIL以及RL框架，来兼顾吸收态进行学习，作者提出以下方案进行rollout：<br>完成一个episode的时候，将终态到吸收态的transition ($s_T,s_a$) 以及吸收态到吸收态的transition ($s_a,s_a​$) 一起作为transition。<br>实现的时候，需要一个标志位来标识其是否是吸收态。<br>2.3 解决采样效率问题使用off-policy RL以及 off-policy Discriminator来改善GAIL。</p>
+<p>将从策略采样换成从replay buffer采样<br>采样上使用重要性采样：<br>在实践过程中，重要性采样以及Discriminator的大方差，导致其训练效果不好，因而实践中省略掉了重要性采样权重。</p>
+<p>TRPO 效果不如 PPO，这里使用了off-policy的TD3来替换on-policy，使用Discriminator的值作为回报进行训练。off-policy还可以应对multi modal情况，避免GAN带来的mode collapse问题。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019-04-22_%E8%AE%BA%E6%96%87CrowdRobotInteractionCrowdaw.html" rel="prev" title="[论文]Crowd-Robot Interaction:Crowd-aware Robot Navigation with Attention-based De">
+                  <i class="fa fa-angle-left"></i> [论文]Crowd-Robot Interaction:Crowd-aware Robot Navigation with Attention-based De
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019-06-03_%E8%AE%BA%E6%96%87AnOpenSourceandOpenHardwareD.html" rel="next" title="[论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation En">
+                  [论文] An Open Source and Open Hardware Deep Learning-powered Visual Navigation En <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zhkmxx930</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"tororo"},"display":{"position":"right","width":150,"height":150,"hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8,"opacityDefault":0.8,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

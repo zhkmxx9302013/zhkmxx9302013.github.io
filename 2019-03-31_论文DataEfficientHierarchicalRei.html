@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhkmxx9302013.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/config.min.js" defer></script>
+
+    <meta name="description" content="一、概述提出一种较为通用的，去除繁杂假设的，高效的算法层次强化学习算法框架； 框架$High-Level  \space\space\space\space\space     {———&gt;}^{auto}  \space\space\space\space Goal  ————&gt; ^{supervised}   \space\space\space\space Low-Level co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)">
+<meta property="og:url" content="https://zhkmxx9302013.github.io/2019-03-31_%E8%AE%BA%E6%96%87DataEfficientHierarchicalRei.html">
+<meta property="og:site_name" content="zhkmxx930 blog">
+<meta property="og:description" content="一、概述提出一种较为通用的，去除繁杂假设的，高效的算法层次强化学习算法框架； 框架$High-Level  \space\space\space\space\space     {———&gt;}^{auto}  \space\space\space\space Goal  ————&gt; ^{supervised}   \space\space\space\space Low-Level co">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-18T07:24:13.490Z">
+<meta property="article:author" content="zhkmxx930">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhkmxx9302013.github.io/2019-03-31_%E8%AE%BA%E6%96%87DataEfficientHierarchicalRei.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhkmxx9302013.github.io/2019-03-31_%E8%AE%BA%E6%96%87DataEfficientHierarchicalRei.html","path":"2019-03-31_论文DataEfficientHierarchicalRei.html","title":"[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO) | zhkmxx930 blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/utils.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/motion.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/sidebar.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/next-boot.min.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.27.0/third-party/math/mathjax.min.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhkmxx930 blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zhkmxx930</p>
+  <div class="site-description" itemprop="description">技术博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhkmxx9302013.github.io/2019-03-31_%E8%AE%BA%E6%96%87DataEfficientHierarchicalRei.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zhkmxx930">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhkmxx930 blog">
+      <meta itemprop="description" content="技术博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO) | zhkmxx930 blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [论文] Data-Efficient Hierarchical Reinforcement Learning(HIRO)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-31 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-31T00:00:00+08:00">2019-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-18 15:24:13" itemprop="dateModified" datetime="2026-03-18T15:24:13+08:00">2026-03-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>一、概述<br>提出一种较为通用的，去除繁杂假设的，高效的算法层次强化学习算法框架；</p>
+<p>框架<br>$High-Level  \space\space\space\space\space     {———&gt;}^{auto}  \space\space\space\space Goal  ————&gt; ^{supervised}   \space\space\space\space Low-Level controller$</p>
+<p>使用Off-Policy进行High-level及Low-level训练，通用化的设计，使得较好的在low-level controller中使用DDPG，TD3等确定性、off-policy的算法，兼容性强；</p>
+<p>提出针对于High-level的Off-Policy Correction。</p>
+<p>二、 方法HIRO(HIerarchical Reinforcement learning with Off-policy correction)</p>
+<p>[Low-level $\mu^{lo}$]<br>使用 Parameterized reward function 来表达特定的底层策略(潜在的无穷集合)；<br>通过训练相关策略，使其能够将obs $S_t$ 与期望Goal $g_t$相匹配。</p>
+<p>[High-level $\mu^{hi}$]<br>为temporally-extended experience选择目标序列；<br>使用off-policy correction使得其可以使用过往经验，来适应新的底层控制器策略。</p>
+<p>[综合] </p>
+<p>高层控制器构建较粗的抽象的目标给底层；</p>
+<p>这些目标直接对应于底层控制器想要尝试去达到的states；</p>
+<p>每一个timestep, 高层控制器使用由环境交互产生的state，并通过<br>​    ①每隔一段时间从高层控制器网络$\mu^{hi}$中进行采样($g_t\sim\mu^{hi}$)，或者<br>​    ②使用一个固定的目标转换函数$g_t&#x3D;h(s_{t-1},g_{t-1},s_t)$<br>等方式来生成high-level action(or goal) $g_t\in\mathbb{R}^{d_s}$；</p>
+<p>对于上述产生的目标成为临时目标，每固定c步将进行重新采样；</p>
+<p>底层控制器通过当前的状态及目标进行决策到仿真环境的动作$a_t \sim \mu^{lo}(s_t,g_t)$；</p>
+<p>高层控制器使用一个固定的Parameterized reward function $r$ 向底层控制器提供一个内在的回报函数(intrinsic reward) $r_t&#x3D;r(s_t,g_t,a_t,s_{t+_1})$；</p>
+<p>底层策略将存储经验$(s_t,g_t,a_t,r_t,s_{t+1},h(s_t,g_t,s_{t+1}))$用于off-policy training；</p>
+<p>高层控制器每隔c步获取环境回报$R_t$，存储高层状态转移序列$(s_{t:t+c-1},g_{t:t+c-1},a_{t:t+c-1},R_{t:t+c-1},s_{t+c})​$用于off-policy training。</p>
+<p>三、具体策略<br>Parameterized reward function<br>(1) 如何理解目标$g_t$<br>​    高层控制器产生的Goal $g_t$ 意味着对于当前的观测状态的期望相对变化，即$g_t$代表着从当前$s_t$开始，底层控制器应该如何决策才能使得c步之后的$s_{t+c}$与$s_t+g_t$能够足够的接近。<br>(2) 如何设计一个比较泛化的目标空间<br>​    为了在不考虑状态变化的情况下保持目标的相同绝对位置，目标转换模型$h$定义为:<br>(3) 如何设计高层到底层的内在回报函数Parameterized reward function<br>​    该回报函数通过定义当前状态与目标状态之间的欧式距离来表示:<br>(4) 底层控制器的策略算法如何选择<br>​    通过简单的将目标$g_t$加入观测元组的方式，使得底层框架可以使用强化学习的标准方法进行学习。<br>​    比如使用DDPG那么loss就加入目标：<br>(5) 与以往工作的不同<br>​    Parameterized reward function 在之前的工作中也用过，但是他们用的时候目标都是间接通过表征学习给出的，而本文直接将目标当做一种预期的状态给到底层，更加直接。</p>
+<p>高层训练使用的Off-policy Correction<br>(1)以往的工作大多基于on-policy ，这里引入了off-policy进行学习会带来怎样的问题<br>​    引入off-policy的话，由于底层策略网络$\mu^{lo}$在当前和从replay buffer中采样的时候的策略网络是不同的，因而对于同一个目标，在前后两种策略网络下的状态转移序列是不同的。<br>(2) 如何解决以上问题<br>​    高层策略网络的状态转移序列为$(s_{t:t+c-1},g_{t:t+c-1},a_{t:t+c-1},R_{t:t+c-1},s_{t+c})$，我们将其转换为可以push到replay buffer中的state-action-reward 转移序列$(s_t,g_t\sum R_{t:t+c-1},s_{t+c})$，以兼容各种标准off-policy强化学习方法。<br>​    更改$g_t$使其能够适应新的$\mu^{lo}$:</p>
+<p>先前的目标$g_t$诱导底层产生$a_{t:t+c−1} ∼ \mu^{lo}(s_{t:t+c−1}, g_{t:t+c−1})$行为。<br>调整上述目标变成$\tilde {g_t}$使其能够诱导新的底层策略产生最大化概率：$\mu^{lo}(a_{t:t+c−1}|s_{t:t+c−1}, \tilde{g}_{t:t+c−1})$<br>$\tilde{g}$使用固定的目标转移函数$h$来得到</p>
+<p>(3) 如何获得新目标$\tilde{g}​$的最大化概率<br>​    对于一般的强化学习算法而言策略的log概率可以表示为:<br>​    这里文章通过离散采样的方式选择一个较大的值作为最大概率的估计，采样10个点为：</p>
+<p>$g_t$</p>
+<ul>
+<li><p>按高斯分布在以$s_{t+c} − s_{t}​$为中心的分布上采样得到8个点</p>
+</li>
+<li><p>$s_{t+c} − s_t$</p>
+</li>
+</ul>
+<p>   ​</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019-03-27_%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E7%B1%BBDPGDDPGTD3D4PG.html" rel="prev" title="【确定性策略梯度类】 DPG,DDPG,TD3,D4PG">
+                  <i class="fa fa-angle-left"></i> 【确定性策略梯度类】 DPG,DDPG,TD3,D4PG
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019-04-03_%E8%AE%BA%E6%96%87CONTINUOUSADAPTATIONVIAMETAL.html" rel="next" title="[论文]CONTINUOUS ADAPTATION VIA META-LEARNING IN NONSTATIONARY AND COMPETITIVE ENV">
+                  [论文]CONTINUOUS ADAPTATION VIA META-LEARNING IN NONSTATIONARY AND COMPETITIVE ENV <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zhkmxx930</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"tororo"},"display":{"position":"right","width":150,"height":150,"hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8,"opacityDefault":0.8,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
